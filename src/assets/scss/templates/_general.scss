@@ -1,0 +1,38 @@
+body{
+  font-family: $fontText;
+  font-weight: 500;
+  color: $black;
+  background-color: $white;
+}
+path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 10s linear;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+.content {
+  max-width: $max-width;
+  margin: 140px auto 0;
+}
+h1,h2,h3 {
+  font-family: $fontTitle;
+  text-transform: uppercase;
+  text-align: center;
+}
+h2 {
+  font-size: 150px;
+}
+h4 {
+  font-family: $fontText;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+}

@@ -1,0 +1,51 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flex-top-center {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+@mixin page-common($z:1) {
+  @include absolute($z);
+}
+@mixin pseudo-class($z:1) {
+  position: absolute;
+  content: "";
+  z-index: $z;
+}
+@mixin img-responsive() {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+@mixin show() {
+  visibility: visible;
+  opacity: 1;
+}
+@mixin hide() {
+  visibility: hidden;
+  opacity: 0;
+}
+@mixin absolute($z:1) {
+  position: absolute;
+  z-index: $z;
+}
+@mixin dimensions($w, $h:'auto'){
+  width: $w;
+  @if $h == 'auto' {
+    height: 'auto';
+  } @else {
+    height: $h;
+  }
+}
+@mixin cover-bkg($image, $x: 50%, $y: 50%) {
+  background: {
+    image: url($image);
+    repeat: no-repeat;
+    position: $x $y;
+    size:cover;
+  }
+}

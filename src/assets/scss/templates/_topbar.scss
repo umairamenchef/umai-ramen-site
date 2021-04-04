@@ -1,0 +1,25 @@
+.topbar {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: $black;
+  height: 40px;
+
+  ul {
+    display: flex;
+    max-width: 600px;
+    height: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    li {
+      display: inline-flex;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: $white;
+    }
+  }
+}

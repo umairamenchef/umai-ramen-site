@@ -1,0 +1,80 @@
+{
+  "title": "UMAI Ramen noodle shop",
+  "description": "Une expérience unique et traditionnelle japonaise",
+  "author": "Chousse",
+  "text": "Chousse",
+  "lang": "fr",
+  "locale": "fr_FR",
+  "url": "http://localhost:8080",
+  "topbar": {
+    "item0":"UMAI — Ramen noodle shop",
+    "item1":"5 rue des Orphelins",
+    "item2":"+33 (0)3 88 41 52 61"
+  },
+  "menu":{
+    "item0":"Menu",
+    "item1":"Story",
+    "item2":"Social / Press",
+    "item3":"Contact",
+    "item4":"Commander"
+  },
+  "social":{
+    "fb":{
+      "title":"Facebook",
+      "url":""
+    },
+    "tw":{
+      "title":"Twitter",
+      "url":""
+    },
+    "ig":{
+      "title":"Instagram",
+      "url":""
+    },
+    "snap":{
+      "title":"Snapchat",
+      "url":""
+    }
+  },
+  "catchphrase":"UNE EXPERIENCE UNIQUE ET TRADITIONNELLE JAPONAISE",
+  "section":{
+    "menu":{
+      "title":"MENU",
+      "text":"UMAI propose à la carte des spécialités japonaises dont les plats signatures sont les ramens, les mazesobas et les tsukemens",
+      "bt":"Voir le menu",
+      "items":{
+        "item0":{
+          "title":"Le ramen",
+          "text":"est un plat typiquement japonais qui est composé de nouille de blé, d’un bouillon de viande et de garnitures (légumes, oeuf etc…)."
+        },
+        "item1":{
+          "title":"LE MAZESOBA",
+          "text":"est une version du ramen sans le bouillon et dont il convient de mélanger les nouilles et les garnitures avant de déguster."
+        },
+        "item2":{
+          "title":"LE TSUKEMEN",
+          "text":"est un ramen dont les nouilles et la soupe sont servis séparément."
+        }
+      }
+    },
+    "story":{
+      "title":"Story",
+      "subtitle":"Vivez une expérience unique et authentique d’un Noodle Bar traditionnel japonais.",
+      "text":"Umai Ramen produit quotidiennement ses nouilles fraîches maison ainsi que ses bouillons de viande ou légumes dont certains nécessitent plus de 6h de cuisson pour en extraire toutes les saveurs. Formée directement au japon par les plus grands chefs Ramen, la cuisine d’Umaï vous propose ses recettes authentiques. Tous les produits, de la farine à la viande en passant par les légumes, sont 100% locaux et fait-maison avec un grand respect du produit tel que l’exige la tradition.",
+      "bt":"En savoir +"
+    },
+    "social": {
+      "title":"Social",
+      "text":"Retrouvez nous sur les réseaux les plus connus et contribuez en partageant vos plus belles captures #umairamen"
+    },
+    "footer":{
+      "title":"UMAI<br>Ramen Noodle Shop<br>5 rue des Orphelins — +33 (0)3 88 75 74 21",
+      "menu1":{
+        "item0":"Contact"
+      },
+      "menu2":{
+        "item0":"Contact"
+      }
+    }
+  }
+}
