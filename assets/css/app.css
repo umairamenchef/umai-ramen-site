@@ -1,0 +1,193 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap");
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/*------------------------------------*\
+		Easing
+\*------------------------------------*/
+body {
+  font-family: "Arimo";
+  font-weight: 500;
+  color: #000;
+  background-color: #fff; }
+
+path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 10s linear; }
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 1000; } }
+
+.content {
+  max-width: 1640px;
+  margin: 140px auto 0; }
+
+h1, h2, h3 {
+  font-family: "Libre Caslon Display";
+  text-transform: uppercase;
+  text-align: center; }
+
+h2 {
+  font-size: 150px; }
+
+h4 {
+  font-family: "Arimo";
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 700; }
+
+.splash h3 {
+  font-size: 33px; }
+
+.header {
+  position: fixed;
+  z-index: 100;
+  width: 1640px;
+  height: 104px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 40px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row; }
+  .header__left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%; }
+    .header__left ul li {
+      display: inline-flex;
+      margin-right: 90px; }
+      .header__left ul li:nth-last-child() {
+        margin-right: 0px; }
+      .header__left ul li a {
+        font-size: 18px;
+        font-weight: 700;
+        color: #000;
+        position: relative;
+        text-decoration: none; }
+        .header__left ul li a:after {
+          position: absolute;
+          content: "";
+          z-index: 1;
+          bottom: -6px;
+          left: 0;
+          width: 0%;
+          height: 2px;
+          background-color: #000;
+          transition: width 600ms cubic-bezier(0.075, 0.82, 0.165, 1); }
+        .header__left ul li a:hover:after {
+          width: 100%; }
+        .header__left ul li a.active:after {
+          width: 100%; }
+  .header__center {
+    position: absolute;
+    z-index: 10;
+    width: 130px;
+    height: 44px;
+    left: 0;
+    top: -16px;
+    right: 0;
+    bottom: 0;
+    margin: auto; }
+  .header__right {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; }
+    .header__right ul li {
+      display: inline-flex; }
+      .header__right ul li a.contact {
+        font-size: 14px;
+        font-weight: 600;
+        color: #000;
+        position: relative;
+        text-decoration: none; }
+        .header__right ul li a.contact:after {
+          position: absolute;
+          content: "";
+          z-index: 1;
+          bottom: -4px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #000; }
+      .header__right ul li a.contact {
+        font-size: 18px;
+        font-weight: 700;
+        color: #000;
+        position: relative;
+        text-decoration: none; }
+        .header__right ul li a.contact:after {
+          position: absolute;
+          content: "";
+          z-index: 1;
+          bottom: -4px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #000; }
+
+.topbar {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: #000;
+  height: 40px; }
+  .topbar ul {
+    display: flex;
+    max-width: 600px;
+    height: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center; }
+    .topbar ul li {
+      display: inline-flex;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff; }
+
+/*# sourceMappingURL=app.css.map */
