@@ -1,0 +1,37 @@
+.menu {
+  margin-bottom: 85px;
+  h2 {
+    margin-bottom: 40px;
+  }
+  p {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .row {
+    justify-content: center;
+    align-items: center;
+  }
+  .col-4 {
+    justify-content: center;
+    align-items: center;
+  }
+  &__cols {
+    padding: 45px 0;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    border-top:1px solid $black;
+    border-bottom:1px solid $black;
+  }
+  &__col {
+    h4 {
+      font-weight: 700;
+      font-size: 20px;
+    }
+    p {
+      font-weight: 500;
+      font-size: 20px;
+      padding: 0 60px;
+    }
+  }
+}

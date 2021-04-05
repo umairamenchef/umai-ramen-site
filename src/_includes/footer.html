@@ -1,20 +1,31 @@
 <div class="footer">
-  <div class="footer__col col0">
-    <img src="/assets/img/logo.svg" alt="">
-    {{ site.footer.title }}
-  </div>
-  <div class="footer__col col1">
+  <div class="row">
+    <div class="footer__col col0 col col-6">
+      <img src="/assets/img/logo_footer.svg" alt="">
+      <p>{{ site.section.footer.title }}</p>
 
-  </div>
-  <div class="footer__col col2">
-
-  </div>
-  <div class="footer__col col3">
-    <ul class="footer__social">
-      <li><a href="{{ site.social.fb.url }}" title="{{ site.social.fb.title }}"><img src="/assets/img/fb.svg" alt="{{ site.social.fb.title }}"></a></li>
-      <li><a href="{{ site.social.tw.url }}" title="{{ site.social.tw.title }}"><img src="/assets/img/tw.svg" alt="{{ site.social.tw.title }}"></a></li>
-      <li><a href="{{ site.social.ig.url }}" title="{{ site.social.ig.title }}"><img src="/assets/img/ig.svg" alt="{{ site.social.ig.title }}"></a></li>
-      <li><a href="{{ site.social.snap.url }}" title="{{ site.social.snap.title }}"><img src="/assets/img/snap.svg" alt="{{ site.social.snap.title }}"></a></li>
-    </ul>
+    </div>
+    <div class="footer__col col1 col col-2">
+      <ul>
+        <li>Contact</li>
+        <li>Newsletter</li>
+        <li>Blog</li>
+      </ul>
+    </div>
+    <div class="footer__col col2 col col-2">
+      <ul>
+        <li>Privacy Policy</li>
+        <li>Cookie Policy</li>
+        <li>Mentions légales</li>
+      </ul>
+    </div>
+    <div class="footer__col col3 col col-2">
+      <ul class="footer__social">
+        <li><a href="{{ site.social.fb.url }}" title="{{ site.social.fb.title }}"><img src="/assets/img/fb.svg" alt="{{ site.social.fb.title }}"></a></li>
+        <li><a href="{{ site.social.tw.url }}" title="{{ site.social.tw.title }}"><img src="/assets/img/tw.svg" alt="{{ site.social.tw.title }}"></a></li>
+        <li><a href="{{ site.social.ig.url }}" title="{{ site.social.ig.title }}"><img src="/assets/img/ig.svg" alt="{{ site.social.ig.title }}"></a></li>
+        <li><a href="{{ site.social.snap.url }}" title="{{ site.social.snap.title }}"><img src="/assets/img/snap.svg" alt="{{ site.social.snap.title }}"></a></li>
+      </ul>
+    </div>
   </div>
 </div>

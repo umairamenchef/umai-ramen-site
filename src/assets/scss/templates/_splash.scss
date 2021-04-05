@@ -1,5 +1,26 @@
 .splash {
+  padding-top: 35px;
+  height: calc( 100vh - 140px );
+  &__title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &_logo {
+      transform-origin: center;
+      animation-duration: 20s;
+    }
+
+  }
+  &__cols {
+    margin-top: 80px;
+  }
+  .col {
+    align-items: center;
+    justify-content: center;
+  }
   h3 {
     font-size: 33px;
+    padding: 0 10px;
   }
 }

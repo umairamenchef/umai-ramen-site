@@ -1,11 +1,17 @@
 // Add your codes here
 @import "utils/reset";
 @import "utils/easing";
+@import "components/animation";
 @import "components/fonts";
 @import "settings";
 
 @import "utils/mixin";
+@import "utils/grid";
 @import "templates/general";
 @import "templates/splash";
+@import "templates/story";
+@import "templates/social";
+@import "templates/menu";
+@import "templates/footer";
 @import "templates/header";
 @import "templates/topbar";

@@ -1,0 +1,42 @@
+.row {
+  margin: 0 auto;
+  width: 100%;
+  max-width: $max-width;
+  display: flex;
+  flex-flow: row wrap;
+  &.center {
+    justify-content: center;
+  }
+  &.middle {
+    align-items: center;
+  }
+}
+.col {
+  display: flex;
+  flex-flow: column wrap;
+  &__centered {
+    margin: 0 auto;
+  }
+}
+//12 cols
+.col-2 {
+  width: 16.66666666%;
+}
+.col-3 {
+  width: 25%;
+}
+.col-4 {
+  width: 33.333333333%;
+}
+.col-6 {
+  width: 50%;
+}
+.col-8 {
+  width: 66.666666666%;
+}
+.col-10 {
+  width: 83.333333333%;
+}
+.col-12 {
+  width: 100%;
+}
