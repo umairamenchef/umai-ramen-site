@@ -35,6 +35,12 @@ body{
   text-decoration: none;
 
 }
+.light {
+  fill:$white;
+}
+.dark {
+  fill:$black;
+}
 h1,h2,h3 {
   font-family: $fontTitle;
   text-transform: uppercase;

@@ -1,3 +1,41 @@
+
+@mixin xs-breakpoint() {
+    @media (min-width: $xs) {
+        @content;
+    }
+}
+
+@mixin sm-breakpoint() {
+    @media (min-width: $sm) {
+        @content;
+    }
+}
+
+@mixin md-breakpoint() {
+    @media (min-width: $md) {
+        @content;
+    }
+}
+
+@mixin lg-breakpoint() {
+    @media (min-width: $lg) {
+        @content;
+    }
+}
+
+@mixin xl-breakpoint() {
+    @media (min-width: $xl) {
+        @content;
+    }
+}
+
+@mixin mx-breakpoint() {
+    @media (min-width: $mx) {
+        @content;
+    }
+}
+
+
 @mixin flex-center {
   display: flex;
   align-items: center;

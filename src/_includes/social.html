@@ -8,11 +8,31 @@
   </div>
   <div class="row">
     <ul class="social__links">
-      <li><a href="{{ site.social.fb.url }}" title="{{ site.social.fb.title }}"><img src="/assets/img/facebook.svg" alt="{{ site.social.fb.title }}"></a></li>
-      <li><a href="{{ site.social.tw.url }}" title="{{ site.social.tw.title }}"><img src="/assets/img/twitter.svg" alt="{{ site.social.tw.title }}"></a></li>
-      <li><a href="{{ site.social.ig.url }}" title="{{ site.social.ig.title }}"><img src="/assets/img/instagram.svg" alt="{{ site.social.ig.title }}"></a></li>
-      <li><a href="{{ site.social.tiktok.url }}" title="{{ site.social.tiktok.title }}"><img src="/assets/img/tiktok.svg" alt="{{ site.social.tiktok.title }}"></a></li>
-      <li><a href="{{ site.social.snap.url }}" title="{{ site.social.snap.title }}"><img src="/assets/img/snap.svg" alt="{{ site.social.snap.title }}"></a></li>
+      <li>
+        <a href="{{ site.social.fb.url }}" title="{{ site.social.fb.title }}">
+          {% include "../assets/img/facebook.svg" ignore missing %}
+        </a>
+      </li>
+      <li>
+        <a href="{{ site.social.tw.url }}" title="{{ site.social.tw.title }}">
+          {% include "../assets/img/twitter.svg" ignore missing %}
+        </a>
+      </li>
+      <li>
+        <a href="{{ site.social.ig.url }}" title="{{ site.social.ig.title }}">
+          {% include "../assets/img/instagram.svg" ignore missing %}
+        </a>
+      </li>
+      <li>
+        <a href="{{ site.social.tiktok.url }}" title="{{ site.social.tiktok.title }}">
+          {% include "../assets/img/tiktok.svg" ignore missing %}
+        </a>
+      </li>
+      <li>
+        <a href="{{ site.social.snap.url }}" title="{{ site.social.snap.title }}">
+          {% include "../assets/img/snap.svg" ignore missing %}
+        </a>
+      </li>
     </ul>
   </div>
 </section>

@@ -4,6 +4,9 @@
   max-width: $max-width;
   display: flex;
   flex-flow: row wrap;
+  &__reverse {
+    flex-flow: row wrap-reverse !important;
+  }
   &.center {
     justify-content: center;
   }
@@ -23,13 +26,22 @@
   width: 16.66666666%;
 }
 .col-3 {
-  width: 25%;
+  width: 100%;
+  @include md-breakpoint() {
+    width: 25%;
+  }
 }
 .col-4 {
-  width: 33.333333333%;
+  width: 100%;
+  @include md-breakpoint() {
+      width: 33.333333333%;
+  }
 }
 .col-6 {
-  width: 50%;
+  width: 100%;
+  @include md-breakpoint() {
+    width: 50%;
+  }
 }
 .col-8 {
   width: 66.666666666%;

@@ -19,10 +19,16 @@
   <nav class="header__right">
     <ul>
       <li><a href="#" class="contact">{{ site.menu.item3 }}</a></li>
-      <li><a href="#"><img src="/assets/img/facebook.svg" width="30" alt=""></a></li>
-      <li><a href="#"><img src="/assets/img/twitter.svg" width="30" alt=""></a></li>
-      <li><a href="#"><img src="/assets/img/instagram.svg" width="30" alt=""></a></li>
-      <li><a href="#" class="commande">{{ site.menu.item4 }}</a></li>
+      <li><a href="{{ site.social.fb.url }}" title="{{ site.social.fb.title }}">
+        {% include "../assets/img/facebook.svg" ignore missing %}
+      </a></li>
+      <li><a href="{{ site.social.tw.url }}" title="{{ site.social.tw.title }}">
+        {% include "../assets/img/twitter.svg" ignore missing %}
+      </a></li>
+      <li><a href="{{ site.social.ig.url }}" title="{{ site.social.ig.title }}">
+        {% include "../assets/img/instagram.svg" ignore missing %}
+      </a></li>
+      <li><a href="#" class="commande"><span>{{ site.menu.item4 }}</span></a></li>
     </ul>
   </nav>
 </header>

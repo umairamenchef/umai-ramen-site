@@ -14,10 +14,15 @@
   }
   &__cols {
     margin-top: 80px;
+
   }
   .col {
     align-items: center;
     justify-content: center;
+    svg {
+      width: 100%;
+      height: auto;
+    }
   }
   h3 {
     font-size: 33px;

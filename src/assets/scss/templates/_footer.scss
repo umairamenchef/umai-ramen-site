@@ -3,15 +3,53 @@
 
   background-color: $black;
   width: 100%;
-  height: 200px;
+  height: 145px;
+  padding-top:55px;
   p {
     color: $white;
     font-size: 14px;
     font-weight: 400;
   }
-  a {
-    font-size: 14px;
-    font-weight: 400;
-    color: $white;
+
+  ul {
+    padding-top: 18px;
+    li {
+      a {
+        font-size: 14px;
+        font-weight: 400;
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+  &__social {
+      li {
+        display: inline-flex;
+        margin:0 6px;
+        a {
+          svg {
+            width: 31px;
+            height: 30px;
+            .light{
+              fill:$black;
+            }
+            .dark{
+              fill:$white;
+            }
+          }
+        }
+      }
+  }
+  .col0 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    img{
+      margin-right: 40px;
+    }
+    p {
+      padding-top: 18px;
+    }
   }
 }

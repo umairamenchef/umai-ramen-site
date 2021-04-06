@@ -71,8 +71,12 @@
       li {
         display: inline-flex;
         line-height: 30px;
-        
+
         a {
+          svg {
+            width: 31px;
+            height: 30px;
+          }
           &.contact {
             font-size: 14px;
             font-weight: 600;
@@ -109,6 +113,10 @@
             position: relative;
             text-decoration: none;
             z-index: 10;
+            span{
+              position: relative;
+              z-index: 3;
+            }
             &:after {
               @include pseudo-class(1);
               bottom:-27px;
@@ -116,16 +124,25 @@
               left: -50px;
               width: 194px;
               height: 71px;
-              border: 4px solid;
-              border-image-slice: 1;
               border-width: 2px;
-              //background-color: $white;
+              background-image:linear-gradient(to top, $black 0%, $black 100%);
+              transition: all 600ms $out-circ;
+            }
+            &:before {
+              @include pseudo-class(2);
+              bottom:-27px;
+              border-radius: 98px / 36px;
+              left: -50px;
+              width: 186px;
+              height: 64px;
+
+              background-color: $white;
               transition: all 600ms $out-circ;
             }
             &:hover {
               &:after {
-                border-radius: 98px / 36px;
-                border-image-source:linear-gradient(to top, #feeaff 0%, #fff8d0 100%);
+
+                background-image:linear-gradient(to top, #feeaff 0%, #fff8d0 100%);
                 // border-image:
                 //background-image: linear-gradient(to top, #feeaff 0%, #ffffff 100%);
                 //background-image: linear-gradient(to top, #fff8d0 0%, #fffce8 33%, #ffffff 100%);

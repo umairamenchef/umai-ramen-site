@@ -12,7 +12,7 @@ module.exports = function(eleventyConfig) {
     'md',
     markdownIt({
       html: true,
-      breaks: true,
+      breaks: false,
       typographer: true
     })
   )
