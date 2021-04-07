@@ -26,7 +26,7 @@
 <body class="start">
 
   <div class="page">
-    <div class="topbar">
+    <div class="topbar hide-sm">
       <ul>
         <li>UMAI — Ramen noodle shop</li>
         <li>5 rue des Orphelins</li>
@@ -34,20 +34,22 @@
       </ul>
     </div>
     <header class="header">
-      <nav class="header__left">
+      <nav class="header__left hide-sm">
         <ul>
-          <li><a href="#">Menu</a></li>
-          <li><a href="#">Story</a></li>
-          <li><a href="#">Social / Press</a></li>
+          <li><a class="anchor-nav" id="menu-anchor" href="#menu">Menu</a></li>
+          <li><a class="anchor-nav" id="story-anchor" href="#story">Story</a></li>
+          <li><a class="anchor-nav" id="social-anchor" href="#social">Social / Press</a></li>
         </ul>
       </nav>
       <div class="header__center">
-        <img src="/assets/img/umai_logo_menu.svg" alt="UMAI Ramen noodle shop">
+        <a class="anchor-nav" id="header-anchor" href="#header">
+          <img src="/assets/img/umai_logo_menu.svg" alt="UMAI Ramen noodle shop">
+        </a>
       </div>
       <nav class="header__right">
         <ul>
-          <li><a href="#" class="contact">Contact</a></li>
-          <li><a href="" title="Facebook">
+          <li class="hide-sm"><a href="#" class="contact">Contact</a></li>
+          <li class="hide-sm"><a href="" title="Facebook">
               <svg xmlns="http://www.w3.org/2000/svg" width="64" height="63" viewBox="0 0 64 63">
                 <g>
                   <g>
@@ -57,7 +59,7 @@
               </svg>
 
             </a></li>
-          <li><a href="" title="Twitter">
+          <li class="hide-sm"><a href="" title="Twitter">
               <svg xmlns="http://www.w3.org/2000/svg" width="64" height="63" viewBox="0 0 64 63">
                 <g>
                   <g>
@@ -70,7 +72,7 @@
               </svg>
 
             </a></li>
-          <li><a href="" title="Instagram">
+          <li class="hide-sm"><a href="" title="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="64" height="63" viewBox="0 0 64 63">
                 <g>
                   <g>
@@ -97,9 +99,12 @@
         </ul>
       </nav>
     </header>
+    <header class="header-mobile">
+
+    </header>
 
     <div class="content">
-      <section class="splash">
+      <section id="header" class="splash">
         <div class="row">
           <div class="splash__title">
             <img class="splash__title_logo rotating" src="/assets/img/title.svg" alt="">
@@ -225,13 +230,13 @@
             </svg>
 
           </div>
-          <div class="splash__col col col-3">
+          <div class="splash__col col col-3 hide-sm">
             <h3>UNE EXPERIENCE UNIQUE ET TRADITIONNELLE JAPONAISE</h3>
           </div>
         </div>
       </section>
 
-      <section class="menu">
+      <section id="menu" class="menu">
         <div class="row">
           <div class="col col-4">
             <h2>MENU</h2>
@@ -261,8 +266,8 @@
 
       </section>
 
-      <section class="story">
-        <div class="row center">
+      <section id="story" class="story">
+        <div class="row center illus">
           <img src="/assets/img/waves.svg" alt="">
         </div>
         <div class="row">
@@ -280,7 +285,7 @@
         </div>
       </section>
 
-      <section class="social">
+      <section id="social" class="social">
         <div class="row">
           <div class="col col__centered col-4">
             <h2>Social</h2>
@@ -388,21 +393,21 @@
           <p>UMAI<br>Ramen Noodle Shop<br>5 rue des Orphelins — +33 (0)3 88 75 74 21</p>
 
         </div>
-        <div class="footer__col col1 col col-2">
+        <div class="footer__col col1 col col-2 col-md6">
           <ul>
             <li><a href="#">Contact</a></li>
             <li><a href="#">Newsletter</a></li>
             <li><a href="#">Blog</a></li>
           </ul>
         </div>
-        <div class="footer__col col2 col col-2">
+        <div class="footer__col col2 col col-2 col-md6">
           <ul>
             <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Cookie Policy</a></li>
             <li><a href="#">Mentions légales</a></li>
           </ul>
         </div>
-        <div class="footer__col col3 col col-2">
+        <div class="footer__col col3 col col-2 col-md12">
           <ul class="footer__social">
             <li>
               <a href="" title="Facebook">
