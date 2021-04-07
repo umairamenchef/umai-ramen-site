@@ -20,12 +20,26 @@
     align-items: center;
     justify-content: center;
     svg {
+      @include md-breakpoint() {
+        max-width: 100%;
+      }
+      max-width: 90%;
       width: 100%;
       height: auto;
     }
+
+
   }
   h3 {
-    font-size: 33px;
-    padding: 0 10px;
+    @include md-breakpoint() {
+      font-size: 33px;
+      padding: 0 10px;
+    }
+    font-size: 20px;
+    padding: 40px 80px;
+    @include sm-breakpoint() {
+      font-size: 26px;
+      padding: 40px 100px;
+    }
   }
 }

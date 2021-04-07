@@ -3,8 +3,11 @@
 
   background-color: $black;
   width: 100%;
-  height: 145px;
-  padding-top:55px;
+  @include md-breakpoint() {
+    height: 145px;
+    padding-top:55px;
+  }
+  padding-top:35px;
   p {
     color: $white;
     font-size: 14px;
@@ -23,6 +26,13 @@
     }
   }
   &__social {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    @include md-breakpoint() {
+      padding-bottom: 0;
+      display: block;
+    }
       li {
         display: inline-flex;
         margin:0 6px;
@@ -42,14 +52,53 @@
   }
   .col0 {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
+
+    @include md-breakpoint() {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     img{
-      margin-right: 40px;
+
+      @include md-breakpoint() {
+        margin-right: 40px;
+      }
     }
     p {
+      @include md-breakpoint() {
+        text-align: left;
+      }
+      text-align: center;
       padding-top: 18px;
     }
+  }
+  .col1{
+    width: 50%;
+    text-align: center;
+    @include md-breakpoint() {
+      text-align: left;
+      width: 16.666666666%;
+    }
+  }
+  .col2{
+    width: 50%;
+    text-align: center;
+    @include md-breakpoint() {
+      text-align: left;
+      width: 16.666666666%;
+    }
+  }
+  .col3{
+    width: 100%;
+    @include md-breakpoint() {
+      width: 16.666666666%;
+    }
+  }
+  .col {
+
   }
 }

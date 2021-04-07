@@ -1,6 +1,7 @@
 body{
   font-family: $fontText;
   font-weight: 500;
+  font-size: 16px;
   color: $black;
   background-color: $white;
 }
@@ -17,6 +18,11 @@ body{
   }
   to {
     stroke-dashoffset: 0;
+  }
+}
+.hide-sm {
+  @media (max-width: $md) {
+      display: none !important;
   }
 }
 .content {
@@ -47,11 +53,24 @@ h1,h2,h3 {
   text-align: center;
 }
 h2 {
-  font-size: 150px;
+  font-size: 80px;
+  @include sm-breakpoint() {
+    font-size: 100px;
+  }
+  @include md-breakpoint() {
+    font-size: 150px;
+  }
 }
 h4 {
   font-family: $fontText;
-  font-size: 20px;
+  font-size: 18px;
+  @include md-breakpoint() {
+    font-size: 20px;
+  }
   text-transform: uppercase;
   font-weight: 700;
+}
+p {
+  font-family: $fontText;
+  font-size: 16px;
 }

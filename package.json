@@ -28,7 +28,10 @@
     "fix-css": "stylelint \"src/**/*.{css,scss}\" --fix || exit 0",
     "fix-js": "eslint \"src/**/*.js\" --fix || exit 0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "gsap": "^3.6.1",
+    "scrollmagic": "^2.0.8"
+  },
   "devDependencies": {
     "@11ty/eleventy": "^0.10.0",
     "@11ty/eleventy-plugin-rss": "^1.0.7",
