@@ -1,22 +1,22 @@
-let ScrollMagic = require('ScrollMagic');
+/* eslint-disable */
 
-const { gsap } = require("gsap/dist/gsap");
-const { ScrollToPlugin } = require("gsap/dist/ScrollToPlugin");
+let ScrollMagic = require('ScrollMagic')
+
+const { gsap } = require("gsap/dist/gsap")
+const { ExpoScaleEase, RoughEase, SlowMo } = require("gsap/dist/EasePack")
+const { ScrollToPlugin } = require("gsap/dist/ScrollToPlugin")
 
 gsap.registerPlugin(ScrollToPlugin);
 
-
-
-document.addEventListener("DOMContentLoaded",function(e){
-  let controller = new ScrollMagic.Controller({
+document.addEventListener('DOMContentLoaded',function(e){
+  const controller = new ScrollMagic.Controller({
     globalSceneOptions: {
-      triggerHook: "onCenter",
-      reverse:true
+      triggerHook: 'onCenter'
     }
 
-  });
+  })
 
-  var scenes = {
+  const scenes = {
   'scene1': {
     'header': 'header-anchor'
   },
@@ -28,14 +28,26 @@ document.addEventListener("DOMContentLoaded",function(e){
   },
   'scene4': {
     'social': 'social-anchor'
+  },
+  "scene5": {
+    'header': 'bkg-header'
+  },
+  "scene6": {
+    'menu': 'bkg-menu'
+  },
+  "scene7": {
+    'story': 'bkg-story'
+  },
+  "scene8": {
+    'social': 'bkg-social'
   }
 }
 
 for(var key in scenes) {
   // skip loop if the property is from prototype
-  if (!scenes.hasOwnProperty(key)) continue;
+  if (!scenes.hasOwnProperty(key)) continue
 
-  var obj = scenes[key];
+  let obj = scenes[key]
 
   for (var prop in obj) {
     // skip loop if the property is from prototype
@@ -43,43 +55,36 @@ for(var key in scenes) {
 
     new ScrollMagic.Scene({ triggerElement: '#' + prop })
         .setClassToggle('#' + obj[prop], 'active')
-        .addTo(controller);
+        .reverse(true)
+        .addTo(controller)
   }
 }
-
-
-// Change behaviour of controller
-// to animate scroll instead of jump
 controller.scrollTo(function(target) {
-  console.log(target);
   gsap.to(window, 0.5, {
     scrollTo : {
-      x : target,
-      autoKill : true // Allow scroll position to change outside itself
+      y : target,
+      autoKill : true, // Allow scroll position to change outside itself,
+      ease: 'expo.out'
     }
-  });
+  })
 
-});
+})
 
+  let anchorsnav = document.querySelectorAll('.anchor-nav')
 
+  anchorsnav.forEach(el => {
+    el.addEventListener('click', e => {
+      let target = e.target,
+          id     = target.getAttribute('href')
 
-  //  Bind scroll to anchor links using Vanilla JavaScript
-  var anchor_nav = document.querySelector('.anchor-nav');
+      if(id !== null && id.length > 0) {
+        e.preventDefault()
+        controller.scrollTo(id)
 
-  anchor_nav.addEventListener('click', function(e) {
-    var target = e.target,
-        id     = target.getAttribute('href');
-
-    if(id !== null && id.length > 0) {
-      e.preventDefault();
-      controller.scrollTo(id);
-
-      if(window.history && window.history.pushState) {
-        history.pushState("", document.title, id);
+        if(window.history && window.history.pushState) {
+          history.pushState("", document.title, id)
+        }
       }
-    }
-  });
-
-
-
+    })
+  })
 })

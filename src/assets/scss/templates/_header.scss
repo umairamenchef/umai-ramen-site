@@ -1,11 +1,12 @@
 .header{
   position: fixed;
   z-index: 100;
-  max-width: $max-width;
-  width: 100%;
+  max-width: calc( $max-width - 100px );
+  width: calc( 100% - 100px );
+  padding: 0 50px;
   height: 104px;
-  left: 0;
-  right: 0;
+  left: 0px;
+  right: 0px;
   margin: auto;
   top: 40px;
   background-color: $white;
@@ -67,10 +68,27 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      &_social {
+        margin: 0 4px;
+        a {
+          svg{
+            transition: opacity 400ms;
+          }
+          &:hover {
+            svg {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
     ul {
+      line-height: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       li {
         display: inline-flex;
-        line-height: 30px;
+        line-height: 1;
 
         a {
           svg {
@@ -86,7 +104,7 @@
             margin-right: 25px;
             &:after {
               @include pseudo-class;
-              bottom:-4px;
+              bottom:-2px;
               left: 0;
               width: 0%;
               height: 2px;
@@ -109,11 +127,13 @@
             margin-right: 50px;
             font-size: 18px;
             font-weight: 700;
-            color: $black;
+
             position: relative;
             text-decoration: none;
             z-index: 10;
             span{
+              transition: all 600ms $out-circ;
+              color: $black;
               position: relative;
               z-index: 3;
             }
@@ -124,25 +144,30 @@
               left: -50px;
               width: 194px;
               height: 71px;
-              border-width: 2px;
-              background-image:linear-gradient(to top, $black 0%, $black 100%);
-              transition: all 600ms $out-circ;
-            }
-            &:before {
-              @include pseudo-class(2);
-              bottom:-27px;
-              border-radius: 98px / 36px;
-              left: -50px;
-              width: 186px;
-              height: 64px;
-
+              border: 2px solid $black;
               background-color: $white;
+              //background-image:linear-gradient(to top, $black 0%, $black 100%);
               transition: all 600ms $out-circ;
             }
+            // &:before {
+            //   @include pseudo-class(2);
+            //   bottom:-27px;
+            //   border-radius: 98px / 36px;
+            //   left: -50px;
+            //   width: 186px;
+            //   height: 64px;
+            //
+            //   background-color: $white;
+            //   transition: all 600ms $out-circ;
+            // }
             &:hover {
-              &:after {
+              span{
+                color: $white;
+              }
 
-                background-image:linear-gradient(to top, #feeaff 0%, #fff8d0 100%);
+              &:after {
+                background-color: $black;
+                //background-image:linear-gradient(to top, #feeaff 0%, #fff8d0 100%);
                 // border-image:
                 //background-image: linear-gradient(to top, #feeaff 0%, #ffffff 100%);
                 //background-image: linear-gradient(to top, #fff8d0 0%, #fffce8 33%, #ffffff 100%);

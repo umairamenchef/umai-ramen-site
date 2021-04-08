@@ -47,6 +47,17 @@
               fill:$white;
             }
           }
+          &:hover {
+            svg {
+              .dark{
+                fill:$purple;
+              }
+              .light{
+                fill:$black;
+              }
+
+            }
+          }
         }
       }
   }

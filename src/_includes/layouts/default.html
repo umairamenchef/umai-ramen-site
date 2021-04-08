@@ -7,7 +7,7 @@
 
     {% include "meta.html" ignore missing%}
 
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/app.css">
   </head>
   <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
 
@@ -20,8 +20,10 @@
         {% include "social.html" ignore missing %}
       </div>
       {% include "footer.html" ignore missing %}
-    </div>
 
-    <script src="/assets/js/app.js"></script>
+
+    </div>
+    {% include "bkg.html" ignore missing %}
+    <script src="assets/js/app.js"></script>
   </body>
 </html>

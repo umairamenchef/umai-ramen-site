@@ -25,6 +25,11 @@ body{
       display: none !important;
   }
 }
+.page {
+  position: relative;
+  z-index: 2;
+  overflow-x: hidden;
+}
 .content {
   max-width: $max-width;
   margin: 140px auto 0;
@@ -39,12 +44,18 @@ body{
   display: inline-flex;
   color: $black;
   text-decoration: none;
-
+  transition: all 400ms;
+  &:hover {
+    color: $white;
+    background-color: $black;
+  }
 }
 .light {
+  transition: all 400ms;
   fill:$white;
 }
 .dark {
+  transition: all 400ms;
   fill:$black;
 }
 h1,h2,h3 {

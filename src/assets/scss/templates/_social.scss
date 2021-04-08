@@ -30,10 +30,23 @@
       width: 430px;
     }
     li {
+      height: 42px;
+      display: flex;
+      align-items: flex-end;
+      padding-top: 10px;
       svg {
+        transition: all 300ms $out-back;
         width: 32px;
         @include md-breakpoint() {
           width: 64px;
+        }
+      }
+      a {
+
+        &:hover {
+          svg {
+            margin-bottom: 10px;
+          }
         }
       }
     }

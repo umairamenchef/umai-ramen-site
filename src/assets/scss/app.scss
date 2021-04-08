@@ -3,11 +3,13 @@
 @import "utils/easing";
 @import "components/animation";
 @import "components/fonts";
+
 @import "settings";
 
 @import "utils/mixin";
 @import "utils/grid";
 @import "templates/general";
+@import "components/bkg";
 @import "templates/splash";
 @import "templates/story";
 @import "templates/social";
