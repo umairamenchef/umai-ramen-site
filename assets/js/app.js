@@ -9130,6 +9130,15 @@ var _require3 = require("gsap/dist/ScrollToPlugin"),
 
 gsap.registerPlugin(ScrollToPlugin);
 document.addEventListener('DOMContentLoaded', function (e) {
+  var burger = document.querySelector(".burger");
+  var closemenu = document.querySelector(".header-mobile__close");
+  var headermobile = document.querySelector(".header-mobile");
+  burger.addEventListener('click', function (e) {
+    headermobile.classList.add("open");
+  });
+  closemenu.addEventListener('click', function (e) {
+    headermobile.classList.remove("open");
+  });
   var controller = new ScrollMagic.Controller({
     globalSceneOptions: {
       triggerHook: 'onCenter'
@@ -9189,6 +9198,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
   var anchorsnav = document.querySelectorAll('.anchor-nav');
   anchorsnav.forEach(function (el) {
     el.addEventListener('click', function (e) {
+      headermobile.classList.remove("open");
       var target = e.target,
           id = target.getAttribute('href');
 
