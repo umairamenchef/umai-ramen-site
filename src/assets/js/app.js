@@ -9,6 +9,17 @@ const { ScrollToPlugin } = require("gsap/dist/ScrollToPlugin")
 gsap.registerPlugin(ScrollToPlugin);
 
 document.addEventListener('DOMContentLoaded',function(e){
+  const burger = document.querySelector(".burger");
+  const closemenu = document.querySelector(".header-mobile__close");
+  let headermobile = document.querySelector(".header-mobile");
+
+  burger.addEventListener('click', e => {
+    headermobile.classList.add("open");
+  });
+  closemenu.addEventListener('click', e => {
+    headermobile.classList.remove("open");
+  });
+
   const controller = new ScrollMagic.Controller({
     globalSceneOptions: {
       triggerHook: 'onCenter'
@@ -74,6 +85,7 @@ controller.scrollTo(function(target) {
 
   anchorsnav.forEach(el => {
     el.addEventListener('click', e => {
+      headermobile.classList.remove("open");
       let target = e.target,
           id     = target.getAttribute('href')
 

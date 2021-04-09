@@ -1,14 +1,62 @@
+.header-mobile {
+  position: fixed;
+  z-index: 200;
+  top:0;
+  left: calc( 100vw + 10px );
+  transition: all 400ms $out-circ;
+  &.open {
+    left: 0px;
+  }
+  background-color: $black;
+  height: 100vh;
+  width: 100vw;
+  &__close {
+    position: absolute;
+    z-index: 2;
+    right: 30px;
+    top: 30px;
+  }
+  &__menu {
+    padding: 60px 40px;
+
+      li {
+        a {
+          font-size: 40px;
+          font-weight: 400;
+          color: $white;
+          position: relative;
+          text-decoration: none;
+        }
+      }
+
+  }
+  &__social {
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    justify-content: flex-start;
+  }
+}
 .header{
   position: fixed;
   z-index: 100;
   max-width: calc( $max-width - 100px );
-  width: calc( 100% - 100px );
-  padding: 0 50px;
-  height: 104px;
+  width: calc( 100% - 40px );
+  padding: 20px;
+  @include md-breakpoint() {
+    width: calc( 100% - 100px );
+    padding: 0 50px;
+    height: 104px;
+  }
+
+
   left: 0px;
   right: 0px;
   margin: auto;
-  top: 40px;
+  top: 0px;
+  @include md-breakpoint() {
+    top: 40px;
+  }
   background-color: $white;
   display: flex;
   flex-direction: row;
@@ -55,16 +103,30 @@
     }
   }
   &__center {
-    @include absolute(10);
-    @include dimensions(130px, 44px);
-    left: 0;top:-16px;
-    right: 0;bottom:0;
-    margin:auto;
-
+      width: 40%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      img {
+        width: 68px;
+      }
+      @include md-breakpoint() {
+        img {
+          width: auto;
+        }
+        display: block;
+        @include absolute(10);
+        @include dimensions(130px, 44px);
+        left: 0;top:-16px;
+        right: 0;bottom:0;
+        margin:auto;
+      }
   }
   &__right {
-    width: 50%;
-
+    width: 60%;
+      @include md-breakpoint() {
+      width: 50%;
+    }
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -89,7 +151,13 @@
       li {
         display: inline-flex;
         line-height: 1;
-
+        &.burger {
+          padding-left: 20px;
+          display: flex;
+          @include md-breakpoint() {
+            display: none;
+          }
+        }
         a {
           svg {
             width: 31px;
@@ -123,9 +191,13 @@
             }
           }
           &.commande {
-            margin-left: 70px;
-            margin-right: 50px;
-            font-size: 18px;
+            margin-right: 20px;
+            font-size: 10px;
+            @include md-breakpoint() {
+              font-size: 18px;
+              margin-left: 70px;
+              margin-right: 50px;
+            }
             font-weight: 700;
 
             position: relative;
@@ -139,12 +211,24 @@
             }
             &:after {
               @include pseudo-class(1);
-              bottom:-27px;
-              border-radius: 98px / 36px;
-              left: -50px;
-              width: 194px;
-              height: 71px;
+
+
+              border-radius: 44px / 18px;
+              left: -17px;
+              bottom:-14px;
+              width: 87px;
+              height: 32px;
               border: 2px solid $black;
+              @include md-breakpoint() {
+                bottom:-27px;
+
+                border-radius: 98px / 36px;
+                left: -50px;
+                width: 194px;
+                height: 71px;
+                border: 3px solid $black;
+              }
+
               background-color: $white;
               //background-image:linear-gradient(to top, $black 0%, $black 100%);
               transition: all 600ms $out-circ;

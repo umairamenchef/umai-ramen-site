@@ -31,8 +31,11 @@ body{
   overflow-x: hidden;
 }
 .content {
+  margin: 70px auto 0;
   max-width: $max-width;
-  margin: 140px auto 0;
+  @include md-breakpoint() {
+    margin: 140px auto 0;
+  }
 }
 .bt {
   padding: 15px 25px;

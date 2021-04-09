@@ -127,8 +127,11 @@ body {
   overflow-x: hidden; }
 
 .content {
-  max-width: 1640px;
-  margin: 140px auto 0; }
+  margin: 70px auto 0;
+  max-width: 1640px; }
+  @media (min-width: 768px) {
+    .content {
+      margin: 140px auto 0; } }
 
 .bt {
   padding: 15px 25px;
@@ -456,20 +459,57 @@ p {
       .footer .col3 {
         width: 16.666666666%; } }
 
+.header-mobile {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: calc( 100vw + 10px);
+  transition: all 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-color: #000;
+  height: 100vh;
+  width: 100vw; }
+  .header-mobile.open {
+    left: 0px; }
+  .header-mobile__close {
+    position: absolute;
+    z-index: 2;
+    right: 30px;
+    top: 30px; }
+  .header-mobile__menu {
+    padding: 60px 40px; }
+    .header-mobile__menu li a {
+      font-size: 40px;
+      font-weight: 400;
+      color: #fff;
+      position: relative;
+      text-decoration: none; }
+  .header-mobile__social {
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    justify-content: flex-start; }
+
 .header {
   position: fixed;
   z-index: 100;
   max-width: calc( $max-width - 100px);
-  width: calc( 100% - 100px);
-  padding: 0 50px;
-  height: 104px;
+  width: calc( 100% - 40px);
+  padding: 20px;
   left: 0px;
   right: 0px;
   margin: auto;
-  top: 40px;
+  top: 0px;
   background-color: #fff;
   display: flex;
   flex-direction: row; }
+  @media (min-width: 768px) {
+    .header {
+      width: calc( 100% - 100px);
+      padding: 0 50px;
+      height: 104px; } }
+  @media (min-width: 768px) {
+    .header {
+      top: 40px; } }
   .header__left {
     display: flex;
     justify-content: flex-start;
@@ -501,20 +541,34 @@ p {
         .header__left ul li a.active:after {
           width: 100%; }
   .header__center {
-    position: absolute;
-    z-index: 10;
-    width: 130px;
-    height: 44px;
-    left: 0;
-    top: -16px;
-    right: 0;
-    bottom: 0;
-    margin: auto; }
+    width: 40%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; }
+    .header__center img {
+      width: 68px; }
+    @media (min-width: 768px) {
+      .header__center {
+        display: block;
+        position: absolute;
+        z-index: 10;
+        width: 130px;
+        height: 44px;
+        left: 0;
+        top: -16px;
+        right: 0;
+        bottom: 0;
+        margin: auto; }
+        .header__center img {
+          width: auto; } }
   .header__right {
-    width: 50%;
+    width: 60%;
     display: flex;
     justify-content: flex-end;
     align-items: center; }
+    @media (min-width: 768px) {
+      .header__right {
+        width: 50%; } }
     .header__right_social {
       margin: 0 4px; }
       .header__right_social a svg {
@@ -529,6 +583,12 @@ p {
       .header__right ul li {
         display: inline-flex;
         line-height: 1; }
+        .header__right ul li.burger {
+          padding-left: 20px;
+          display: flex; }
+          @media (min-width: 768px) {
+            .header__right ul li.burger {
+              display: none; } }
         .header__right ul li a svg {
           width: 31px;
           height: 30px; }
@@ -554,13 +614,17 @@ p {
           .header__right ul li a.contact.active:after {
             width: 100%; }
         .header__right ul li a.commande {
-          margin-left: 70px;
-          margin-right: 50px;
-          font-size: 18px;
+          margin-right: 20px;
+          font-size: 10px;
           font-weight: 700;
           position: relative;
           text-decoration: none;
           z-index: 10; }
+          @media (min-width: 768px) {
+            .header__right ul li a.commande {
+              font-size: 18px;
+              margin-left: 70px;
+              margin-right: 50px; } }
           .header__right ul li a.commande span {
             transition: all 600ms cubic-bezier(0.075, 0.82, 0.165, 1);
             color: #000;
@@ -570,14 +634,22 @@ p {
             position: absolute;
             content: "";
             z-index: 1;
-            bottom: -27px;
-            border-radius: 98px / 36px;
-            left: -50px;
-            width: 194px;
-            height: 71px;
+            border-radius: 44px / 18px;
+            left: -17px;
+            bottom: -14px;
+            width: 87px;
+            height: 32px;
             border: 2px solid #000;
             background-color: #fff;
             transition: all 600ms cubic-bezier(0.075, 0.82, 0.165, 1); }
+            @media (min-width: 768px) {
+              .header__right ul li a.commande:after {
+                bottom: -27px;
+                border-radius: 98px / 36px;
+                left: -50px;
+                width: 194px;
+                height: 71px;
+                border: 3px solid #000; } }
           .header__right ul li a.commande:hover span {
             color: #fff; }
           .header__right ul li a.commande:hover:after {
