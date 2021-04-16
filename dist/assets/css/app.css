@@ -212,7 +212,10 @@ p {
 
 .splash {
   padding-top: 35px;
-  height: calc( 100vh - 140px); }
+  height: 100vh; }
+  @media (min-width: 768px) {
+    .splash {
+      height: calc( 100vh - 140px); } }
   .splash__title {
     width: 100%;
     display: flex;
@@ -222,7 +225,10 @@ p {
       transform-origin: center;
       animation-duration: 20s; }
   .splash__cols {
-    margin-top: 80px; }
+    margin-top: 0px; }
+    @media (min-width: 768px) {
+      .splash__cols {
+        margin-top: 80px; } }
   .splash .col {
     align-items: center;
     justify-content: center; }
