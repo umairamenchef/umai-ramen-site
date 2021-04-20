@@ -1,3 +1,9 @@
+## Deploy on github pages
+
+`git add dist && git commit -m "Initial dist subtree commit"`
+
+`git subtree push --prefix dist origin gh-pages`
+
 ## Gulp Starter Kit
 [![Build Status](https://travis-ci.org/nstungcom/gulp-starter-kit.svg?branch=master)](https://travis-ci.org/nstungcom/gulp-starter-kit) [![Gulp v4.0.2](https://img.shields.io/badge/gulp-v4.0.2-brightgreen.svg)](https://www.npmjs.com/package/gulp) [![Node.js 8.16.1](https://img.shields.io/badge/node-%3E%3D%208.16.1-brightgreen)](https://nodejs.org)
 
@@ -28,7 +34,7 @@ Synchronize clicks, scrolls, forms and live-reload across multiple devices as yo
 - [Gulp](https://gulpjs.com/) 4 (tested with 4.0.2)
 
 ### Quick start
-- [Download the latest release](https://github.com/nstungcom/gulp-starter-kit/archive/master.zip) or 
+- [Download the latest release](https://github.com/nstungcom/gulp-starter-kit/archive/master.zip) or
 - Clone the repo `git clone https://github.com/nstungcom/gulp-starter-kit.git my-project/`
 - With [npm](https://www.npmjs.com/): `npm install`
 - Development: `npm run dev`
