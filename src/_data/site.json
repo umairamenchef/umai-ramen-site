@@ -7,16 +7,16 @@
   "locale": "fr_FR",
   "url": "http://localhost:8080",
   "cartemenu":[
-    {"title":"entrées","jp":"ペタイザー","list":[{"title":"entrées","jp":"ペタイザー"}]},
-    {"title":"ramen","jp":"ラーメン","list":[
+    {"title":"entrées","id":"entrees","jp":"ペタイザー","list":[{"title":"entrées","jp":"ペタイザー"}]},
+    {"title":"Ramen","id":"ramen","jp":"ラーメン","list":[
       {"title":"Tori Paitan","jp":"とり ぱいたん","desc":"Bouillon de poulet riche et crémeux","list":[
         {"title":"MISO Ramen","jp":"味噌ラーメン","desc":"Bouillon à base de miso, chashu de porc, ajitama et moyashi","price":"13,50"}
       ]}
     ]},
-    {"title":"Tsukemen","jp":"つけ麺","list":[{"title":"entrées","jp":"ペタイザー"}]},
-    {"title":"Mazesoba","jp":"まぜそば","list":[{"title":"entrées","jp":"ペタイザー"}]},
-    {"title":"Desserts","jp":"デザート","list":[{"title":"entrées","jp":"ペタイザー"}]},
-    {"title":"Boissons","jp":"飲み物","list":[{"title":"entrées","jp":"ペタイザー"}]}
+    {"title":"Tsukemen","id":"tsukemen","jp":"つけ麺","list":[{"title":"entrées","jp":"ペタイザー"}]},
+    {"title":"Mazesoba","id":"mazesoba","jp":"まぜそば","list":[{"title":"entrées","jp":"ペタイザー"}]},
+    {"title":"Desserts","id":"desserts","jp":"デザート","list":[{"title":"entrées","jp":"ペタイザー"}]},
+    {"title":"Boissons","id":"boissons","jp":"飲み物","list":[{"title":"entrées","jp":"ペタイザー"}]}
   ],
   "topbar": {
     "item0":"UMAI — Ramen noodle shop",
