@@ -21,13 +21,13 @@
   <nav class="header__right">
     <ul>
       <li class="hide-sm"><a href="#" class="contact">{{ site.menu.item3 }}</a></li>
-      <li class="hide-sm header__right_social"><a href="{{ site.social.fb.url }}" title="{{ site.social.fb.title }}">
+      <li class="hide-sm header__right_social"><a href="{{ site.social.fb.url }}" target="_blank" title="{{ site.social.fb.title }}">
         {% include "../assets/img/facebook.svg" ignore missing %}
       </a></li>
-      <li class="hide-sm header__right_social"><a href="{{ site.social.tw.url }}" title="{{ site.social.tw.title }}">
+      <!-- <li class="hide-sm header__right_social"><a href="{{ site.social.tw.url }}" title="{{ site.social.tw.title }}">
         {% include "../assets/img/twitter.svg" ignore missing %}
-      </a></li>
-      <li class="hide-sm header__right_social"><a href="{{ site.social.ig.url }}" title="{{ site.social.ig.title }}">
+      </a></li> -->
+      <li class="hide-sm header__right_social"><a href="{{ site.social.ig.url }}" target="_blank" title="{{ site.social.ig.title }}">
         {% include "../assets/img/instagram.svg" ignore missing %}
       </a></li>
       <li><a href="#" class="commande"><span>{{ site.menu.item4 }}</span></a></li>
@@ -47,21 +47,21 @@
   </ul>
   <ul class="header-mobile__social footer__social">
     <li>
-      <a href="{{ site.social.fb.url }}" title="{{ site.social.fb.title }}">
+      <a href="{{ site.social.fb.url }}" target="_blank" title="{{ site.social.fb.title }}">
         {% include "../assets/img/facebook.svg" ignore missing %}
       </a>
     </li>
-    <li>
+    <!-- <li>
       <a href="{{ site.social.tw.url }}" title="{{ site.social.tw.title }}">
         {% include "../assets/img/twitter.svg" ignore missing %}
       </a>
-    </li>
+    </li> -->
     <li>
-      <a href="{{ site.social.ig.url }}" title="{{ site.social.ig.title }}">
+      <a href="{{ site.social.ig.url }}" target="_blank" title="{{ site.social.ig.title }}">
         {% include "../assets/img/instagram.svg" ignore missing %}
       </a>
     </li>
-    <li>
+    <!-- <li>
       <a href="{{ site.social.tiktok.url }}" title="{{ site.social.tiktok.title }}">
         {% include "../assets/img/tiktok.svg" ignore missing %}
       </a>
@@ -70,6 +70,6 @@
       <a href="{{ site.social.snap.url }}" title="{{ site.social.snap.title }}">
         {% include "../assets/img/snap.svg" ignore missing %}
       </a>
-    </li>
+    </li> -->
   </ul>
 </header>

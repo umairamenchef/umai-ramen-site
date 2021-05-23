@@ -1,0 +1,40 @@
+.cartemenu {
+  h1 {
+    font-family: $fontTitle;
+    text-transform: uppercase;
+    font-size: 300px;
+    font-weight: 400;
+  }
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom: 30px;
+    li {
+      padding: 4px 6px;
+
+      transition: all 200ms;
+      border: 1px solid #fff;
+      a,p {
+        font-family: $fontText;
+        font-size: 20px;
+        color: #000;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding-bottom: 4px;
+      }
+      &:hover {
+        border: 1px solid #000;
+      }
+
+    }
+  }
+
+  .jp {
+    font-family: $fontJP;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}

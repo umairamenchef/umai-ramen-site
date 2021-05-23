@@ -49,6 +49,13 @@ table {
 .rotating {
   animation: rotating 2s linear infinite; }
 
+@font-face {
+  font-family: "PingFang SC";
+  src: url("../fonts/PingFangSC.eot");
+  /* IE9*/
+  src: url("../fonts/PingFangSC.eot?#iefix") format("embedded-opentype"), url("../fonts/PingFangSC.woff2") format("woff2"), url("../fonts/PingFangSC.woff") format("woff"), url("../fonts/PingFangSC.ttf") format("truetype"), url("../fonts/PingFangSC.svg#PingFang SC Regular") format("svg");
+  /* iOS 4.1- */ }
+
 .row {
   margin: 0 auto;
   width: 100%;
@@ -383,6 +390,158 @@ p {
     font-weight: 700; }
     .menu__bt:hover {
       color: #fffce8; }
+
+.cartemenu {
+  /*
+  position: fixed;
+  background: white;
+  top: 72px;
+  @include md-breakpoint() {
+    top: 144px;
+  }
+  left: 0;
+  width: 100%;
+  z-index: 10;*/ }
+  .cartemenu h1 {
+    font-family: "Libre Caslon Display";
+    text-transform: uppercase;
+    font-size: 100px;
+    font-weight: 400; }
+    @media (min-width: 768px) {
+      .cartemenu h1 {
+        font-size: 300px; } }
+  .cartemenu ul {
+    display: none !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px; }
+    .cartemenu ul li {
+      padding: 4px 6px;
+      transition: all 200ms;
+      border: 1px solid #fff; }
+      .cartemenu ul li a, .cartemenu ul li p {
+        font-family: "Arimo";
+        font-size: 20px;
+        color: #000;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding-bottom: 4px; }
+      .cartemenu ul li a:hover {
+        border: 1px solid #000; }
+      .cartemenu ul li a.active {
+        border: 1px solid #000; }
+
+.carte {
+  margin: 0 10px;
+  /*margin-top: 320px;
+  @include md-breakpoint() {
+    margin-top: 520px;
+  }*/
+  width: calc( 100% - 20px); }
+  .carte h4 {
+    padding-top: 40px;
+    font-weight: 700;
+    font-family: "Arimo";
+    text-decoration: underline;
+    width: 100%;
+    text-align: left;
+    padding-bottom: 5px; }
+  .carte__item {
+    width: 100%; }
+    .carte__item h2 {
+      font-size: 50px;
+      font-weight: 700;
+      font-family: "Arimo"; }
+    .carte__item_extra {
+      padding-bottom: 40px;
+      display: block; }
+      @media (min-width: 768px) {
+        .carte__item_extra {
+          display: inline-flex; } }
+      .carte__item_extra ul {
+        padding: 0; }
+        @media (min-width: 768px) {
+          .carte__item_extra ul {
+            font-size: 50px;
+            padding-right: 200px; } }
+        .carte__item_extra ul li {
+          font-family: "Arimo";
+          font-size: 20px;
+          font-weight: 500; }
+          .carte__item_extra ul li.jp {
+            font-size: 18px; }
+          .carte__item_extra ul li.price {
+            font-family: "Arimo";
+            font-size: 22px;
+            font-weight: 700; }
+    .carte__item_title {
+      padding-bottom: 40px;
+      padding-top: 50px;
+      border-bottom: 2px solid black; }
+      .carte__item_title h2 {
+        font-size: 30px;
+        font-weight: 700;
+        font-family: "Arimo";
+        text-align: left; }
+        @media (min-width: 768px) {
+          .carte__item_title h2 {
+            font-size: 50px; } }
+      .carte__item_title p {
+        font-size: 20px;
+        text-align: left;
+        font-weight: 500;
+        font-family: "Arimo"; }
+    .carte__item_plate {
+      width: 100%;
+      border-bottom: 2px solid black;
+      display: inline-flex;
+      flex-direction: row;
+      padding-top: 15px;
+      padding-bottom: 25px; }
+      .carte__item_plate--name {
+        width: calc( 100% - 100px); }
+        .carte__item_plate--name p {
+          font-size: 16px;
+          font-weight: 500;
+          font-family: "Arimo";
+          text-align: left; }
+          @media (min-width: 768px) {
+            .carte__item_plate--name p {
+              font-size: 20px; } }
+        .carte__item_plate--name h3 {
+          font-size: 20px;
+          font-weight: 700;
+          font-family: "Arimo";
+          text-align: left; }
+          @media (min-width: 768px) {
+            .carte__item_plate--name h3 {
+              font-size: 25px; } }
+        @media (min-width: 768px) {
+          .carte__item_plate--name {
+            width: calc( 100% - 200px); } }
+      .carte__item_plate--price {
+        width: 100px; }
+        @media (min-width: 768px) {
+          .carte__item_plate--price {
+            width: 200px; } }
+        .carte__item_plate--price p {
+          font-size: 20px;
+          font-weight: 500;
+          font-family: "Arimo";
+          text-align: right; }
+          @media (min-width: 768px) {
+            .carte__item_plate--price p {
+              font-size: 25px; } }
+
+.jp {
+  font-family: "PingFang SC";
+  font-weight: 600;
+  text-transform: uppercase; }
 
 .footer {
   color: #fff;

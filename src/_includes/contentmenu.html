@@ -1,0 +1,11 @@
+<section class="cartemenu">
+  <h1>MENU</h1>
+  <ul class="row">
+    {% for item in site.cartemenu %}
+      <li><a href="#"><p>{{ item.title }}</p><span class="jp">{{ item.jp }}</span></a></li>
+    {% else %}
+      <li>JSON error</li>
+    {% endfor %}
+
+  </ul>
+</section>
