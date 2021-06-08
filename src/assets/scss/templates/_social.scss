@@ -21,7 +21,7 @@
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin: 12px auto 50px;
     width: 230px;
@@ -33,7 +33,7 @@
       height: 42px;
       display: flex;
       align-items: flex-end;
-      padding-top: 10px;
+      padding: 10px;
       svg {
         transition: all 300ms $out-back;
         width: 32px;

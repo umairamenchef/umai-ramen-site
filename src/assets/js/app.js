@@ -13,12 +13,14 @@ document.addEventListener('DOMContentLoaded',function(e){
   const closemenu = document.querySelector(".header-mobile__close");
   let headermobile = document.querySelector(".header-mobile");
 
-  burger.addEventListener('click', e => {
-    headermobile.classList.add("open");
-  });
-  closemenu.addEventListener('click', e => {
-    headermobile.classList.remove("open");
-  });
+  if(burger){
+    burger.addEventListener('click', e => {
+      headermobile.classList.add("open");
+    });
+    closemenu.addEventListener('click', e => {
+      headermobile.classList.remove("open");
+    });
+  }
 
 
   if(document.querySelector('.mainpage')) {
