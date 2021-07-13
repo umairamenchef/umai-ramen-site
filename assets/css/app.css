@@ -604,6 +604,9 @@ p {
       @media (min-width: 768px) {
         .footer .col0 p {
           text-align: left; } }
+      .footer .col0 p a, .footer .col0 p a:visited {
+        color: #fff;
+        text-decoration: none; }
   .footer .col1 {
     width: 50%;
     text-align: center; }
@@ -841,5 +844,8 @@ p {
       font-size: 12px;
       font-weight: 600;
       color: #fff; }
+      .topbar ul li a, .topbar ul li a:visited {
+        color: #fff;
+        text-decoration: none; }
 
 /*# sourceMappingURL=app.css.map */
