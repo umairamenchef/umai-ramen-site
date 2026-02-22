@@ -10,11 +10,11 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Foundation
 
 - [x] **FOUND-01**: Project scaffolded with Next.js 16, React 19.2, TypeScript, Tailwind CSS 4, App Router
-- [ ] **FOUND-02**: Sanity v5 CMS initialized with embedded Studio accessible at /studio
+- [x] **FOUND-02**: Sanity v5 CMS initialized with embedded Studio accessible at /studio
 - [x] **FOUND-03**: Trilingual routing FR/EN/DE via next-intl with /{locale}/... URL structure
 - [x] **FOUND-04**: ISR with 60s revalidation baseline for all content pages
-- [ ] **FOUND-05**: Sanity field-level i18n (localeString) on all text content fields
-- [ ] **FOUND-06**: sanityFetch helper with tag-based revalidation and TypeGen types for all GROQ queries
+- [x] **FOUND-05**: Sanity field-level i18n (localeString) on all text content fields
+- [x] **FOUND-06**: sanityFetch helper with tag-based revalidation and TypeGen types for all GROQ queries
 - [x] **FOUND-07**: Sanity webhook endpoint for on-demand revalidation with HMAC signature validation
 
 ### Design System
@@ -163,11 +163,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | FOUND-01 | Phase 1 | Complete |
-| FOUND-02 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Complete |
 | FOUND-03 | Phase 1 | Complete |
 | FOUND-04 | Phase 1 | Complete |
-| FOUND-05 | Phase 1 | Pending |
-| FOUND-06 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Complete |
+| FOUND-06 | Phase 1 | Complete |
 | FOUND-07 | Phase 3 | Complete |
 | DSGN-01 | Phase 1 | Pending |
 | DSGN-02 | Phase 1 | Pending |
