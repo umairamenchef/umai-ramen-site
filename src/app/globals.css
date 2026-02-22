@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+@theme {
+  /* UMAI Colors */
+  --color-umai-bg: #F5F0E8;
+  --color-umai-bg-alt: #EDE8DC;
+  --color-umai-text: #1A1A1A;
+  --color-umai-text-muted: #6B6B6B;
+  --color-umai-accent: #77967A;
+  --color-umai-accent-hover: #657D67;
+  --color-umai-line: #D4CFC5;
+  --color-umai-line-dotted: #C5BFB3;
+  --color-umai-black: #0A0A0A;
+  --color-umai-white: #FFFFFF;
+
+  /* Fonts — CSS variables from next/font, linked via @theme inline */
+  --font-display: var(--font-dm-serif-display);
+  --font-body: var(--font-outfit);
+  --font-jp: var(--font-noto-sans-jp);
+
+  /* Layout */
+  --max-width-content: 1200px;
+  --spacing-section: 120px;
+  --spacing-section-mobile: 80px;
+}
+
+@theme inline {
+  --font-dm-serif-display: ;
+  --font-outfit: ;
+  --font-noto-sans-jp: ;
+}
+
+@layer base {
+  body {
+    @apply bg-umai-bg text-umai-text font-body antialiased;
+  }
+  h1, h2 {
+    @apply font-display;
+  }
+}
