@@ -4,6 +4,12 @@
     "order": "Bestellen",
     "siteTitle": "UMAI Ramen"
   },
+  "nav": {
+    "menu": "Speisekarte",
+    "history": "Unsere Geschichte",
+    "infos": "Infos",
+    "gallery": "Galerie"
+  },
   "home": {
     "title": "Willkommen bei UMAI",
     "subtitle": "Frische Nudeln. Hausgemachte Brühen."

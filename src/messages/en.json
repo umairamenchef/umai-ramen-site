@@ -4,6 +4,12 @@
     "order": "Order",
     "siteTitle": "UMAI Ramen"
   },
+  "nav": {
+    "menu": "Menu",
+    "history": "Our Story",
+    "infos": "Info",
+    "gallery": "Gallery"
+  },
   "home": {
     "title": "Welcome to UMAI",
     "subtitle": "Fresh noodles. Homemade broths."

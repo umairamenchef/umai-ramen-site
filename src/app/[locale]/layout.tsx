@@ -4,6 +4,9 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { DM_Serif_Display, Outfit, Noto_Sans_JP } from 'next/font/google';
 import { MotionProvider } from '@/components/layout/MotionProvider';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+import { MobileBar } from '@/components/layout/MobileBar';
 
 export const revalidate = 60; // FOUND-04: ISR 60s baseline
 
@@ -57,7 +60,12 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="font-body bg-umai-bg text-umai-text antialiased">
         <NextIntlClientProvider messages={messages}>
           <MotionProvider>
-            {children}
+            <Header />
+            <main className="min-h-screen pb-16 md:pb-0">
+              {children}
+            </main>
+            <Footer />
+            <MobileBar />
           </MotionProvider>
         </NextIntlClientProvider>
       </body>

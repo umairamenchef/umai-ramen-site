@@ -4,6 +4,12 @@
     "order": "Commander",
     "siteTitle": "UMAI Ramen"
   },
+  "nav": {
+    "menu": "Menu",
+    "history": "Notre Histoire",
+    "infos": "Infos",
+    "gallery": "Galerie"
+  },
   "home": {
     "title": "Bienvenue chez UMAI",
     "subtitle": "Nouilles fraiches. Bouillons maison."
