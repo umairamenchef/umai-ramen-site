@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-02-22)
 ## Current Position
 
 Phase: 1 of 3 (Foundation)
-Plan: 0 of 3 in current phase
-Status: Ready to plan
-Last activity: 2026-02-22 — Roadmap created, ready to begin Phase 1 planning
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-02-22 — Completed 01-01 (Next.js scaffold + next-intl v4 trilingual routing)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 11%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: —
+- Total plans completed: 1
+- Average duration: 4 min
+- Total execution time: 4 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01-foundation | 1/3 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: —
+- Last 5 plans: 01-01 (4 min)
 - Trend: —
 
 *Updated after each plan completion*
@@ -47,6 +47,10 @@ Recent decisions affecting current work:
 - [Init]: Middleware renamed to proxy.ts in Next.js 16 (not middleware.ts)
 - [Init]: Animation package is `motion` (import from `motion/react`), NOT `framer-motion`
 - [Init]: Tailwind configured via `@theme {}` in CSS, NOT tailwind.config.js
+- [01-01]: proxy.ts exports `const proxy` (not default) per Next.js 16 breaking change
+- [01-01]: localePrefix: always forces explicit /fr, /en, /de prefixes (/ redirects 307 to /fr)
+- [01-01]: Root layout returns children only — locale layout owns html/body with lang attribute
+- [01-01]: revalidate=60 on locale layout establishes ISR 60s baseline (FOUND-04)
 
 ### Pending Todos
 
@@ -62,5 +66,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-22
-Stopped at: Roadmap created — ready to run `/gsd:plan-phase 1`
+Stopped at: Completed 01-01-PLAN.md (Next.js scaffold + trilingual routing verified)
 Resume file: None

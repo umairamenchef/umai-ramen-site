@@ -31,7 +31,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Next.js 16 scaffold with App Router, TypeScript, Tailwind CSS 4, proxy.ts middleware, next-intl v4 trilingual routing, ISR 60s baseline, webhook stub
+- [x] 01-01-PLAN.md — Next.js 16 scaffold with App Router, TypeScript, Tailwind CSS 4, proxy.ts middleware, next-intl v4 trilingual routing, ISR 60s baseline, webhook stub
 - [ ] 01-02-PLAN.md — Sanity v5 schemas (siteSettings, menuCategory, menuItem, gallery, page), field-level localeString i18n, sanityFetch helper, GROQ queries, TypeGen, Studio at /studio
 - [ ] 01-03-PLAN.md — Design system tokens (@theme), self-hosted fonts (DM Serif Display, Outfit, Noto Sans JP), LazyMotion wrapper, Header, MobileMenu, MobileBar, Footer with seigaiha, UI primitives
 
@@ -76,6 +76,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Not started | - |
+| 1. Foundation | 1/3 | In progress | 01-01: 2026-02-22 |
 | 2. Content Pages | 0/3 | Not started | - |
 | 3. SEO, Compliance, and Launch | 0/3 | Not started | - |
