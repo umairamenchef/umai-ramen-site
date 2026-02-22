@@ -28,12 +28,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Visiting `/studio` opens Sanity Studio with the restaurant schemas (siteSettings, menuCategory, menuItem, gallery, page) populated and editable
   4. The sticky header, mobile hamburger menu, mobile sticky bottom bar, and footer render correctly at all breakpoints with UMAI brand tokens
   5. Decorative elements (seigaiha pattern, dotted borders) appear in footer without breaking the 1-per-section rule
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: Next.js 16 scaffold — App Router, TypeScript, Tailwind CSS 4, proxy.ts middleware, next-intl v4 routing, environment variables
-- [ ] 01-02: Sanity v5 setup — schemas (siteSettings, menuCategory, menuItem, gallery, page), sanityFetch helper, GROQ queries, TypeGen types, Studio at /studio
-- [ ] 01-03: Design system and layout components — Tailwind @theme tokens, next/font self-hosted fonts, motion wrappers, Header, Footer, MobileBar, shared UI primitives
+- [ ] 01-01-PLAN.md — Next.js 16 scaffold with App Router, TypeScript, Tailwind CSS 4, proxy.ts middleware, next-intl v4 trilingual routing, ISR 60s baseline, webhook stub
+- [ ] 01-02-PLAN.md — Sanity v5 schemas (siteSettings, menuCategory, menuItem, gallery, page), field-level localeString i18n, sanityFetch helper, GROQ queries, TypeGen, Studio at /studio
+- [ ] 01-03-PLAN.md — Design system tokens (@theme), self-hosted fonts (DM Serif Display, Outfit, Noto Sans JP), LazyMotion wrapper, Header, MobileMenu, MobileBar, Footer with seigaiha, UI primitives
 
 ### Phase 2: Content Pages
 **Goal**: A fully navigable multilingual site where visitors can browse the menu, learn UMAI's story, view photos, find contact info, and reach Gusty/Uber Eats in one click
