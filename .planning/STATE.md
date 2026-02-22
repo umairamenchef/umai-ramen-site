@@ -36,6 +36,7 @@ Progress: [██░░░░░░░░] 22%
 | Phase 01-foundation P02 | 5 | 2 tasks | 16 files |
 
 *Updated after each plan completion*
+| Phase 01-foundation P03 | 7 | 2 tasks | 13 files |
 
 ## Accumulated Context
 
@@ -56,6 +57,8 @@ Recent decisions affecting current work:
 - [Phase 01-02]: __experimental_actions removed — deprecated in Sanity v5; singleton enforced via structure.ts single documentId
 - [Phase 01-02]: sanityFetch: tags.length > 0 sets revalidate=false (avoids mixing time + tag revalidation)
 - [Phase 01-02]: TypeGen verification requires real Sanity credentials — predev/prebuild will fail gracefully without .env.local
+- [Phase 01-foundation]: m from motion/react not motion/react-m — named m namespace exports animated HTML elements
+- [Phase 01-foundation]: @theme inline block in Tailwind 4 prevents purging font utilities set by next/font at runtime
 
 ### Pending Todos
 

@@ -12,7 +12,7 @@ Three phases deliver the complete site: Phase 1 locks in the structural decision
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Project scaffold, Sanity schemas, i18n routing, design system, and shared layout components
+- [x] **Phase 1: Foundation** - Project scaffold, Sanity schemas, i18n routing, design system, and shared layout components (completed 2026-02-22)
 - [ ] **Phase 2: Content Pages** - All public pages (Accueil, Menu, Reservation, Commander, Notre Histoire, Infos, Gallery) with Sanity data and external integrations
 - [ ] **Phase 3: SEO, Compliance, and Launch** - Metadata, JSON-LD, cookie consent, GTM/GA4, revalidation webhook, and Lighthouse performance audit
 
@@ -76,6 +76,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/3 | In Progress|  |
+| 1. Foundation | 3/3 | Complete   | 2026-02-22 |
 | 2. Content Pages | 0/3 | Not started | - |
 | 3. SEO, Compliance, and Launch | 0/3 | Not started | - |

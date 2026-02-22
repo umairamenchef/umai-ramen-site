@@ -19,19 +19,19 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Design System
 
-- [ ] **DSGN-01**: Tailwind CSS 4 theme tokens: ivoire #F5F0E8, vert accent #77967A (from Sanity), DM Serif Display, Outfit, Noto Sans JP
-- [ ] **DSGN-02**: Self-hosted fonts via next/font with zero layout shift
-- [ ] **DSGN-03**: Decorative elements: seigaiha SVG pattern, dotted borders, line-art icons, JP micro-labels (1 max per section rule enforced)
-- [ ] **DSGN-04**: Responsive layout: max-width 1200px, 12-col desktop / 8-col tablet / 4-col mobile, abundant whitespace
-- [ ] **DSGN-05**: Motion wrappers using LazyMotion + m components for tree-shaking (no full framer-motion import)
+- [x] **DSGN-01**: Tailwind CSS 4 theme tokens: ivoire #F5F0E8, vert accent #77967A (from Sanity), DM Serif Display, Outfit, Noto Sans JP
+- [x] **DSGN-02**: Self-hosted fonts via next/font with zero layout shift
+- [x] **DSGN-03**: Decorative elements: seigaiha SVG pattern, dotted borders, line-art icons, JP micro-labels (1 max per section rule enforced)
+- [x] **DSGN-04**: Responsive layout: max-width 1200px, 12-col desktop / 8-col tablet / 4-col mobile, abundant whitespace
+- [x] **DSGN-05**: Motion wrappers using LazyMotion + m components for tree-shaking (no full framer-motion import)
 
 ### Layout
 
-- [ ] **LAYT-01**: Sticky header with logo center, navigation left, reserve/order CTAs right
-- [ ] **LAYT-02**: Mobile hamburger menu with slide-in navigation
-- [ ] **LAYT-03**: Mobile sticky bottom bar with reserve + order CTAs
-- [ ] **LAYT-04**: Footer with 4 columns: logo/baseline, contact, navigation links, social/legal
-- [ ] **LAYT-05**: Footer includes seigaiha pattern and line-art decoration
+- [x] **LAYT-01**: Sticky header with logo center, navigation left, reserve/order CTAs right
+- [x] **LAYT-02**: Mobile hamburger menu with slide-in navigation
+- [x] **LAYT-03**: Mobile sticky bottom bar with reserve + order CTAs
+- [x] **LAYT-04**: Footer with 4 columns: logo/baseline, contact, navigation links, social/legal
+- [x] **LAYT-05**: Footer includes seigaiha pattern and line-art decoration
 
 ### Accueil (Homepage)
 
@@ -169,16 +169,16 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUND-05 | Phase 1 | Complete |
 | FOUND-06 | Phase 1 | Complete |
 | FOUND-07 | Phase 3 | Complete |
-| DSGN-01 | Phase 1 | Pending |
-| DSGN-02 | Phase 1 | Pending |
-| DSGN-03 | Phase 1 | Pending |
-| DSGN-04 | Phase 1 | Pending |
-| DSGN-05 | Phase 1 | Pending |
-| LAYT-01 | Phase 1 | Pending |
-| LAYT-02 | Phase 1 | Pending |
-| LAYT-03 | Phase 1 | Pending |
-| LAYT-04 | Phase 1 | Pending |
-| LAYT-05 | Phase 1 | Pending |
+| DSGN-01 | Phase 1 | Complete |
+| DSGN-02 | Phase 1 | Complete |
+| DSGN-03 | Phase 1 | Complete |
+| DSGN-04 | Phase 1 | Complete |
+| DSGN-05 | Phase 1 | Complete |
+| LAYT-01 | Phase 1 | Complete |
+| LAYT-02 | Phase 1 | Complete |
+| LAYT-03 | Phase 1 | Complete |
+| LAYT-04 | Phase 1 | Complete |
+| LAYT-05 | Phase 1 | Complete |
 | HOME-01 | Phase 2 | Pending |
 | HOME-02 | Phase 2 | Pending |
 | HOME-03 | Phase 2 | Pending |
