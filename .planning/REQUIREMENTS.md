@@ -162,88 +162,88 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | — | Pending |
-| FOUND-02 | — | Pending |
-| FOUND-03 | — | Pending |
-| FOUND-04 | — | Pending |
-| FOUND-05 | — | Pending |
-| FOUND-06 | — | Pending |
-| FOUND-07 | — | Pending |
-| DSGN-01 | — | Pending |
-| DSGN-02 | — | Pending |
-| DSGN-03 | — | Pending |
-| DSGN-04 | — | Pending |
-| DSGN-05 | — | Pending |
-| LAYT-01 | — | Pending |
-| LAYT-02 | — | Pending |
-| LAYT-03 | — | Pending |
-| LAYT-04 | — | Pending |
-| LAYT-05 | — | Pending |
-| HOME-01 | — | Pending |
-| HOME-02 | — | Pending |
-| HOME-03 | — | Pending |
-| HOME-04 | — | Pending |
-| HOME-05 | — | Pending |
-| HOME-06 | — | Pending |
-| HOME-07 | — | Pending |
-| MENU-01 | — | Pending |
-| MENU-02 | — | Pending |
-| MENU-03 | — | Pending |
-| MENU-04 | — | Pending |
-| MENU-05 | — | Pending |
-| MENU-06 | — | Pending |
-| MENU-07 | — | Pending |
-| RESV-01 | — | Pending |
-| RESV-02 | — | Pending |
-| RESV-03 | — | Pending |
-| ORDR-01 | — | Pending |
-| ORDR-02 | — | Pending |
-| ORDR-03 | — | Pending |
-| ORDR-04 | — | Pending |
-| HIST-01 | — | Pending |
-| HIST-02 | — | Pending |
-| HIST-03 | — | Pending |
-| HIST-04 | — | Pending |
-| INFO-01 | — | Pending |
-| INFO-02 | — | Pending |
-| INFO-03 | — | Pending |
-| INFO-04 | — | Pending |
-| INFO-05 | — | Pending |
-| GLRY-01 | — | Pending |
-| GLRY-02 | — | Pending |
-| GLRY-03 | — | Pending |
-| INTG-01 | — | Pending |
-| INTG-02 | — | Pending |
-| INTG-03 | — | Pending |
-| INTG-04 | — | Pending |
-| INTG-05 | — | Pending |
-| INTG-06 | — | Pending |
-| INTG-07 | — | Pending |
-| SEO-01 | — | Pending |
-| SEO-02 | — | Pending |
-| SEO-03 | — | Pending |
-| SEO-04 | — | Pending |
-| SEO-05 | — | Pending |
-| SEO-06 | — | Pending |
-| SEO-07 | — | Pending |
-| CMPL-01 | — | Pending |
-| CMPL-02 | — | Pending |
-| CMPL-03 | — | Pending |
-| CMPL-04 | — | Pending |
-| CMPL-05 | — | Pending |
-| CMPL-06 | — | Pending |
-| PERF-01 | — | Pending |
-| PERF-02 | — | Pending |
-| PERF-03 | — | Pending |
-| PERF-04 | — | Pending |
-| PERF-05 | — | Pending |
-| PERF-06 | — | Pending |
+| FOUND-01 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Pending |
+| FOUND-07 | Phase 3 | Pending |
+| DSGN-01 | Phase 1 | Pending |
+| DSGN-02 | Phase 1 | Pending |
+| DSGN-03 | Phase 1 | Pending |
+| DSGN-04 | Phase 1 | Pending |
+| DSGN-05 | Phase 1 | Pending |
+| LAYT-01 | Phase 1 | Pending |
+| LAYT-02 | Phase 1 | Pending |
+| LAYT-03 | Phase 1 | Pending |
+| LAYT-04 | Phase 1 | Pending |
+| LAYT-05 | Phase 1 | Pending |
+| HOME-01 | Phase 2 | Pending |
+| HOME-02 | Phase 2 | Pending |
+| HOME-03 | Phase 2 | Pending |
+| HOME-04 | Phase 2 | Pending |
+| HOME-05 | Phase 2 | Pending |
+| HOME-06 | Phase 2 | Pending |
+| HOME-07 | Phase 2 | Pending |
+| MENU-01 | Phase 2 | Pending |
+| MENU-02 | Phase 2 | Pending |
+| MENU-03 | Phase 2 | Pending |
+| MENU-04 | Phase 2 | Pending |
+| MENU-05 | Phase 2 | Pending |
+| MENU-06 | Phase 2 | Pending |
+| MENU-07 | Phase 2 | Pending |
+| RESV-01 | Phase 2 | Pending |
+| RESV-02 | Phase 2 | Pending |
+| RESV-03 | Phase 2 | Pending |
+| ORDR-01 | Phase 2 | Pending |
+| ORDR-02 | Phase 2 | Pending |
+| ORDR-03 | Phase 2 | Pending |
+| ORDR-04 | Phase 2 | Pending |
+| HIST-01 | Phase 2 | Pending |
+| HIST-02 | Phase 2 | Pending |
+| HIST-03 | Phase 2 | Pending |
+| HIST-04 | Phase 2 | Pending |
+| INFO-01 | Phase 2 | Pending |
+| INFO-02 | Phase 2 | Pending |
+| INFO-03 | Phase 2 | Pending |
+| INFO-04 | Phase 2 | Pending |
+| INFO-05 | Phase 2 | Pending |
+| GLRY-01 | Phase 2 | Pending |
+| GLRY-02 | Phase 2 | Pending |
+| GLRY-03 | Phase 2 | Pending |
+| INTG-01 | Phase 2 | Pending |
+| INTG-02 | Phase 2 | Pending |
+| INTG-03 | Phase 2 | Pending |
+| INTG-04 | Phase 2 | Pending |
+| INTG-05 | Phase 2 | Pending |
+| INTG-06 | Phase 2 | Pending |
+| INTG-07 | Phase 2 | Pending |
+| SEO-01 | Phase 3 | Pending |
+| SEO-02 | Phase 3 | Pending |
+| SEO-03 | Phase 3 | Pending |
+| SEO-04 | Phase 3 | Pending |
+| SEO-05 | Phase 3 | Pending |
+| SEO-06 | Phase 3 | Pending |
+| SEO-07 | Phase 3 | Pending |
+| CMPL-01 | Phase 3 | Pending |
+| CMPL-02 | Phase 3 | Pending |
+| CMPL-03 | Phase 3 | Pending |
+| CMPL-04 | Phase 3 | Pending |
+| CMPL-05 | Phase 3 | Pending |
+| CMPL-06 | Phase 3 | Pending |
+| PERF-01 | Phase 3 | Pending |
+| PERF-02 | Phase 3 | Pending |
+| PERF-03 | Phase 3 | Pending |
+| PERF-04 | Phase 3 | Pending |
+| PERF-05 | Phase 3 | Pending |
+| PERF-06 | Phase 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 62 total
-- Mapped to phases: 0
-- Unmapped: 62
+- Mapped to phases: 62
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-22*
-*Last updated: 2026-02-22 after initial definition*
+*Last updated: 2026-02-22 — traceability mapped after roadmap creation*
