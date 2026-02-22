@@ -1,0 +1,11 @@
+{
+  "common": {
+    "reserve": "Réserver",
+    "order": "Commander",
+    "siteTitle": "UMAI Ramen"
+  },
+  "home": {
+    "title": "Bienvenue chez UMAI",
+    "subtitle": "Nouilles fraiches. Bouillons maison."
+  }
+}

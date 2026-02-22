@@ -1,0 +1,11 @@
+{
+  "common": {
+    "reserve": "Reserve",
+    "order": "Order",
+    "siteTitle": "UMAI Ramen"
+  },
+  "home": {
+    "title": "Welcome to UMAI",
+    "subtitle": "Fresh noodles. Homemade broths."
+  }
+}

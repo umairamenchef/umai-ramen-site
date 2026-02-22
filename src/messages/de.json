@@ -1,0 +1,11 @@
+{
+  "common": {
+    "reserve": "Reservieren",
+    "order": "Bestellen",
+    "siteTitle": "UMAI Ramen"
+  },
+  "home": {
+    "title": "Willkommen bei UMAI",
+    "subtitle": "Frische Nudeln. Hausgemachte Brühen."
+  }
+}
