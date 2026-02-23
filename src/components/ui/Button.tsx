@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-type ButtonVariant = 'primary' | 'outline';
+type ButtonVariant = 'primary' | 'outline' | 'outline-white';
 
 interface ButtonProps {
   variant?: ButtonVariant;
@@ -26,6 +26,8 @@ export function Button({
     primary: 'bg-umai-accent text-umai-white hover:bg-umai-accent-hover',
     outline:
       'bg-transparent border border-umai-accent text-umai-accent hover:bg-umai-accent hover:text-umai-white',
+    'outline-white':
+      'bg-transparent border border-white text-white hover:bg-white/10',
   };
 
   const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${className}`;

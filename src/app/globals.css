@@ -31,6 +31,9 @@
 }
 
 @layer base {
+  html {
+    scroll-padding-top: 132px; /* 80px header + ~52px sub-nav */
+  }
   body {
     @apply bg-umai-bg text-umai-text font-body antialiased;
   }
