@@ -1,7 +1,14 @@
-import { setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
-import { SectionHeader } from '@/components/ui/SectionHeader';
-import { Button } from '@/components/ui/Button';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
+import type { SanityImageSource } from '@sanity/image-url';
+import { sanityFetch } from '@/sanity/lib/client';
+import { HOMEPAGE_QUERY } from '@/sanity/lib/queries';
+import { localized } from '@/lib/localized';
+import { Hero } from '@/components/home/Hero';
+import { MenuPreview } from '@/components/home/MenuPreview';
+import { UspSection } from '@/components/home/UspSection';
+import { HistoireTeaser } from '@/components/home/HistoireTeaser';
+import { GalleryPreview } from '@/components/home/GalleryPreview';
+import { SocialSection } from '@/components/home/SocialSection';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -10,25 +17,130 @@ type Props = {
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <HomeContent />;
-}
 
-function HomeContent() {
-  const t = useTranslations('home');
-  const tCommon = useTranslations('common');
+  // Fetch translations (server-side)
+  const tHome = await getTranslations({ locale, namespace: 'home' });
+  const tCommon = await getTranslations({ locale, namespace: 'common' });
+
+  // Fetch Sanity data with graceful fallback
+  let homepageData: {
+    settings: {
+      catchphrase?: { fr: string; en?: string; de?: string } | null;
+      reservationUrl?: string;
+      uberEatsUrl?: string;
+      socialLinks?: { instagram?: string };
+    } | null;
+    menuCategories: Array<{
+      _id: string;
+      name: { fr: string; en?: string; de?: string } | string;
+      slug: { current: string };
+      image?: SanityImageSource;
+    }>;
+    galleryPreview: Array<{
+      _id: string;
+      title?: string;
+      alt?: string;
+      image: SanityImageSource;
+    }>;
+  } = {
+    settings: null,
+    menuCategories: [],
+    galleryPreview: [],
+  };
+
+  try {
+    const result = await sanityFetch({
+      query: HOMEPAGE_QUERY,
+      tags: ['siteSettings', 'menuCategory', 'menuItem', 'gallery'],
+    });
+    if (result) {
+      // Cast through unknown to allow Sanity's inferred type → our typed structure
+      homepageData = result as unknown as typeof homepageData;
+    }
+  } catch {
+    // Sanity not configured — render with fallback content
+  }
+
+  const { settings, menuCategories, galleryPreview } = homepageData;
+
+  const catchphrase = settings?.catchphrase
+    ? localized(settings.catchphrase, locale, 'Nouilles fraiches. Bouillons maison.')
+    : 'Nouilles fraiches. Bouillons maison.';
+
+  const reservationUrl = settings?.reservationUrl ?? '#';
+  const uberEatsUrl = settings?.uberEatsUrl ?? '#';
+  const instagramUrl = settings?.socialLinks?.instagram ?? 'https://instagram.com/umai_ramen_strasbourg';
+
+  const usps = [
+    {
+      icon: 'noodles' as const,
+      title: tHome('uspNouilles'),
+      description: tHome('uspNouillesDesc'),
+    },
+    {
+      icon: 'bouillon' as const,
+      title: tHome('uspBouillons'),
+      description: tHome('uspBouillonsDesc'),
+    },
+    {
+      icon: 'local' as const,
+      title: tHome('uspLocal'),
+      description: tHome('uspLocalDesc'),
+    },
+  ];
 
   return (
-    <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10 py-[var(--spacing-section)]">
-      <SectionHeader
-        title={t('title')}
-        jpLabel="うまいラーメン"
-        subtitle={t('subtitle')}
-        centered
+    <>
+      {/* 1. Hero — full width, outside max-width container */}
+      <Hero
+        catchphrase={catchphrase}
+        reservationUrl={reservationUrl}
+        uberEatsUrl={uberEatsUrl}
+        reserveLabel={tCommon('reserve')}
+        orderLabel={tCommon('order')}
       />
-      <div className="flex flex-wrap gap-4 justify-center mt-8">
-        <Button variant="primary">{tCommon('reserve')}</Button>
-        <Button variant="outline">{tCommon('order')}</Button>
+
+      <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10">
+        {/* 2. Menu Preview */}
+        <MenuPreview
+          categories={menuCategories}
+          locale={locale}
+          title={tHome('menuPreviewTitle')}
+          ctaLabel={tHome('menuPreviewCta')}
+        />
+
+        {/* 3. USP Section */}
       </div>
-    </div>
+
+      {/* USP has its own full-width bg (bg-umai-bg-alt) */}
+      <UspSection
+        title={tHome('uspTitle')}
+        usps={usps}
+      />
+
+      <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10">
+        {/* 4. Notre Histoire Teaser */}
+        <HistoireTeaser
+          title={tHome('histoireTitle')}
+          teaser={tHome('histoireTeaser')}
+          ctaLabel={tHome('histoireCta')}
+          locale={locale}
+        />
+
+        {/* 5. Gallery Preview */}
+        <GalleryPreview
+          photos={galleryPreview}
+          locale={locale}
+          title={tHome('title')}
+          ctaLabel={tHome('galleryCta')}
+        />
+      </div>
+
+      {/* 6. Social Section */}
+      <SocialSection
+        instagramUrl={instagramUrl}
+        hashtag={tHome('socialHashtag')}
+      />
+    </>
   );
 }
