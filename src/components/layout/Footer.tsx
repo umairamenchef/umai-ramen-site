@@ -1,6 +1,6 @@
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-import { SeigahaPattern } from '@/components/ui/SeigahaPattern';
+import { Logo } from '@/components/ui/Logo';
 
 interface FooterProps {
   reservationUrl: string;
@@ -13,11 +13,12 @@ export function Footer({ reservationUrl, uberEatsUrl }: FooterProps) {
 
   return (
     <footer className="bg-umai-black text-umai-bg relative overflow-hidden">
-      {/* Seigaiha decorative pattern — 1 decorative element for the footer section */}
-      <SeigahaPattern
-        className="bottom-[-40px] right-[-40px] w-[250px] h-[250px]"
-        color="white"
-        opacity={0.04}
+      {/* Decorative seal — bottom right */}
+      <img
+        src="/seal.svg"
+        alt=""
+        aria-hidden="true"
+        className="absolute bottom-8 right-8 w-36 h-36 opacity-[0.15] invert pointer-events-none select-none"
       />
 
       <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10 pt-20 pb-10 relative z-10">
@@ -27,10 +28,10 @@ export function Footer({ reservationUrl, uberEatsUrl }: FooterProps) {
           <div>
             <Link
               href="/"
-              className="font-display text-3xl tracking-[0.12em] text-umai-white hover:text-umai-accent transition-colors duration-200 block mb-4"
+              className="block mb-4 hover:opacity-70 transition-opacity duration-200"
               aria-label={tCommon('siteTitle')}
             >
-              UMAI
+              <Logo className="h-10 w-auto text-umai-white" />
             </Link>
             <p className="font-body text-sm tracking-[0.06em] opacity-50">
               Ramen Noodle Bar — Strasbourg

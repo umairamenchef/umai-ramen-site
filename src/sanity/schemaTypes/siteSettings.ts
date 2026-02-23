@@ -19,6 +19,14 @@ export const siteSettings = defineType({
       group: 'general',
     }),
     defineField({
+      name: 'heroImage',
+      title: 'Image hero',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Image d\'arrière-plan du hero (page d\'accueil)',
+      group: 'general',
+    }),
+    defineField({
       name: 'accentColor',
       title: 'Couleur d\'accent',
       type: 'string',

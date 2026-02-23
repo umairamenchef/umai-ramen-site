@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMAÏ Ramen — Design System Preview 2026</title>
+<!-- ⚠️ PREVIEW ONLY — In production:
+  - Fonts via next/font (self-hosted), NOT Google Fonts CDN
+  - Hero = next/image (priority) + rgba overlay, NOT solid bg
+  - Accent #77967A confirmed (source print — adjustable via Sanity siteSettings.accentColor)
+  - DM Serif Display = H1/H2 ONLY
+  - 1 decorative element max per section
+  - All content from Sanity CMS (GROQ + ISR 60s)
+-->
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --umai-bg: #F5F0E8;
+    --umai-bg-alt: #EDE8DC;
+    --umai-text: #1A1A1A;
+    --umai-text-muted: #6B6B6B;
+    --umai-accent: #77967A;
+    --umai-accent-hover: #657D67;
+    --umai-line: #D4CFC5;
+    --umai-line-dotted: #C5BFB3;
+    --umai-white: #FFFFFF;
+    --umai-black: #0A0A0A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--umai-bg);
+    color: var(--umai-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--umai-bg);
+    border-bottom: 1px solid var(--umai-line);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+  }
+  .header-nav { display: flex; gap: 32px; }
+  .header-nav a {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--umai-text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .header-nav a:hover { color: var(--umai-accent); }
+  .header-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+    color: var(--umai-black);
+  }
+  .header-cta { display: flex; gap: 12px; }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    height: 90vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: #1A1A1A;
+    /* In production: next/image with priority + overlay rgba(0,0,0,0.4) — NO gradients */
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 1;
+  }
+  .hero-pattern {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    opacity: 0.06;
+    z-index: 2;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    color: var(--umai-white);
+    max-width: 700px;
+    padding: 0 24px;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .hero .jp-subtitle {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    opacity: 0.6;
+    margin-bottom: 32px;
+    letter-spacing: 0.3em;
+  }
+  .hero .catchphrase {
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.85;
+    margin-bottom: 48px;
+    letter-spacing: 0.04em;
+  }
+  .hero-cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  .btn-primary {
+    background: var(--umai-black);
+    color: var(--umai-white);
+  }
+  .btn-primary:hover { background: var(--umai-accent); }
+  .btn-outline {
+    background: transparent;
+    color: var(--umai-white);
+    border: 1.5px solid var(--umai-white);
+  }
+  .btn-outline:hover {
+    background: var(--umai-white);
+    color: var(--umai-black);
+  }
+  .btn-outline-dark {
+    background: transparent;
+    color: var(--umai-black);
+    border: 1.5px solid var(--umai-black);
+  }
+  .btn-outline-dark:hover {
+    background: var(--umai-black);
+    color: var(--umai-white);
+  }
+  .btn-link {
+    background: none;
+    border: none;
+    color: var(--umai-text);
+    font-weight: 500;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--umai-line);
+  }
+  .btn-link:hover { border-color: var(--umai-accent); color: var(--umai-accent); }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 40px;
+  }
+  .section-alt { background: var(--umai-bg-alt); }
+  .section-full { max-width: 100%; }
+
+  /* ─── SECTION HEADER ─── */
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 64px;
+    position: relative;
+  }
+  .section-header .jp-vertical {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    writing-mode: vertical-rl;
+    color: var(--umai-text-muted);
+    opacity: 0.5;
+    letter-spacing: 0.3em;
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .section-header-content { flex: 1; }
+  .section-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .section-header .dotted-line {
+    width: 80px;
+    border: none;
+    border-top: 2px dashed var(--umai-line-dotted);
+    margin-bottom: 16px;
+  }
+  .section-header .subtitle {
+    font-size: 1rem;
+    color: var(--umai-text-muted);
+    font-weight: 400;
+  }
+  .section-header .line-art-icon {
+    width: 48px;
+    height: 48px;
+    opacity: 0.3;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  /* ─── USP BLOCKS ─── */
+  .usp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+  }
+  .usp-card {
+    text-align: center;
+    padding: 48px 32px;
+    border: 1px dashed var(--umai-line-dotted);
+  }
+  .usp-card .usp-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 24px;
+    opacity: 0.7;
+  }
+  .usp-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+  .usp-card p {
+    font-size: 0.9rem;
+    color: var(--umai-text-muted);
+    line-height: 1.7;
+  }
+
+  /* ─── MENU ITEMS ─── */
+  .menu-category { margin-bottom: 80px; }
+  .menu-items { display: flex; flex-direction: column; gap: 0; }
+  .menu-item {
+    padding: 24px 0;
+    border-bottom: 1px dashed var(--umai-line-dotted);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item-info { flex: 1; }
+  .menu-item-name {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .menu-item-name h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .menu-item-name .jp {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: var(--umai-text-muted);
+  }
+  .menu-item-desc {
+    font-size: 0.85rem;
+    color: var(--umai-text-muted);
+    line-height: 1.6;
+    max-width: 500px;
+  }
+  .menu-item-price {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    white-space: nowrap;
+    color: var(--umai-text);
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--umai-accent);
+    margin-top: 8px;
+  }
+
+  /* ─── INFO BOX ─── */
+  .info-box {
+    border: 1.5px dashed var(--umai-line-dotted);
+    padding: 32px;
+    margin: 40px 0;
+  }
+  .info-box-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--umai-accent);
+    margin-bottom: 12px;
+  }
+  .info-box p {
+    font-size: 0.9rem;
+    color: var(--umai-text-muted);
+    line-height: 1.7;
+  }
+
+  /* ─── PALETTE ─── */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .palette-swatch {
+    height: 100px;
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    border: 1px solid var(--umai-line);
+  }
+  .palette-swatch span { opacity: 0.8; }
+
+  /* ─── TYPO SPECIMEN ─── */
+  .type-specimen { margin-bottom: 48px; }
+  .type-specimen .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--umai-text-muted);
+    margin-bottom: 8px;
+  }
+  .type-display {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .type-body {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+  .type-jp {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    color: var(--umai-text-muted);
+  }
+
+  /* ─── PHOTO PLACEHOLDER ─── */
+  .photo-placeholder {
+    background: #d1ccc2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--umai-text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── GALLERY GRID ─── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .gallery-grid .photo-placeholder {
+    aspect-ratio: 1;
+  }
+  .gallery-grid .photo-placeholder:first-child {
+    grid-row: span 2;
+    aspect-ratio: auto;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--umai-black);
+    color: rgba(255,255,255,0.7);
+    padding: 80px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .footer-pattern {
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 250px;
+    height: 250px;
+    opacity: 0.04;
+  }
+  .footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--umai-white);
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+  }
+  .footer-baseline {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    letter-spacing: 0.06em;
+  }
+  .footer h5 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--umai-white);
+    margin-bottom: 20px;
+    opacity: 0.6;
+  }
+  .footer ul { list-style: none; }
+  .footer ul li { margin-bottom: 10px; }
+  .footer ul a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+  .footer ul a:hover { color: var(--umai-accent); }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.75rem;
+    opacity: 0.4;
+    text-align: center;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .divider hr {
+    border: none;
+    border-top: 1px solid var(--umai-line);
+  }
+
+  /* ─── DESIGN SYSTEM LABEL ─── */
+  .ds-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--umai-accent);
+    font-weight: 600;
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--umai-accent);
+    display: inline-block;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .header { padding: 12px 20px; }
+    .header-nav { display: none; }
+    .section { padding: 80px 20px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid .photo-placeholder:first-child { grid-row: span 1; }
+    .usp-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-in {
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+  }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ PRODUCTION NOTES ═══════════════ -->
+<div style="background:#77967A; color:white; padding:12px 40px; font-size:0.75rem; letter-spacing:0.06em; display:flex; gap:32px; flex-wrap:wrap;">
+  <span>⚠️ PREVIEW — Google Fonts CDN (prod: next/font self-hosted)</span>
+  <span>⚠️ Hero fond uni (prod: photo next/image + overlay rgba)</span>
+  <span>✅ Vert #77967A confirmé (ajustable Sanity Studio)</span>
+</div>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<div class="header">
+  <nav class="header-nav">
+    <a href="#menu-section">Menu</a>
+    <a href="#story-section">Story</a>
+    <a href="#gallery-section">Galerie</a>
+    <a href="#infos">Infos</a>
+  </nav>
+  <div class="header-logo">UMAÏ</div>
+  <div class="header-cta">
+    <a href="#" class="btn btn-primary" style="padding:10px 24px; font-size:0.75rem;">Réserver</a>
+    <a href="#" class="btn btn-outline-dark" style="padding:10px 24px; font-size:0.75rem;">Commander</a>
+  </div>
+</div>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <!-- Seigaiha pattern corner -->
+  <svg class="hero-pattern" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="seigaiha" patternUnits="userSpaceOnUse" width="40" height="20">
+        <path d="M0 20 Q10 0 20 20 Q30 0 40 20" stroke="white" stroke-width="0.5" fill="none"/>
+        <path d="M-20 20 Q-10 0 0 20" stroke="white" stroke-width="0.5" fill="none"/>
+        <path d="M40 20 Q50 0 60 20" stroke="white" stroke-width="0.5" fill="none"/>
+        <path d="M10 20 Q20 40 30 20" stroke="white" stroke-width="0.5" fill="none" opacity="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="200" height="200" fill="url(#seigaiha)"/>
+  </svg>
+  <div class="hero-content">
+    <div class="animate-in delay-1 jp-subtitle">うまいラーメン</div>
+    <h1 class="animate-in delay-2">Ramen Artisanal</h1>
+    <p class="animate-in delay-3 catchphrase">Nouilles fraîches. Bouillons maison. Strasbourg.</p>
+    <div class="hero-cta-group animate-in delay-4">
+      <a href="#" class="btn btn-primary">Réserver une table</a>
+      <a href="#" class="btn btn-outline">Commander</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ DESIGN SYSTEM: PALETTE ═══════════════ -->
+<section class="section">
+  <div class="ds-label">Design System — Palette</div>
+  <div class="palette-grid">
+    <div class="palette-swatch" style="background:#F5F0E8;"><span style="color:#1A1A1A;">Ivoire #F5F0E8</span></div>
+    <div class="palette-swatch" style="background:#EDE8DC;"><span style="color:#1A1A1A;">Ivoire alt #EDE8DC</span></div>
+    <div class="palette-swatch" style="background:#1A1A1A;"><span style="color:#fff;">Texte #1A1A1A</span></div>
+    <div class="palette-swatch" style="background:#6B6B6B;"><span style="color:#fff;">Muted #6B6B6B</span></div>
+    <div class="palette-swatch" style="background:#77967A;"><span style="color:#fff;">Accent #77967A</span></div>
+    <div class="palette-swatch" style="background:#657D67;"><span style="color:#fff;">Hover #657D67</span></div>
+    <div class="palette-swatch" style="background:#D4CFC5;"><span style="color:#1A1A1A;">Ligne #D4CFC5</span></div>
+    <div class="palette-swatch" style="background:#0A0A0A;"><span style="color:#fff;">Noir #0A0A0A</span></div>
+    <div class="palette-swatch" style="background:#FFFFFF;"><span style="color:#1A1A1A;">Blanc #FFFFFF</span></div>
+  </div>
+
+  <div class="ds-label">Design System — Typographie</div>
+  <div class="type-specimen">
+    <div class="label">DM Serif Display — Titres</div>
+    <div class="type-display">La Carte</div>
+    <div class="type-display" style="font-size:2rem;">Ramen Paitan</div>
+  </div>
+  <div class="type-specimen">
+    <div class="label">Outfit — Corps de texte</div>
+    <div class="type-body">Umai Ramen produit quotidiennement ses nouilles fraîches maison ainsi que ses bouillons de viande ou légumes dont certains nécessitent plus de 6h de cuisson pour en extraire toutes les saveurs.</div>
+  </div>
+  <div class="type-specimen">
+    <div class="label">Noto Sans JP — Accents japonais</div>
+    <div class="type-jp">うまい ラーメン 味噌 餃子 前菜</div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════ SECTION HEADER EXAMPLE ═══════════════ -->
+<section class="section">
+  <div class="ds-label">Composant — Section Header</div>
+
+  <div class="section-header">
+    <span class="jp-vertical">パイタンラーメン</span>
+    <div class="section-header-content">
+      <h2>Ramen Paitan</h2>
+      <hr class="dotted-line">
+      <p class="subtitle">Riche et crémeux</p>
+    </div>
+    <!-- Line art icon placeholder -->
+    <svg class="line-art-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+      <ellipse cx="24" cy="30" rx="20" ry="12"/>
+      <path d="M8 28 Q14 18 24 18 Q34 18 40 28"/>
+      <path d="M16 24 Q20 20 24 22 Q28 20 32 24" opacity="0.5"/>
+      <line x1="18" y1="12" x2="16" y2="6" opacity="0.4"/>
+      <line x1="24" y1="10" x2="24" y2="4" opacity="0.4"/>
+      <line x1="30" y1="12" x2="32" y2="6" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <!-- MENU ITEMS -->
+  <div class="menu-items">
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">
+          <h4>Miso Ramen</h4>
+          <span class="jp">味噌ラーメン</span>
+        </div>
+        <p class="menu-item-desc">À base de miso rouge, chashu de porc, demi-oeuf, pousses de soja, pois gourmand & ciboulette.</p>
+      </div>
+      <span class="menu-item-price">14,50 €</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">
+          <h4>Miso Végétarien Ramen</h4>
+          <span class="jp">ベジラーメン</span>
+        </div>
+        <p class="menu-item-desc">Bouillon de légumes (shiitake & kombu), lait de soja, tranches de tofu teriyaki aux graines de sésame noir, demi-oeuf, pousses de soja, pak choi & daikon acidulé.</p>
+        <div class="badge">🌿 Végétarien</div>
+      </div>
+      <span class="menu-item-price">14,90 €</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">
+          <h4>Tantan Ramen</h4>
+          <span class="jp">たんたんラーメン</span>
+        </div>
+        <p class="menu-item-desc">À base de crème de sésame blanc torréfié, lait de soja, huile de piment, boeuf haché aux 5 épices, pak choi, pousses de soja, demi-oeuf & daikon acidulé.</p>
+      </div>
+      <span class="menu-item-price">14,90 €</span>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">
+          <h4>Yasaï Ramen</h4>
+          <span class="jp">野菜ラーメン</span>
+        </div>
+        <p class="menu-item-desc">Bouillon de légumes (shiitake & kombu), à base de crème de sésame blanc torréfié, lait de soja, huile de piment, tranches de tofu teriyaki aux graines de sésame noir, demi-oeuf, pousses de soja, pak choi & daikon acidulé.</p>
+        <div class="badge">🌿 Végétarien</div>
+      </div>
+      <span class="menu-item-price">14,90 €</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ USP BLOCKS ═══════════════ -->
+<div style="background: var(--umai-bg-alt);">
+<section class="section">
+  <div class="ds-label">Composant — Blocs USP (preuves)</div>
+  <div class="usp-grid">
+    <div class="usp-card">
+      <svg class="usp-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M14 38 Q28 44 42 38"/>
+        <path d="M10 32 Q28 20 46 32"/>
+        <line x1="22" y1="18" x2="20" y2="10" opacity="0.5"/>
+        <line x1="28" y1="16" x2="28" y2="8" opacity="0.5"/>
+        <line x1="34" y1="18" x2="36" y2="10" opacity="0.5"/>
+      </svg>
+      <h3>Nouilles fraîches</h3>
+      <p>Produites chaque jour dans notre cuisine, à partir de farine du moulin de Sarralbe.</p>
+    </div>
+    <div class="usp-card">
+      <svg class="usp-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+        <circle cx="28" cy="34" r="16"/>
+        <ellipse cx="28" cy="28" rx="16" ry="8"/>
+        <path d="M18 28 Q22 24 28 26 Q34 24 38 28" opacity="0.4"/>
+      </svg>
+      <h3>Bouillons maison</h3>
+      <p>Plus de 6 heures de cuisson lente pour extraire toutes les saveurs, chaque jour.</p>
+    </div>
+    <div class="usp-card">
+      <svg class="usp-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M28 8 L28 14"/>
+        <path d="M20 12 Q28 20 36 12"/>
+        <path d="M16 22 Q28 36 40 22"/>
+        <path d="M22 36 L18 48"/>
+        <path d="M34 36 L38 48"/>
+        <path d="M28 40 L28 48"/>
+      </svg>
+      <h3>100% local</h3>
+      <p>Poulet alsacien, légumes de saison, tous les produits sont sélectionnés avec soin.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════ INFO BOX ═══════════════ -->
+<section class="section">
+  <div class="ds-label">Composant — Info Box</div>
+  <div class="info-box" style="max-width:600px;">
+    <div class="info-box-label">🌿 Engagement qualité</div>
+    <p>Tous nos plats sont préparés avec des produits frais et locaux. Nos nouilles et bouillons sont faits maison quotidiennement. Liste des allergènes disponible sur demande.</p>
+  </div>
+  <div class="info-box" style="max-width:600px; margin-top:16px; border-color:var(--umai-accent);">
+    <div class="info-box-label">⚠️ Règle : 1 décor max par section</div>
+    <p>Chaque section utilise AU PLUS UN élément décoratif (seigaiha OU pointillés OU line-art OU label JP). Si une section est photo-heavy → zéro décor. Serif (DM Serif Display) = H1/H2 uniquement.</p>
+  </div>
+  <div style="margin-top:24px;">
+    <div class="ds-label">Composant — Boutons</div>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
+      <a href="#" class="btn btn-primary">Réserver</a>
+      <a href="#" class="btn btn-outline-dark">Commander</a>
+      <a href="#" class="btn btn-link">Voir le menu →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ═══════════════ GALLERY PREVIEW ═══════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-header-content">
+      <h2>Galerie</h2>
+      <hr class="dotted-line">
+      <p class="subtitle">Photos Nis&For — à intégrer</p>
+    </div>
+  </div>
+  <div class="gallery-grid">
+    <div class="photo-placeholder" style="background:#c8c2b6;">Photo Hero bol</div>
+    <div class="photo-placeholder" style="background:#d5cfC3;">Ramen Miso</div>
+    <div class="photo-placeholder" style="background:#cbc5b9;">Gyozas</div>
+    <div class="photo-placeholder" style="background:#d0cab0;">Salle restaurant</div>
+    <div class="photo-placeholder" style="background:#c3bdb1;">Nouilles cuisine</div>
+    <div class="photo-placeholder" style="background:#d8d2c6;">Tiramisu matcha</div>
+    <div class="photo-placeholder" style="background:#cec8bc;">Table partagée</div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <svg class="footer-pattern" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="seigaiha2" patternUnits="userSpaceOnUse" width="40" height="20">
+        <path d="M0 20 Q10 0 20 20 Q30 0 40 20" stroke="white" stroke-width="0.5" fill="none"/>
+        <path d="M10 20 Q20 40 30 20" stroke="white" stroke-width="0.5" fill="none" opacity="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="200" height="200" fill="url(#seigaiha2)"/>
+  </svg>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">UMAÏ</div>
+      <div class="footer-baseline">Ramen Noodle Bar — Strasbourg</div>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">5 rue des Orphelins</a></li>
+        <li><a href="#">67000 Strasbourg</a></li>
+        <li><a href="#">+33 (0)9 52 34 34 38</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">Réserver</a></li>
+        <li><a href="#">Commander</a></li>
+        <li><a href="#">Notre histoire</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Suivez-nous</h5>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#" style="margin-top:20px;">Mentions légales</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 UMAÏ Ramen Noodle Bar — Tous droits réservés — Prix et service compris
+  </div>
+</footer>
+
+</body>
+</html>

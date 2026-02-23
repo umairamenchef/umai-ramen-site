@@ -57,6 +57,7 @@ export default async function HomePage({ params }: Props) {
   let homepageData: {
     settings: {
       catchphrase?: { fr: string; en?: string; de?: string } | null;
+      heroImage?: SanityImageSource;
       reservationUrl?: string;
       uberEatsUrl?: string;
       socialLinks?: { instagram?: string };
@@ -152,6 +153,7 @@ export default async function HomePage({ params }: Props) {
         catchphrase={catchphrase}
         reservationUrl={reservationUrl}
         uberEatsUrl={uberEatsUrl}
+        heroImage={settings?.heroImage}
         reserveLabel={tCommon('reserve')}
         orderLabel={tCommon('order')}
       />

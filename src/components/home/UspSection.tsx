@@ -102,8 +102,15 @@ const ICONS = {
 
 export function UspSection({ title, usps }: UspSectionProps) {
   return (
-    <section className="py-[var(--spacing-section)] bg-umai-bg-alt">
-      <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10">
+    <section className="py-[var(--spacing-section)] bg-umai-bg-alt relative overflow-hidden">
+      {/* Background seal watermark */}
+      <img
+        src="/seal.svg"
+        alt=""
+        aria-hidden="true"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.04] pointer-events-none select-none"
+      />
+      <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10 relative z-10">
         <SectionHeader title={title} centered />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

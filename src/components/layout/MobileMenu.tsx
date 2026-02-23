@@ -6,6 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
+import { Logo } from '@/components/ui/Logo';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -56,9 +57,7 @@ export function MobileMenu({ isOpen, onClose, reservationUrl, uberEatsUrl }: Mob
         >
           {/* Header bar with close button */}
           <div className="flex items-center justify-between px-6 h-20 border-b border-umai-line flex-shrink-0">
-            <span className="font-display text-2xl tracking-[0.3em] uppercase text-umai-black">
-              UMAI
-            </span>
+            <Logo className="h-8 w-auto text-umai-black" />
             <button
               type="button"
               className="flex flex-col items-center justify-center w-10 h-10 gap-1.5 text-umai-text"

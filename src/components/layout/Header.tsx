@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { MobileMenu } from '@/components/layout/MobileMenu';
+import { Logo } from '@/components/ui/Logo';
 
 interface HeaderProps {
   reservationUrl: string;
@@ -47,10 +48,10 @@ export function Header({ reservationUrl, uberEatsUrl }: HeaderProps) {
           <div className="absolute left-1/2 -translate-x-1/2">
             <Link
               href="/"
-              className="font-display text-2xl tracking-[0.3em] uppercase text-umai-black hover:text-umai-accent transition-colors duration-200"
+              className="block hover:opacity-70 transition-opacity duration-200"
               aria-label={tCommon('siteTitle')}
             >
-              UMAI
+              <Logo className="h-8 w-auto text-umai-black" />
             </Link>
           </div>
 

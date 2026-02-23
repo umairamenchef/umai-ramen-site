@@ -46,6 +46,13 @@ export function Hero({
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-3xl">
+        {/* Brand seal */}
+        <img
+          src="/seal.svg"
+          alt=""
+          aria-hidden="true"
+          className="w-14 h-14 md:w-20 md:h-20 mx-auto mb-4 opacity-60 invert pointer-events-none select-none"
+        />
         <h1
           className="font-display text-4xl sm:text-5xl md:text-7xl uppercase tracking-[0.1em] text-white"
           style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}
