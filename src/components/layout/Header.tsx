@@ -54,8 +54,9 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Right: Desktop CTAs */}
-          <div className="hidden md:flex items-center gap-3 ml-auto">
+          {/* Right: Desktop CTAs + Language Switcher */}
+          <div className="hidden md:flex items-center gap-4 ml-auto">
+            <LanguageSwitcher />
             <Button
               variant="outline"
               href={GUSTY_URL}
