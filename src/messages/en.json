@@ -84,6 +84,12 @@
     "title": "Gallery",
     "subtitle": "Discover the ambience and dishes of UMAI Ramen"
   },
+  "consent": {
+    "message": "This site uses cookies for audience measurement.",
+    "moreInfo": "Learn more",
+    "accept": "Accept",
+    "reject": "Reject"
+  },
   "meta": {
     "home": {
       "title": "Umaï Ramen | Artisan Ramen Restaurant in Strasbourg",

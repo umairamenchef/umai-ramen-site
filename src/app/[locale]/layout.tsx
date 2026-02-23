@@ -1,12 +1,14 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import Script from 'next/script';
 import { routing } from '@/i18n/routing';
 import { DM_Serif_Display, Outfit, Noto_Sans_JP } from 'next/font/google';
 import { MotionProvider } from '@/components/layout/MotionProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { MobileBar } from '@/components/layout/MobileBar';
+import { CookieBanner } from '@/components/consent/CookieBanner';
 import { sanityFetch } from '@/sanity/lib/client';
 import { SITE_SETTINGS_QUERY } from '@/sanity/lib/queries';
 
@@ -68,6 +70,25 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       className={`${dmSerifDisplay.variable} ${outfit.variable} ${notoSansJP.variable}`}
     >
+      <head>
+        {/* Consent Mode v2 defaults — MUST execute BEFORE GTM loads */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'wait_for_update': 500
+              });
+              gtag('js', new Date());
+            `,
+          }}
+        />
+      </head>
       <body className="font-body bg-umai-bg text-umai-text antialiased">
         <NextIntlClientProvider messages={messages}>
           <MotionProvider>
@@ -78,7 +99,15 @@ export default async function LocaleLayout({ children, params }: Props) {
             <Footer reservationUrl={reservationUrl} uberEatsUrl={uberEatsUrl} />
             <MobileBar reservationUrl={reservationUrl} uberEatsUrl={uberEatsUrl} />
           </MotionProvider>
+          <CookieBanner />
         </NextIntlClientProvider>
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <Script
+            id="gtm-script"
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtm.js?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
+          />
+        )}
       </body>
     </html>
   );

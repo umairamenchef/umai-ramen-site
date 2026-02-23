@@ -84,6 +84,12 @@
     "title": "Galerie",
     "subtitle": "Entdecken Sie die Atmosphare und die Gerichte von UMAI Ramen"
   },
+  "consent": {
+    "message": "Diese Website verwendet Cookies zur Besuchermessung.",
+    "moreInfo": "Mehr erfahren",
+    "accept": "Akzeptieren",
+    "reject": "Ablehnen"
+  },
   "meta": {
     "home": {
       "title": "Umaï Ramen | Handgemachtes Ramen Restaurant in Strassburg",
