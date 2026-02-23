@@ -13,7 +13,7 @@ Three phases deliver the complete site: Phase 1 locks in the structural decision
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Project scaffold, Sanity schemas, i18n routing, design system, and shared layout components (completed 2026-02-23)
-- [ ] **Phase 2: Content Pages** - All public pages (Accueil, Menu, Reservation, Commander, Notre Histoire, Infos, Gallery) with Sanity data and external integrations
+- [x] **Phase 2: Content Pages** - All public pages (Accueil, Menu, Reservation, Commander, Notre Histoire, Infos, Gallery) with Sanity data and external integrations (completed 2026-02-23)
 - [ ] **Phase 3: SEO, Compliance, and Launch** - Metadata, JSON-LD, cookie consent, GTM/GA4, revalidation webhook, and Lighthouse performance audit
 
 ## Phase Details
@@ -48,11 +48,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Shared infrastructure: install dependencies, urlFor helper, FadeInUp wrapper, localized utility, menuExtra/menuFormule Sanity schemas, GROQ queries, i18n messages, outline-white Button variant
-- [ ] 02-02-PLAN.md — Homepage (Accueil): fullscreen hero, menu preview cards, USP blocks, Notre Histoire teaser, gallery preview, social section
-- [ ] 02-03-PLAN.md — Menu page: Sanity-driven categories/items, sticky sub-nav, dietary badges, extras grid, formules section, eazee-link CTA
-- [ ] 02-04-PLAN.md — Remaining pages: Reservation (Gusty CTA, practical info), Commander (3 ordering cards), Notre Histoire (scroll storytelling), Infos (hours, maps, FAQ), Gallery (CSS grid + lightbox)
-- [ ] 02-05-PLAN.md — Visual and functional verification checkpoint for all 7 content pages
+- [x] 02-01-PLAN.md — Shared infrastructure: install dependencies, urlFor helper, FadeInUp wrapper, localized utility, menuExtra/menuFormule Sanity schemas, GROQ queries, i18n messages, outline-white Button variant
+- [x] 02-02-PLAN.md — Homepage (Accueil): fullscreen hero, menu preview cards, USP blocks, Notre Histoire teaser, gallery preview, social section
+- [x] 02-03-PLAN.md — Menu page: Sanity-driven categories/items, sticky sub-nav, dietary badges, extras grid, formules section, eazee-link CTA
+- [x] 02-04-PLAN.md — Remaining pages: Reservation (Gusty CTA, practical info), Commander (3 ordering cards), Notre Histoire (scroll storytelling), Infos (hours, maps, FAQ), Gallery (CSS grid + lightbox)
+- [x] 02-05-PLAN.md — Visual and functional verification checkpoint for all 7 content pages
 
 ### Phase 3: SEO, Compliance, and Launch
 **Goal**: The site is legally compliant, correctly indexed in three language variants, analytics fire only after consent, and every page scores Lighthouse > 90
@@ -79,5 +79,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete   | 2026-02-23 |
-| 2. Content Pages | 4/5 | In Progress|  |
+| 2. Content Pages | 5/5 | Complete   | 2026-02-23 |
 | 3. SEO, Compliance, and Launch | 0/3 | Not started | - |
