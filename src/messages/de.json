@@ -83,5 +83,35 @@
   "gallery": {
     "title": "Galerie",
     "subtitle": "Entdecken Sie die Atmosphare und die Gerichte von UMAI Ramen"
+  },
+  "meta": {
+    "home": {
+      "title": "Umaï Ramen | Handgemachtes Ramen Restaurant in Strassburg",
+      "description": "Handgemachtes Ramen im Herzen von Strassburg. Frische Nudeln, hausgemachte Bruhen und lokale Zutaten. Reservieren oder online bestellen."
+    },
+    "menu": {
+      "title": "Speisekarte | Umaï Ramen Strassburg",
+      "description": "Entdecken Sie unsere Karte: Signature Ramens, Bruhen, Extras und Menus. Frische lokale Zutaten, taglich zubereitet."
+    },
+    "reservation": {
+      "title": "Tisch reservieren | Umaï Ramen Strassburg",
+      "description": "Reservieren Sie Ihren Tisch bei Umaï Ramen in Strassburg. Kostenlose Reservierung ohne Provision."
+    },
+    "commander": {
+      "title": "Online bestellen | Umaï Ramen Strassburg",
+      "description": "Bestellen Sie Ihre Ramen zur Lieferung uber Uber Eats oder zum Abholen. Geniessen Sie Umaï Ramen zu Hause."
+    },
+    "histoire": {
+      "title": "Unsere Geschichte | Umaï Ramen Strassburg",
+      "description": "Die Geschichte von Umaï Ramen: eine Leidenschaft fur Ramen, geboren in Japan, authentische Aromen im Herzen von Strassburg."
+    },
+    "infos": {
+      "title": "Praktische Infos | Umaï Ramen Strassburg",
+      "description": "Offnungszeiten, Adresse, Telefon und Anfahrt zu Umaï Ramen, 5 rue des Orphelins, 67000 Strassburg."
+    },
+    "galerie": {
+      "title": "Fotogalerie | Umaï Ramen Strassburg",
+      "description": "Entdecken Sie die Atmosphare und die Gerichte von Umaï Ramen Strassburg in Bildern. Ramen, Interieur und gemeinsame Momente."
+    }
   }
 }

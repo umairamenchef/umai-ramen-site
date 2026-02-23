@@ -83,5 +83,35 @@
   "gallery": {
     "title": "Gallery",
     "subtitle": "Discover the ambience and dishes of UMAI Ramen"
+  },
+  "meta": {
+    "home": {
+      "title": "Umaï Ramen | Artisan Ramen Restaurant in Strasbourg",
+      "description": "Artisan ramen in the heart of Strasbourg. Fresh noodles, homemade broths and local ingredients. Reserve a table or order online."
+    },
+    "menu": {
+      "title": "Menu | Umaï Ramen Strasbourg",
+      "description": "Explore our menu: signature ramens, broths, extras and set menus. Fresh local ingredients prepared daily."
+    },
+    "reservation": {
+      "title": "Reserve a Table | Umaï Ramen Strasbourg",
+      "description": "Reserve your table at Umaï Ramen in Strasbourg. Free and commission-free booking through our partner."
+    },
+    "commander": {
+      "title": "Order Online | Umaï Ramen Strasbourg",
+      "description": "Order your ramen for delivery via Uber Eats or Click & Collect. Enjoy Umaï Ramen at home."
+    },
+    "histoire": {
+      "title": "Our Story | Umaï Ramen Strasbourg",
+      "description": "The story of Umaï Ramen: a passion for ramen born in Japan, bringing authentic flavours to the heart of Strasbourg."
+    },
+    "infos": {
+      "title": "Practical Info | Umaï Ramen Strasbourg",
+      "description": "Opening hours, address, phone and directions to Umaï Ramen at 5 rue des Orphelins, 67000 Strasbourg."
+    },
+    "galerie": {
+      "title": "Photo Gallery | Umaï Ramen Strasbourg",
+      "description": "Discover the atmosphere and dishes of Umaï Ramen Strasbourg in photos. Ramen, interiors and shared moments."
+    }
   }
 }

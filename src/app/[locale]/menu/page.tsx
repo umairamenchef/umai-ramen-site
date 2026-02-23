@@ -1,4 +1,6 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
+import type { WithContext, Menu as SchemaMenu } from 'schema-dts';
 import { sanityFetch } from '@/sanity/lib/client';
 import {
   MENU_CATEGORIES_QUERY,
@@ -6,6 +8,8 @@ import {
   MENU_FORMULES_QUERY,
   SITE_SETTINGS_QUERY,
 } from '@/sanity/lib/queries';
+import { localized } from '@/lib/localized';
+import { BASE_URL, OG_IMAGE, buildAlternates } from '@/lib/seo';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button } from '@/components/ui/Button';
 import { MenuStickyNav } from '@/components/menu/MenuStickyNav';
@@ -16,6 +20,34 @@ import { FormulesSection } from '@/components/menu/FormulesSection';
 type Props = {
   params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> }
+): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'meta.menu' });
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: t('title'),
+    description: t('description'),
+    alternates: buildAlternates(locale, '/menu'),
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      url: `/${locale}/menu`,
+      siteName: 'Umaï Ramen',
+      locale: locale === 'fr' ? 'fr_FR' : locale === 'en' ? 'en_US' : 'de_DE',
+      type: 'website',
+      images: [OG_IMAGE],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+      images: [OG_IMAGE.url],
+    },
+  };
+}
 
 export default async function MenuPage({ params }: Props) {
   const { locale } = await params;
@@ -76,8 +108,36 @@ export default async function MenuPage({ params }: Props) {
     (cat) => cat.items && cat.items.length > 0
   );
 
+  const menuJsonLd: WithContext<SchemaMenu> = {
+    '@context': 'https://schema.org',
+    '@type': 'Menu',
+    name: 'Umaï Ramen Menu',
+    hasMenuSection: typedCategories.map((cat) => ({
+      '@type': 'MenuSection' as const,
+      name: localized(cat.name, locale, ''),
+      hasMenuItem: cat.items
+        ?.filter((item) => item.price !== undefined)
+        .map((item) => ({
+          '@type': 'MenuItem' as const,
+          name: localized(item.name, locale, ''),
+          description: localized(item.description, locale, ''),
+          offers: {
+            '@type': 'Offer' as const,
+            price: String(item.price),
+            priceCurrency: 'EUR',
+          },
+        })) ?? [],
+    })),
+  };
+
   return (
     <div className="py-[var(--spacing-section)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(menuJsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
       <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10">
         <SectionHeader title={t('title')} subtitle={t('subtitle')} />
       </div>

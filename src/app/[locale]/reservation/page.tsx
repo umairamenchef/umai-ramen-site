@@ -1,12 +1,42 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
 import { sanityFetch } from '@/sanity/lib/client';
 import { SITE_SETTINGS_QUERY } from '@/sanity/lib/queries';
+import { BASE_URL, OG_IMAGE, buildAlternates } from '@/lib/seo';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button } from '@/components/ui/Button';
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> }
+): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'meta.reservation' });
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: t('title'),
+    description: t('description'),
+    alternates: buildAlternates(locale, '/reservation'),
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      url: `/${locale}/reservation`,
+      siteName: 'Umaï Ramen',
+      locale: locale === 'fr' ? 'fr_FR' : locale === 'en' ? 'en_US' : 'de_DE',
+      type: 'website',
+      images: [OG_IMAGE],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+      images: [OG_IMAGE.url],
+    },
+  };
+}
 
 type OpeningHourPeriod = {
   open: string;

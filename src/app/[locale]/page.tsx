@@ -1,8 +1,11 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
 import type { SanityImageSource } from '@sanity/image-url';
+import type { WithContext, Restaurant } from 'schema-dts';
 import { sanityFetch } from '@/sanity/lib/client';
 import { HOMEPAGE_QUERY } from '@/sanity/lib/queries';
 import { localized } from '@/lib/localized';
+import { NAP, BASE_URL, OG_IMAGE, OPENING_HOURS, buildAlternates } from '@/lib/seo';
 import { Hero } from '@/components/home/Hero';
 import { MenuPreview } from '@/components/home/MenuPreview';
 import { UspSection } from '@/components/home/UspSection';
@@ -13,6 +16,34 @@ import { SocialSection } from '@/components/home/SocialSection';
 type Props = {
   params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> }
+): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'meta.home' });
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: t('title'),
+    description: t('description'),
+    alternates: buildAlternates(locale, ''),
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      url: `/${locale}`,
+      siteName: 'Umaï Ramen',
+      locale: locale === 'fr' ? 'fr_FR' : locale === 'en' ? 'en_US' : 'de_DE',
+      type: 'website',
+      images: [OG_IMAGE],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+      images: [OG_IMAGE.url],
+    },
+  };
+}
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
@@ -89,8 +120,33 @@ export default async function HomePage({ params }: Props) {
     },
   ];
 
+  const restaurantJsonLd: WithContext<Restaurant> = {
+    '@context': 'https://schema.org',
+    '@type': 'Restaurant',
+    name: NAP.name,
+    url: BASE_URL,
+    telephone: NAP.telephone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: NAP.streetAddress,
+      addressLocality: NAP.addressLocality,
+      postalCode: NAP.postalCode,
+      addressCountry: NAP.addressCountry,
+    },
+    servesCuisine: 'Japanese',
+    priceRange: '$$',
+    openingHoursSpecification: OPENING_HOURS,
+    image: `${BASE_URL}/og-image.jpg`,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(restaurantJsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
       {/* 1. Hero — full width, outside max-width container */}
       <Hero
         catchphrase={catchphrase}
