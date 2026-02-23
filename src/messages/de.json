@@ -90,6 +90,92 @@
     "accept": "Akzeptieren",
     "reject": "Ablehnen"
   },
+  "legal": {
+    "mentionsLegales": {
+      "title": "Impressum",
+      "company": {
+        "heading": "Unternehmensidentifikation",
+        "content": "Firmenname: [COMPANY NAME]\nRechtsform: [LEGAL FORM]\nStammkapital: [SHARE CAPITAL]\nSIRET: [SIRET NUMBER]\nRCS: [RCS CITY]\nVerantwortlicher Herausgeber: [DIRECTOR NAME]\nAdresse: 5 Rue des Orphelins, 67000 Strassburg, Frankreich\nTelefon: +33 9 52 34 34 38"
+      },
+      "hosting": {
+        "heading": "Hosting-Anbieter",
+        "content": "Hoster: [HOSTING PROVIDER]\nAdresse: [HOSTING ADDRESS]\nTelefon: [HOSTING PHONE]"
+      },
+      "ip": {
+        "heading": "Geistiges Eigentum",
+        "content": "Alle Inhalte dieser Website (Texte, Bilder, Fotos, Logos, Marken) sind durch das Recht des geistigen Eigentums geschutzt. Jede Vervielfaltigung, Darstellung oder Verbreitung, ganz oder teilweise, des Inhalts dieser Website ist ohne vorherige schriftliche Genehmigung von [COMPANY NAME] untersagt."
+      }
+    },
+    "politiqueConfidentialite": {
+      "title": "Datenschutzerklarung",
+      "controller": {
+        "heading": "Verantwortlicher fur die Datenverarbeitung",
+        "content": "[COMPANY NAME]\n5 Rue des Orphelins, 67000 Strassburg, Frankreich\nE-Mail: [CONTACT EMAIL]\nTelefon: +33 9 52 34 34 38"
+      },
+      "data": {
+        "heading": "Erhobene Daten",
+        "content": "Diese Website erhebt keine personenbezogenen Daten uber Formulare. Es werden ausschliesslich Cookies zur Besuchermessung (Google Analytics 4) verwendet, vorbehaltlich Ihrer ausdrucklichen Zustimmung."
+      },
+      "basis": {
+        "heading": "Rechtsgrundlage der Verarbeitung",
+        "content": "Die Verarbeitung von Navigationsdaten basiert auf Ihrer Einwilligung (Artikel 6.1.a der DSGVO). Sie konnen Ihre Einwilligung jederzeit widerrufen, indem Sie Ihre Cookies loschen."
+      },
+      "retention": {
+        "heading": "Aufbewahrungsdauer",
+        "content": "Cookies zur Besuchermessung werden fur maximal 13 Monate aufbewahrt. Anonymisierte Navigationsdaten werden fur 26 Monate gemas den CNIL-Empfehlungen aufbewahrt."
+      },
+      "rights": {
+        "heading": "Ihre Rechte",
+        "content": "Gemas der DSGVO haben Sie folgende Rechte:\n- Recht auf Zugang zu Ihren Daten\n- Recht auf Berichtigung\n- Recht auf Loschung\n- Recht auf Datenubertragbarkeit\n- Widerspruchsrecht gegen die Verarbeitung\n\nUm diese Rechte auszuuben, kontaktieren Sie uns unter [CONTACT EMAIL]."
+      },
+      "cnil": {
+        "heading": "Beschwerde bei der CNIL",
+        "content": "Wenn Sie der Meinung sind, dass die Verarbeitung Ihrer Daten einen Verstoss gegen die DSGVO darstellt, konnen Sie eine Beschwerde bei der CNIL einreichen: www.cnil.fr"
+      }
+    },
+    "politiqueCookies": {
+      "title": "Cookie-Richtlinie",
+      "what": {
+        "heading": "Was ist ein Cookie?",
+        "content": "Ein Cookie ist eine kleine Textdatei, die beim Besuch einer Website auf Ihrem Endgerat gespeichert wird. Sie speichert Informationen zu Ihrem Browsing-Verhalten."
+      },
+      "used": {
+        "heading": "Auf dieser Website verwendete Cookies",
+        "content": "umai_consent: Einwilligungs-Cookie, Dauer 13 Monate, speichert Ihre Zustimmung oder Ablehnung.\n_ga: Google Analytics Cookie, Dauer 2 Jahre, eindeutiger Identifikator fur Besuchsstatistiken.\n_gid: Google Analytics Cookie, Dauer 24 Stunden, eindeutiger Identifikator fur Sitzungsstatistiken."
+      },
+      "manage": {
+        "heading": "Verwaltung Ihrer Cookies",
+        "content": "Bei Ihrem ersten Besuch bietet Ihnen ein Banner an, Cookies zu akzeptieren oder abzulehnen. Ihre Wahl wird fur 13 Monate gespeichert. Um Ihre Wahl zu andern, loschen Sie Ihre Cookies uber Ihre Browsereinstellungen: Das Banner erscheint bei Ihrem nachsten Besuch erneut."
+      },
+      "google": {
+        "heading": "Mehr uber Google Analytics erfahren",
+        "content": "Google Analytics ist ein Besuchermessungstool von Google. Mehr daruber, wie Google Ihre Daten verwaltet: https://policies.google.com/privacy"
+      }
+    },
+    "cgv": {
+      "title": "Allgemeine Geschaftsbedingungen",
+      "scope": {
+        "heading": "Gegenstand und Geltungsbereich",
+        "content": "Die Website umai-ramen.fr ist eine informative Prasentationswebsite. Sie bietet keinen direkten Online-Verkauf an. Essensbestellungen erfolgen uber Drittanbieterplattformen (Uber Eats, Gusty), die uber eigene Allgemeine Geschaftsbedingungen verfugen."
+      },
+      "platforms": {
+        "heading": "Bestellplattformen",
+        "content": "Bestellungen uber Uber Eats, Gusty oder andere Partner unterliegen den Allgemeinen Geschaftsbedingungen der jeweiligen Plattformen. [COMPANY NAME] ubernimmt keine Haftung im Falle eines Rechtsstreits im Zusammenhang mit der Nutzung dieser Drittanbieterdienste."
+      },
+      "ip": {
+        "heading": "Geistiges Eigentum",
+        "content": "Alle auf dieser Website dargestellten Inhalte (Texte, Bilder, Logos, Marken) sind das ausschliessliche Eigentum von [COMPANY NAME] oder seiner Partner und sind durch die Gesetze zum Schutz des geistigen Eigentums geschutzt."
+      },
+      "liability": {
+        "heading": "Haftungsbeschrankung",
+        "content": "[COMPANY NAME] bemuht sich um die Richtigkeit der auf dieser Website verbreiteten Informationen, kann jedoch nicht fur Fehler, Auslassungen oder Ergebnisse haftbar gemacht werden, die sich aus der Nutzung dieser Informationen ergeben."
+      },
+      "law": {
+        "heading": "Anwendbares Recht und Gerichtsstand",
+        "content": "Diese Bedingungen unterliegen dem franzosischen Recht. Im Falle eines Rechtsstreits sind ausschliesslich die Gerichte in Strassburg zustandig."
+      }
+    }
+  },
   "meta": {
     "home": {
       "title": "Umaï Ramen | Handgemachtes Ramen Restaurant in Strassburg",
@@ -118,6 +204,22 @@
     "galerie": {
       "title": "Fotogalerie | Umaï Ramen Strassburg",
       "description": "Entdecken Sie die Atmosphare und die Gerichte von Umaï Ramen Strassburg in Bildern. Ramen, Interieur und gemeinsame Momente."
+    },
+    "mentionsLegales": {
+      "title": "Impressum | Umaï Ramen",
+      "description": "Impressum der Website Umaï Ramen. Unternehmensidentifikation, Hosting-Anbieter und geistiges Eigentum."
+    },
+    "politiqueConfidentialite": {
+      "title": "Datenschutzerklarung | Umaï Ramen",
+      "description": "Datenschutzerklarung und Schutz personenbezogener Daten der Website Umaï Ramen, DSGVO-konform."
+    },
+    "politiqueCookies": {
+      "title": "Cookie-Richtlinie | Umaï Ramen",
+      "description": "Informationen uber Cookies auf der Website Umaï Ramen und Verwaltung Ihrer Praferenzen."
+    },
+    "cgv": {
+      "title": "Allgemeine Geschaftsbedingungen | Umaï Ramen",
+      "description": "Allgemeine Geschaftsbedingungen und Nutzungsbedingungen der Website Umaï Ramen."
     }
   }
 }

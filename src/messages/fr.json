@@ -90,6 +90,92 @@
     "accept": "Accepter",
     "reject": "Refuser"
   },
+  "legal": {
+    "mentionsLegales": {
+      "title": "Mentions legales",
+      "company": {
+        "heading": "Identification de l'entreprise",
+        "content": "Raison sociale : [COMPANY NAME]\nForme juridique : [LEGAL FORM]\nCapital social : [SHARE CAPITAL]\nSIRET : [SIRET NUMBER]\nRCS : [RCS CITY]\nDirecteur de la publication : [DIRECTOR NAME]\nAdresse : 5 Rue des Orphelins, 67000 Strasbourg\nTelephone : +33 9 52 34 34 38"
+      },
+      "hosting": {
+        "heading": "Hebergement",
+        "content": "Hebergeur : [HOSTING PROVIDER]\nAdresse : [HOSTING ADDRESS]\nTelephone : [HOSTING PHONE]"
+      },
+      "ip": {
+        "heading": "Propriete intellectuelle",
+        "content": "L'ensemble du contenu de ce site (textes, images, photographies, logos, marques) est protege par le droit de la propriete intellectuelle. Toute reproduction, representation ou diffusion, en tout ou partie, du contenu de ce site est interdite sans l'autorisation prealable ecrite de [COMPANY NAME]."
+      }
+    },
+    "politiqueConfidentialite": {
+      "title": "Politique de confidentialite",
+      "controller": {
+        "heading": "Responsable du traitement",
+        "content": "[COMPANY NAME]\n5 Rue des Orphelins, 67000 Strasbourg\nEmail : [CONTACT EMAIL]\nTelephone : +33 9 52 34 34 38"
+      },
+      "data": {
+        "heading": "Donnees collectees",
+        "content": "Ce site ne collecte aucune donnee personnelle via des formulaires. Seuls des cookies de mesure d'audience (Google Analytics 4) sont utilises, sous reserve de votre consentement explicite."
+      },
+      "basis": {
+        "heading": "Base legale du traitement",
+        "content": "Le traitement des donnees de navigation est fonde sur votre consentement (article 6.1.a du RGPD). Vous pouvez retirer votre consentement a tout moment en supprimant vos cookies."
+      },
+      "retention": {
+        "heading": "Duree de conservation",
+        "content": "Les cookies de mesure d'audience sont conserves pour une duree maximale de 13 mois. Les donnees de navigation anonymisees sont conservees pendant 26 mois conformement aux recommandations de la CNIL."
+      },
+      "rights": {
+        "heading": "Vos droits",
+        "content": "Conformement au RGPD, vous disposez des droits suivants :\n- Droit d'acces a vos donnees\n- Droit de rectification\n- Droit a l'effacement\n- Droit a la portabilite\n- Droit d'opposition au traitement\n\nPour exercer ces droits, contactez-nous a [CONTACT EMAIL]."
+      },
+      "cnil": {
+        "heading": "Reclamation aupres de la CNIL",
+        "content": "Si vous estimez que le traitement de vos donnees constitue une violation du RGPD, vous pouvez introduire une reclamation aupres de la CNIL : www.cnil.fr"
+      }
+    },
+    "politiqueCookies": {
+      "title": "Politique cookies",
+      "what": {
+        "heading": "Qu'est-ce qu'un cookie ?",
+        "content": "Un cookie est un petit fichier texte depose sur votre terminal lors de la visite d'un site web. Il permet de stocker des informations relatives a votre navigation."
+      },
+      "used": {
+        "heading": "Cookies utilises sur ce site",
+        "content": "umai_consent : cookie de consentement, duree 13 mois, enregistre votre choix d'acceptation ou de refus.\n_ga : cookie Google Analytics, duree 2 ans, identifiant unique pour les statistiques de visite.\n_gid : cookie Google Analytics, duree 24 heures, identifiant unique pour les statistiques de session."
+      },
+      "manage": {
+        "heading": "Gestion de vos cookies",
+        "content": "Lors de votre premiere visite, un bandeau vous propose d'accepter ou de refuser les cookies. Votre choix est enregistre pour 13 mois. Pour modifier votre choix, supprimez vos cookies via les parametres de votre navigateur : le bandeau reapparaitra lors de votre prochaine visite."
+      },
+      "google": {
+        "heading": "En savoir plus sur Google Analytics",
+        "content": "Google Analytics est un outil de mesure d'audience fourni par Google. Pour en savoir plus sur la gestion de vos donnees par Google : https://policies.google.com/privacy"
+      }
+    },
+    "cgv": {
+      "title": "Conditions generales de vente",
+      "scope": {
+        "heading": "Objet et champ d'application",
+        "content": "Le site umai-ramen.fr est un site vitrine a vocation informative. Il ne propose pas de vente directe en ligne. Les commandes de plats s'effectuent via des plateformes tierces (Uber Eats, Gusty) qui disposent de leurs propres conditions generales."
+      },
+      "platforms": {
+        "heading": "Plateformes de commande",
+        "content": "Les commandes passees via Uber Eats, Gusty ou tout autre partenaire sont soumises aux conditions generales de ces plateformes respectives. [COMPANY NAME] decline toute responsabilite en cas de litige lie a l'utilisation de ces services tiers."
+      },
+      "ip": {
+        "heading": "Propriete intellectuelle",
+        "content": "Tous les contenus presentes sur ce site (textes, images, logos, marques) sont la propriete exclusive de [COMPANY NAME] ou de ses partenaires et sont proteges par les lois relatives a la propriete intellectuelle."
+      },
+      "liability": {
+        "heading": "Limitation de responsabilite",
+        "content": "[COMPANY NAME] s'efforce d'assurer l'exactitude des informations diffusees sur ce site, mais ne saurait etre tenue responsable d'erreurs, d'omissions ou de resultats obtenus suite a l'utilisation de ces informations."
+      },
+      "law": {
+        "heading": "Droit applicable et juridiction",
+        "content": "Les presentes conditions sont regies par le droit francais. En cas de litige, les tribunaux de Strasbourg seront seuls competents."
+      }
+    }
+  },
   "meta": {
     "home": {
       "title": "Umaï Ramen | Restaurant de ramen artisanal a Strasbourg",
@@ -118,6 +204,22 @@
     "galerie": {
       "title": "Galerie photos | Umaï Ramen Strasbourg",
       "description": "Decouvrez en images l'ambiance et les plats de Umaï Ramen Strasbourg. Ramens, interieur et moments de partage."
+    },
+    "mentionsLegales": {
+      "title": "Mentions legales | Umaï Ramen",
+      "description": "Mentions legales du site Umaï Ramen. Identification de l'entreprise, hebergeur et propriete intellectuelle."
+    },
+    "politiqueConfidentialite": {
+      "title": "Politique de confidentialite | Umaï Ramen",
+      "description": "Politique de confidentialite et protection des donnees personnelles du site Umaï Ramen, conforme au RGPD."
+    },
+    "politiqueCookies": {
+      "title": "Politique cookies | Umaï Ramen",
+      "description": "Informations sur les cookies utilises par le site Umaï Ramen et gestion de vos preferences."
+    },
+    "cgv": {
+      "title": "Conditions generales de vente | Umaï Ramen",
+      "description": "Conditions generales de vente et d'utilisation du site Umaï Ramen. Droit applicable et juridiction."
     }
   }
 }

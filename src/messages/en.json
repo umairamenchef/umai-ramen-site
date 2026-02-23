@@ -90,6 +90,92 @@
     "accept": "Accept",
     "reject": "Reject"
   },
+  "legal": {
+    "mentionsLegales": {
+      "title": "Legal Notice",
+      "company": {
+        "heading": "Company Identification",
+        "content": "Company name: [COMPANY NAME]\nLegal form: [LEGAL FORM]\nShare capital: [SHARE CAPITAL]\nSIRET: [SIRET NUMBER]\nRCS: [RCS CITY]\nPublication director: [DIRECTOR NAME]\nAddress: 5 Rue des Orphelins, 67000 Strasbourg, France\nPhone: +33 9 52 34 34 38"
+      },
+      "hosting": {
+        "heading": "Hosting Provider",
+        "content": "Host: [HOSTING PROVIDER]\nAddress: [HOSTING ADDRESS]\nPhone: [HOSTING PHONE]"
+      },
+      "ip": {
+        "heading": "Intellectual Property",
+        "content": "All content on this site (texts, images, photographs, logos, trademarks) is protected by intellectual property law. Any reproduction, representation or distribution, in whole or in part, of the content of this site is prohibited without prior written authorisation from [COMPANY NAME]."
+      }
+    },
+    "politiqueConfidentialite": {
+      "title": "Privacy Policy",
+      "controller": {
+        "heading": "Data Controller",
+        "content": "[COMPANY NAME]\n5 Rue des Orphelins, 67000 Strasbourg, France\nEmail: [CONTACT EMAIL]\nPhone: +33 9 52 34 34 38"
+      },
+      "data": {
+        "heading": "Data Collected",
+        "content": "This site does not collect any personal data via forms. Only audience measurement cookies (Google Analytics 4) are used, subject to your explicit consent."
+      },
+      "basis": {
+        "heading": "Legal Basis for Processing",
+        "content": "The processing of browsing data is based on your consent (Article 6.1.a of the GDPR). You may withdraw your consent at any time by deleting your cookies."
+      },
+      "retention": {
+        "heading": "Data Retention",
+        "content": "Audience measurement cookies are retained for a maximum period of 13 months. Anonymised browsing data is retained for 26 months in accordance with CNIL recommendations."
+      },
+      "rights": {
+        "heading": "Your Rights",
+        "content": "Under the GDPR, you have the following rights:\n- Right of access to your data\n- Right to rectification\n- Right to erasure\n- Right to data portability\n- Right to object to processing\n\nTo exercise these rights, contact us at [CONTACT EMAIL]."
+      },
+      "cnil": {
+        "heading": "Complaint to the CNIL",
+        "content": "If you believe that the processing of your data constitutes a violation of the GDPR, you may lodge a complaint with the CNIL: www.cnil.fr"
+      }
+    },
+    "politiqueCookies": {
+      "title": "Cookie Policy",
+      "what": {
+        "heading": "What is a cookie?",
+        "content": "A cookie is a small text file stored on your device when you visit a website. It stores information related to your browsing."
+      },
+      "used": {
+        "heading": "Cookies used on this site",
+        "content": "umai_consent: consent cookie, duration 13 months, records your acceptance or rejection choice.\n_ga: Google Analytics cookie, duration 2 years, unique identifier for visit statistics.\n_gid: Google Analytics cookie, duration 24 hours, unique identifier for session statistics."
+      },
+      "manage": {
+        "heading": "Managing your cookies",
+        "content": "On your first visit, a banner offers you to accept or reject cookies. Your choice is recorded for 13 months. To change your choice, delete your cookies via your browser settings: the banner will reappear on your next visit."
+      },
+      "google": {
+        "heading": "Learn more about Google Analytics",
+        "content": "Google Analytics is an audience measurement tool provided by Google. To learn more about how Google manages your data: https://policies.google.com/privacy"
+      }
+    },
+    "cgv": {
+      "title": "Terms and Conditions",
+      "scope": {
+        "heading": "Purpose and Scope",
+        "content": "The website umai-ramen.fr is an informational showcase website. It does not offer direct online sales. Food orders are placed via third-party platforms (Uber Eats, Gusty) which have their own terms and conditions."
+      },
+      "platforms": {
+        "heading": "Ordering Platforms",
+        "content": "Orders placed via Uber Eats, Gusty or any other partner are subject to the terms and conditions of those respective platforms. [COMPANY NAME] accepts no liability in the event of a dispute related to the use of these third-party services."
+      },
+      "ip": {
+        "heading": "Intellectual Property",
+        "content": "All content presented on this site (texts, images, logos, trademarks) is the exclusive property of [COMPANY NAME] or its partners and is protected by intellectual property laws."
+      },
+      "liability": {
+        "heading": "Limitation of Liability",
+        "content": "[COMPANY NAME] endeavours to ensure the accuracy of information published on this site, but cannot be held liable for errors, omissions or results obtained through the use of this information."
+      },
+      "law": {
+        "heading": "Applicable Law and Jurisdiction",
+        "content": "These conditions are governed by French law. In the event of a dispute, the courts of Strasbourg shall have sole jurisdiction."
+      }
+    }
+  },
   "meta": {
     "home": {
       "title": "Umaï Ramen | Artisan Ramen Restaurant in Strasbourg",
@@ -118,6 +204,22 @@
     "galerie": {
       "title": "Photo Gallery | Umaï Ramen Strasbourg",
       "description": "Discover the atmosphere and dishes of Umaï Ramen Strasbourg in photos. Ramen, interiors and shared moments."
+    },
+    "mentionsLegales": {
+      "title": "Legal Notice | Umaï Ramen",
+      "description": "Legal notice for the Umaï Ramen website. Company identification, hosting provider and intellectual property."
+    },
+    "politiqueConfidentialite": {
+      "title": "Privacy Policy | Umaï Ramen",
+      "description": "Privacy policy and personal data protection for the Umaï Ramen website, GDPR compliant."
+    },
+    "politiqueCookies": {
+      "title": "Cookie Policy | Umaï Ramen",
+      "description": "Information about cookies used by the Umaï Ramen website and how to manage your preferences."
+    },
+    "cgv": {
+      "title": "Terms and Conditions | Umaï Ramen",
+      "description": "Terms and conditions of use for the Umaï Ramen website. Applicable law and jurisdiction."
     }
   }
 }
