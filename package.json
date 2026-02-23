@@ -24,6 +24,7 @@
     "yet-another-react-lightbox": "^3.29.1"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.1.6",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
