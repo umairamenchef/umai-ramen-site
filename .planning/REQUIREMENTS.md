@@ -35,23 +35,23 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Accueil (Homepage)
 
-- [ ] **HOME-01**: Fullscreen hero with fixed photo (next/image priority + rgba overlay), no slider, no gradient
-- [ ] **HOME-02**: Hero displays editable catchphrase (default: "Nouilles fraiches. Bouillons maison.") + reserve/order CTAs
-- [ ] **HOME-03**: Menu preview section with 3 visual category cards linking to /menu
-- [ ] **HOME-04**: USP section with 3 proof blocks (nouilles fraiches, bouillons maison, 100% local) in dotted borders
-- [ ] **HOME-05**: Notre Histoire teaser with photo + short text + CTA to /notre-histoire
-- [ ] **HOME-06**: Photo gallery section with responsive grid
-- [ ] **HOME-07**: Social section with Instagram link and hashtag
+- [x] **HOME-01**: Fullscreen hero with fixed photo (next/image priority + rgba overlay), no slider, no gradient
+- [x] **HOME-02**: Hero displays editable catchphrase (default: "Nouilles fraiches. Bouillons maison.") + reserve/order CTAs
+- [x] **HOME-03**: Menu preview section with 3 visual category cards linking to /menu
+- [x] **HOME-04**: USP section with 3 proof blocks (nouilles fraiches, bouillons maison, 100% local) in dotted borders
+- [x] **HOME-05**: Notre Histoire teaser with photo + short text + CTA to /notre-histoire
+- [x] **HOME-06**: Photo gallery section with responsive grid
+- [x] **HOME-07**: Social section with Instagram link and hashtag
 
 ### Menu
 
-- [ ] **MENU-01**: Full menu displayed from Sanity CMS with categories, items, prices, descriptions, dietary tags
-- [ ] **MENU-02**: Sticky sub-navigation by category (scroll to section)
-- [ ] **MENU-03**: Menu items show FR name + JP name + price + description + vegetarian/gluten-free badges
+- [x] **MENU-01**: Full menu displayed from Sanity CMS with categories, items, prices, descriptions, dietary tags
+- [x] **MENU-02**: Sticky sub-navigation by category (scroll to section)
+- [x] **MENU-03**: Menu items show FR name + JP name + price + description + vegetarian/gluten-free badges
 - [x] **MENU-04**: Extras grid section with supplementary items and prices
 - [x] **MENU-05**: Menu formules section (Menu Gyoza, Menu Enfant)
 - [x] **MENU-06**: Availability toggle per item (owner can hide items via Sanity without deleting)
-- [ ] **MENU-07**: CTA to eazee-link for full digital menu (external link, new tab)
+- [x] **MENU-07**: CTA to eazee-link for full digital menu (external link, new tab)
 
 ### Reservation
 
@@ -92,9 +92,9 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **INTG-01**: Gusty reservation CTA on sticky header, hero, reservation page, and mobile bar
 - [x] **INTG-02**: Uber Eats delivery CTA on sticky header, hero, commander page, and mobile bar
 - [ ] **INTG-03**: Gusty Click & Collect CTA on commander page (placeholder URL, Sanity-editable)
-- [ ] **INTG-04**: eazee-link digital menu link on menu page and commander page
+- [x] **INTG-04**: eazee-link digital menu link on menu page and commander page
 - [ ] **INTG-05**: Google Maps iframe embed on reservation and infos pages
-- [ ] **INTG-06**: Instagram link in social section and footer
+- [x] **INTG-06**: Instagram link in social section and footer
 - [ ] **INTG-07**: Facebook link in footer
 
 ### SEO
@@ -179,20 +179,20 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LAYT-03 | Phase 1 | Complete |
 | LAYT-04 | Phase 1 | Complete |
 | LAYT-05 | Phase 1 | Complete |
-| HOME-01 | Phase 2 | Pending |
-| HOME-02 | Phase 2 | Pending |
-| HOME-03 | Phase 2 | Pending |
-| HOME-04 | Phase 2 | Pending |
-| HOME-05 | Phase 2 | Pending |
-| HOME-06 | Phase 2 | Pending |
-| HOME-07 | Phase 2 | Pending |
-| MENU-01 | Phase 2 | Pending |
-| MENU-02 | Phase 2 | Pending |
-| MENU-03 | Phase 2 | Pending |
+| HOME-01 | Phase 2 | Complete |
+| HOME-02 | Phase 2 | Complete |
+| HOME-03 | Phase 2 | Complete |
+| HOME-04 | Phase 2 | Complete |
+| HOME-05 | Phase 2 | Complete |
+| HOME-06 | Phase 2 | Complete |
+| HOME-07 | Phase 2 | Complete |
+| MENU-01 | Phase 2 | Complete |
+| MENU-02 | Phase 2 | Complete |
+| MENU-03 | Phase 2 | Complete |
 | MENU-04 | Phase 2 | Complete |
 | MENU-05 | Phase 2 | Complete |
 | MENU-06 | Phase 2 | Complete |
-| MENU-07 | Phase 2 | Pending |
+| MENU-07 | Phase 2 | Complete |
 | RESV-01 | Phase 2 | Pending |
 | RESV-02 | Phase 2 | Pending |
 | RESV-03 | Phase 2 | Pending |
@@ -215,9 +215,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INTG-01 | Phase 2 | Complete |
 | INTG-02 | Phase 2 | Complete |
 | INTG-03 | Phase 2 | Pending |
-| INTG-04 | Phase 2 | Pending |
+| INTG-04 | Phase 2 | Complete |
 | INTG-05 | Phase 2 | Pending |
-| INTG-06 | Phase 2 | Pending |
+| INTG-06 | Phase 2 | Complete |
 | INTG-07 | Phase 2 | Pending |
 | SEO-01 | Phase 3 | Pending |
 | SEO-02 | Phase 3 | Pending |

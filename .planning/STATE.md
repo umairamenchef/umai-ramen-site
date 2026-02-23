@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-02-22)
 ## Current Position
 
 Phase: 2 of 3 (Content Pages)
-Plan: 1 of 5 in current phase (02-01 complete)
+Plan: 3 of 5 in current phase (02-03 complete)
 Status: In Progress
-Last activity: 2026-02-23 — Completed 02-01 (Shared infrastructure — helpers, schemas, queries, i18n, layout wiring)
+Last activity: 2026-02-23 — Completed 02-03 (Menu page — DietaryBadge, MenuItem, MenuCategory, MenuStickyNav, ExtrasGrid, FormulesSection)
 
-Progress: [████░░░░░░] 44%
+Progress: [██████░░░░] 56%
 
 ## Performance Metrics
 
@@ -28,17 +28,19 @@ Progress: [████░░░░░░] 44%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 3/3 | 65 min | 21.7 min |
-| 02-content-pages | 1/5 | 7 min | 7 min |
+| 02-content-pages | 2/5 | 17 min | 8.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min), 01-02 (5 min), 01-03 (56 min), 02-01 (7 min)
-- Trend: 02-01 quick — infrastructure-only, no visual verification needed
+- Last 5 plans: 01-01 (4 min), 01-02 (5 min), 01-03 (56 min), 02-01 (7 min), 02-02 (10 min)
+- Trend: 02-02 fast — all components server-side, TypeScript passed first try
 
 | Phase 01-foundation P02 | 5 | 2 tasks | 16 files |
 
 *Updated after each plan completion*
 | Phase 01-foundation P03 | 56 | 3 tasks | 17 files |
 | Phase 02-content-pages P01 | 7 | 3 tasks | 15 files |
+| Phase 02-content-pages P02 | 10 | 2 tasks | 7 files |
+| Phase 02-content-pages P03 | 11 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -67,6 +69,10 @@ Recent decisions affecting current work:
 - [Phase 02-content-pages]: SanityImageSource type imported from '@sanity/image-url' directly (v2 package root, not lib/types/types)
 - [Phase 02-content-pages]: sanityFetch in root layout wrapped in try/catch — graceful fallback to '#' when Sanity credentials not configured
 - [Phase 02-content-pages]: menuFormule.includedItems uses array of string (not localeString) — formule contents are format-specific, not translated
+- [Phase 02-content-pages]: next/image uses loading=eager (not priority) for Hero — priority is deprecated in Next.js 16
+- [Phase 02-content-pages]: NEXT_TURBOPACK_USE_WORKER=0 required for next build in WSL2 — Turbopack worker race condition on tmp buildManifest file creation
+- [Phase 02-content-pages]: Menu page wraps all sanityFetch calls in try/catch — consistent with layout.tsx pattern from 02-01; prevents build failure with placeholder credentials
+- [Phase 02-content-pages]: visibleCategories filters empty categories before passing to MenuStickyNav — sticky nav never shows empty category buttons
 
 ### Pending Todos
 
@@ -82,5 +88,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-23
-Stopped at: Completed 02-01-PLAN.md (Shared infrastructure — helpers, schemas, queries, i18n, layout wiring)
+Stopped at: Completed 02-02-PLAN.md (Homepage — Hero, MenuPreview, UspSection, HistoireTeaser, GalleryPreview, SocialSection, page.tsx assembly)
 Resume file: None
