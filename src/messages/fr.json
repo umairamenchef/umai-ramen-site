@@ -12,6 +12,76 @@
   },
   "home": {
     "title": "Bienvenue chez UMAI",
-    "subtitle": "Nouilles fraiches. Bouillons maison."
+    "subtitle": "Nouilles fraiches. Bouillons maison.",
+    "heroTitle": "Nouilles fraiches. Bouillons maison.",
+    "heroSubtitle": "Ramen artisanal au coeur de Strasbourg",
+    "menuPreviewTitle": "Notre Menu",
+    "menuPreviewCta": "Voir le menu complet",
+    "uspTitle": "Notre engagement",
+    "uspNouilles": "Nouilles fraiches",
+    "uspBouillons": "Bouillons maison",
+    "uspLocal": "Produits locaux",
+    "uspNouillesDesc": "Nos nouilles sont preparees chaque jour dans notre cuisine",
+    "uspBouillonsDesc": "Nos bouillons mijotent pendant plus de 12 heures",
+    "uspLocalDesc": "Nous privilegions les producteurs locaux alsaciens",
+    "histoireTitle": "Notre Histoire",
+    "histoireTeaser": "Une passion pour le ramen, nee d'un voyage au Japon et d'un amour profond pour les saveurs authentiques",
+    "histoireCta": "Decouvrir notre histoire",
+    "galleryCta": "Voir toute la galerie",
+    "socialTitle": "Rejoignez-nous",
+    "socialHashtag": "#umairamen"
+  },
+  "menu": {
+    "title": "Notre Menu",
+    "subtitle": "Des plats prepares avec passion, des ingredients frais et locaux",
+    "extrasTitle": "Extras",
+    "formulesTitle": "Nos Formules",
+    "eazeeLinkCta": "Consulter la carte complete",
+    "includes": "Comprend"
+  },
+  "reservation": {
+    "title": "Reserver une table",
+    "subtitle": "Assurez-vous une place dans notre restaurant",
+    "ctaLabel": "Reserver maintenant",
+    "microCopy": "Gratuit, sans commission",
+    "practicalInfoTitle": "Informations pratiques",
+    "hoursTitle": "Horaires",
+    "addressTitle": "Adresse",
+    "phoneTitle": "Telephone"
+  },
+  "commander": {
+    "title": "Commander",
+    "subtitle": "Degustez UMAI chez vous ou emportez votre commande",
+    "uberEatsTitle": "Uber Eats",
+    "uberEatsDesc": "Livraison a domicile",
+    "clickCollectTitle": "Click & Collect",
+    "clickCollectDesc": "Commandez et venez chercher",
+    "eazeeLinkTitle": "Carte digitale",
+    "eazeeLinkDesc": "Consultez notre carte complete",
+    "ctaLabel": "Commander"
+  },
+  "histoire": {
+    "title": "Notre Histoire",
+    "subtitle": "Une passion pour le ramen et les saveurs japonaises",
+    "ctaLabel": "Reserver une table"
+  },
+  "infos": {
+    "title": "Informations pratiques",
+    "subtitle": "Tout ce qu'il faut savoir pour votre visite",
+    "hoursTitle": "Horaires d'ouverture",
+    "addressTitle": "Adresse",
+    "phoneTitle": "Telephone",
+    "faqTitle": "Questions frequentes",
+    "faqAllergens": "Comment gerez-vous les allergenes ?",
+    "faqAllergensAnswer": "Notre equipe est a votre ecoute pour toute question sur les allergenes. N'hesitez pas a nous consulter.",
+    "faqGroups": "Acceptez-vous les groupes ?",
+    "faqGroupsAnswer": "Pour les groupes de 8 personnes et plus, merci de nous contacter directement par telephone.",
+    "faqVegetarian": "Avez-vous des options vegetariennes ?",
+    "faqVegetarianAnswer": "Nous proposons des options vegetariennes et sans gluten. Consultez notre menu pour les details.",
+    "contactTitle": "Nous contacter"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "subtitle": "Decouvrez l'ambiance et les plats de UMAI Ramen"
   }
 }

@@ -12,6 +12,76 @@
   },
   "home": {
     "title": "Willkommen bei UMAI",
-    "subtitle": "Frische Nudeln. Hausgemachte Brühen."
+    "subtitle": "Frische Nudeln. Hausgemachte Brühen.",
+    "heroTitle": "Nouilles fraiches. Bouillons maison.",
+    "heroSubtitle": "Artisan Ramen im Herzen von Strassburg",
+    "menuPreviewTitle": "Unsere Speisekarte",
+    "menuPreviewCta": "Vollstandige Speisekarte ansehen",
+    "uspTitle": "Unser Versprechen",
+    "uspNouilles": "Frische Nudeln",
+    "uspBouillons": "Hausgemachte Bruhen",
+    "uspLocal": "Lokale Produkte",
+    "uspNouillesDesc": "Unsere Nudeln werden taglich in unserer Kuche zubereitet",
+    "uspBouillonsDesc": "Unsere Bruhen kocheln uber 12 Stunden",
+    "uspLocalDesc": "Wir bevorzugen lokale Produzenten aus dem Elsass",
+    "histoireTitle": "Unsere Geschichte",
+    "histoireTeaser": "Eine Leidenschaft fur Ramen, geboren aus einer Reise nach Japan und einer tiefen Liebe fur authentische Geschmacker",
+    "histoireCta": "Unsere Geschichte entdecken",
+    "galleryCta": "Gesamte Galerie ansehen",
+    "socialTitle": "Folgen Sie uns",
+    "socialHashtag": "#umairamen"
+  },
+  "menu": {
+    "title": "Unsere Speisekarte",
+    "subtitle": "Gerichte mit Leidenschaft zubereitet, frische und lokale Zutaten",
+    "extrasTitle": "Extras",
+    "formulesTitle": "Unsere Menüs",
+    "eazeeLinkCta": "Vollstandige Karte ansehen",
+    "includes": "Enthalt"
+  },
+  "reservation": {
+    "title": "Tisch reservieren",
+    "subtitle": "Sichern Sie sich Ihren Platz in unserem Restaurant",
+    "ctaLabel": "Jetzt reservieren",
+    "microCopy": "Gratuit, sans commission",
+    "practicalInfoTitle": "Praktische Informationen",
+    "hoursTitle": "Offnungszeiten",
+    "addressTitle": "Adresse",
+    "phoneTitle": "Telefon"
+  },
+  "commander": {
+    "title": "Bestellen",
+    "subtitle": "Geniessen Sie UMAI zu Hause oder zum Mitnehmen",
+    "uberEatsTitle": "Uber Eats",
+    "uberEatsDesc": "Lieferung nach Hause",
+    "clickCollectTitle": "Click & Collect",
+    "clickCollectDesc": "Bestellen und abholen",
+    "eazeeLinkTitle": "Digitale Speisekarte",
+    "eazeeLinkDesc": "Vollstandige Karte ansehen",
+    "ctaLabel": "Bestellen"
+  },
+  "histoire": {
+    "title": "Unsere Geschichte",
+    "subtitle": "Eine Leidenschaft fur Ramen und japanische Geschmacker",
+    "ctaLabel": "Tisch reservieren"
+  },
+  "infos": {
+    "title": "Praktische Informationen",
+    "subtitle": "Alles, was Sie fur Ihren Besuch wissen mussen",
+    "hoursTitle": "Offnungszeiten",
+    "addressTitle": "Adresse",
+    "phoneTitle": "Telefon",
+    "faqTitle": "Haufig gestellte Fragen",
+    "faqAllergens": "Wie gehen Sie mit Allergenen um?",
+    "faqAllergensAnswer": "Notre equipe est a votre ecoute pour toute question sur les allergenes. N'hesitez pas a nous consulter.",
+    "faqGroups": "Nehmen Sie Gruppen an?",
+    "faqGroupsAnswer": "Pour les groupes de 8 personnes et plus, merci de nous contacter directement par telephone.",
+    "faqVegetarian": "Haben Sie vegetarische Optionen?",
+    "faqVegetarianAnswer": "Nous proposons des options vegetariennes et sans gluten. Consultez notre menu pour les details.",
+    "contactTitle": "Kontaktieren Sie uns"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "subtitle": "Entdecken Sie die Atmosphare und die Gerichte von UMAI Ramen"
   }
 }
