@@ -2,7 +2,12 @@ import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { SeigahaPattern } from '@/components/ui/SeigahaPattern';
 
-export function Footer() {
+interface FooterProps {
+  reservationUrl: string;
+  uberEatsUrl: string;
+}
+
+export function Footer({ reservationUrl, uberEatsUrl }: FooterProps) {
   const tCommon = useTranslations('common');
   const tNav = useTranslations('nav');
 
@@ -88,7 +93,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://gusty.app/booking/1667924751880x258346136410259460?source=SITE"
+                  href={reservationUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-sm text-umai-bg/60 hover:text-umai-accent transition-colors duration-200"
@@ -98,7 +103,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.ubereats.com/fr/store/umai-ramen/8yLiOMdPVTudC_Pgbe209g"
+                  href={uberEatsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-sm text-umai-bg/60 hover:text-umai-accent transition-colors duration-200"

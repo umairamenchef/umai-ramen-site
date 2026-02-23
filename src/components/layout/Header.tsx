@@ -7,12 +7,12 @@ import { Button } from '@/components/ui/Button';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { MobileMenu } from '@/components/layout/MobileMenu';
 
-const GUSTY_URL =
-  'https://gusty.app/booking/1667924751880x258346136410259460?source=SITE';
-const UBER_EATS_URL =
-  'https://www.ubereats.com/fr/store/umai-ramen/8yLiOMdPVTudC_Pgbe209g';
+interface HeaderProps {
+  reservationUrl: string;
+  uberEatsUrl: string;
+}
 
-export function Header() {
+export function Header({ reservationUrl, uberEatsUrl }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const tCommon = useTranslations('common');
   const tNav = useTranslations('nav');
@@ -59,7 +59,7 @@ export function Header() {
             <LanguageSwitcher />
             <Button
               variant="outline"
-              href={GUSTY_URL}
+              href={reservationUrl}
               external
               className="py-2 px-5 text-xs"
             >
@@ -67,7 +67,7 @@ export function Header() {
             </Button>
             <Button
               variant="primary"
-              href={UBER_EATS_URL}
+              href={uberEatsUrl}
               external
               className="py-2 px-5 text-xs"
             >
@@ -98,6 +98,8 @@ export function Header() {
       <MobileMenu
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
+        reservationUrl={reservationUrl}
+        uberEatsUrl={uberEatsUrl}
       />
     </>
   );

@@ -7,17 +7,14 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 
-const GUSTY_URL =
-  'https://gusty.app/booking/1667924751880x258346136410259460?source=SITE';
-const UBER_EATS_URL =
-  'https://www.ubereats.com/fr/store/umai-ramen/8yLiOMdPVTudC_Pgbe209g';
-
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  reservationUrl: string;
+  uberEatsUrl: string;
 }
 
-export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export function MobileMenu({ isOpen, onClose, reservationUrl, uberEatsUrl }: MobileMenuProps) {
   const tCommon = useTranslations('common');
   const tNav = useTranslations('nav');
 
@@ -93,7 +90,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <div className="flex flex-col gap-4 mb-10">
               <Button
                 variant="primary"
-                href={GUSTY_URL}
+                href={reservationUrl}
                 external
                 className="w-full justify-center"
               >
@@ -101,7 +98,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </Button>
               <Button
                 variant="outline"
-                href={UBER_EATS_URL}
+                href={uberEatsUrl}
                 external
                 className="w-full justify-center"
               >
