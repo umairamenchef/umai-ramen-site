@@ -45,12 +45,14 @@ Plans:
   3. Clicking "Réserver" on the reservation page opens Gusty in a new tab; clicking "Commander" on the order page offers Uber Eats, Gusty Click & Collect, and eazee-link options
   4. Notre Histoire renders 4 scroll sections with Framer Motion fade-in animations and leads to a reservation CTA at the bottom
   5. The gallery page shows a responsive photo grid where clicking a photo opens a lightbox with keyboard navigation and mobile swipe support
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 02-01: Homepage (Accueil) — Hero, catchphrase, menu preview cards, USP blocks, Notre Histoire teaser, gallery section, social section
-- [ ] 02-02: Menu page — Sanity-driven categories/items, sticky sub-nav, dietary tags, extras grid, formules section, eazee-link CTA
-- [ ] 02-03: Reservation, Commander, Notre Histoire, Infos, Gallery pages — all CTAs, Framer Motion storytelling, lightbox, Google Maps embed, FAQ
+- [ ] 02-01-PLAN.md — Shared infrastructure: install dependencies, urlFor helper, FadeInUp wrapper, localized utility, menuExtra/menuFormule Sanity schemas, GROQ queries, i18n messages, outline-white Button variant
+- [ ] 02-02-PLAN.md — Homepage (Accueil): fullscreen hero, menu preview cards, USP blocks, Notre Histoire teaser, gallery preview, social section
+- [ ] 02-03-PLAN.md — Menu page: Sanity-driven categories/items, sticky sub-nav, dietary badges, extras grid, formules section, eazee-link CTA
+- [ ] 02-04-PLAN.md — Remaining pages: Reservation (Gusty CTA, practical info), Commander (3 ordering cards), Notre Histoire (scroll storytelling), Infos (hours, maps, FAQ), Gallery (CSS grid + lightbox)
+- [ ] 02-05-PLAN.md — Visual and functional verification checkpoint for all 7 content pages
 
 ### Phase 3: SEO, Compliance, and Launch
 **Goal**: The site is legally compliant, correctly indexed in three language variants, analytics fire only after consent, and every page scores Lighthouse > 90
@@ -77,5 +79,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete   | 2026-02-23 |
-| 2. Content Pages | 0/3 | Not started | - |
+| 2. Content Pages | 0/5 | Not started | - |
 | 3. SEO, Compliance, and Launch | 0/3 | Not started | - |
