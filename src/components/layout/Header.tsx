@@ -77,7 +77,6 @@ export function Header({ reservationUrl, uberEatsUrl }: HeaderProps) {
 
           {/* Right: Mobile — language switcher + hamburger */}
           <div className="flex md:hidden items-center gap-4 ml-auto">
-            <LanguageSwitcher />
             <button
               type="button"
               className="flex flex-col items-center justify-center w-10 h-10 gap-1.5 text-umai-text"

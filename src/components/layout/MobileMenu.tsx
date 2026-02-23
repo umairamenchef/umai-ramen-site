@@ -47,7 +47,7 @@ export function MobileMenu({ isOpen, onClose, reservationUrl, uberEatsUrl }: Mob
     <AnimatePresence>
       {isOpen && (
         <m.nav
-          className="fixed inset-0 z-40 bg-umai-bg flex flex-col overflow-y-auto"
+          className="fixed inset-0 z-[60] bg-umai-bg flex flex-col overflow-y-auto"
           initial={{ x: '100%' }}
           animate={{ x: 0 }}
           exit={{ x: '100%' }}
