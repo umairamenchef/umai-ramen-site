@@ -12,7 +12,7 @@ Three phases deliver the complete site: Phase 1 locks in the structural decision
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [x] **Phase 1: Foundation** - Project scaffold, Sanity schemas, i18n routing, design system, and shared layout components (completed 2026-02-22)
+- [x] **Phase 1: Foundation** - Project scaffold, Sanity schemas, i18n routing, design system, and shared layout components (completed 2026-02-23)
 - [ ] **Phase 2: Content Pages** - All public pages (Accueil, Menu, Reservation, Commander, Notre Histoire, Infos, Gallery) with Sanity data and external integrations
 - [ ] **Phase 3: SEO, Compliance, and Launch** - Metadata, JSON-LD, cookie consent, GTM/GA4, revalidation webhook, and Lighthouse performance audit
 
@@ -32,8 +32,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Next.js 16 scaffold with App Router, TypeScript, Tailwind CSS 4, proxy.ts middleware, next-intl v4 trilingual routing, ISR 60s baseline, webhook stub
-- [ ] 01-02-PLAN.md — Sanity v5 schemas (siteSettings, menuCategory, menuItem, gallery, page), field-level localeString i18n, sanityFetch helper, GROQ queries, TypeGen, Studio at /studio
-- [ ] 01-03-PLAN.md — Design system tokens (@theme), self-hosted fonts (DM Serif Display, Outfit, Noto Sans JP), LazyMotion wrapper, Header, MobileMenu, MobileBar, Footer with seigaiha, UI primitives
+- [x] 01-02-PLAN.md — Sanity v5 schemas (siteSettings, menuCategory, menuItem, gallery, page), field-level localeString i18n, sanityFetch helper, GROQ queries, TypeGen, Studio at /studio
+- [x] 01-03-PLAN.md — Design system tokens (@theme), self-hosted fonts (DM Serif Display, Outfit, Noto Sans JP), LazyMotion wrapper, Header, MobileMenu, MobileBar, Footer with seigaiha, UI primitives
 
 ### Phase 2: Content Pages
 **Goal**: A fully navigable multilingual site where visitors can browse the menu, learn UMAI's story, view photos, find contact info, and reach Gusty/Uber Eats in one click
@@ -76,6 +76,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 3/3 | Complete   | 2026-02-22 |
+| 1. Foundation | 3/3 | Complete   | 2026-02-23 |
 | 2. Content Pages | 0/3 | Not started | - |
 | 3. SEO, Compliance, and Launch | 0/3 | Not started | - |

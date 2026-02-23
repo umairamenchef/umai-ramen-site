@@ -10,33 +10,33 @@ See: .planning/PROJECT.md (updated 2026-02-22)
 ## Current Position
 
 Phase: 1 of 3 (Foundation)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-02-23 — Completed 01-02 (Sanity v5 schemas, i18n, sanityFetch, TypeGen)
+Plan: 3 of 3 in current phase
+Status: Complete
+Last activity: 2026-02-23 — Completed 01-03 (Design system, layout components, visual verification approved)
 
-Progress: [██░░░░░░░░] 22%
+Progress: [███░░░░░░░] 33%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: 4.5 min
-- Total execution time: 9 min
+- Total plans completed: 3
+- Average duration: 21.7 min
+- Total execution time: 65 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation | 2/3 | 9 min | 4.5 min |
+| 01-foundation | 3/3 | 65 min | 21.7 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min), 01-02 (5 min)
-- Trend: stable
+- Last 5 plans: 01-01 (4 min), 01-02 (5 min), 01-03 (56 min)
+- Trend: 01-03 longer due to visual verification checkpoint
 
 | Phase 01-foundation P02 | 5 | 2 tasks | 16 files |
 
 *Updated after each plan completion*
-| Phase 01-foundation P03 | 7 | 2 tasks | 13 files |
+| Phase 01-foundation P03 | 56 | 3 tasks | 17 files |
 
 ## Accumulated Context
 
@@ -59,6 +59,9 @@ Recent decisions affecting current work:
 - [Phase 01-02]: TypeGen verification requires real Sanity credentials — predev/prebuild will fail gracefully without .env.local
 - [Phase 01-foundation]: m from motion/react not motion/react-m — named m namespace exports animated HTML elements
 - [Phase 01-foundation]: @theme inline block in Tailwind 4 prevents purging font utilities set by next/font at runtime
+- [01-03]: LazyMotion domAnimation reduces motion bundle from ~34kb to ~4.6kb — all animated components must use m.* from motion/react-m
+- [01-03]: Noto Sans JP preload:false — decorative-only font, lazy-load to protect LCP
+- [01-03]: LanguageSwitcher shown on both desktop and mobile (was originally only on mobile, fixed during visual review)
 
 ### Pending Todos
 
@@ -74,5 +77,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-23
-Stopped at: Completed 01-02-PLAN.md (Sanity v5 schemas, i18n, sanityFetch, TypeGen)
+Stopped at: Completed 01-03-PLAN.md (Design system, layout components, visual verification approved)
 Resume file: None

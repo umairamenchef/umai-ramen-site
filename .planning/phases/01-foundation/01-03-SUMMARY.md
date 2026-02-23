@@ -72,8 +72,8 @@ patterns-established:
 requirements-completed: [DSGN-01, DSGN-02, DSGN-03, DSGN-04, DSGN-05, LAYT-01, LAYT-02, LAYT-03, LAYT-04, LAYT-05]
 
 # Metrics
-duration: 20min
-completed: 2026-02-22
+duration: 56min
+completed: 2026-02-23
 ---
 
 # Phase 1 Plan 03: Design System and Layout Components Summary
@@ -82,11 +82,11 @@ completed: 2026-02-22
 
 ## Performance
 
-- **Duration:** ~20 min
-- **Started:** 2026-02-22T23:06:02Z
-- **Completed:** 2026-02-22T23:26:00Z
-- **Tasks:** 2 of 3 (Task 3 is checkpoint: human visual verification)
-- **Files modified:** 13
+- **Duration:** 56 min
+- **Started:** 2026-02-23T00:07:10+01:00
+- **Completed:** 2026-02-23T01:03:27+01:00
+- **Tasks:** 3 of 3 (including human visual verification — approved)
+- **Files modified:** 17
 
 ## Accomplishments
 
@@ -102,7 +102,9 @@ Each task was committed atomically:
 
 1. **Task 1: Configure Tailwind @theme tokens, self-hosted fonts, and LazyMotion provider** - `da2fde0` (feat)
 2. **Task 2: Build Header, MobileMenu, MobileBar, Footer, and decorative UI components** - `4c3df08` (feat)
-3. **Task 3: Visual verification of design system and layout components** - awaiting human verification
+3. **Task 3: Visual verification of design system and layout components** - approved by user
+
+**Post-checkpoint fix:** `d54d7a9` — fix(01-03): show language switcher on desktop header
 
 ## Files Created/Modified
 
@@ -142,10 +144,18 @@ Each task was committed atomically:
 - **Verification:** TypeScript check and `next build` pass with zero errors
 - **Committed in:** `da2fde0` (Task 1 commit)
 
+**2. [Rule 1 - Bug] LanguageSwitcher hidden on desktop — revealed during visual review**
+- **Found during:** Task 3 (visual verification checkpoint)
+- **Issue:** LanguageSwitcher was only rendered inside the mobile section (`md:flex` hamburger area). Desktop users had no way to switch language.
+- **Fix:** Added LanguageSwitcher render alongside the desktop CTA buttons in Header.tsx
+- **Files modified:** `src/components/layout/Header.tsx`
+- **Verification:** User confirmed switcher visible on desktop after fix; visual verification approved
+- **Committed in:** `d54d7a9` (post-checkpoint fix commit)
+
 ---
 
-**Total deviations:** 1 auto-fixed (Rule 1 - Bug from prior plan)
-**Impact on plan:** Bug was blocking build verification. Fix is correct for Sanity v5. No scope creep.
+**Total deviations:** 2 auto-fixed (2x Rule 1 - Bug)
+**Impact on plan:** Both fixes essential for correctness. `__experimental_actions` fix prevents build errors; language switcher fix ensures full feature functionality on desktop. No scope creep.
 
 ## Issues Encountered
 
@@ -161,14 +171,18 @@ None - no external service configuration required at this stage.
 - Complete UMAI design shell is visible at `http://localhost:3000/fr` — Header, Footer, MobileBar, fonts, colors all rendered
 - All design tokens available as Tailwind utilities: `bg-umai-bg`, `text-umai-accent`, `font-display`, `font-body`, `font-jp`, etc.
 - Layout components wrap every page — Phase 2 page assembly is pure content, no layout work needed
-- Awaiting Task 3: human visual verification of brand identity correctness
+- All design tokens available as Tailwind utilities: `bg-umai-bg`, `text-umai-accent`, `font-display`, `font-body`, `font-jp`, etc.
+- Layout components wrap every page — Phase 2 page assembly is pure content, no layout work needed
+- Visual design approved by user on 2026-02-23: UMAI brand identity (ivoire bg, vert accent, serif headings) correct at desktop and mobile breakpoints
+- Blockers still open (non-blocking): Gusty URL pending from owner, final photo selection pending from Nis&For
 
 ---
 *Phase: 01-foundation*
-*Completed: 2026-02-22*
+*Completed: 2026-02-23*
 
 ## Self-Check: PASSED
 
 All required files verified present. All task commits verified in git history:
 - `da2fde0` - Task 1: Tailwind @theme tokens, fonts, MotionProvider
 - `4c3df08` - Task 2: Header, Footer, MobileMenu, MobileBar, UI components
+- `d54d7a9` - Post-checkpoint fix: LanguageSwitcher shown on desktop
