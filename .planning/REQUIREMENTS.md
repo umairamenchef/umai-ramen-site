@@ -48,9 +48,9 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **MENU-01**: Full menu displayed from Sanity CMS with categories, items, prices, descriptions, dietary tags
 - [ ] **MENU-02**: Sticky sub-navigation by category (scroll to section)
 - [ ] **MENU-03**: Menu items show FR name + JP name + price + description + vegetarian/gluten-free badges
-- [ ] **MENU-04**: Extras grid section with supplementary items and prices
-- [ ] **MENU-05**: Menu formules section (Menu Gyoza, Menu Enfant)
-- [ ] **MENU-06**: Availability toggle per item (owner can hide items via Sanity without deleting)
+- [x] **MENU-04**: Extras grid section with supplementary items and prices
+- [x] **MENU-05**: Menu formules section (Menu Gyoza, Menu Enfant)
+- [x] **MENU-06**: Availability toggle per item (owner can hide items via Sanity without deleting)
 - [ ] **MENU-07**: CTA to eazee-link for full digital menu (external link, new tab)
 
 ### Reservation
@@ -89,8 +89,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Integrations
 
-- [ ] **INTG-01**: Gusty reservation CTA on sticky header, hero, reservation page, and mobile bar
-- [ ] **INTG-02**: Uber Eats delivery CTA on sticky header, hero, commander page, and mobile bar
+- [x] **INTG-01**: Gusty reservation CTA on sticky header, hero, reservation page, and mobile bar
+- [x] **INTG-02**: Uber Eats delivery CTA on sticky header, hero, commander page, and mobile bar
 - [ ] **INTG-03**: Gusty Click & Collect CTA on commander page (placeholder URL, Sanity-editable)
 - [ ] **INTG-04**: eazee-link digital menu link on menu page and commander page
 - [ ] **INTG-05**: Google Maps iframe embed on reservation and infos pages
@@ -189,9 +189,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MENU-01 | Phase 2 | Pending |
 | MENU-02 | Phase 2 | Pending |
 | MENU-03 | Phase 2 | Pending |
-| MENU-04 | Phase 2 | Pending |
-| MENU-05 | Phase 2 | Pending |
-| MENU-06 | Phase 2 | Pending |
+| MENU-04 | Phase 2 | Complete |
+| MENU-05 | Phase 2 | Complete |
+| MENU-06 | Phase 2 | Complete |
 | MENU-07 | Phase 2 | Pending |
 | RESV-01 | Phase 2 | Pending |
 | RESV-02 | Phase 2 | Pending |
@@ -212,8 +212,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GLRY-01 | Phase 2 | Pending |
 | GLRY-02 | Phase 2 | Pending |
 | GLRY-03 | Phase 2 | Pending |
-| INTG-01 | Phase 2 | Pending |
-| INTG-02 | Phase 2 | Pending |
+| INTG-01 | Phase 2 | Complete |
+| INTG-02 | Phase 2 | Complete |
 | INTG-03 | Phase 2 | Pending |
 | INTG-04 | Phase 2 | Pending |
 | INTG-05 | Phase 2 | Pending |

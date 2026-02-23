@@ -5,38 +5,40 @@
 See: .planning/PROJECT.md (updated 2026-02-22)
 
 **Core value:** Visitors can reserve a table or order food in one click, while experiencing UMAI's artisanal brand identity through professional photography and refined Japanese-inspired design.
-**Current focus:** Phase 1 — Foundation
+**Current focus:** Phase 2 — Content Pages
 
 ## Current Position
 
-Phase: 1 of 3 (Foundation)
-Plan: 3 of 3 in current phase
-Status: Complete
-Last activity: 2026-02-23 — Completed 01-03 (Design system, layout components, visual verification approved)
+Phase: 2 of 3 (Content Pages)
+Plan: 1 of 5 in current phase (02-01 complete)
+Status: In Progress
+Last activity: 2026-02-23 — Completed 02-01 (Shared infrastructure — helpers, schemas, queries, i18n, layout wiring)
 
-Progress: [███░░░░░░░] 33%
+Progress: [████░░░░░░] 44%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 21.7 min
-- Total execution time: 65 min
+- Total plans completed: 4
+- Average duration: 18 min
+- Total execution time: 72 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 3/3 | 65 min | 21.7 min |
+| 02-content-pages | 1/5 | 7 min | 7 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min), 01-02 (5 min), 01-03 (56 min)
-- Trend: 01-03 longer due to visual verification checkpoint
+- Last 5 plans: 01-01 (4 min), 01-02 (5 min), 01-03 (56 min), 02-01 (7 min)
+- Trend: 02-01 quick — infrastructure-only, no visual verification needed
 
 | Phase 01-foundation P02 | 5 | 2 tasks | 16 files |
 
 *Updated after each plan completion*
 | Phase 01-foundation P03 | 56 | 3 tasks | 17 files |
+| Phase 02-content-pages P01 | 7 | 3 tasks | 15 files |
 
 ## Accumulated Context
 
@@ -62,6 +64,9 @@ Recent decisions affecting current work:
 - [01-03]: LazyMotion domAnimation reduces motion bundle from ~34kb to ~4.6kb — all animated components must use m.* from motion/react-m
 - [01-03]: Noto Sans JP preload:false — decorative-only font, lazy-load to protect LCP
 - [01-03]: LanguageSwitcher shown on both desktop and mobile (was originally only on mobile, fixed during visual review)
+- [Phase 02-content-pages]: SanityImageSource type imported from '@sanity/image-url' directly (v2 package root, not lib/types/types)
+- [Phase 02-content-pages]: sanityFetch in root layout wrapped in try/catch — graceful fallback to '#' when Sanity credentials not configured
+- [Phase 02-content-pages]: menuFormule.includedItems uses array of string (not localeString) — formule contents are format-specific, not translated
 
 ### Pending Todos
 
@@ -77,5 +82,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-23
-Stopped at: Completed 01-03-PLAN.md (Design system, layout components, visual verification approved)
+Stopped at: Completed 02-01-PLAN.md (Shared infrastructure — helpers, schemas, queries, i18n, layout wiring)
 Resume file: None
