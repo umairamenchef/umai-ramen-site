@@ -10,25 +10,25 @@ See: .planning/PROJECT.md (updated 2026-02-22)
 ## Current Position
 
 Phase: 2 of 3 (Content Pages)
-Plan: 3 of 5 in current phase (02-03 complete)
+Plan: 4 of 5 in current phase (02-04 complete)
 Status: In Progress
-Last activity: 2026-02-23 — Completed 02-03 (Menu page — DietaryBadge, MenuItem, MenuCategory, MenuStickyNav, ExtrasGrid, FormulesSection)
+Last activity: 2026-02-23 — Completed 02-04 (Remaining content pages — Reservation, Commander, Notre Histoire, Infos, Gallery with lightbox)
 
-Progress: [██████░░░░] 56%
+Progress: [████████░░] 70%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 17 min
-- Total execution time: 83 min
+- Total plans completed: 6
+- Average duration: 16 min
+- Total execution time: 97 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 3/3 | 65 min | 21.7 min |
-| 02-content-pages | 3/5 | 28 min | 9.3 min |
+| 02-content-pages | 4/5 | 42 min | 10.5 min |
 
 **Recent Trend:**
 - Last 5 plans: 01-01 (4 min), 01-02 (5 min), 01-03 (56 min), 02-01 (7 min), 02-02 (10 min)
@@ -41,6 +41,7 @@ Progress: [██████░░░░] 56%
 | Phase 02-content-pages P01 | 7 | 3 tasks | 15 files |
 | Phase 02-content-pages P02 | 10 | 2 tasks | 7 files |
 | Phase 02-content-pages P03 | 11 | 2 tasks | 7 files |
+| Phase 02-content-pages P04 | 14 | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,10 @@ Recent decisions affecting current work:
 - [Phase 02-content-pages]: NEXT_TURBOPACK_USE_WORKER=0 required for next build in WSL2 — Turbopack worker race condition on tmp buildManifest file creation
 - [Phase 02-content-pages]: Menu page wraps all sanityFetch calls in try/catch — consistent with layout.tsx pattern from 02-01; prevents build failure with placeholder credentials
 - [Phase 02-content-pages]: visibleCategories filters empty categories before passing to MenuStickyNav — sticky nav never shows empty category buttons
+- [Phase 02-04]: Google Maps embed uses native HTML loading=lazy on iframe — simpler than JS-based lazy loading, works in server components
+- [Phase 02-04]: GalleryGrid and GalleryLightbox merged into single client component — lightbox state (open/index) must be co-located with grid click handlers
+- [Phase 02-04]: Commander clickCollectUrl null/empty shows 'Bientot disponible' text — clearer UX than disabled button while URL pending from owner
+- [Phase 02-04]: createImageUrlBuilder named export replaces deprecated default export from @sanity/image-url
 
 ### Pending Todos
 
@@ -88,5 +93,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-23
-Stopped at: Completed 02-03-PLAN.md (Menu page — DietaryBadge, MenuItem, MenuCategory, MenuStickyNav, ExtrasGrid, FormulesSection, /[locale]/menu page)
+Stopped at: Completed 02-04-PLAN.md (Remaining content pages — Reservation, Commander, Notre Histoire, Infos, Gallery with lightbox)
 Resume file: None

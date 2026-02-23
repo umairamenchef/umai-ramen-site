@@ -55,47 +55,47 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Reservation
 
-- [ ] **RESV-01**: Reservation page with prominent CTA to Gusty booking URL
-- [ ] **RESV-02**: Practical info section: address, hours, phone, Google Maps embed
-- [ ] **RESV-03**: Micro-copy explaining reservation is free and without commission
+- [x] **RESV-01**: Reservation page with prominent CTA to Gusty booking URL
+- [x] **RESV-02**: Practical info section: address, hours, phone, Google Maps embed
+- [x] **RESV-03**: Micro-copy explaining reservation is free and without commission
 
 ### Commander (Ordering)
 
-- [ ] **ORDR-01**: Order page with Uber Eats link (delivery) + badge
-- [ ] **ORDR-02**: Gusty Click & Collect CTA (placeholder URL, editable via Sanity)
-- [ ] **ORDR-03**: eazee-link CTA to consult menu
-- [ ] **ORDR-04**: Micro-copy for each ordering option
+- [x] **ORDR-01**: Order page with Uber Eats link (delivery) + badge
+- [x] **ORDR-02**: Gusty Click & Collect CTA (placeholder URL, editable via Sanity)
+- [x] **ORDR-03**: eazee-link CTA to consult menu
+- [x] **ORDR-04**: Micro-copy for each ordering option
 
 ### Notre Histoire
 
-- [ ] **HIST-01**: Scroll storytelling with 4 sections: Passion du ramen, Fait maison, Local, Experience UMAI
-- [ ] **HIST-02**: Each section has photo + narrative text (editable via Sanity)
-- [ ] **HIST-03**: Framer Motion scroll animations (fade-in-up on viewport entry)
-- [ ] **HIST-04**: CTA at bottom linking to /reservation
+- [x] **HIST-01**: Scroll storytelling with 4 sections: Passion du ramen, Fait maison, Local, Experience UMAI
+- [x] **HIST-02**: Each section has photo + narrative text (editable via Sanity)
+- [x] **HIST-03**: Framer Motion scroll animations (fade-in-up on viewport entry)
+- [x] **HIST-04**: CTA at bottom linking to /reservation
 
 ### Infos
 
-- [ ] **INFO-01**: Opening hours displayed (structured from Sanity, not free text)
-- [ ] **INFO-02**: Address with Google Maps embed (lazy-loaded)
-- [ ] **INFO-03**: Phone number with click-to-call link
-- [ ] **INFO-04**: FAQ section: allergens, groups, vegetarian options
-- [ ] **INFO-05**: Instagram + contact links
+- [x] **INFO-01**: Opening hours displayed (structured from Sanity, not free text)
+- [x] **INFO-02**: Address with Google Maps embed (lazy-loaded)
+- [x] **INFO-03**: Phone number with click-to-call link
+- [x] **INFO-04**: FAQ section: allergens, groups, vegetarian options
+- [x] **INFO-05**: Instagram + contact links
 
 ### Gallery
 
-- [ ] **GLRY-01**: Responsive photo grid from Sanity gallery (masonry or CSS grid)
-- [ ] **GLRY-02**: Lightbox on click with keyboard navigation and mobile swipe
-- [ ] **GLRY-03**: Images served via Sanity CDN with WebP auto-conversion and responsive sizes
+- [x] **GLRY-01**: Responsive photo grid from Sanity gallery (masonry or CSS grid)
+- [x] **GLRY-02**: Lightbox on click with keyboard navigation and mobile swipe
+- [x] **GLRY-03**: Images served via Sanity CDN with WebP auto-conversion and responsive sizes
 
 ### Integrations
 
 - [x] **INTG-01**: Gusty reservation CTA on sticky header, hero, reservation page, and mobile bar
 - [x] **INTG-02**: Uber Eats delivery CTA on sticky header, hero, commander page, and mobile bar
-- [ ] **INTG-03**: Gusty Click & Collect CTA on commander page (placeholder URL, Sanity-editable)
+- [x] **INTG-03**: Gusty Click & Collect CTA on commander page (placeholder URL, Sanity-editable)
 - [x] **INTG-04**: eazee-link digital menu link on menu page and commander page
-- [ ] **INTG-05**: Google Maps iframe embed on reservation and infos pages
+- [x] **INTG-05**: Google Maps iframe embed on reservation and infos pages
 - [x] **INTG-06**: Instagram link in social section and footer
-- [ ] **INTG-07**: Facebook link in footer
+- [x] **INTG-07**: Facebook link in footer
 
 ### SEO
 
@@ -193,32 +193,32 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MENU-05 | Phase 2 | Complete |
 | MENU-06 | Phase 2 | Complete |
 | MENU-07 | Phase 2 | Complete |
-| RESV-01 | Phase 2 | Pending |
-| RESV-02 | Phase 2 | Pending |
-| RESV-03 | Phase 2 | Pending |
-| ORDR-01 | Phase 2 | Pending |
-| ORDR-02 | Phase 2 | Pending |
-| ORDR-03 | Phase 2 | Pending |
-| ORDR-04 | Phase 2 | Pending |
-| HIST-01 | Phase 2 | Pending |
-| HIST-02 | Phase 2 | Pending |
-| HIST-03 | Phase 2 | Pending |
-| HIST-04 | Phase 2 | Pending |
-| INFO-01 | Phase 2 | Pending |
-| INFO-02 | Phase 2 | Pending |
-| INFO-03 | Phase 2 | Pending |
-| INFO-04 | Phase 2 | Pending |
-| INFO-05 | Phase 2 | Pending |
-| GLRY-01 | Phase 2 | Pending |
-| GLRY-02 | Phase 2 | Pending |
-| GLRY-03 | Phase 2 | Pending |
+| RESV-01 | Phase 2 | Complete |
+| RESV-02 | Phase 2 | Complete |
+| RESV-03 | Phase 2 | Complete |
+| ORDR-01 | Phase 2 | Complete |
+| ORDR-02 | Phase 2 | Complete |
+| ORDR-03 | Phase 2 | Complete |
+| ORDR-04 | Phase 2 | Complete |
+| HIST-01 | Phase 2 | Complete |
+| HIST-02 | Phase 2 | Complete |
+| HIST-03 | Phase 2 | Complete |
+| HIST-04 | Phase 2 | Complete |
+| INFO-01 | Phase 2 | Complete |
+| INFO-02 | Phase 2 | Complete |
+| INFO-03 | Phase 2 | Complete |
+| INFO-04 | Phase 2 | Complete |
+| INFO-05 | Phase 2 | Complete |
+| GLRY-01 | Phase 2 | Complete |
+| GLRY-02 | Phase 2 | Complete |
+| GLRY-03 | Phase 2 | Complete |
 | INTG-01 | Phase 2 | Complete |
 | INTG-02 | Phase 2 | Complete |
-| INTG-03 | Phase 2 | Pending |
+| INTG-03 | Phase 2 | Complete |
 | INTG-04 | Phase 2 | Complete |
-| INTG-05 | Phase 2 | Pending |
+| INTG-05 | Phase 2 | Complete |
 | INTG-06 | Phase 2 | Complete |
-| INTG-07 | Phase 2 | Pending |
+| INTG-07 | Phase 2 | Complete |
 | SEO-01 | Phase 3 | Pending |
 | SEO-02 | Phase 3 | Pending |
 | SEO-03 | Phase 3 | Pending |
