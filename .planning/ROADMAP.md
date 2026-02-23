@@ -64,12 +64,12 @@ Plans:
   3. French legal pages (mentions légales, politique de confidentialité, politique cookies, CGV) are accessible from the footer in all three locales
   4. Editing a menu item in Sanity Studio and waiting 65 seconds shows the change on the live site without redeployment (ISR webhook end-to-end)
   5. Lighthouse scores > 90 on Performance, SEO, Accessibility, and Best Practices for the homepage and menu page on Slow 4G throttling
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: SEO layer — generateMetadata with hreflang, JSON-LD schemas (Restaurant, Menu), sitemap.xml, robots.txt, NAP consistency audit
-- [ ] 03-02: Compliance and revalidation — cookie consent banner (3 languages, Consent Mode v2), GTM/GA4 consent-gated, legal pages, Sanity webhook handler with HMAC validation
-- [ ] 03-03: Performance audit — Lighthouse on all pages, bundle analysis (< 150KB/route), CLS verification, ISR end-to-end test, production CORS check
+- [ ] 03-01-PLAN.md — SEO layer and webhook: NAP constants, generateMetadata with hreflang on all pages, JSON-LD (Restaurant + Menu), sitemap.xml, robots.txt, HMAC webhook handler
+- [ ] 03-02-PLAN.md — Compliance: cookie consent banner (3 languages, Consent Mode v2, equal-prominence accept/reject), GTM/GA4 consent-gated, four legal pages (mentions legales, politique confidentialite, politique cookies, CGV) in FR/EN/DE
+- [ ] 03-03-PLAN.md — Performance audit and verification: bundle analysis, Lighthouse audit, static generation check, CLS verification, ISR end-to-end, human verification checkpoint
 
 ## Progress
 
