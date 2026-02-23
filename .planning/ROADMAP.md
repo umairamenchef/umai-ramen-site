@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Project scaffold, Sanity schemas, i18n routing, design system, and shared layout components (completed 2026-02-23)
 - [x] **Phase 2: Content Pages** - All public pages (Accueil, Menu, Reservation, Commander, Notre Histoire, Infos, Gallery) with Sanity data and external integrations (completed 2026-02-23)
-- [ ] **Phase 3: SEO, Compliance, and Launch** - Metadata, JSON-LD, cookie consent, GTM/GA4, revalidation webhook, and Lighthouse performance audit
+- [x] **Phase 3: SEO, Compliance, and Launch** - Metadata, JSON-LD, cookie consent, GTM/GA4, revalidation webhook, and Lighthouse performance audit (completed 2026-02-23)
 
 ## Phase Details
 
@@ -69,7 +69,7 @@ Plans:
 Plans:
 - [x] 03-01-PLAN.md — SEO layer and webhook: NAP constants, generateMetadata with hreflang on all pages, JSON-LD (Restaurant + Menu), sitemap.xml, robots.txt, HMAC webhook handler
 - [x] 03-02-PLAN.md — Compliance: cookie consent banner (3 languages, Consent Mode v2, equal-prominence accept/reject), GTM/GA4 consent-gated, four legal pages (mentions legales, politique confidentialite, politique cookies, CGV) in FR/EN/DE
-- [ ] 03-03-PLAN.md — Performance audit and verification: bundle analysis, Lighthouse audit, static generation check, CLS verification, ISR end-to-end, human verification checkpoint
+- [x] 03-03-PLAN.md — Performance audit and verification: bundle analysis, Lighthouse audit, static generation check, CLS verification, ISR end-to-end, human verification checkpoint
 
 ## Progress
 
@@ -80,4 +80,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete   | 2026-02-23 |
 | 2. Content Pages | 5/5 | Complete    | 2026-02-23 |
-| 3. SEO, Compliance, and Launch | 2/3 | In progress | - |
+| 3. SEO, Compliance, and Launch | 3/3 | Complete | 2026-02-23 |
