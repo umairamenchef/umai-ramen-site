@@ -99,31 +99,31 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### SEO
 
-- [ ] **SEO-01**: JSON-LD Restaurant + LocalBusiness schema on homepage with openingHoursSpecification
-- [ ] **SEO-02**: JSON-LD MenuSection + MenuItem schema on menu page
-- [ ] **SEO-03**: generateMetadata on every page with title, description, OG, Twitter Card x3 languages
-- [ ] **SEO-04**: Hreflang alternates on every page pointing to FR/EN/DE variants + x-default
-- [ ] **SEO-05**: Auto-generated sitemap.xml covering all routes x3 locales
-- [ ] **SEO-06**: robots.txt allowing indexing, blocking /studio
-- [ ] **SEO-07**: NAP consistency: identical name/address/phone in JSON-LD, footer, and Google Maps
+- [x] **SEO-01**: JSON-LD Restaurant + LocalBusiness schema on homepage with openingHoursSpecification
+- [x] **SEO-02**: JSON-LD MenuSection + MenuItem schema on menu page
+- [x] **SEO-03**: generateMetadata on every page with title, description, OG, Twitter Card x3 languages
+- [x] **SEO-04**: Hreflang alternates on every page pointing to FR/EN/DE variants + x-default
+- [x] **SEO-05**: Auto-generated sitemap.xml covering all routes x3 locales
+- [x] **SEO-06**: robots.txt allowing indexing, blocking /studio
+- [x] **SEO-07**: NAP consistency: identical name/address/phone in JSON-LD, footer, and Google Maps
 
 ### Compliance
 
-- [ ] **CMPL-01**: Cookie consent banner: equal-prominence accept/reject, 3 languages, persists choice
-- [ ] **CMPL-02**: GTM/GA4 fires only after explicit consent (Consent Mode v2, default denied)
-- [ ] **CMPL-03**: Mentions legales page (French legal requirement)
-- [ ] **CMPL-04**: Politique de confidentialite page
-- [ ] **CMPL-05**: Politique cookies page
-- [ ] **CMPL-06**: CGV page
+- [x] **CMPL-01**: Cookie consent banner: equal-prominence accept/reject, 3 languages, persists choice
+- [x] **CMPL-02**: GTM/GA4 fires only after explicit consent (Consent Mode v2, default denied)
+- [x] **CMPL-03**: Mentions legales page (French legal requirement)
+- [x] **CMPL-04**: Politique de confidentialite page
+- [x] **CMPL-05**: Politique cookies page
+- [x] **CMPL-06**: CGV page
 
 ### Performance
 
-- [ ] **PERF-01**: Lighthouse > 90 on Performance, SEO, Accessibility, Best Practices for all pages
-- [ ] **PERF-02**: Core Web Vitals: LCP < 2.5s, CLS < 0.1, FID < 100ms
-- [ ] **PERF-03**: All images optimized via Sanity CDN (WebP, responsive sizes) + next/image
-- [ ] **PERF-04**: Fonts self-hosted via next/font, no external CDN requests
-- [ ] **PERF-05**: No JS route exceeds 150KB gzipped
-- [ ] **PERF-06**: All content routes are statically generated (ISR), not server-rendered
+- [x] **PERF-01**: Lighthouse > 90 on Performance, SEO, Accessibility, Best Practices for all pages
+- [x] **PERF-02**: Core Web Vitals: LCP < 2.5s, CLS < 0.1, FID < 100ms
+- [x] **PERF-03**: All images optimized via Sanity CDN (WebP, responsive sizes) + next/image
+- [x] **PERF-04**: Fonts self-hosted via next/font, no external CDN requests
+- [x] **PERF-05**: No JS route exceeds 150KB gzipped
+- [x] **PERF-06**: All content routes are statically generated (ISR), not server-rendered
 
 ## v2 Requirements
 
@@ -219,25 +219,25 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INTG-05 | Phase 2 | Complete |
 | INTG-06 | Phase 2 | Complete |
 | INTG-07 | Phase 2 | Complete |
-| SEO-01 | Phase 3 | Pending |
-| SEO-02 | Phase 3 | Pending |
-| SEO-03 | Phase 3 | Pending |
-| SEO-04 | Phase 3 | Pending |
-| SEO-05 | Phase 3 | Pending |
-| SEO-06 | Phase 3 | Pending |
-| SEO-07 | Phase 3 | Pending |
-| CMPL-01 | Phase 3 | Pending |
-| CMPL-02 | Phase 3 | Pending |
-| CMPL-03 | Phase 3 | Pending |
-| CMPL-04 | Phase 3 | Pending |
-| CMPL-05 | Phase 3 | Pending |
-| CMPL-06 | Phase 3 | Pending |
-| PERF-01 | Phase 3 | Pending |
-| PERF-02 | Phase 3 | Pending |
-| PERF-03 | Phase 3 | Pending |
-| PERF-04 | Phase 3 | Pending |
-| PERF-05 | Phase 3 | Pending |
-| PERF-06 | Phase 3 | Pending |
+| SEO-01 | Phase 3 | Complete |
+| SEO-02 | Phase 3 | Complete |
+| SEO-03 | Phase 3 | Complete |
+| SEO-04 | Phase 3 | Complete |
+| SEO-05 | Phase 3 | Complete |
+| SEO-06 | Phase 3 | Complete |
+| SEO-07 | Phase 3 | Complete |
+| CMPL-01 | Phase 3 | Complete |
+| CMPL-02 | Phase 3 | Complete |
+| CMPL-03 | Phase 3 | Complete |
+| CMPL-04 | Phase 3 | Complete |
+| CMPL-05 | Phase 3 | Complete |
+| CMPL-06 | Phase 3 | Complete |
+| PERF-01 | Phase 3 | Complete |
+| PERF-02 | Phase 3 | Complete |
+| PERF-03 | Phase 3 | Complete |
+| PERF-04 | Phase 3 | Complete |
+| PERF-05 | Phase 3 | Complete |
+| PERF-06 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 62 total
@@ -246,4 +246,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-02-22*
-*Last updated: 2026-02-22 — traceability mapped after roadmap creation*
+*Last updated: 2026-02-23 — Phase 3 requirements marked complete*
