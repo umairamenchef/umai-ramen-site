@@ -7,7 +7,7 @@ export const page = defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Titre',
       type: 'localeString',
       validation: (Rule) => Rule.required(),
     }),
@@ -17,13 +17,14 @@ export const page = defineType({
       type: 'slug',
       options: { source: 'title.fr', maxLength: 96 },
       validation: (Rule) => Rule.required(),
+      description: 'Identifiant URL — cliquez "Generate" après avoir rempli le titre',
     }),
     defineField({
       name: 'content',
-      title: 'Content',
+      title: 'Contenu',
       type: 'array',
       of: [{ type: 'localeText' }],
-      description: 'Main page content sections',
+      description: 'Sections de contenu de la page',
     }),
     defineField({
       name: 'sections',
@@ -35,12 +36,12 @@ export const page = defineType({
           fields: [
             defineField({
               name: 'heading',
-              title: 'Heading',
+              title: 'Titre de section',
               type: 'localeString',
             }),
             defineField({
               name: 'body',
-              title: 'Body',
+              title: 'Texte',
               type: 'localeText',
             }),
             defineField({
@@ -63,7 +64,7 @@ export const page = defineType({
   preview: {
     select: { title: 'title.fr', slug: 'slug.current' },
     prepare({ title, slug }) {
-      return { title: title ?? 'Untitled', subtitle: `/${slug ?? ''}` };
+      return { title: title ?? 'Sans titre', subtitle: `/${slug ?? ''}` };
     },
   },
 });

@@ -2,21 +2,21 @@ import { defineType, defineField } from 'sanity';
 
 export const menuExtra = defineType({
   name: 'menuExtra',
-  title: 'Menu Extra',
+  title: 'Supplément',
   type: 'document',
   fields: [
-    defineField({ name: 'name', title: 'Name', type: 'localeString', validation: (r) => r.required() }),
-    defineField({ name: 'price', title: 'Price (EUR)', type: 'number', validation: (r) => r.required().positive() }),
-    defineField({ name: 'order', title: 'Display Order', type: 'number' }),
-    defineField({ name: 'available', title: 'Available', type: 'boolean', initialValue: true }),
+    defineField({ name: 'name', title: 'Nom', type: 'localeString', validation: (r) => r.required() }),
+    defineField({ name: 'price', title: 'Prix (€)', type: 'number', validation: (r) => r.required().positive() }),
+    defineField({ name: 'order', title: 'Ordre d\'affichage', type: 'number', description: 'Position dans la liste (1 = premier)' }),
+    defineField({ name: 'available', title: 'Disponible', type: 'boolean', initialValue: true, description: 'Désactivez pour masquer ce supplément' }),
   ],
-  orderings: [{ title: 'Order', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] }],
+  orderings: [{ title: 'Ordre', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] }],
   preview: {
     select: { title: 'name.fr', price: 'price', available: 'available' },
     prepare({ title, price, available }: { title?: string; price?: number; available?: boolean }) {
       return {
-        title: title ?? 'Untitled',
-        subtitle: `${price != null ? `${price} EUR` : '—'} ${available === false ? '(unavailable)' : ''}`,
+        title: title ?? 'Sans titre',
+        subtitle: `${price != null ? `${price} €` : '—'} ${available === false ? '⛔ Masqué' : ''}`,
       };
     },
   },

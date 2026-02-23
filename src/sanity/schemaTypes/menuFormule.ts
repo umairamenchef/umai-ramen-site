@@ -2,26 +2,26 @@ import { defineType, defineField } from 'sanity';
 
 export const menuFormule = defineType({
   name: 'menuFormule',
-  title: 'Menu Formule',
+  title: 'Formule',
   type: 'document',
   fields: [
-    defineField({ name: 'name', title: 'Name', type: 'localeString', validation: (r) => r.required() }),
-    defineField({ name: 'price', title: 'Price (EUR)', type: 'number', validation: (r) => r.required().positive() }),
+    defineField({ name: 'name', title: 'Nom de la formule', type: 'localeString', validation: (r) => r.required() }),
+    defineField({ name: 'price', title: 'Prix (€)', type: 'number', validation: (r) => r.required().positive() }),
     defineField({ name: 'description', title: 'Description', type: 'localeText' }),
     defineField({
       name: 'includedItems',
-      title: 'Included Items',
+      title: 'Contenu de la formule',
       type: 'array',
       of: [{ type: 'string' }],
-      description: 'List of items included in this formule (e.g., "1 Gyoza + 1 Ramen")',
+      description: 'Ce qui est inclus (ex: "1 Gyoza + 1 Ramen")',
     }),
-    defineField({ name: 'order', title: 'Display Order', type: 'number' }),
+    defineField({ name: 'order', title: 'Ordre d\'affichage', type: 'number' }),
   ],
-  orderings: [{ title: 'Order', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] }],
+  orderings: [{ title: 'Ordre', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] }],
   preview: {
     select: { title: 'name.fr', price: 'price' },
     prepare({ title, price }: { title?: string; price?: number }) {
-      return { title: title ?? 'Untitled', subtitle: price != null ? `${price} EUR` : '—' };
+      return { title: title ?? 'Sans titre', subtitle: price != null ? `${price} €` : '—' };
     },
   },
 });

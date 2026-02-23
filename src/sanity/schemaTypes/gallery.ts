@@ -2,14 +2,14 @@ import { defineType, defineField } from 'sanity';
 
 export const gallery = defineType({
   name: 'gallery',
-  title: 'Gallery',
+  title: 'Photo',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Légende',
       type: 'localeString',
-      description: 'Optional caption for the image',
+      description: 'Optionnel — texte affiché sous la photo',
     }),
     defineField({
       name: 'image',
@@ -20,21 +20,21 @@ export const gallery = defineType({
     }),
     defineField({
       name: 'alt',
-      title: 'Alt Text',
+      title: 'Texte alternatif',
       type: 'localeString',
-      description: 'Accessibility description of the image',
+      description: 'Description de l\'image pour l\'accessibilité (obligatoire)',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'order',
-      title: 'Order',
+      title: 'Ordre d\'affichage',
       type: 'number',
-      description: 'Controls gallery display order',
+      description: 'Position dans la galerie (1 = première)',
     }),
   ],
   orderings: [
     {
-      title: 'Order',
+      title: 'Ordre',
       name: 'orderAsc',
       by: [{ field: 'order', direction: 'asc' }],
     },
@@ -43,8 +43,8 @@ export const gallery = defineType({
     select: { title: 'title.fr', media: 'image', order: 'order' },
     prepare({ title, media, order }) {
       return {
-        title: title ?? 'Untitled',
-        subtitle: `Order: ${order ?? '—'}`,
+        title: title ?? 'Photo',
+        subtitle: order != null ? `Position : ${order}` : '',
         media,
       };
     },

@@ -2,46 +2,53 @@ import type { StructureBuilder } from 'sanity/structure';
 
 export const structure = (S: StructureBuilder) =>
   S.list()
-    .title('Content')
+    .title('UMAI Ramen')
     .items([
-      // Singleton: Site Settings
+      // Restaurant info (singleton)
       S.listItem()
-        .title('Site Settings')
+        .title('Infos du restaurant')
         .id('siteSettings')
+        .icon(() => '🏠')
         .child(
           S.document()
             .schemaType('siteSettings')
             .documentId('siteSettings')
+            .title('Infos du restaurant')
         ),
 
       S.divider(),
 
-      // Menu
+      // Menu section
       S.listItem()
-        .title('Menu')
+        .title('La carte')
+        .icon(() => '🍜')
         .child(
           S.list()
-            .title('Menu')
+            .title('La carte')
             .items([
               S.listItem()
-                .title('Menu Categories')
+                .title('Catégories')
+                .icon(() => '📂')
                 .schemaType('menuCategory')
-                .child(S.documentTypeList('menuCategory').title('Menu Categories')),
+                .child(S.documentTypeList('menuCategory').title('Catégories du menu')),
 
               S.listItem()
-                .title('Menu Items')
+                .title('Plats')
+                .icon(() => '🍲')
                 .schemaType('menuItem')
-                .child(S.documentTypeList('menuItem').title('Menu Items')),
+                .child(S.documentTypeList('menuItem').title('Plats')),
 
               S.listItem()
-                .title('Menu Extras')
+                .title('Suppléments')
+                .icon(() => '➕')
                 .schemaType('menuExtra')
-                .child(S.documentTypeList('menuExtra').title('Menu Extras')),
+                .child(S.documentTypeList('menuExtra').title('Suppléments')),
 
               S.listItem()
-                .title('Menu Formules')
+                .title('Formules')
+                .icon(() => '🎯')
                 .schemaType('menuFormule')
-                .child(S.documentTypeList('menuFormule').title('Menu Formules')),
+                .child(S.documentTypeList('menuFormule').title('Formules')),
             ])
         ),
 
@@ -49,15 +56,17 @@ export const structure = (S: StructureBuilder) =>
 
       // Gallery
       S.listItem()
-        .title('Gallery')
+        .title('Photos')
+        .icon(() => '📷')
         .schemaType('gallery')
-        .child(S.documentTypeList('gallery').title('Gallery')),
+        .child(S.documentTypeList('gallery').title('Photos')),
 
       S.divider(),
 
       // Pages
       S.listItem()
         .title('Pages')
+        .icon(() => '📄')
         .schemaType('page')
         .child(S.documentTypeList('page').title('Pages')),
     ]);

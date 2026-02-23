@@ -1,3 +1,4 @@
+import '../../globals.css';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';

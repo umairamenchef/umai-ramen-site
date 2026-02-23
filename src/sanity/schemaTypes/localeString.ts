@@ -2,11 +2,11 @@ import { defineType, defineField } from 'sanity';
 
 export const localeString = defineType({
   name: 'localeString',
-  title: 'Localized String',
+  title: 'Texte traduit',
   type: 'object',
   fieldsets: [
     {
-      title: 'Translations',
+      title: 'Traductions',
       name: 'translations',
       options: { collapsible: true, collapsed: true },
     },
@@ -14,19 +14,19 @@ export const localeString = defineType({
   fields: [
     defineField({
       name: 'fr',
-      title: 'French',
+      title: 'Français',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'en',
-      title: 'English',
+      title: 'Anglais',
       type: 'string',
       fieldset: 'translations',
     }),
     defineField({
       name: 'de',
-      title: 'German',
+      title: 'Allemand',
       type: 'string',
       fieldset: 'translations',
     }),
