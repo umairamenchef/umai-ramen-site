@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-22)
 
 **Core value:** Visitors can reserve a table or order food in one click, while experiencing UMAI's artisanal brand identity through professional photography and refined Japanese-inspired design.
-**Current focus:** Phase 2 — Content Pages
+**Current focus:** Phase 3 — SEO, Compliance, and Launch
 
 ## Current Position
 
-Phase: 2 of 3 (Content Pages)
-Plan: 5 of 5 in current phase (02-05 complete)
-Status: Phase 2 Complete
-Last activity: 2026-02-23 — Completed 02-05 (Visual verification of all Phase 2 content pages — user approved)
+Phase: 3 of 3 (SEO, Compliance, and Launch)
+Plan: 1 of 3 in current phase (03-01 complete)
+Status: Executing Phase 3
+Last activity: 2026-02-23 — Completed 03-01 (SEO infrastructure — metadata, JSON-LD, sitemap, robots, webhook)
 
-Progress: [██████████] 85%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
@@ -79,6 +79,9 @@ Recent decisions affecting current work:
 - [Phase 02-04]: GalleryGrid and GalleryLightbox merged into single client component — lightbox state (open/index) must be co-located with grid click handlers
 - [Phase 02-04]: Commander clickCollectUrl null/empty shows 'Bientot disponible' text — clearer UX than disabled button while URL pending from owner
 - [Phase 02-04]: createImageUrlBuilder named export replaces deprecated default export from @sanity/image-url
+- [Phase 03-01]: revalidateTag in Next.js 16 requires second profile argument — used { expire: 0 } for immediate invalidation
+- [Phase 03-01]: schema-dts DayOfWeek requires full IRI format (https://schema.org/Tuesday) not plain strings
+- [Phase 03-01]: NAP dual-source pattern — seo.ts constants for SEO/JSON-LD, Sanity siteSettings for editorial — both must match
 
 ### Pending Todos
 
@@ -94,5 +97,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-23
-Stopped at: Completed 02-05-PLAN.md (Visual verification — user approved all 7 Phase 2 content pages; Phase 2 complete)
+Stopped at: Completed 03-01-PLAN.md (SEO infrastructure — executing Phase 3)
 Resume file: None
