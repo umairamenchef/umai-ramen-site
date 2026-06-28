@@ -2,26 +2,26 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-02-22)
+See: .planning/PROJECT.md (updated 2026-06-28 after v1.0 milestone)
 
 **Core value:** Visitors can reserve a table or order food in one click, while experiencing UMAI's artisanal brand identity through professional photography and refined Japanese-inspired design.
-**Current focus:** Phase 3 — SEO, Compliance, and Launch
+**Current focus:** Between milestones — v1.0 archived, v1.1 not yet planned
 
 ## Current Position
 
-Phase: 3 of 3 (SEO, Compliance, and Launch)
-Plan: 3 of 3 in current phase (03-03 complete)
-Status: Phase 3 Complete — All Plans Executed
-Last activity: 2026-02-23 — Completed 03-03 (Performance audit, all automated checks passed)
+Phase: —
+Plan: —
+Status: v1.0 milestone archived — between milestones
+Last activity: 2026-06-28 — v1.0 milestone archived (3 phases, 11 plans, 62/62 requirements)
 
-Progress: [██████████] 100%
+Progress: [██████████] 100% (v1.0 complete)
 
 ## Performance Metrics
 
-**Velocity:**
-- Total plans completed: 7
-- Average duration: 14 min
-- Total execution time: 98 min
+**Velocity (v1.0):**
+- Total plans completed: 11
+- Average duration: ~9 min
+- Total execution time: ~98 min
 
 **By Phase:**
 
@@ -29,78 +29,38 @@ Progress: [██████████] 100%
 |-------|-------|-------|----------|
 | 01-foundation | 3/3 | 65 min | 21.7 min |
 | 02-content-pages | 5/5 | 43 min | 8.6 min |
-
-**Recent Trend:**
-- Last 5 plans: 01-03 (56 min), 02-01 (7 min), 02-02 (10 min), 02-03 (11 min), 02-04 (14 min)
-- Trend: Phase 2 complete — all 5 plans executed, user approved all 7 content pages
-
-| Phase 01-foundation P02 | 5 | 2 tasks | 16 files |
-
-*Updated after each plan completion*
-| Phase 01-foundation P03 | 56 | 3 tasks | 17 files |
-| Phase 02-content-pages P01 | 7 | 3 tasks | 15 files |
-| Phase 02-content-pages P02 | 10 | 2 tasks | 7 files |
-| Phase 02-content-pages P03 | 11 | 2 tasks | 7 files |
-| Phase 02-content-pages P04 | 14 | 3 tasks | 8 files |
-| Phase 02-content-pages P05 | 1 | 1 task | 0 files |
+| 03-seo-compliance-and-launch | 3/3 | ~30 min | ~10 min |
 
 ## Accumulated Context
 
-### Decisions
+### Key Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
+See PROJECT.md Key Decisions table (updated 2026-06-28).
 
-- [Init]: Stack locked — Next.js 16.1.6, React 19.2, Sanity v5, next-intl v4.8.3, motion v12, Tailwind CSS 4
-- [Init]: i18n strategy — field-level localeString in Sanity (NOT @sanity/document-internationalization)
-- [Init]: Middleware renamed to proxy.ts in Next.js 16 (not middleware.ts)
-- [Init]: Animation package is `motion` (import from `motion/react`), NOT `framer-motion`
-- [Init]: Tailwind configured via `@theme {}` in CSS, NOT tailwind.config.js
-- [01-01]: proxy.ts exports `const proxy` (not default) per Next.js 16 breaking change
-- [01-01]: localePrefix: always forces explicit /fr, /en, /de prefixes (/ redirects 307 to /fr)
-- [01-01]: Root layout returns children only — locale layout owns html/body with lang attribute
-- [01-01]: revalidate=60 on locale layout establishes ISR 60s baseline (FOUND-04)
-- [Phase 01-02]: __experimental_actions removed — deprecated in Sanity v5; singleton enforced via structure.ts single documentId
-- [Phase 01-02]: sanityFetch: tags.length > 0 sets revalidate=false (avoids mixing time + tag revalidation)
-- [Phase 01-02]: TypeGen verification requires real Sanity credentials — predev/prebuild will fail gracefully without .env.local
-- [Phase 01-foundation]: m from motion/react not motion/react-m — named m namespace exports animated HTML elements
-- [Phase 01-foundation]: @theme inline block in Tailwind 4 prevents purging font utilities set by next/font at runtime
-- [01-03]: LazyMotion domAnimation reduces motion bundle from ~34kb to ~4.6kb — all animated components must use m.* from motion/react-m
-- [01-03]: Noto Sans JP preload:false — decorative-only font, lazy-load to protect LCP
-- [01-03]: LanguageSwitcher shown on both desktop and mobile (was originally only on mobile, fixed during visual review)
-- [Phase 02-content-pages]: SanityImageSource type imported from '@sanity/image-url' directly (v2 package root, not lib/types/types)
-- [Phase 02-content-pages]: sanityFetch in root layout wrapped in try/catch — graceful fallback to '#' when Sanity credentials not configured
-- [Phase 02-content-pages]: menuFormule.includedItems uses array of string (not localeString) — formule contents are format-specific, not translated
-- [Phase 02-content-pages]: next/image uses loading=eager (not priority) for Hero — priority is deprecated in Next.js 16
-- [Phase 02-content-pages]: NEXT_TURBOPACK_USE_WORKER=0 required for next build in WSL2 — Turbopack worker race condition on tmp buildManifest file creation
-- [Phase 02-content-pages]: Menu page wraps all sanityFetch calls in try/catch — consistent with layout.tsx pattern from 02-01; prevents build failure with placeholder credentials
-- [Phase 02-content-pages]: visibleCategories filters empty categories before passing to MenuStickyNav — sticky nav never shows empty category buttons
-- [Phase 02-04]: Google Maps embed uses native HTML loading=lazy on iframe — simpler than JS-based lazy loading, works in server components
-- [Phase 02-04]: GalleryGrid and GalleryLightbox merged into single client component — lightbox state (open/index) must be co-located with grid click handlers
-- [Phase 02-04]: Commander clickCollectUrl null/empty shows 'Bientot disponible' text — clearer UX than disabled button while URL pending from owner
-- [Phase 02-04]: createImageUrlBuilder named export replaces deprecated default export from @sanity/image-url
-- [Phase 03-01]: revalidateTag in Next.js 16 requires second profile argument — used { expire: 0 } for immediate invalidation
-- [Phase 03-01]: schema-dts DayOfWeek requires full IRI format (https://schema.org/Tuesday) not plain strings
-- [Phase 03-01]: NAP dual-source pattern — seo.ts constants for SEO/JSON-LD, Sanity siteSettings for editorial — both must match
-- [Phase 03-02]: Consent Mode v2 defaults must be in synchronous <script> in <head> BEFORE GTM loads
-- [Phase 03-02]: Legal pages use revalidate=false for permanent caching
-- [Phase 03-02]: CookieBanner uses position:fixed bottom-0 for zero CLS impact
-- [Phase 03-03]: Shared framework baseline ~220KB gzipped is irreducible (React 19 + Next.js 16 + next-intl + motion)
-- [Phase 03-03]: Bundle analyzer via ANALYZE=true env var for on-demand analysis
+Stack locked: Next.js 16.1.6, React 19.2, Sanity v5, next-intl v4.8.3, motion v12, Tailwind CSS 4.
 
-### Pending Todos
+Deployment: Docker standalone output on VPS srv1417179 (valid 2027-02-23), multi-site Caddy proxy, umai.turfu.in (staging).
 
-None yet.
+### Tech Debt (carried into next milestone)
+
+- SEO-07: Footer NAP not wired to `seo.ts` constants
+- PERF-05: First-load JS ~220KB > 150KB target (irreducible framework floor)
+- bundle-analyzer: `@next/bundle-analyzer` not wired into `next.config.ts`
+
+### Pending Todos (owner-side)
+
+- Gusty Click & Collect URL — Sanity placeholder in place
+- Final photo selection from Nis&For 29-photo preselection
+- "Notre Histoire" text validation with Loan Nguyen
+- EN/DE Sanity content translations
+- DNS cutover: umai-ramen.fr → VPS
 
 ### Blockers/Concerns
 
-- Gusty Click & Collect URL pending from owner — use Sanity placeholder, non-blocking
-- Final photo selection from Nis&For 29-photo preselection pending — use placeholders in build
-- Sanity Studio CORS production config — add to Phase 3-03 checklist
-- TypeGen requires real Sanity project credentials before `npm run typegen` can run
+None. All v1.0 blockers resolved.
 
 ## Session Continuity
 
-Last session: 2026-02-23
-Stopped at: Completed 03-03-PLAN.md (Performance audit — Phase 3 complete, pending phase verification)
-Resume file: None
+Last session: 2026-06-28
+Stopped at: v1.0 milestone archived
+Resume file: None — run `/gsd:new-milestone` to plan v1.1
