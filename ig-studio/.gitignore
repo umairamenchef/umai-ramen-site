@@ -6,6 +6,7 @@ photos/
 # generated output
 out/
 classification.json
+captions.json
 contact-sheet.html
 .pilot-signoff
 # deps
