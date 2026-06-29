@@ -49,8 +49,8 @@
 
 ### Web Review & Override UI
 
-- [ ] **REVIEW-01**: In-repo web UI accessible at `/ig-studio` (Next.js route or dedicated page) — no separate deployment, runs inside existing app dev server
-- [ ] **REVIEW-02**: UI lists all classified photos with thumbnail, detected dish, shot type, confidence score, and reasoning excerpt — read from `classification.json`
+- [x] **REVIEW-01**: In-repo web UI accessible at `/ig-studio` (Next.js route or dedicated page) — no separate deployment, runs inside existing app dev server
+- [x] **REVIEW-02**: UI lists all classified photos with thumbnail, detected dish, shot type, confidence score, and reasoning excerpt — read from `classification.json`
 - [ ] **REVIEW-03**: UI allows inline correction of classification (dish slug dropdown from menu knowledge base + shot type toggle) and writes corrections back to `classification.json` via Server Action
 - [ ] **REVIEW-04**: UI displays current caption per photo (from `out/` tree) with inline edit field; edited caption can be saved via Server Action
 - [x] **REVIEW-05**: UI exposes a per-photo "Regenerate" button that re-runs the compose + caption steps for that single photo via API route, without re-running the full batch
@@ -99,8 +99,8 @@
 | CAPTION-04 | Phase 06 | Pending |
 | CAPTION-05 | Phase 06 | Pending |
 | CAPTION-06 | Phase 06 | Pending |
-| REVIEW-01 | Phase 07 | Pending |
-| REVIEW-02 | Phase 07 | Pending |
+| REVIEW-01 | Phase 07 | Complete |
+| REVIEW-02 | Phase 07 | Complete |
 | REVIEW-03 | Phase 07 | Pending |
 | REVIEW-04 | Phase 07 | Pending |
 | REVIEW-05 | Phase 07 | Complete |
