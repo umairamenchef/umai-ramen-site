@@ -114,7 +114,7 @@ Plans:
 - [x] 07-01-PLAN.md — Auth + (ig-studio) FR route group + locale exclusion in proxy.ts (REVIEW-01, 06) [wave 1]
 - [x] 07-02-PLAN.md — ig-studio compositor glue: menu.js + overlayMode-aware overlay + compose --photo/--preview + caption.js (REVIEW-05 capability, CAPTION-01..03 UI) [wave 1]
 - [x] 07-03-PLAN.md — Server data lib + auth-gated photo/thumbnail route + gallery grid with filters (REVIEW-01, 02) [wave 2]
-- [ ] 07-04-PLAN.md — Per-photo editor: dropdown autofill, overlay toggle, caption gen/edit, live preview, save (override-wins), regenerate (REVIEW-03, 04, 05) [wave 3]
+- [x] 07-04-PLAN.md — Per-photo editor: dropdown autofill, overlay toggle, caption gen/edit, live preview, save (override-wins), regenerate (REVIEW-03, 04, 05) [wave 3]
 - [ ] 07-05-PLAN.md — Export validated posts as a zip (out tree + caption.txt + manifest) (REVIEW-05, CAPTION-04 UI) [wave 4]
 
 ---
@@ -129,5 +129,5 @@ Plans:
 | 4. Ingestion & Classification (Pilot) | v2.0 | 0/2 | Pending | — |
 | 5. Brand Kit & Compositing | v2.0 | 2/2 | Complete   | 2026-06-29 |
 | 6. Captions & Full Assembly | v2.0 | 0/? | Deferred (subsumed by Phase 07) | — |
-| 7. IG Studio Editor (web UI) | v2.0 | 3/5 | In Progress|  |
+| 7. IG Studio Editor (web UI) | v2.0 | 4/5 | In Progress|  |
 </content>
