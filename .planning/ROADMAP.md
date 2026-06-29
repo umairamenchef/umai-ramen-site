@@ -32,21 +32,24 @@
 
 ### Phase 04: Ingestion & Classification (Pilot)
 
-**Goal:** Given ~10 pilot photos fetched locally from Drive, the CLI can classify each into a dish slug or ambiance class with a shot-type tag, emit a human-editable `classification.json`, and render an HTML contact sheet for visual review — end to end, no manual steps.
+**Goal:** Given the ~81 photos already extracted locally to `ig-studio/photos/`, the CLI classifies each into a summer-menu dish slug or ambiance class with a shot-type tag (Claude Vision, `claude-opus-4-8`), emits a human-editable `classification.json`, and renders an HTML contact sheet for visual review — running `--pilot` (~10) first, gated before `--all` (81).
 
 **Depends on:** v1.0 complete (Sanity schema with 17 dishes is the ground truth)
 
 **Requirements mapped:** INGEST-01, INGEST-02, INGEST-03, INGEST-04, INGEST-05, INGEST-06, INGEST-07, INGEST-08
 
 **Success criteria:**
-- `npm run ig:classify --pilot` fetches ~10 photos from Drive to local `ig-studio/raw/` without manual download
-- `classification.json` emitted listing each photo with `{ dishSlug, shotType, confidence, reasoning }`
-- Broth disambiguation rules (tantan / paitan / miso / shoyu-shio / ambiance) produce plausible labels on pilot set
-- HTML contact sheet renders thumbnails + classification for human review
-- Override fields in `classification.json` accept manual corrections; downstream steps read corrected values
-- Full 81-photo run remains gated until pilot is signed off
+- `npm run classify -- --pilot` (in `ig-studio/`) classifies ~10 varied local photos → `classification.json`, each `{ file, dishSlug|ambiance, shotType, confidence, reasoning, override }`
+- Broth+noodle disambiguation (tantan / tokyo / yuzu / tsukemen / mazesoba / hiyashi / ambiance) produces plausible labels on the pilot set; chashu treated as a topping
+- `npm run contact-sheet` renders thumbnails + classification + confidence, sortable for human review
+- Manual corrections in `classification.json` (`override: true`) are respected on re-run and by downstream phases
+- Full 81-photo `--all` run remains gated until the pilot is reviewed and signed off (`npm run signoff`)
 
-**Plans placeholder:** `04-01`, `04-02`, `04-03` (to be defined in plan phase)
+**Plans:** 2 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — CLI scaffold + Claude Vision classifier against the summer KB → classification.json (override-wins) + pilot gate (INGEST-01..06, 08)
+- [ ] 04-02-PLAN.md — HTML contact sheet + pilot review/sign-off checkpoint (INGEST-07, 08)
 
 ---
 
@@ -117,7 +120,7 @@
 | 1. Foundation | v1.0 | 3/3 | Complete | 2026-02-23 |
 | 2. Content Pages | v1.0 | 5/5 | Complete | 2026-02-23 |
 | 3. SEO, Compliance, and Launch | v1.0 | 3/3 | Complete | 2026-02-23 |
-| 4. Ingestion & Classification (Pilot) | v2.0 | 0/? | Pending | — |
+| 4. Ingestion & Classification (Pilot) | v2.0 | 0/2 | Pending | — |
 | 5. Brand Kit & Compositing | v2.0 | 0/? | Pending | — |
 | 6. Captions & Full Assembly | v2.0 | 0/? | Pending | — |
 | 7. Web Review & Override UI | v2.0 | 0/? | Pending | — |
