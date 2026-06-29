@@ -9,7 +9,8 @@
     "brand:logo": "node brand/logo.js --emit",
     "compose": "node src/compose.js",
     "compose:one": "node src/compose.js",
-    "gallery": "node src/gallery.js"
+    "gallery": "node src/gallery.js",
+    "caption": "node --env-file=.env src/caption.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.106.0",
