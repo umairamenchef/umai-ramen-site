@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:ig": "next dev",
     "build": "next build",
     "start": "next start",
     "predev": "npm run typegen",
