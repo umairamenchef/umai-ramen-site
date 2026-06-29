@@ -1,0 +1,14 @@
+{
+  "name": "umai-ig-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "classify": "node --env-file=.env src/cli.js",
+    "signoff": "node --env-file=.env src/cli.js --signoff",
+    "contact-sheet": "node src/contact-sheet.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.106.0",
+    "sharp": "^0.35.2"
+  }
+}

@@ -1,0 +1,12 @@
+# secrets
+.env
+.env.local
+# source photos (kept in Drive; too heavy for git)
+photos/
+# generated output
+out/
+classification.json
+contact-sheet.html
+.pilot-signoff
+# deps
+node_modules/
