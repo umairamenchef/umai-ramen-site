@@ -10,3 +10,5 @@ contact-sheet.html
 .pilot-signoff
 # deps
 node_modules/
+# generated review artifact (local only)
+gallery.html
