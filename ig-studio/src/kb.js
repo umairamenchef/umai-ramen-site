@@ -91,6 +91,54 @@ export function loadKB() {
   return _cached;
 }
 
+// ─── dishLabel ────────────────────────────────────────────────────────────────
+
+/**
+ * Resolve a dish slug to its FR display name, price, and category.
+ *
+ * Display name rules:
+ *   - For tsukemen-*, mazesoba-*, hiyashi-* variants that are short (family-relative),
+ *     prefix the family name: e.g. "tsukemen-gyokai" → "Tsukemen Gyokai"
+ *   - Ramen / Tantan names are self-describing → returned as-is ("tokyo" → "Tokyo")
+ *   - Shared (karaage, gyoza, edamame…) → item.name as-is (already descriptive)
+ *
+ * Price: number if scalar, first element if array, null if missing.
+ *
+ * Returns null for "ambiance" or any unknown slug.
+ *
+ * @param {string} slug
+ * @returns {{ name: string, price: number|null, category: string }|null}
+ */
+export function dishLabel(slug) {
+  if (!slug || slug === 'ambiance') return null;
+
+  const { items } = loadKB();
+  const item = items.find(i => i.slug === slug);
+  if (!item) return null;
+
+  // Build display name: prefix family for variant slugs
+  let name = item.name;
+  if (/^tsukemen-/.test(slug)) {
+    name = 'Tsukemen ' + item.name;
+  } else if (/^mazesoba-/.test(slug)) {
+    name = 'Mazesoba ' + item.name;
+  } else if (/^hiyashi-/.test(slug)) {
+    name = 'Hiyashi ' + item.name;
+  }
+
+  // Price: scalar → number, array → first element, absent → null
+  let price = null;
+  if (typeof item.price === 'number') {
+    price = item.price;
+  } else if (Array.isArray(item.price) && item.price.length > 0) {
+    price = item.price[0];
+  }
+
+  return { name, price, category: item.category };
+}
+
+// ─── Prompt context ────────────────────────────────────────────────────────────
+
 /**
  * Build a human-readable block of classification rules for the vision prompt.
  * Encodes broth+noodle disambiguation, the chashu-is-a-topping rule,
