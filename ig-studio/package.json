@@ -5,7 +5,10 @@
   "scripts": {
     "classify": "node --env-file=.env src/cli.js",
     "signoff": "node --env-file=.env src/cli.js --signoff",
-    "contact-sheet": "node src/contact-sheet.js"
+    "contact-sheet": "node src/contact-sheet.js",
+    "brand:logo": "node brand/logo.js --emit",
+    "compose": "node src/compose.js",
+    "gallery": "node src/gallery.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.106.0",
