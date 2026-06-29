@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-06-29 after v2.0 milestone opening)
 ## Current Position
 
 Phase: 04 — Ingestion & Classification (Pilot)
-Plan: —  (plans not yet created — run `/gsd:plan-phase` to produce 04-01 plan)
-Status: v2.0 milestone opened — Phase 04 ready to plan
-Last activity: 2026-06-29 — v2.0 milestone opened (REQUIREMENTS.md + ROADMAP.md phases 04-07 authored)
+Plan: 04-02 Task 2 — CHECKPOINT (pilot sign-off pending owner)
+Status: 04-01 complete (3/3 tasks); 04-02 Task 1 complete — awaiting human pilot review
+Last activity: 2026-06-29 — 04-01 + 04-02 Task 1 executed; live pilot run completed (10 photos classified)
 
-Progress (v2.0): [░░░░░░░░░░] 0% (0/4 phases complete)
+Progress (v2.0): [██░░░░░░░░] 25% (1/4 phases in progress — pilot gate pending)
 
 ## Performance Metrics
 
@@ -61,10 +61,20 @@ Deployment: Docker standalone on VPS srv1417179 (valid 2027-02-23), multi-site C
 
 ### Blockers/Concerns
 
-- Google Drive auth: ig-studio fetch requires Drive API credentials (service account JSON or OAuth token) — confirm method before Phase 04 execution.
+- RESOLVED: Google Drive auth — photos are already local (no Drive fetch needed)
+- PENDING: umai_037.jpg classified as ambiance — appears to be an udon dish (not on summer ramen menu). Owner should review during pilot sign-off.
+- PENDING: Pilot sign-off — owner must review contact-sheet.html and run `npm run signoff` to unblock --all
 
 ## Session Continuity
 
 Last session: 2026-06-29
-Stopped at: v2.0 milestone opened — planning artifacts authored, no code written
-Resume: run `/gsd:plan-phase` on Phase 04 to produce execution plans
+Stopped at: 04-02 Task 2 (checkpoint:human-verify) — pilot sign-off gate, pending owner review of contact-sheet.html
+Resume: Owner reviews ig-studio/contact-sheet.html, applies corrections (override:true), runs `npm run signoff`, then confirms "approved" to continue Phase 04 → 04-02 Task 2 sign-off → Phase 05 compositing
+
+### Key Decisions Added (v2.0 execution)
+
+- LOCKED: Photos already local (ig-studio/photos/umai_001..081.jpg) — no Drive/OAuth needed (INGEST-01 satisfied)
+- LOCKED: Summer menu KB (data/summer-menu-2026.json) is classification ground truth
+- LOCKED: Pilot uses even-spread indices (not first-N) to sample full photo range
+- LOCKED: classifier.js safe fallback: parse errors → ambiance (0.0 conf), batch never crashes
+- LOCKED: KB slugs use hardcoded name→slug map for stability (no fragile accent-strip for variant names)
