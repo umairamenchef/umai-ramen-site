@@ -45,19 +45,21 @@ The VPS (valid until 2027-02-23) is a multi-site host intended for umai-ramen.fr
 - ✓ Catchphrase editable via Sanity (default: "Nouilles fraiches. Bouillons maison.") — v1.0
 - ✓ Accent color adjustable via Sanity siteSettings.accentColor — v1.0
 
-### Active (Next Milestone)
+### Active (v2.0 — IG Content Studio)
 
-> No next milestone defined yet. Run `/gsd:new-milestone` to plan v1.1.
+> **v2.0 milestone opened 2026-06-29.** Current focus: Phase 04 — Ingestion & Classification (Pilot).
 
-Candidates from deferred items and tech debt:
-- [ ] Wire footer NAP to `seo.ts` constants (SEO-07 debt)
-- [ ] Wire `@next/bundle-analyzer` into `next.config.ts` (bundle-analyzer debt)
-- [ ] DNS cutover: umai-ramen.fr → VPS + run live Lighthouse verification
-- [ ] Gusty Click & Collect URL from owner → replace Sanity placeholder
-- [ ] Final Nis&For photo selection → upload to Sanity, replace placeholders
-- [ ] "Notre Histoire" text validation with Loan Nguyen
-- [ ] EN/DE translations for Sanity content (currently FR only in Studio)
-- [ ] NAP consistency audit across platforms (Google Business, Facebook, Uber Eats)
+- [ ] **INGEST**: Fetch ~81 Nis&For photos from Google Drive → local; classify with Claude Vision → `classification.json` + HTML contact sheet (Phase 04)
+- [ ] **BRAND**: Brand kit module + puppeteer/sips compositing pipeline → 3 Meta format PNGs per photo (Phase 05)
+- [ ] **CAPTION**: Claude-generated FR captions per post + per-photo `out/` deliverable tree + full 81-photo industrialization (Phase 06)
+- [ ] **REVIEW**: In-repo `/ig-studio` web UI — browse, correct, edit captions, regenerate (Phase 07)
+
+**Active context:**
+- Photo source: Google Drive folder `JPEG_72dpi` (id `19JmEURV-XqcMm97jZwU7AV9uG7y6-t7M`), ~81 files
+- AI: `@anthropic-ai/sdk` — `claude-opus-4-8` for vision, `claude-sonnet-4-6` for captions
+- Render: puppeteer-core + local Chrome → PNG → sips → Meta formats
+- Output: `ig-studio/out/{photo-id}/` — `feed.png`, `square.png`, `story.png`, `caption.txt`
+- Pilot gate: validate on ~10 photos before full 81-photo run
 
 ### Out of Scope
 
@@ -123,13 +125,11 @@ Candidates from deferred items and tech debt:
 
 ## Next Milestone Goals
 
-> Next milestone not yet planned. Run `/gsd:new-milestone` to define v1.1.
+**v2.0 — Umaï IG Content Studio** (opened 2026-06-29)
 
-Likely scope for v1.1:
-- DNS cutover + live performance validation (Lighthouse, CWV on umai-ramen.fr)
-- Resolve pending owner items: Click & Collect URL, final photo selection, "Notre Histoire" text
-- Clear remaining tech debt: SEO-07 footer NAP wiring, bundle-analyzer config
-- EN/DE content translation in Sanity
+Turn ~81 professional Nis&For photos into a ready-to-post Instagram content batch: AI vision classification assigns each photo a dish label or ambiance tag; a CLI pipeline overlays Umaï branding per shot type and generates appetizing FR captions targeting Strasbourg; a human override step corrects classification errors; a web UI makes future corrections fast. Output: `ig-studio/out/{photo-id}/` with `feed.png`, `square.png`, `story.png`, `caption.txt` per photo.
+
+Phases: 04 Ingestion & Classification → 05 Brand Kit & Compositing → 06 Captions & Assembly → 07 Web Review UI
 
 ---
-*Last updated: 2026-06-28 after v1.0 milestone*
+*Last updated: 2026-06-29 after v2.0 milestone opening*
