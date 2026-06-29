@@ -43,7 +43,7 @@
 - [x] **CAPTION-01**: Claude (`claude-sonnet-4-6` for cost efficiency) generates FR captions per post: dish name in French + Japanese, appetizing copy evoking the dish's character, Strasbourg/Krutenau local angle
 - [x] **CAPTION-02**: Every caption includes relevant hashtags (dish-specific + brand + Strasbourg local) and a soft CTA anchored to NAP (address, reservation link, or phone as appropriate)
 - [x] **CAPTION-03**: Caption generation is explicitly gated on validated `classification.json` — Claude reads the final (post-correction) dish slug to generate accurate copy; ambiance photos get generic Umaï brand captions without dish claim
-- [ ] **CAPTION-04**: Per-photo deliverable assembled in `ig-studio/out/{photo-id}/`: `feed.png`, `square.png`, `story.png`, `caption.txt` — clean tree, one folder per source photo
+- [x] **CAPTION-04**: Per-photo deliverable assembled in `ig-studio/out/{photo-id}/`: `feed.png`, `square.png`, `story.png`, `caption.txt` — clean tree, one folder per source photo
 - [ ] **CAPTION-05**: Final HTML review gallery enumerates all assembled deliverables (thumbnail + caption preview) for owner sign-off before posting
 - [ ] **CAPTION-06**: Full industrialization run over all 81 photos triggered by `npm run ig:build:all` after pilot is validated
 
@@ -96,7 +96,7 @@
 | CAPTION-01 | Phase 06 | Complete |
 | CAPTION-02 | Phase 06 | Complete |
 | CAPTION-03 | Phase 06 | Complete |
-| CAPTION-04 | Phase 06 | Pending |
+| CAPTION-04 | Phase 06 | Complete |
 | CAPTION-05 | Phase 06 | Pending |
 | CAPTION-06 | Phase 06 | Pending |
 | REVIEW-01 | Phase 07 | Complete |
