@@ -43,8 +43,8 @@ export const LOGO_SRC = resolve(
 // ─── Overlay sizing knobs ─────────────────────────────────────────────────────
 
 export const OVERLAY = {
-  logoHeightFrac: 0.06,   // logo height as fraction of canvas height
-  logoMinPx:      70,     // minimum logo height in pixels
+  logoHeightFrac: 0.095,  // logo height as fraction of canvas height (was 0.06)
+  logoMinPx:      110,    // minimum logo height in pixels (was 70)
   marginFrac:     0.04,   // margin as fraction of min(width, height)
   logoOpacity:    0.92,   // SVG fill-opacity on the wordmark
   logoFill:       COLORS.ivoire, // light wordmark on dark photo

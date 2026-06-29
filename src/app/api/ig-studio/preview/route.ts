@@ -24,14 +24,16 @@ export async function POST(req: Request): Promise<Response> {
   }
 
   // Parse body
-  let body: { id?: string; entry?: Record<string, unknown> };
+  let body: { id?: string; entry?: Record<string, unknown>; format?: string };
   try {
     body = await req.json();
   } catch {
     return new Response('Invalid JSON body', { status: 400 });
   }
 
-  const { id, entry } = body;
+  const { id, entry, format } = body;
+  const validFormats = ['feed', 'square', 'story'];
+  const previewFormat = validFormats.includes(format as string) ? (format as string) : 'feed';
 
   if (!id || !isValidPhotoId(id)) {
     return new Response('Invalid or missing photo id', { status: 400 });
@@ -52,7 +54,7 @@ export async function POST(req: Request): Promise<Response> {
         'src/compose.js',
         '--photo', id,
         '--preview',
-        '--format', 'feed',
+        '--format', previewFormat,
         '--out', outPng,
         '--entry-file', entryPath,
       ],

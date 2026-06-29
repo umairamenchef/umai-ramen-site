@@ -11,17 +11,17 @@ import { COLORS, FONTS } from '../brand/tokens.js';
 
 // ─── Layout constants ─────────────────────────────────────────────────────────
 
-const CHIP_H          = 64;   // chip height in px
-const PADDING_X       = 16;   // horizontal padding inside the chip
-const ACCENT_W        = 4;    // vert left-bar accent width
-const ACCENT_GAP      = 10;   // gap between accent bar and text
-const NAME_FONT_SIZE  = 18;   // px — dish name (serif)
-const PRICE_FONT_SIZE = 13;   // px — price (sans)
-const PRICE_GAP       = 8;    // gap between name block and price block
-const NAME_CHAR_W     = 11;   // approx px per char of name (serif 18px)
-const PRICE_CHAR_W    = 7.5;  // approx px per char of price (sans 13px)
-const CORNER_R        = 10;   // corner radius
-const PRICE_LABEL_EXTRA = 20; // extra width for price currency suffix ' €'
+const CHIP_H          = 96;   // chip height in px (was 64, now 1.5×)
+const PADDING_X       = 24;   // horizontal padding inside the chip (was 16)
+const ACCENT_W        = 6;    // vert left-bar accent width (was 4)
+const ACCENT_GAP      = 14;   // gap between accent bar and text (was 10)
+const NAME_FONT_SIZE  = 27;   // px — dish name (serif) (was 18, now 1.5×)
+const PRICE_FONT_SIZE = 20;   // px — price (sans) (was 13, now ~1.5×)
+const PRICE_GAP       = 12;   // gap between name block and price block (was 8)
+const NAME_CHAR_W     = 16;   // approx px per char of name (serif 27px) (was 11)
+const PRICE_CHAR_W    = 11;   // approx px per char of price (sans 20px) (was 7.5)
+const CORNER_R        = 14;   // corner radius (was 10)
+const PRICE_LABEL_EXTRA = 28; // extra width for price currency suffix ' €' (was 20)
 
 // ─── Format price (FR locale: dot → comma + ' €') ─────────────────────────────
 
