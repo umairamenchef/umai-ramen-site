@@ -64,4 +64,32 @@ describe('applyOverlay', () => {
     assert.equal(result.applied.logo, true);
     assert.equal(result.applied.chip, false, 'No chip for unknown slug even at high confidence');
   });
+
+  // ── New cases: explicit overlayMode ──────────────────────────────────────────
+
+  it('overlayMode:"packshot" + human dishName + low confidence → logo:true, chip:true (human override beats low confidence)', async () => {
+    const entry = {
+      overlayMode: 'packshot',
+      dishName: 'Tantan Umaï',
+      price: 15.9,
+      confidence: 0.2,          // below threshold — but human chose packshot
+    };
+    const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+
+    assert.equal(result.applied.logo, true, 'Logo must be applied for packshot');
+    assert.equal(result.applied.chip, true, 'Chip must be shown: human-chosen packshot overrides low confidence');
+    assert.ok(!result.buffer.equals(canvas), 'Buffer must differ from plain canvas');
+  });
+
+  it('overlayMode:"photo-only" + packshot slug → identical buffer, logo:false, chip:false', async () => {
+    const entry = {
+      overlayMode: 'photo-only',
+      dishSlug: 'tokyo-ramen',
+      confidence: 0.9,           // high confidence — but mode is photo-only
+    };
+    const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+
+    assert.deepStrictEqual(result.applied, { logo: false, chip: false });
+    assert.ok(result.buffer.equals(canvas), 'photo-only buffer must be identical to input canvas');
+  });
 });
