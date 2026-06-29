@@ -108,11 +108,11 @@ Plans:
 - Photos served (with thumbnails) from `ig-studio/photos/` via an auth-gated API route — never copied into `public/`
 - Export downloads validated posts as a zip (`{id}/feed,square,story.png` + caption.txt + manifest)
 
-**Plans:** 5 plans (4 waves)
+**Plans:** 2/5 plans executed
 
 Plans:
-- [ ] 07-01-PLAN.md — Auth + (ig-studio) FR route group + locale exclusion in proxy.ts (REVIEW-01, 06) [wave 1]
-- [ ] 07-02-PLAN.md — ig-studio compositor glue: menu.js + overlayMode-aware overlay + compose --photo/--preview + caption.js (REVIEW-05 capability, CAPTION-01..03 UI) [wave 1]
+- [x] 07-01-PLAN.md — Auth + (ig-studio) FR route group + locale exclusion in proxy.ts (REVIEW-01, 06) [wave 1]
+- [x] 07-02-PLAN.md — ig-studio compositor glue: menu.js + overlayMode-aware overlay + compose --photo/--preview + caption.js (REVIEW-05 capability, CAPTION-01..03 UI) [wave 1]
 - [ ] 07-03-PLAN.md — Server data lib + auth-gated photo/thumbnail route + gallery grid with filters (REVIEW-01, 02) [wave 2]
 - [ ] 07-04-PLAN.md — Per-photo editor: dropdown autofill, overlay toggle, caption gen/edit, live preview, save (override-wins), regenerate (REVIEW-03, 04, 05) [wave 3]
 - [ ] 07-05-PLAN.md — Export validated posts as a zip (out tree + caption.txt + manifest) (REVIEW-05, CAPTION-04 UI) [wave 4]

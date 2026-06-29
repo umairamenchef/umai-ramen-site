@@ -40,9 +40,9 @@
 
 ### Captions & Full Assembly
 
-- [ ] **CAPTION-01**: Claude (`claude-sonnet-4-6` for cost efficiency) generates FR captions per post: dish name in French + Japanese, appetizing copy evoking the dish's character, Strasbourg/Krutenau local angle
-- [ ] **CAPTION-02**: Every caption includes relevant hashtags (dish-specific + brand + Strasbourg local) and a soft CTA anchored to NAP (address, reservation link, or phone as appropriate)
-- [ ] **CAPTION-03**: Caption generation is explicitly gated on validated `classification.json` — Claude reads the final (post-correction) dish slug to generate accurate copy; ambiance photos get generic Umaï brand captions without dish claim
+- [x] **CAPTION-01**: Claude (`claude-sonnet-4-6` for cost efficiency) generates FR captions per post: dish name in French + Japanese, appetizing copy evoking the dish's character, Strasbourg/Krutenau local angle
+- [x] **CAPTION-02**: Every caption includes relevant hashtags (dish-specific + brand + Strasbourg local) and a soft CTA anchored to NAP (address, reservation link, or phone as appropriate)
+- [x] **CAPTION-03**: Caption generation is explicitly gated on validated `classification.json` — Claude reads the final (post-correction) dish slug to generate accurate copy; ambiance photos get generic Umaï brand captions without dish claim
 - [ ] **CAPTION-04**: Per-photo deliverable assembled in `ig-studio/out/{photo-id}/`: `feed.png`, `square.png`, `story.png`, `caption.txt` — clean tree, one folder per source photo
 - [ ] **CAPTION-05**: Final HTML review gallery enumerates all assembled deliverables (thumbnail + caption preview) for owner sign-off before posting
 - [ ] **CAPTION-06**: Full industrialization run over all 81 photos triggered by `npm run ig:build:all` after pilot is validated
@@ -53,7 +53,7 @@
 - [ ] **REVIEW-02**: UI lists all classified photos with thumbnail, detected dish, shot type, confidence score, and reasoning excerpt — read from `classification.json`
 - [ ] **REVIEW-03**: UI allows inline correction of classification (dish slug dropdown from menu knowledge base + shot type toggle) and writes corrections back to `classification.json` via Server Action
 - [ ] **REVIEW-04**: UI displays current caption per photo (from `out/` tree) with inline edit field; edited caption can be saved via Server Action
-- [ ] **REVIEW-05**: UI exposes a per-photo "Regenerate" button that re-runs the compose + caption steps for that single photo via API route, without re-running the full batch
+- [x] **REVIEW-05**: UI exposes a per-photo "Regenerate" button that re-runs the compose + caption steps for that single photo via API route, without re-running the full batch
 - [ ] **REVIEW-06**: UI is auth-gated (same iron-session auth as rest of app if auth exists, or basic env-var check) — not publicly accessible
 
 ---
@@ -93,9 +93,9 @@
 | BRAND-05 | Phase 05 | Complete |
 | BRAND-06 | Phase 05 | Complete |
 | BRAND-07 | Phase 05 | Complete |
-| CAPTION-01 | Phase 06 | Pending |
-| CAPTION-02 | Phase 06 | Pending |
-| CAPTION-03 | Phase 06 | Pending |
+| CAPTION-01 | Phase 06 | Complete |
+| CAPTION-02 | Phase 06 | Complete |
+| CAPTION-03 | Phase 06 | Complete |
 | CAPTION-04 | Phase 06 | Pending |
 | CAPTION-05 | Phase 06 | Pending |
 | CAPTION-06 | Phase 06 | Pending |
@@ -103,7 +103,7 @@
 | REVIEW-02 | Phase 07 | Pending |
 | REVIEW-03 | Phase 07 | Pending |
 | REVIEW-04 | Phase 07 | Pending |
-| REVIEW-05 | Phase 07 | Pending |
+| REVIEW-05 | Phase 07 | Complete |
 | REVIEW-06 | Phase 07 | Pending |
 
 **Coverage:**
