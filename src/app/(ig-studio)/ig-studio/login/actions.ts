@@ -27,7 +27,7 @@ export async function login(
   jar.set(COOKIE_NAME, expected, {
     httpOnly: true,
     sameSite: 'lax',
-    path: '/ig-studio',
+    path: '/', // must cover /ig-studio AND /api/ig-studio/* (image/preview routes)
     maxAge: 60 * 60 * 24 * 7, // 7 days
   });
 
@@ -37,6 +37,6 @@ export async function login(
 
 export async function logout(): Promise<never> {
   const jar = await cookies();
-  jar.delete(COOKIE_NAME);
+  jar.set(COOKIE_NAME, '', { path: '/', maxAge: 0 });
   redirect('/ig-studio/login');
 }
