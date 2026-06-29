@@ -29,6 +29,7 @@
 - AI stack: `claude-opus-4-8` for vision quality, `claude-sonnet-4-6` for batch captions (`@anthropic-ai/sdk`)
 - Render pipeline: puppeteer-core + local Chrome → PNG → sips (macOS) → 3 Meta formats
 - Lives in `ig-studio/` subfolder, separate from website runtime
+- **Re-prioritization (2026-06-29): Phase 07 (editor) brought ahead of Phase 06.** Auto-classification proved too error-prone on subtle ramen/mazesoba/végé distinctions → AI is pre-fill only; Loan finalizes everything (dish, overlay, caption) in the `/ig-studio` editor. The editor subsumes most of Phase 06's per-post caption + assembly work.
 
 ### Phase 04: Ingestion & Classification (Pilot)
 
@@ -77,43 +78,44 @@ Plans:
 
 ---
 
-### Phase 06: Captions & Full Assembly (CLI Complete)
+### Phase 06: Captions & Full Assembly (CLI Complete) — DEFERRED / OPTIONAL
 
-**Goal:** Given validated classifications and composed images for the pilot, the CLI generates FR captions per post and assembles final per-photo deliverable folders (`out/{photo-id}/`); then industrializes over all 81 photos with a review gallery.
+**Goal:** (Originally) CLI generates FR captions per post and assembles `out/{photo-id}/` deliverables, then industrializes over all 81 with a review gallery.
+
+**Status (2026-06-29):** Largely SUBSUMED by Phase 07. The editor delivers interactive FR captions (CAPTION-01/02/03, UI path) and per-post `out/{id}/` assembly + caption.txt at export (CAPTION-04, UI path). What remains optional here is the headless batch over all 81 (`npm run ig:caption`/`ig:build:all`, CAPTION-05/06) — only build it if a non-interactive bulk pass is wanted after the editor work.
 
 **Depends on:** Phase 05 (composed pilot images), Phase 04 override JSON reviewed by owner
 
-**Requirements mapped:** CAPTION-01, CAPTION-02, CAPTION-03, CAPTION-04, CAPTION-05, CAPTION-06
+**Requirements mapped:** CAPTION-01, CAPTION-02, CAPTION-03, CAPTION-04, CAPTION-05, CAPTION-06 (01–04 satisfied via Phase 07 UI; 05–06 optional batch)
 
-**Success criteria:**
-- `npm run ig:caption --pilot` generates `caption.txt` for each pilot photo via Claude (`claude-sonnet-4-6`)
-- Captions contain: dish name FR + JP, appetizing copy, Strasbourg/Krutenau local angle, hashtags, NAP CTA
-- Ambiance captions make no dish claim; use generic Umaï brand voice
-- `out/{photo-id}/` tree contains exactly: `feed.png`, `square.png`, `story.png`, `caption.txt`
-- HTML review gallery renders all assembled deliverables (thumbnail + caption preview) for owner sign-off
-- `npm run ig:build:all` processes all 81 photos end-to-end without errors; failed/skipped photos logged
-
-**Plans placeholder:** `06-01`, `06-02`, `06-03` (to be defined in plan phase)
+**Plans placeholder:** TBD (only if a batch pass is still wanted)
 
 ---
 
-### Phase 07: Web Review & Override UI
+### Phase 07: IG Studio Editor (web UI for Loan)
 
-**Goal:** An in-repo Next.js route (`/ig-studio`) lets the owner browse all classified photos, correct classifications inline, edit captions, and trigger per-photo regeneration — the "do it well" version that makes corrections faster than editing JSON directly.
+**Goal:** A `/ig-studio` route in the existing Next 16 app where Loan reviews each photo, picks the correct dish in a few clicks (canonical menu-options dropdown that auto-fills price/baseline), edits caption, picks overlay mode, sees a live preview of the branded post, regenerates the 3 formats, and exports validated posts — fast, no JSON editing. AI classification is pre-fill only; the human finalizes. FR-only admin tool, auth-gated, outside next-intl `[locale]`.
 
-**Depends on:** Phase 06 complete (full `out/` tree + `classification.json` populated)
+**Depends on:** Phase 05 (compose/overlay/crop modules to reuse), Phase 04 (classification.json pre-fill). Phase 06 NOT required (editor subsumes its caption/assembly work).
 
-**Requirements mapped:** REVIEW-01, REVIEW-02, REVIEW-03, REVIEW-04, REVIEW-05, REVIEW-06
+**Requirements mapped:** REVIEW-01, REVIEW-02, REVIEW-03, REVIEW-04, REVIEW-05, REVIEW-06 (+ UI path for CAPTION-01..04)
 
 **Success criteria:**
-- `/ig-studio` route accessible in dev server; auth-gated (env-var check at minimum)
-- Gallery view shows all photos: thumbnail, dish label, shot type, confidence badge
-- Inline correction form saves to `classification.json` via Server Action without page reload
-- Caption edit field pre-fills from `caption.txt`; save writes back to `out/{id}/caption.txt`
-- "Regenerate" button re-runs compose + caption for the selected photo and refreshes the view
-- No separate deployment — UI lives inside the existing Next.js app
+- `/ig-studio` loads (auth-gated, env-var password), outside `[locale]`; lists all 81 photos with AI suggestion + validated/pending status, filterable
+- Per-photo editor: grouped dish dropdown auto-fills editable price/baseline; overlay-mode toggle; "Générer caption" (Claude FR) + editable + savable caption
+- Live preview reflects unsaved choices; per-photo Regenerate writes `out/{id}/{feed,square,story}.png` (reuses ig-studio compose)
+- Corrections persist to classification.json (override-wins) and survive reload; works against the CANONICAL menu (no tsukemen/hiyashi; végé = Yasai Tantan / Miso végétarien)
+- Photos served (with thumbnails) from `ig-studio/photos/` via an auth-gated API route — never copied into `public/`
+- Export downloads validated posts as a zip (`{id}/feed,square,story.png` + caption.txt + manifest)
 
-**Plans placeholder:** `07-01`, `07-02`, `07-03` (to be defined in plan phase)
+**Plans:** 5 plans (4 waves)
+
+Plans:
+- [ ] 07-01-PLAN.md — Auth + (ig-studio) FR route group + locale exclusion in proxy.ts (REVIEW-01, 06) [wave 1]
+- [ ] 07-02-PLAN.md — ig-studio compositor glue: menu.js + overlayMode-aware overlay + compose --photo/--preview + caption.js (REVIEW-05 capability, CAPTION-01..03 UI) [wave 1]
+- [ ] 07-03-PLAN.md — Server data lib + auth-gated photo/thumbnail route + gallery grid with filters (REVIEW-01, 02) [wave 2]
+- [ ] 07-04-PLAN.md — Per-photo editor: dropdown autofill, overlay toggle, caption gen/edit, live preview, save (override-wins), regenerate (REVIEW-03, 04, 05) [wave 3]
+- [ ] 07-05-PLAN.md — Export validated posts as a zip (out tree + caption.txt + manifest) (REVIEW-05, CAPTION-04 UI) [wave 4]
 
 ---
 
@@ -126,5 +128,6 @@ Plans:
 | 3. SEO, Compliance, and Launch | v1.0 | 3/3 | Complete | 2026-02-23 |
 | 4. Ingestion & Classification (Pilot) | v2.0 | 0/2 | Pending | — |
 | 5. Brand Kit & Compositing | v2.0 | 2/2 | Complete   | 2026-06-29 |
-| 6. Captions & Full Assembly | v2.0 | 0/? | Pending | — |
-| 7. Web Review & Override UI | v2.0 | 0/? | Pending | — |
+| 6. Captions & Full Assembly | v2.0 | 0/? | Deferred (subsumed by Phase 07) | — |
+| 7. IG Studio Editor (web UI) | v2.0 | 0/5 | Planned | — |
+</content>
