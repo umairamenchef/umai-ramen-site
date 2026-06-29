@@ -2,13 +2,17 @@
  * Umaï IG Studio — Compose pipeline + CLI (BRAND-07)
  *
  * composePhoto(file, entry, kb): cover-crops to 3 Meta formats + applies overlay → writes out/{photoId}/
- * CLI: node src/compose.js [--pilot|--all] [--limit=N]
+ * CLI modes:
+ *   node src/compose.js [--pilot|--all] [--limit=N]     — batch (existing)
+ *   node src/compose.js --photo <id>                    — single photo, all formats
+ *   node src/compose.js --photo <id> --preview --format <f> --out <path> [--entry-file <path>]
+ *                                                       — preview render (no out/{photoId}/ write)
  *
  * No network, no Anthropic import — fully offline.
  */
 
 import sharp from 'sharp';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -47,11 +51,89 @@ export async function composePhoto(file, entry, kb) {
   return { photoId, dir: outDir, formats: ['feed', 'square', 'story'], applied };
 }
 
+// ─── composeOne ───────────────────────────────────────────────────────────────
+
+/**
+ * Render a single format and write it to an explicit outPath.
+ * Used for live preview: no writes under out/{photoId}/.
+ *
+ * @param {string} file — filename, e.g. "umai_057.jpg"
+ * @param {object} entry — classification row (may include overlayMode/dishName/price)
+ * @param {object} kb — loaded KB
+ * @param {{ format: string, outPath: string }} opts
+ * @returns {Promise<void>}
+ */
+export async function composeOne(file, entry, kb, { format, outPath }) {
+  const fmt = FORMATS[format];
+  if (!fmt) throw new Error(`Unknown format "${format}". Use: ${Object.keys(FORMATS).join(', ')}`);
+
+  const cropped = await coverCrop(photoPath(file), fmt.w, fmt.h);
+  const result  = await applyOverlay(cropped, { width: fmt.w, height: fmt.h }, entry, kb);
+  writeFileSync(outPath, result.buffer);
+}
+
 // ─── CLI ──────────────────────────────────────────────────────────────────────
 
 async function main() {
   const args = process.argv.slice(2);
 
+  // ── Single-photo mode ───────────────────────────────────────────────────────
+  const photoIdx = args.indexOf('--photo');
+  if (photoIdx !== -1) {
+    const rawId = args[photoIdx + 1];
+    if (!rawId || rawId.startsWith('--')) {
+      console.error('[compose] --photo requires a photo id, e.g. --photo umai_057');
+      process.exit(1);
+    }
+
+    // Normalise: strip extension if given, then re-add .jpg
+    const photoId = rawId.replace(/\.jpg$/i, '');
+    const file = `${photoId}.jpg`;
+
+    // Optional flags
+    const isPreview   = args.includes('--preview');
+    const formatIdx   = args.indexOf('--format');
+    const format      = formatIdx !== -1 ? args[formatIdx + 1] : null;
+    const outIdx      = args.indexOf('--out');
+    const outPath     = outIdx !== -1 ? args[outIdx + 1] : null;
+    const entryIdx    = args.indexOf('--entry-file');
+    const entryFile   = entryIdx !== -1 ? args[entryIdx + 1] : null;
+
+    const kb    = loadKB();
+    const store = readStore();
+
+    // Resolve entry: --entry-file JSON beats store lookup
+    let entry;
+    if (entryFile) {
+      entry = JSON.parse(readFileSync(entryFile, 'utf-8'));
+      // Ensure `file` is set so overlay / photo path resolution works
+      if (!entry.file) entry.file = file;
+    } else {
+      entry = store.find(e => e.file === file);
+      if (!entry) {
+        console.error(`[compose] No classification entry found for "${file}". Run classify first or pass --entry-file.`);
+        process.exit(1);
+      }
+    }
+
+    if (isPreview) {
+      // Preview: single format to explicit outPath — no out/{photoId}/ write
+      if (!format || !outPath) {
+        console.error('[compose] --preview requires both --format <f> and --out <path>');
+        process.exit(1);
+      }
+      await composeOne(file, entry, kb, { format, outPath });
+      process.stdout.write(JSON.stringify({ photoId, format, out: outPath }) + '\n');
+    } else {
+      // Single-photo full export: all 3 formats → out/{photoId}/
+      const result = await composePhoto(file, entry, kb);
+      process.stdout.write(JSON.stringify({ photoId: result.photoId, dir: result.dir, out: result.dir, applied: result.applied }) + '\n');
+    }
+
+    return;
+  }
+
+  // ── Batch mode (--pilot / --all / --limit) — existing behavior unchanged ────
   const isAll    = args.includes('--all');
   const limitArg = args.find(a => a.startsWith('--limit='));
   const limit    = limitArg ? parseInt(limitArg.split('=')[1], 10) : 10;

@@ -8,6 +8,7 @@
     "contact-sheet": "node src/contact-sheet.js",
     "brand:logo": "node brand/logo.js --emit",
     "compose": "node src/compose.js",
+    "compose:one": "node src/compose.js",
     "gallery": "node src/gallery.js"
   },
   "dependencies": {
