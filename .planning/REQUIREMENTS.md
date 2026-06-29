@@ -30,13 +30,13 @@
 
 ### Brand Kit & Compositing
 
-- [ ] **BRAND-01**: Brand kit module at `ig-studio/brand/` exports design tokens: ivoire `#F5F0E8`, vert accent `#77967A`, font stack (DM Serif Display, Outfit), logo path reference
-- [ ] **BRAND-02**: Logo PNG exported from `umai_logo_menu.svg` / `public/logo.svg` at required resolutions for overlay compositing (transparent background)
-- [ ] **BRAND-03**: Packshot overlay template: subtle corner Umaï logo + optional dish-name chip (FR name) with optional price; chip shown only when dish is classified with confidence ≥ 0.7
-- [ ] **BRAND-04**: Ambiance overlay template: photo-only — no visual overlay, all branding deferred to the caption; template selection driven by `shotType` in `classification.json`
-- [ ] **BRAND-05**: `puppeteer-core` + local Chrome renders the HTML/CSS overlay template → PNG at source resolution, reusing the render pattern from minova ads pipeline
-- [ ] **BRAND-06**: `sips` (macOS built-in) resizes rendered PNG to all 3 Meta formats: feed 1080×1350, square 1080×1080, story 1080×1920 — exact pixel dimensions, no letterboxing
-- [ ] **BRAND-07**: End-to-end CLI command (`npm run ig:compose`) produces branded image variants for the pilot batch and reports output paths
+- [x] **BRAND-01**: Brand kit module at `ig-studio/brand/` exports design tokens: ivoire `#F5F0E8`, vert accent `#77967A`, font stack (DM Serif Display, Outfit), logo path reference
+- [x] **BRAND-02**: Logo PNG exported from `umai_logo_menu.svg` / `public/logo.svg` at required resolutions for overlay compositing (transparent background)
+- [x] **BRAND-03**: Packshot overlay template: subtle corner Umaï logo + optional dish-name chip (FR name) with optional price; chip shown only when dish is classified with confidence ≥ 0.7
+- [x] **BRAND-04**: Ambiance overlay template: photo-only — no visual overlay, all branding deferred to the caption; template selection driven by `shotType` in `classification.json`
+- [x] **BRAND-05**: `puppeteer-core` + local Chrome renders the HTML/CSS overlay template → PNG at source resolution, reusing the render pattern from minova ads pipeline
+- [x] **BRAND-06**: `sips` (macOS built-in) resizes rendered PNG to all 3 Meta formats: feed 1080×1350, square 1080×1080, story 1080×1920 — exact pixel dimensions, no letterboxing
+- [x] **BRAND-07**: End-to-end CLI command (`npm run ig:compose`) produces branded image variants for the pilot batch and reports output paths
 
 ### Captions & Full Assembly
 
@@ -86,13 +86,13 @@
 | INGEST-06 | Phase 04 | Pending |
 | INGEST-07 | Phase 04 | Pending |
 | INGEST-08 | Phase 04 | Pending |
-| BRAND-01 | Phase 05 | Pending |
-| BRAND-02 | Phase 05 | Pending |
-| BRAND-03 | Phase 05 | Pending |
-| BRAND-04 | Phase 05 | Pending |
-| BRAND-05 | Phase 05 | Pending |
-| BRAND-06 | Phase 05 | Pending |
-| BRAND-07 | Phase 05 | Pending |
+| BRAND-01 | Phase 05 | Complete |
+| BRAND-02 | Phase 05 | Complete |
+| BRAND-03 | Phase 05 | Complete |
+| BRAND-04 | Phase 05 | Complete |
+| BRAND-05 | Phase 05 | Complete |
+| BRAND-06 | Phase 05 | Complete |
+| BRAND-07 | Phase 05 | Complete |
 | CAPTION-01 | Phase 06 | Pending |
 | CAPTION-02 | Phase 06 | Pending |
 | CAPTION-03 | Phase 06 | Pending |

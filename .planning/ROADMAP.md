@@ -55,7 +55,7 @@ Plans:
 
 ### Phase 05: Brand Kit & Compositing (CLI — Fast Result)
 
-**Goal:** Given a pilot `classification.json` (post-correction), the CLI produces branded PNG variants in all 3 Meta formats for each photo — packshots get a corner Umaï logo + optional dish chip, ambiance shots are photo-only — using the puppeteer+sips pipeline reused from minova.
+**Goal:** Given a pilot `classification.json` (post-correction), the CLI produces branded PNG variants in all 3 Meta formats for each photo — packshots get a corner Umaï logo + optional dish chip, ambiance shots are photo-only — using a sharp-only compositing pipeline (documented deviation from the puppeteer+sips plan — no Chrome dependency, fully offline).
 
 **Depends on:** Phase 04 (validated pilot classification)
 
@@ -69,7 +69,11 @@ Plans:
 - All output dimensions exactly match Meta specs: 1080×1350, 1080×1080, 1080×1920 (verified via `sips -g pixelHeight`)
 - puppeteer-core launches local Chrome (no download, no cloud); no network call at compose time
 
-**Plans placeholder:** `05-01`, `05-02` (to be defined in plan phase)
+**Plans:** 2 plans
+
+Plans:
+- [x] 05-01-PLAN.md — Brand kit (tokens + sharp-rasterized logo PNG) + dish chip + shotType-driven applyOverlay (BRAND-01..05)
+- [x] 05-02-PLAN.md — coverCrop to exact Meta formats + compose CLI (out/{photoId}/) + review gallery (BRAND-06, 07)
 
 ---
 
@@ -121,6 +125,6 @@ Plans:
 | 2. Content Pages | v1.0 | 5/5 | Complete | 2026-02-23 |
 | 3. SEO, Compliance, and Launch | v1.0 | 3/3 | Complete | 2026-02-23 |
 | 4. Ingestion & Classification (Pilot) | v2.0 | 0/2 | Pending | — |
-| 5. Brand Kit & Compositing | v2.0 | 0/? | Pending | — |
+| 5. Brand Kit & Compositing | v2.0 | 2/2 | Complete   | 2026-06-29 |
 | 6. Captions & Full Assembly | v2.0 | 0/? | Pending | — |
 | 7. Web Review & Override UI | v2.0 | 0/? | Pending | — |
