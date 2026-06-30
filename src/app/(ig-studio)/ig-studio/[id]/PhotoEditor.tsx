@@ -4,10 +4,12 @@
  * Per-photo editor client component.
  * Sections: Plat | Affichage | Légende | Aperçu | Actions
  *
- * Fixes applied (07-UX):
- *  - FIX-1: initialOverlayMode computed from dishSlug — ambiance never gets 'packshot'
- *  - FIX-3: format toggle (Feed / Carré / Story) threaded into preview API
- *  - FIX-4: FR UI with labeled sections and contextual helper text
+ * v2 (overlay-UX rework):
+ *  - 3 explicit overlay modes: photo-only / logo-only / logo-name
+ *  - Logo position (4 corners) + size (Petit/Moyen/Grand) controls
+ *  - "Afficher le prix" checkbox (logo-name only, OFF by default)
+ *  - Elegant minimal name text (no beige chip box) handled in overlay.js
+ *  - dishName always synced to selected dish; ambiance never draws any text
  */
 
 import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
@@ -37,11 +39,27 @@ interface PhotoEditorProps {
 }
 
 type PreviewFormat = 'feed' | 'square' | 'story';
+type OverlayMode  = 'photo-only' | 'logo-only' | 'logo-name';
+type LogoPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+type LogoSize     = 'small' | 'medium' | 'large';
 
 const FORMAT_LABELS: Record<PreviewFormat, string> = {
   feed:   'Feed 1080×1350',
   square: 'Carré 1080×1080',
   story:  'Story 1080×1920',
+};
+
+const POSITION_LABELS: Record<LogoPosition, string> = {
+  'top-left':     'Haut gauche',
+  'top-right':    'Haut droite',
+  'bottom-left':  'Bas gauche',
+  'bottom-right': 'Bas droite',
+};
+
+const SIZE_LABELS: Record<LogoSize, string> = {
+  small:  'Petit',
+  medium: 'Moyen',
+  large:  'Grand',
 };
 
 // Build a flat slug → item map from all groups
@@ -55,73 +73,102 @@ function buildSlugMap(groups: MenuGroup[]) {
   return map;
 }
 
+/** Normalize a stored overlayMode value to the 3-mode union. */
+function normalizeMode(raw: string | undefined | null, isAmbiance: boolean): OverlayMode {
+  if (isAmbiance) return 'photo-only';
+  if (raw === 'photo-only') return 'photo-only';
+  if (raw === 'logo-name' || raw === 'packshot') return 'logo-name'; // packshot compat
+  if (raw === 'logo-only') return 'logo-only';
+  return 'logo-only'; // new default for dish photos
+}
+
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }: PhotoEditorProps) {
   const slugMap = buildSlugMap(groups);
 
-  // ── FIX-1: compute initial overlayMode from dishSlug, not from stored value alone ──
-  // Old entries in classification.json have no overlayMode field → default was 'packshot'
-  // even for ambiance photos. Now we derive from the slug first.
+  // Derived initial slug / item
   const initialSlug = entry?.dishSlug ?? 'ambiance';
   const initialItem = slugMap.get(initialSlug);
-  const initialOverlayMode: 'packshot' | 'photo-only' =
-    (initialSlug === 'ambiance' || initialItem?.overlay === 'none')
-      ? 'photo-only'
-      : (entry?.overlayMode ?? 'packshot') as 'packshot' | 'photo-only';
+  const initialIsAmbiance =
+    initialSlug === 'ambiance' || initialItem?.overlay === 'none';
 
-  // Seed state from server-loaded entry (or defaults)
-  const [dishSlug, setDishSlug]   = useState(initialSlug);
-  const [dishName, setDishName]   = useState(
-    entry?.dishName ?? slugMap.get(initialSlug)?.name ?? 'Ambiance (photo-only)'
+  // ── State ─────────────────────────────────────────────────────────────────
+
+  const [dishSlug, setDishSlug] = useState(initialSlug);
+  const [dishName, setDishName] = useState(
+    // For ambiance, dishName is irrelevant (never drawn) — but keep a safe value
+    initialIsAmbiance
+      ? ''
+      : (entry?.dishName ?? initialItem?.name ?? initialSlug),
   );
-  const [price, setPrice]         = useState<number | null>(entry?.price ?? null);
-  const [baseline, setBaseline]   = useState(entry?.baseline ?? '');
-  const [overlayMode, setOverlayMode] = useState<'packshot' | 'photo-only'>(initialOverlayMode);
-  const [caption, setCaption]     = useState(initialCaption);
+  const [price, setPrice]       = useState<number | null>(entry?.price ?? null);
+  const [baseline, setBaseline] = useState(entry?.baseline ?? '');
 
-  // FIX-3: format toggle for preview
+  // Overlay mode — 3 explicit options
+  const [overlayMode, setOverlayMode] = useState<OverlayMode>(
+    normalizeMode(entry?.overlayMode, initialIsAmbiance),
+  );
+
+  // Logo controls
+  const [logoPosition, setLogoPosition] = useState<LogoPosition>(
+    (entry?.logoPosition as LogoPosition | undefined) ?? 'top-right',
+  );
+  const [logoSize, setLogoSize] = useState<LogoSize>(
+    (entry?.logoSize as LogoSize | undefined) ?? 'medium',
+  );
+  const [showPrice, setShowPrice] = useState<boolean>(entry?.showPrice ?? false);
+
+  // Caption
+  const [caption, setCaption] = useState(initialCaption);
+
+  // Format toggle for preview
   const [previewFormat, setPreviewFormat] = useState<PreviewFormat>('feed');
 
   // UI state
-  const [saveStatus, setSaveStatus]             = useState<'idle' | 'saved' | 'error'>('idle');
+  const [saveStatus, setSaveStatus]               = useState<'idle' | 'saved' | 'error'>('idle');
   const [captionSaveStatus, setCaptionSaveStatus] = useState<'idle' | 'saved' | 'error'>('idle');
-  const [regenStatus, setRegenStatus]           = useState<'idle' | 'success' | 'error' | 'dirty'>('idle');
-  const [regenMsg, setRegenMsg]                 = useState('');
-  const [captionError, setCaptionError]         = useState('');
+  const [regenStatus, setRegenStatus]             = useState<'idle' | 'success' | 'error' | 'dirty'>('idle');
+  const [regenMsg, setRegenMsg]                   = useState('');
+  const [captionError, setCaptionError]           = useState('');
 
-  const [isSaving, startSave]     = useTransition();
+  const [isSaving, startSave]       = useTransition();
   const [isCapSaving, startCapSave] = useTransition();
-  const [isCapGen, startCapGen]   = useTransition();
-  const [isRegen, startRegen]     = useTransition();
+  const [isCapGen, startCapGen]     = useTransition();
+  const [isRegen, startRegen]       = useTransition();
 
   // Live preview state
-  const [previewUrl, setPreviewUrl]       = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl]         = useState<string | null>(null);
   const [previewLoading, setPreviewLoading] = useState(false);
-  const [previewError, setPreviewError]   = useState('');
+  const [previewError, setPreviewError]     = useState('');
   const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const prevObjectUrl = useRef<string | null>(null);
 
-  // Track dirty state (unsaved changes vs what's in classification.json)
+  // Dirty / unsaved state
   const [isDirty, setIsDirty] = useState(false);
 
   // ─── Derived ──────────────────────────────────────────────────────────────
 
   const isAmbiance  = dishSlug === 'ambiance' || slugMap.get(dishSlug)?.overlay === 'none';
   const currentItem = slugMap.get(dishSlug);
+  const showLogoControls = overlayMode !== 'photo-only';
+  const showNameControls = overlayMode === 'logo-name' && !isAmbiance;
 
-  // ─── Dish selection autofill ───────────────────────────────────────────────
+  // ─── Dish selection ────────────────────────────────────────────────────────
 
   function handleDishChange(slug: string) {
     const item = slugMap.get(slug);
+    const isAmb = slug === 'ambiance' || item?.overlay === 'none';
     setDishSlug(slug);
-    setDishName(item?.name ?? slug);
+    // Always sync name to the menu item's actual name; clear for ambiance (never drawn)
+    setDishName(isAmb ? '' : (item?.name ?? slug));
     setPrice(item?.price ?? null);
     setBaseline(item?.baseline ?? '');
-    if (slug === 'ambiance' || item?.overlay === 'none') {
+    if (isAmb) {
       setOverlayMode('photo-only');
-    } else {
-      setOverlayMode('packshot');
+    } else if (overlayMode === 'photo-only') {
+      // Switching from ambiance to a real dish → reset to default logo-only
+      setOverlayMode('logo-only');
     }
     setIsDirty(true);
     setRegenStatus('dirty');
@@ -140,7 +187,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             id,
-            format: previewFormat,   // FIX-3: thread format
+            format: previewFormat,
             entry: {
               file: id + '.jpg',
               dishSlug,
@@ -148,6 +195,9 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               price,
               baseline,
               overlayMode,
+              logoPosition,
+              logoSize,
+              showPrice,
               shotType: entry?.shotType ?? 'packshot',
               confidence: entry?.confidence ?? 0,
             },
@@ -171,7 +221,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
         setPreviewLoading(false);
       }
     }, 400);
-  }, [id, dishSlug, dishName, price, baseline, overlayMode, previewFormat, entry?.shotType, entry?.confidence]);
+  }, [id, dishSlug, dishName, price, baseline, overlayMode, logoPosition, logoSize, showPrice, previewFormat, entry?.shotType, entry?.confidence]);
 
   useEffect(() => {
     triggerPreview();
@@ -190,7 +240,16 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
 
   function handleSave() {
     startSave(async () => {
-      const fields: OverrideFields = { dishSlug, dishName, price, baseline, overlayMode };
+      const fields: OverrideFields = {
+        dishSlug,
+        dishName,
+        price,
+        baseline,
+        overlayMode,
+        logoPosition,
+        logoSize,
+        showPrice,
+      };
       const res = await saveOverride(id, fields);
       if (res.ok) {
         setSaveStatus('saved');
@@ -239,7 +298,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
     });
   }
 
-  // ─── Regenerate (3 formats) ────────────────────────────────────────────────
+  // ─── Regenerate ────────────────────────────────────────────────────────────
 
   function handleRegenerate() {
     setRegenMsg('');
@@ -264,13 +323,13 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
   return (
     <div className="flex flex-col gap-6 p-4 max-w-3xl mx-auto">
 
-      {/* ── Fil conducteur ──────────────────────────────────────────────────── */}
+      {/* ── Fil conducteur ────────────────────────────────────────────────── */}
       <p className="text-xs text-gray-500 leading-relaxed border border-gray-800 rounded-lg px-4 py-3">
-        <span className="font-semibold text-gray-400">Comment utiliser cet éditeur :</span>{' '}
-        1. Choisir le plat → 2. Vérifier l&apos;affichage sur la photo → 3. Générer / éditer la légende → 4. Enregistrer → 5. Régénérer les 3 formats.
+        <span className="font-semibold text-gray-400">Comment utiliser :</span>{' '}
+        1. Choisir le plat → 2. Régler l&apos;affichage → 3. Générer / éditer la légende → 4. Enregistrer → 5. Régénérer les 3 formats.
       </p>
 
-      {/* ── Suggestion IA (lecture seule) ────────────────────────────────────── */}
+      {/* ── Suggestion IA (lecture seule) ─────────────────────────────────── */}
       {entry && (
         <div className="rounded-lg bg-gray-900 border border-gray-800 p-3">
           <p className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wide">Suggestion IA</p>
@@ -371,49 +430,37 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               </div>
             </div>
 
-            {/* Badge info */}
             {currentItem?.vege && (
-              <p className="text-xs text-green-400">🌱 Option végétarienne (tofu teriyaki)</p>
+              <p className="text-xs text-green-400">🌱 Option végétarienne</p>
             )}
             {currentItem?.signature && (
               <p className="text-xs text-yellow-400">★ Spécialité signature Umaï</p>
             )}
           </>
         )}
+
+        {isAmbiance && (
+          <p className="text-xs text-gray-500 italic">
+            Photo d&apos;ambiance — aucun texte ou nom ne sera incrusté sur l&apos;image.
+          </p>
+        )}
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════════
           SECTION 2 — Affichage sur l'image
           ══════════════════════════════════════════════════════════════════════ */}
-      <section className="flex flex-col gap-3 rounded-lg border border-gray-800 p-4">
+      <section className="flex flex-col gap-4 rounded-lg border border-gray-800 p-4">
         <div>
           <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Affichage sur l&apos;image</h2>
           <p className="text-xs text-gray-500 mt-1">
-            Choisissez ce qui sera dessiné directement sur la photo publiée.
+            Choisissez ce qui sera incrusté directement sur la photo publiée.
           </p>
         </div>
 
+        {/* ── 3-mode radio ─────────────────────────────────────────────────── */}
         <div className="flex flex-col gap-2">
-          <label className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
-            overlayMode === 'packshot'
-              ? 'border-indigo-500 bg-indigo-950'
-              : 'border-gray-700 bg-gray-900 hover:border-gray-600'
-          } ${isAmbiance ? 'opacity-40 cursor-not-allowed' : ''}`}>
-            <input
-              type="radio"
-              name="overlay-mode"
-              value="packshot"
-              checked={overlayMode === 'packshot'}
-              disabled={isAmbiance}
-              onChange={() => { if (!isAmbiance) { setOverlayMode('packshot'); setIsDirty(true); } }}
-              className="mt-0.5"
-            />
-            <div>
-              <p className="text-sm font-medium text-gray-200">Packshot — logo Umaï + nom du plat sur l&apos;image</p>
-              <p className="text-xs text-gray-500 mt-0.5">Le logo et le nom du plat sont incrustés dans la photo finale.</p>
-            </div>
-          </label>
 
+          {/* Photo seule */}
           <label className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
             overlayMode === 'photo-only'
               ? 'border-indigo-500 bg-indigo-950'
@@ -428,16 +475,121 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               className="mt-0.5"
             />
             <div>
-              <p className="text-sm font-medium text-gray-200">Photo seule — aucun texte sur l&apos;image</p>
-              <p className="text-xs text-gray-500 mt-0.5">La photo est publiée telle quelle, sans aucune incrustation.</p>
-              {overlayMode === 'photo-only' && (
-                <p className="text-xs text-indigo-400 mt-1 font-medium">
-                  Le texte ira uniquement dans la légende.
-                </p>
-              )}
+              <p className="text-sm font-medium text-gray-200">Photo seule</p>
+              <p className="text-xs text-gray-500 mt-0.5">Rien de dessiné — photo brute publiée telle quelle.</p>
+            </div>
+          </label>
+
+          {/* Logo seul */}
+          <label className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+            overlayMode === 'logo-only'
+              ? 'border-indigo-500 bg-indigo-950'
+              : 'border-gray-700 bg-gray-900 hover:border-gray-600'
+          } ${isAmbiance ? 'opacity-40 cursor-not-allowed' : ''}`}>
+            <input
+              type="radio"
+              name="overlay-mode"
+              value="logo-only"
+              checked={overlayMode === 'logo-only'}
+              disabled={isAmbiance}
+              onChange={() => { if (!isAmbiance) { setOverlayMode('logo-only'); setIsDirty(true); } }}
+              className="mt-0.5"
+            />
+            <div>
+              <p className="text-sm font-medium text-gray-200">Logo seul</p>
+              <p className="text-xs text-gray-500 mt-0.5">Uniquement le logo Umaï, positionné au coin choisi. Défaut recommandé.</p>
+            </div>
+          </label>
+
+          {/* Logo + nom */}
+          <label className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+            overlayMode === 'logo-name'
+              ? 'border-indigo-500 bg-indigo-950'
+              : 'border-gray-700 bg-gray-900 hover:border-gray-600'
+          } ${isAmbiance ? 'opacity-40 cursor-not-allowed' : ''}`}>
+            <input
+              type="radio"
+              name="overlay-mode"
+              value="logo-name"
+              checked={overlayMode === 'logo-name'}
+              disabled={isAmbiance}
+              onChange={() => { if (!isAmbiance) { setOverlayMode('logo-name'); setIsDirty(true); } }}
+              className="mt-0.5"
+            />
+            <div>
+              <p className="text-sm font-medium text-gray-200">Logo + nom du plat</p>
+              <p className="text-xs text-gray-500 mt-0.5">Logo + nom en texte élégant (ivoire, ombre subtile). Prix optionnel ci-dessous.</p>
             </div>
           </label>
         </div>
+
+        {/* ── Logo controls (shown when mode != photo-only) ─────────────────── */}
+        {showLogoControls && (
+          <div className="flex flex-col gap-3 pt-1 border-t border-gray-800">
+
+            {/* Position picker */}
+            <div>
+              <p className="text-xs text-gray-400 font-medium mb-2">Position du logo</p>
+              <div className="grid grid-cols-2 gap-2">
+                {(Object.keys(POSITION_LABELS) as LogoPosition[]).map((pos) => (
+                  <button
+                    key={pos}
+                    type="button"
+                    onClick={() => { setLogoPosition(pos); setIsDirty(true); }}
+                    className={`min-h-[44px] rounded-lg text-xs font-medium transition-colors ${
+                      logoPosition === pos
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                    }`}
+                  >
+                    {POSITION_LABELS[pos]}
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs text-gray-600 mt-1">Coin où le logo est placé sur la photo.</p>
+            </div>
+
+            {/* Size buttons */}
+            <div>
+              <p className="text-xs text-gray-400 font-medium mb-2">Taille du logo</p>
+              <div className="flex gap-2">
+                {(Object.keys(SIZE_LABELS) as LogoSize[]).map((sz) => (
+                  <button
+                    key={sz}
+                    type="button"
+                    onClick={() => { setLogoSize(sz); setIsDirty(true); }}
+                    className={`flex-1 min-h-[44px] rounded-lg text-xs font-medium transition-colors ${
+                      logoSize === sz
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                    }`}
+                  >
+                    {SIZE_LABELS[sz]}
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs text-gray-600 mt-1">Petit = discret, Grand = bien visible.</p>
+            </div>
+
+            {/* showPrice checkbox (logo-name only) */}
+            {showNameControls && (
+              <div>
+                <label className="flex items-center gap-3 cursor-pointer min-h-[44px]">
+                  <input
+                    type="checkbox"
+                    checked={showPrice}
+                    onChange={(e) => { setShowPrice(e.target.checked); setIsDirty(true); }}
+                    className="w-4 h-4 rounded border-gray-600 bg-gray-800"
+                  />
+                  <div>
+                    <p className="text-sm text-gray-200 font-medium">Afficher le prix sur l&apos;image</p>
+                    <p className="text-xs text-gray-500">Désactivé par défaut — le prix va dans la légende.</p>
+                  </div>
+                </label>
+              </div>
+            )}
+          </div>
+        )}
 
         {isAmbiance && (
           <p className="text-xs text-gray-500">
@@ -513,7 +665,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           </p>
         </div>
 
-        {/* FIX-3: Format toggle */}
+        {/* Format toggle */}
         <div className="flex gap-2 flex-wrap">
           {(Object.keys(FORMAT_LABELS) as PreviewFormat[]).map((fmt) => (
             <button
@@ -531,7 +683,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           ))}
         </div>
 
-        {/* Source photo + preview side by side on wider screens */}
+        {/* Source photo + preview side by side */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1 rounded-lg overflow-hidden bg-gray-900">
             <p className="text-xs text-gray-500 px-3 py-2 font-mono">Source originale</p>
@@ -577,7 +729,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
         <div>
           <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Actions</h2>
           <p className="text-xs text-gray-500 mt-1">
-            Enregistrez les réglages du plat, puis régénérez les 3 formats pour exporter.
+            Enregistrez les réglages, puis régénérez les 3 formats pour exporter.
           </p>
         </div>
 

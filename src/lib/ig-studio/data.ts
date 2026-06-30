@@ -26,10 +26,17 @@ export interface IgEntry {
   confidence: number;
   reasoning: string;
   override?: boolean;
+  /** 'photo-only' | 'logo-only' | 'logo-name' (backward compat: 'packshot' → 'logo-name') */
   overlayMode?: string;
   dishName?: string;
   price?: number | null;
   baseline?: string;
+  /** 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' — default 'top-right' */
+  logoPosition?: string;
+  /** 'small' | 'medium' | 'large' — default 'medium' */
+  logoSize?: string;
+  /** Show price on-image (logo-name mode only) — default false */
+  showPrice?: boolean;
 }
 
 export interface IgPhoto {

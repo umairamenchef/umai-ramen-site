@@ -108,3 +108,58 @@ export async function renderChipPng(opts) {
   const svg = buildChipSvg(opts);
   return sharp(Buffer.from(svg)).png().toBuffer();
 }
+
+// ─── Elegant name renderer (logo-name mode) ───────────────────────────────────
+
+/**
+ * Build an elegant minimal name SVG — ivoire serif text with drop shadow, no box.
+ * Used for 'logo-name' overlay mode.
+ *
+ * Font size scales with canvasWidth; text width is approximated for SVG viewport.
+ *
+ * @param {{ name: string, price?: number|null, canvasWidth?: number }} opts
+ * @returns {string} SVG markup
+ */
+export function buildNameSvg({ name, price = null, canvasWidth = 1080 }) {
+  const FONT_SIZE   = Math.max(26, Math.round(canvasWidth * 0.033)); // ~36px @ 1080
+  const PRICE_SIZE  = Math.max(18, Math.round(canvasWidth * 0.022)); // ~24px @ 1080
+  const CHAR_W      = Math.round(FONT_SIZE * 0.55);
+  const PCHAR_W     = Math.round(PRICE_SIZE * 0.55);
+  const LINE_GAP    = Math.round(FONT_SIZE * 0.45);
+  const PAD_TOP     = 6;
+  const PAD_BOT     = 10;
+
+  const hasPrice = price != null;
+  const priceLabel = hasPrice ? formatPrice(price) : '';
+
+  const nameW  = Math.max(160, name.length * CHAR_W + 8);
+  const priceW = hasPrice ? Math.max(80, priceLabel.length * PCHAR_W + 8) : 0;
+  const w = Math.max(nameW, priceW);
+  const h = PAD_TOP + FONT_SIZE + (hasPrice ? LINE_GAP + PRICE_SIZE : 0) + PAD_BOT;
+
+  const nameY  = PAD_TOP + FONT_SIZE;                            // text baseline
+  const priceY = nameY + LINE_GAP + PRICE_SIZE;
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  <filter id="ts" x="-5%" y="-10%" width="120%" height="140%">
+    <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000000" flood-opacity="0.60"/>
+  </filter>
+  <text x="0" y="${nameY}" dominant-baseline="auto"
+        font-family="${FONTS.serif}" font-size="${FONT_SIZE}" fill="${COLORS.ivoire}"
+        font-weight="400" letter-spacing="0.02em" filter="url(#ts)">${escSvg(name)}</text>${hasPrice ? `
+  <text x="0" y="${priceY}" dominant-baseline="auto"
+        font-family="${FONTS.sans}" font-size="${PRICE_SIZE}" fill="${COLORS.vert}"
+        font-weight="600" filter="url(#ts)">${escSvg(priceLabel)}</text>` : ''}
+</svg>`;
+}
+
+/**
+ * Rasterize the elegant dish name to a transparent PNG Buffer.
+ *
+ * @param {{ name: string, price?: number|null, canvasWidth?: number }} opts
+ * @returns {Promise<Buffer>}
+ */
+export async function renderNamePng(opts) {
+  const svg = buildNameSvg(opts);
+  return sharp(Buffer.from(svg)).png().toBuffer();
+}

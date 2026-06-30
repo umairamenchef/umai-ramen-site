@@ -43,6 +43,9 @@ export type OverrideFields = {
   price: number | null;
   baseline: string;
   overlayMode: string;
+  logoPosition: string;
+  logoSize: string;
+  showPrice: boolean;
 };
 
 export async function saveOverride(
@@ -72,6 +75,9 @@ export async function saveOverride(
     price: fields.price,
     baseline: fields.baseline,
     overlayMode: fields.overlayMode,
+    logoPosition: fields.logoPosition,
+    logoSize: fields.logoSize,
+    showPrice: fields.showPrice,
     shotType: prior.shotType ?? 'unknown',
     confidence: prior.confidence ?? 0,
     reasoning: prior.reasoning ?? '',

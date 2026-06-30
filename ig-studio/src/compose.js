@@ -173,8 +173,8 @@ async function main() {
     if (entry.shotType === 'ambiance') {
       statusTag = 'photo-only';
       countAmbiance++;
-    } else if (applied.logo && applied.chip) {
-      statusTag = 'logo+chip';
+    } else if (applied.logo && applied.name) {
+      statusTag = 'logo+name';
       countPackshotChip++;
     } else {
       statusTag = 'logo-only';
@@ -186,8 +186,8 @@ async function main() {
 
   console.log('\n─────────────────────────────────────');
   console.log('[compose] Summary:');
-  console.log(`  Packshot + logo + chip : ${countPackshotChip}`);
-  console.log(`  Packshot + logo only   : ${countPackshotLogo}`);
+  console.log(`  Logo + name            : ${countPackshotChip}`);
+  console.log(`  Logo only              : ${countPackshotLogo}`);
   console.log(`  Ambiance (photo-only)  : ${countAmbiance}`);
   if (countSkipped > 0) console.log(`  Skipped (no entry)     : ${countSkipped}`);
   console.log(`\n[compose] Output path: ${resolve(PKG_ROOT, 'out')}/`);
