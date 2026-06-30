@@ -34,20 +34,20 @@ export default async function IgStudioPage() {
   return (
     <main className="min-h-screen bg-neutral-950 text-white">
       {/* Header */}
-      <header className="border-b border-neutral-800 px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-4 min-w-0">
-          <h1 className="text-xl font-bold tracking-tight shrink-0">Umaï IG Studio</h1>
-          <span className="text-sm text-neutral-400 hidden sm:inline">
-            {validatedCount} validée{validatedCount !== 1 ? 's' : ''} / {photos.length} photos
+      <header className="border-b border-neutral-800 px-4 sm:px-6 py-3 sm:py-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <div className="flex items-baseline gap-2 min-w-0">
+          <h1 className="text-lg sm:text-xl font-bold tracking-tight truncate">Umaï IG Studio</h1>
+          <span className="text-xs sm:text-sm text-neutral-400 shrink-0">
+            <span className="hidden sm:inline">
+              {validatedCount} validée{validatedCount !== 1 ? 's' : ''} / {photos.length} photos
+            </span>
+            <span className="sm:hidden">
+              {validatedCount}/{photos.length}
+            </span>
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
-          {/* Mobile count */}
-          <span className="text-xs text-neutral-500 sm:hidden">
-            {validatedCount}/{photos.length}
-          </span>
-
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
           {/* Generated series */}
           <Link
             href="/ig-studio/generated"

@@ -26,16 +26,16 @@ export default async function GeneratedPage() {
   return (
     <main className="min-h-screen bg-neutral-950 text-white">
       {/* Header */}
-      <header className="border-b border-neutral-800 px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-4 min-w-0">
+      <header className="border-b border-neutral-800 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2 sm:gap-4 min-w-0">
           <Link
             href="/ig-studio"
-            className="text-sm text-neutral-400 hover:text-white transition-colors min-h-[44px] flex items-center"
+            className="text-sm text-neutral-400 hover:text-white transition-colors min-h-[44px] flex items-center shrink-0"
           >
-            ← Galerie
+            ←<span className="hidden sm:inline">&nbsp;Galerie</span>
           </Link>
-          <h1 className="text-xl font-bold tracking-tight shrink-0">Série générée</h1>
-          <span className="text-sm text-neutral-400 hidden sm:inline">
+          <h1 className="text-base sm:text-xl font-bold tracking-tight truncate">Série générée</h1>
+          <span className="text-sm text-neutral-400 hidden sm:inline shrink-0">
             {posts.length} post{posts.length !== 1 ? 's' : ''}
           </span>
         </div>
