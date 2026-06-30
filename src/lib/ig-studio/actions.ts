@@ -49,6 +49,8 @@ export type OverrideFields = {
   logoPosY: number;
   logoSize: string;
   showPrice: boolean;
+  /** 'auto' | 'light' | 'dark' — default 'auto' (luminance-based auto-contrast) */
+  logoColor?: 'auto' | 'light' | 'dark';
 };
 
 export async function saveOverride(
@@ -82,6 +84,7 @@ export async function saveOverride(
     logoPosY: fields.logoPosY,
     logoSize: fields.logoSize,
     showPrice: fields.showPrice,
+    logoColor: fields.logoColor ?? 'auto',
     shotType: prior.shotType ?? 'unknown',
     confidence: prior.confidence ?? 0,
     reasoning: prior.reasoning ?? '',

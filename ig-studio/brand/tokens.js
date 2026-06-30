@@ -15,10 +15,12 @@ import { fileURLToPath } from 'node:url';
 // ─── Colors ───────────────────────────────────────────────────────────────────
 
 export const COLORS = {
-  ivoire: '#F5F0E8',
-  vert:   '#77967A',
-  ink:    '#2B2B2B',
-  white:  '#FFFFFF',
+  ivoire:    '#F5F0E8',
+  vert:      '#77967A',
+  ink:       '#2B2B2B',
+  white:     '#FFFFFF',
+  /** Deep near-black used for the dark logo variant on light/cream backgrounds. */
+  charcoal:  '#1C1C1C',
 };
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
@@ -47,5 +49,11 @@ export const OVERLAY = {
   logoMinPx:      110,    // minimum logo height in pixels (was 70)
   marginFrac:     0.04,   // margin as fraction of min(width, height)
   logoOpacity:    0.92,   // SVG fill-opacity on the wordmark
-  logoFill:       COLORS.ivoire, // light wordmark on dark photo
+  logoFill:       COLORS.ivoire, // light wordmark on dark photo (legacy; use variant now)
+  /**
+   * Luminance threshold for auto logo variant selection.
+   * Region luminance (perceived, 0–1) above this → background is light → use dark logo.
+   * Below → background is dark → use light logo.
+   */
+  autoLuminanceThreshold: 0.55,
 };

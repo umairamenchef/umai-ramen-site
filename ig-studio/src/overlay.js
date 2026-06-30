@@ -12,10 +12,17 @@
  *
  * Backward compat: legacy value 'packshot' is silently treated as 'logo-name'.
  *
+ * Auto-contrast logo variant (entry.logoColor):
+ *   'auto'  (default) — sample the average luminance of the region where the logo will sit;
+ *                        if light background → use dark logo; if dark → use light logo.
+ *   'light' — force the ivoire (#F5F0E8) wordmark regardless of background
+ *   'dark'  — force the charcoal (#1C1C1C) wordmark regardless of background
+ *
  * Tuning knobs (all in entry):
  *   logoPosition?: 'top-left'|'top-right'|'bottom-left'|'bottom-right'  (default 'top-right')
  *   logoSize?:     'small'|'medium'|'large'                              (default 'medium')
  *   showPrice?:    boolean                                                (default false)
+ *   logoColor?:    'auto'|'light'|'dark'                                 (default 'auto')
  *
  * Label resolution (logo-name only):
  *   entry.dishName (human-supplied) → dishLabel(slug) → menuLabel(slug) → null (no name drawn)
@@ -24,7 +31,7 @@
  */
 
 import sharp from 'sharp';
-import { getLogoOverlayPng } from '../brand/logo.js';
+import { getLogoOverlayPng, SVG_ORIG_W, SVG_ORIG_H } from '../brand/logo.js';
 import { renderNamePng } from './chip.js';
 import { dishLabel } from './kb.js';
 import { menuLabel } from './menu.js';
@@ -89,6 +96,39 @@ function logoCoordsXY({ cx, cy, logoW, logoH, canvasW, canvasH, margin }) {
   };
 }
 
+// ─── Luminance sampling ───────────────────────────────────────────────────────
+
+/**
+ * Sample the perceived luminance of a rectangular region in a PNG canvas buffer.
+ * Uses the standard Rec.709 coefficients: 0.2126R + 0.7152G + 0.0722B.
+ *
+ * @param {Buffer} canvasBuffer — PNG buffer
+ * @param {{ left: number, top: number, width: number, height: number }} region
+ * @returns {Promise<number>} — perceived luminance in [0, 1]; 0 = black, 1 = white
+ */
+export async function sampleRegionLuminance(canvasBuffer, region) {
+  // Clamp region to valid positive dimensions (guard against edge cases)
+  const w = Math.max(1, region.width);
+  const h = Math.max(1, region.height);
+
+  const stats = await sharp(canvasBuffer)
+    .extract({
+      left:   Math.max(0, Math.round(region.left)),
+      top:    Math.max(0, Math.round(region.top)),
+      width:  w,
+      height: h,
+    })
+    .stats();
+
+  // channels[0]=R, [1]=G, [2]=B (mean is in [0, 255])
+  const r = stats.channels[0]?.mean ?? 128;
+  const g = stats.channels[1]?.mean ?? 128;
+  const b = stats.channels[2]?.mean ?? 128;
+
+  // Rec.709 perceived luminance, normalized to [0,1]
+  return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+}
+
 // ─── applyOverlay ─────────────────────────────────────────────────────────────
 
 /**
@@ -106,8 +146,9 @@ function logoCoordsXY({ cx, cy, logoW, logoH, canvasW, canvasH, margin }) {
  *   confidence?: number
  *   logoPosition?: string   — corner, default 'top-right'
  *   logoSize?: string       — 'small'|'medium'|'large', default 'medium'
+ *   logoColor?: 'auto'|'light'|'dark' — default 'auto'
  * @param {object} kb — loaded KB (unused directly; passed for future use)
- * @returns {Promise<{ buffer: Buffer, applied: { logo: boolean, name: boolean } }>}
+ * @returns {Promise<{ buffer: Buffer, applied: { logo: boolean, name: boolean }, logoVariant: string }>}
  */
 export async function applyOverlay(canvasBuffer, dims, entry, kb) {
   const { width, height } = dims;
@@ -130,6 +171,7 @@ export async function applyOverlay(canvasBuffer, dims, entry, kb) {
     return {
       buffer: canvasBuffer,
       applied: { logo: false, name: false },
+      logoVariant: null,
     };
   }
 
@@ -144,14 +186,36 @@ export async function applyOverlay(canvasBuffer, dims, entry, kb) {
     Math.round(OVERLAY.logoMinPx * sizeMult),
     Math.round(height * OVERLAY.logoHeightFrac * sizeMult),
   );
-  const logoPng = await getLogoOverlayPng({ height: logoH });
-  const logoMeta = await sharp(logoPng).metadata();
-  const logoW = logoMeta.width;
+
+  // Compute logoW from the fixed SVG aspect ratio (128:44) — no need to fetch PNG first.
+  // This lets us sample the logo region's luminance before choosing the variant.
+  const logoW = Math.round(logoH * SVG_ORIG_W / SVG_ORIG_H);
 
   const { cx, cy } = resolveLogoPosNorm(entry);
   const { top: logoTop, left: logoLeft } = logoCoordsXY({
     cx, cy, logoW, logoH, canvasW: width, canvasH: height, margin,
   });
+
+  // ── Auto-contrast: determine logo variant ─────────────────────────────────
+  const logoColorPref = entry.logoColor ?? 'auto';
+  let logoVariant;
+  if (logoColorPref === 'light') {
+    logoVariant = 'light';
+  } else if (logoColorPref === 'dark') {
+    logoVariant = 'dark';
+  } else {
+    // Auto: sample average luminance of the canvas region where the logo sits
+    const lum = await sampleRegionLuminance(canvasBuffer, {
+      left:   logoLeft,
+      top:    logoTop,
+      width:  logoW,
+      height: logoH,
+    });
+    // Light background (high luminance) → dark logo for contrast; dark bg → light logo
+    logoVariant = lum > OVERLAY.autoLuminanceThreshold ? 'dark' : 'light';
+  }
+
+  const logoPng = await getLogoOverlayPng({ height: logoH, variant: logoVariant });
 
   composites.push({ input: logoPng, top: logoTop, left: logoLeft });
   applied.logo = true;
@@ -197,5 +261,5 @@ export async function applyOverlay(canvasBuffer, dims, entry, kb) {
     .png()
     .toBuffer();
 
-  return { buffer, applied };
+  return { buffer, applied, logoVariant };
 }

@@ -44,6 +44,13 @@ export interface IgEntry {
   logoSize?: string;
   /** Show price on-image (logo-name mode only) — default false */
   showPrice?: boolean;
+  /**
+   * Logo color variant for overlay compositing.
+   * 'auto' (default) — auto-select based on background luminance at logo region.
+   * 'light' — always use ivoire (#F5F0E8) wordmark.
+   * 'dark'  — always use charcoal (#1C1C1C) wordmark.
+   */
+  logoColor?: 'auto' | 'light' | 'dark';
 }
 
 export interface IgPhoto {

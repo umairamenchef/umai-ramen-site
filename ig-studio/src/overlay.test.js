@@ -1,23 +1,33 @@
 /**
- * Tests for applyOverlay (overlay.js) — 3-mode system
- * Uses a synthetic canvas — NO real photos, NO network.
+ * Tests for applyOverlay (overlay.js) — 3-mode system + auto-contrast logo variant
+ * Uses synthetic canvases — NO real photos, NO network.
  * Run: node --test src/overlay.test.js
  */
 
 import { describe, it, before } from 'node:test';
 import assert from 'node:assert/strict';
 import sharp from 'sharp';
-import { applyOverlay } from './overlay.js';
+import { applyOverlay, sampleRegionLuminance } from './overlay.js';
 import { loadKB } from './kb.js';
 
-// ─── Synthetic canvas helper ──────────────────────────────────────────────────
+// ─── Synthetic canvas helpers ─────────────────────────────────────────────────
 
-async function makeCanvas(width = 1080, height = 1350) {
+async function makeCanvas(width = 1080, height = 1350, bg = { r: 120, g: 120, b: 120, alpha: 1 }) {
   return sharp({
-    create: { width, height, channels: 4, background: { r: 120, g: 120, b: 120, alpha: 1 } },
+    create: { width, height, channels: 4, background: bg },
   })
     .png()
     .toBuffer();
+}
+
+/** Very light (near-white) canvas: luminance ≈ 0.94 → AUTO should pick dark logo */
+async function makeLightCanvas(width = 1080, height = 1350) {
+  return makeCanvas(width, height, { r: 240, g: 238, b: 232, alpha: 1 });
+}
+
+/** Very dark (near-black) canvas: luminance ≈ 0.05 → AUTO should pick light logo */
+async function makeDarkCanvas(width = 1080, height = 1350) {
+  return makeCanvas(width, height, { r: 14, g: 14, b: 14, alpha: 1 });
 }
 
 // ─── Tests ─────────────────────────────────────────────────────────────────────
@@ -316,5 +326,87 @@ describe('applyOverlay — showPrice flag', () => {
     };
     const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
     assert.equal(result.applied.name, true);
+  });
+});
+
+// ─── Auto-contrast logo variant ───────────────────────────────────────────────
+
+describe('sampleRegionLuminance', () => {
+  it('near-white canvas returns luminance > 0.9', async () => {
+    const canvas = await makeLightCanvas(200, 200);
+    const lum = await sampleRegionLuminance(canvas, { left: 10, top: 10, width: 100, height: 40 });
+    assert.ok(lum > 0.9, `luminance (${lum.toFixed(3)}) should be > 0.9 on a light canvas`);
+  });
+
+  it('near-black canvas returns luminance < 0.1', async () => {
+    const canvas = await makeDarkCanvas(200, 200);
+    const lum = await sampleRegionLuminance(canvas, { left: 10, top: 10, width: 100, height: 40 });
+    assert.ok(lum < 0.1, `luminance (${lum.toFixed(3)}) should be < 0.1 on a dark canvas`);
+  });
+});
+
+describe('applyOverlay — auto-contrast logoColor', () => {
+  let kb;
+
+  before(async () => {
+    kb = loadKB();
+  });
+
+  it('AUTO on light canvas → logoVariant is "dark" (dark logo for legibility on light bg)', async () => {
+    const canvas = await makeLightCanvas(1080, 1350);
+    const entry = { overlayMode: 'logo-only', dishSlug: 'tantan-umai', logoColor: 'auto' };
+    const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+    assert.equal(result.logoVariant, 'dark', `expected dark logo on light background, got ${result.logoVariant}`);
+    assert.equal(result.applied.logo, true);
+  });
+
+  it('AUTO on dark canvas → logoVariant is "light" (light logo for legibility on dark bg)', async () => {
+    const canvas = await makeDarkCanvas(1080, 1350);
+    const entry = { overlayMode: 'logo-only', dishSlug: 'tantan-umai', logoColor: 'auto' };
+    const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+    assert.equal(result.logoVariant, 'light', `expected light logo on dark background, got ${result.logoVariant}`);
+    assert.equal(result.applied.logo, true);
+  });
+
+  it('AUTO light vs AUTO dark produce different composite images', async () => {
+    const baseEntry = { overlayMode: 'logo-only', dishSlug: 'tantan-umai', logoColor: 'auto' };
+    const lightCanvas = await makeLightCanvas(1080, 1350);
+    const darkCanvas  = await makeDarkCanvas(1080, 1350);
+    const onLight = await applyOverlay(lightCanvas, { width: 1080, height: 1350 }, baseEntry, kb);
+    const onDark  = await applyOverlay(darkCanvas,  { width: 1080, height: 1350 }, baseEntry, kb);
+    // Different canvases + different logo variants → definitely different buffers
+    assert.ok(!onLight.buffer.equals(onDark.buffer), 'composites must differ on light vs dark bg');
+  });
+
+  it('logoColor:"light" forces light variant regardless of background', async () => {
+    const canvas = await makeLightCanvas(1080, 1350);
+    const entry = { overlayMode: 'logo-only', dishSlug: 'tantan-umai', logoColor: 'light' };
+    const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+    assert.equal(result.logoVariant, 'light', 'forced light should stay light even on light bg');
+  });
+
+  it('logoColor:"dark" forces dark variant regardless of background', async () => {
+    const canvas = await makeDarkCanvas(1080, 1350);
+    const entry = { overlayMode: 'logo-only', dishSlug: 'tantan-umai', logoColor: 'dark' };
+    const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+    assert.equal(result.logoVariant, 'dark', 'forced dark should stay dark even on dark bg');
+  });
+
+  it('photo-only mode → logoVariant is null (no logo composited)', async () => {
+    const canvas = await makeCanvas(1080, 1350);
+    const entry = { overlayMode: 'photo-only' };
+    const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+    assert.equal(result.logoVariant, null);
+    assert.equal(result.applied.logo, false);
+  });
+
+  it('omitting logoColor defaults to auto behavior (no throw, returns logoVariant)', async () => {
+    const canvas = await makeCanvas(1080, 1350);
+    const entry = { overlayMode: 'logo-only', dishSlug: 'tantan-umai' }; // no logoColor
+    const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+    assert.ok(
+      result.logoVariant === 'light' || result.logoVariant === 'dark',
+      `logoVariant should be light or dark, got ${result.logoVariant}`,
+    );
   });
 });

@@ -42,6 +42,7 @@ interface PhotoEditorProps {
 type PreviewFormat = 'feed' | 'square' | 'story';
 type OverlayMode  = 'photo-only' | 'logo-only' | 'logo-name';
 type LogoSize     = 'small' | 'medium' | 'large';
+type LogoColor    = 'auto' | 'light' | 'dark';
 
 const FORMAT_LABELS: Record<PreviewFormat, string> = {
   feed:   'Feed 1080×1350',
@@ -53,6 +54,18 @@ const SIZE_LABELS: Record<LogoSize, string> = {
   small:  'Petit',
   medium: 'Moyen',
   large:  'Grand',
+};
+
+const COLOR_LABELS: Record<LogoColor, string> = {
+  auto:  'Auto',
+  light: 'Clair',
+  dark:  'Foncé',
+};
+
+const COLOR_DESC: Record<LogoColor, string> = {
+  auto:  'Sélection automatique selon le fond',
+  light: 'Forcer ivoire (fond sombre)',
+  dark:  'Forcer charbon (fond clair)',
 };
 
 // ─── 9-preset grid ────────────────────────────────────────────────────────────
@@ -148,6 +161,11 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
   );
   const [showPrice, setShowPrice] = useState<boolean>(entry?.showPrice ?? false);
 
+  // Logo color variant ('auto' = luminance-based; 'light' = ivoire; 'dark' = charcoal)
+  const [logoColor, setLogoColor] = useState<LogoColor>(
+    (entry?.logoColor as LogoColor | undefined) ?? 'auto',
+  );
+
   // Caption
   const [caption, setCaption] = useState(initialCaption);
 
@@ -235,6 +253,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               logoPosY,
               logoSize,
               showPrice,
+              logoColor,
               shotType: entry?.shotType ?? 'packshot',
               confidence: entry?.confidence ?? 0,
             },
@@ -258,7 +277,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
         setPreviewLoading(false);
       }
     }, 400);
-  }, [id, dishSlug, dishName, price, baseline, overlayMode, logoPosX, logoPosY, logoSize, showPrice, previewFormat, entry?.shotType, entry?.confidence]);
+  }, [id, dishSlug, dishName, price, baseline, overlayMode, logoPosX, logoPosY, logoSize, showPrice, logoColor, previewFormat, entry?.shotType, entry?.confidence]);
 
   useEffect(() => {
     triggerPreview();
@@ -312,6 +331,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
         logoPosY,
         logoSize,
         showPrice,
+        logoColor,
       };
       const res = await saveOverride(id, fields);
       if (res.ok) {
@@ -608,6 +628,29 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
                 ))}
               </div>
               <p className="text-xs text-gray-600 mt-1">Petit = discret, Grand = bien visible.</p>
+            </div>
+
+            {/* Logo color variant */}
+            <div>
+              <p className="text-xs text-gray-400 font-medium mb-2">Couleur du logo</p>
+              <div className="flex gap-2">
+                {(Object.keys(COLOR_LABELS) as LogoColor[]).map((col) => (
+                  <button
+                    key={col}
+                    type="button"
+                    title={COLOR_DESC[col]}
+                    onClick={() => { setLogoColor(col); setIsDirty(true); }}
+                    className={`flex-1 min-h-[44px] rounded-lg text-xs font-medium transition-colors ${
+                      logoColor === col
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                    }`}
+                  >
+                    {COLOR_LABELS[col]}
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs text-gray-600 mt-1">{COLOR_DESC[logoColor]}</p>
             </div>
 
             {/* 9-preset position grid */}

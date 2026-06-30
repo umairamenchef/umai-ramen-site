@@ -1,10 +1,16 @@
 /**
  * Umaï IG Studio — Logo overlay rasterizer (BRAND-02)
  *
- * Reads umai_logo_menu.svg, injects ivoire fill + opacity,
+ * Reads umai_logo_menu.svg, injects fill color + opacity + a subtle drop shadow,
  * and rasterizes to a transparent PNG via sharp (no Chrome).
  *
- * --emit mode: writes brand/assets/umai-logo-overlay.png at height 120 (committed asset).
+ * Variants:
+ *   'light' — ivoire #F5F0E8 wordmark (original; legible on dark backgrounds)
+ *   'dark'  — charcoal #1C1C1C wordmark (legible on light/cream backgrounds)
+ *
+ * Both variants include a soft drop shadow for legibility on busy/medium backgrounds.
+ *
+ * --emit mode: writes brand/assets/umai-logo-overlay-{variant}.png at height 120.
  */
 
 import sharp from 'sharp';
@@ -15,43 +21,80 @@ import { LOGO_SRC, OVERLAY, COLORS } from './tokens.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// SVG viewBox original dimensions
-const SVG_ORIG_W = 128;
-const SVG_ORIG_H = 44;
+// SVG viewBox original dimensions (fixed — matches umai_logo_menu.svg viewBox)
+export const SVG_ORIG_W = 128;
+export const SVG_ORIG_H = 44;
 
-// Per-height memoization cache
+/** Fill colors keyed by variant */
+const VARIANT_FILL = {
+  light: COLORS.ivoire,
+  dark:  COLORS.charcoal,
+};
+
+/**
+ * Build an SVG filter string that adds a subtle drop shadow.
+ * Uses SourceAlpha-based feGaussianBlur (well-supported in librsvg).
+ * The shadow is a semi-transparent black regardless of logo variant —
+ * it's subtle enough to be tasteful on all backgrounds.
+ */
+function buildShadowFilter() {
+  return (
+    `<filter id="umai-shadow" x="-15%" y="-25%" width="130%" height="150%" color-interpolation-filters="sRGB">` +
+    `<feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="blur"/>` +
+    `<feFlood flood-color="#000000" flood-opacity="0.28" result="shadowFlood"/>` +
+    `<feComposite in="shadowFlood" in2="blur" operator="in" result="shadowColored"/>` +
+    `<feMerge><feMergeNode in="shadowColored"/><feMergeNode in="SourceGraphic"/></feMerge>` +
+    `</filter>`
+  );
+}
+
+// Per-(height, variant) memoization cache
 const _cache = new Map();
 
 /**
  * Rasterize the Umaï wordmark SVG to a transparent PNG Buffer at the given height.
- * The wordmark is recolored to ivoire (#F5F0E8) at OVERLAY.logoOpacity opacity.
+ * The wordmark is recolored to the chosen variant fill at OVERLAY.logoOpacity opacity.
+ * A subtle drop shadow is baked into the SVG before rasterization.
  * Width is computed preserving the original aspect ratio.
  *
- * @param {{ height?: number }} [opts]
+ * @param {{ height?: number, variant?: 'light' | 'dark' }} [opts]
  * @returns {Promise<Buffer>}
  */
-export async function getLogoOverlayPng({ height = 120 } = {}) {
-  if (_cache.has(height)) return _cache.get(height);
+export async function getLogoOverlayPng({ height = 120, variant = 'light' } = {}) {
+  const cacheKey = `${height}:${variant}`;
+  if (_cache.has(cacheKey)) return _cache.get(cacheKey);
 
   const width = Math.round(height * SVG_ORIG_W / SVG_ORIG_H);
+  const fillColor = VARIANT_FILL[variant] ?? COLORS.ivoire;
 
   // Read the committed SVG
   const svgSrc = readFileSync(LOGO_SRC, 'utf-8');
 
-  // Inject ivoire fill + opacity into the root <svg> tag.
-  // The original paths have no explicit fill (default black) — we override at the root.
-  const svg = svgSrc.replace(
+  // 1. Inject fill + opacity into the root <svg> tag
+  let svg = svgSrc.replace(
     '<svg',
-    `<svg fill="${COLORS.ivoire}" fill-opacity="${OVERLAY.logoOpacity}"`
+    `<svg fill="${fillColor}" fill-opacity="${OVERLAY.logoOpacity}"`,
   );
+
+  // 2. Inject the drop shadow filter into existing <defs>
+  svg = svg.replace('<defs>', `<defs>${buildShadowFilter()}`);
+
+  // 3. Apply the filter to the outermost content <g> (the one right after </defs>)
+  //    The SVG structure is: <svg><defs>...</defs><g>...</g></svg>
+  svg = svg.replace('</defs><g>', '</defs><g filter="url(#umai-shadow)">');
 
   const buffer = await sharp(Buffer.from(svg))
     .resize({ width, height })
     .png()
     .toBuffer();
 
-  _cache.set(height, buffer);
+  _cache.set(cacheKey, buffer);
   return buffer;
+}
+
+/** Clear the logo cache (useful in tests). */
+export function clearLogoCache() {
+  _cache.clear();
 }
 
 // ─── --emit mode ──────────────────────────────────────────────────────────────
@@ -63,12 +106,20 @@ if (import.meta.url === (new URL(process.argv[1], 'file://')).href) {
     const assetsDir = resolve(__dirname, 'assets');
     mkdirSync(assetsDir, { recursive: true });
 
-    const outPath = resolve(assetsDir, 'umai-logo-overlay.png');
-    const buf = await getLogoOverlayPng({ height: EMIT_HEIGHT });
-    writeFileSync(outPath, buf);
+    for (const variant of ['light', 'dark']) {
+      const outPath = resolve(assetsDir, `umai-logo-overlay-${variant}.png`);
+      const buf = await getLogoOverlayPng({ height: EMIT_HEIGHT, variant });
+      writeFileSync(outPath, buf);
 
-    const meta = await sharp(buf).metadata();
-    console.log(`[brand:logo] Written: ${outPath}`);
-    console.log(`[brand:logo] ${meta.width}×${meta.height} px, alpha=${meta.hasAlpha}, format=${meta.format}`);
+      const meta = await sharp(buf).metadata();
+      console.log(`[brand:logo] Written: ${outPath}`);
+      console.log(`[brand:logo] ${meta.width}×${meta.height} px, alpha=${meta.hasAlpha}, format=${meta.format}`);
+    }
+
+    // Also emit the legacy filename for backward compat (= light variant)
+    const legacyPath = resolve(assetsDir, 'umai-logo-overlay.png');
+    const legacyBuf = await getLogoOverlayPng({ height: EMIT_HEIGHT, variant: 'light' });
+    writeFileSync(legacyPath, legacyBuf);
+    console.log(`[brand:logo] Written (legacy): ${legacyPath}`);
   }
 }
