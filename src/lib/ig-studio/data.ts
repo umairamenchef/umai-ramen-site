@@ -206,3 +206,69 @@ export async function getPhotos(): Promise<IgPhoto[]> {
     } satisfies IgPhoto;
   });
 }
+
+// ─── Generated posts (out/) ──────────────────────────────────────────────────
+
+export interface GeneratedPost {
+  id: string;
+  dishName: string;
+  dishSlug: string;
+  group: string;
+  /** Which formats exist on disk. */
+  formats: { feed: boolean; square: boolean; story: boolean };
+  caption: string;
+}
+
+/**
+ * Returns every photo that has at least a feed.png rendered in out/{id}/,
+ * sorted by id. Reads out/, classification.json, captions.json, menu-options.json.
+ * The caption falls back to out/{id}/caption.txt when not in captions.json.
+ */
+export async function getGeneratedPosts(): Promise<GeneratedPost[]> {
+  if (!existsSync(OUT_DIR)) return [];
+
+  const ids = readdirSync(OUT_DIR)
+    .filter((d) => /^umai_\d{3}$/.test(d))
+    .filter((d) => existsSync(resolve(OUT_DIR, d, 'feed.png')))
+    .sort();
+
+  const entries = readClassification();
+  const captions = readCaptions();
+  const menu = loadMenuOptions();
+  const entryByFile = new Map<string, IgEntry>();
+  for (const e of entries) entryByFile.set(e.file, e);
+
+  return ids.map((id) => {
+    const entry = entryByFile.get(id + '.jpg');
+    const dishSlug = entry?.dishSlug ?? 'ambiance';
+    const dishName = entry?.dishName ?? menu.menuLabel(dishSlug);
+    const group = menu.slugToGroup.get(dishSlug) ?? 'Non classé';
+
+    let caption = captions[id]?.text ?? '';
+    if (!caption) {
+      try {
+        caption = readFileSync(resolve(OUT_DIR, id, 'caption.txt'), 'utf-8').trim();
+      } catch { /* no caption file */ }
+    }
+
+    return {
+      id,
+      dishName,
+      dishSlug,
+      group,
+      formats: {
+        feed:   existsSync(resolve(OUT_DIR, id, 'feed.png')),
+        square: existsSync(resolve(OUT_DIR, id, 'square.png')),
+        story:  existsSync(resolve(OUT_DIR, id, 'story.png')),
+      },
+      caption,
+    } satisfies GeneratedPost;
+  });
+}
+
+/** Absolute path to a generated output PNG (after id + format validation). */
+export function outputFsPath(id: string, format: 'feed' | 'square' | 'story'): string {
+  if (!isValidPhotoId(id)) throw new Error(`Invalid photo id: ${id}`);
+  if (!['feed', 'square', 'story'].includes(format)) throw new Error(`Invalid format: ${format}`);
+  return resolve(OUT_DIR, id, format + '.png');
+}

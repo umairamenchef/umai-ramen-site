@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import { requireStudioAuth } from '@/lib/ig-studio/auth';
-import { getPhotos, loadMenuOptions } from '@/lib/ig-studio/data';
+import { getPhotos, getGeneratedPosts, loadMenuOptions } from '@/lib/ig-studio/data';
 import { logout } from './login/actions';
 import GalleryFilters from './GalleryFilters';
 
@@ -20,6 +21,7 @@ export default async function IgStudioPage() {
   }
 
   const photos = await getPhotos();
+  const generated = await getGeneratedPosts();
   const menu = loadMenuOptions();
 
   // Collect unique group names in menu order for the filter dropdown
@@ -45,6 +47,16 @@ export default async function IgStudioPage() {
           <span className="text-xs text-neutral-500 sm:hidden">
             {validatedCount}/{photos.length}
           </span>
+
+          {/* Generated series */}
+          <Link
+            href="/ig-studio/generated"
+            className="text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors px-3 py-1.5 rounded-lg hover:bg-neutral-800 min-h-[44px] flex items-center gap-1.5 border border-indigo-900 hover:border-indigo-700"
+          >
+            <span className="hidden sm:inline">Série générée</span>
+            <span className="sm:hidden">Série</span>
+            <span className="ml-0.5 text-xs opacity-60">({generated.length})</span>
+          </Link>
 
           {/* Export — a real link only when there is something to export */}
           {(() => {
