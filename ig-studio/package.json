@@ -10,7 +10,8 @@
     "compose": "node src/compose.js",
     "compose:one": "node src/compose.js",
     "gallery": "node src/gallery.js",
-    "caption": "node --env-file=.env src/caption.js"
+    "caption": "node --env-file=.env src/caption.js",
+    "set": "node --env-file=.env src/make-set.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.106.0",

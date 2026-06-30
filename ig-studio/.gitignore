@@ -11,5 +11,6 @@ contact-sheet.html
 .pilot-signoff
 # deps
 node_modules/
-# generated review artifact (local only)
+# generated review artifacts (local only — reference out/ which is gitignored)
 gallery.html
+set-gallery.html
