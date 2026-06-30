@@ -96,7 +96,7 @@ export async function GET() {
     // Read zip into buffer and return
     const zipBuffer = readFileSync(zipPath);
 
-    return new Response(zipBuffer, {
+    return new Response(new Uint8Array(zipBuffer), {
       status: 200,
       headers: {
         'Content-Type': 'application/zip',

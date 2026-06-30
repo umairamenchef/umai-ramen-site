@@ -70,7 +70,7 @@ export async function POST(req: Request): Promise<Response> {
 
     const buf = readFileSync(outPng);
 
-    return new Response(buf, {
+    return new Response(new Uint8Array(buf), {
       headers: {
         'Content-Type': 'image/png',
         'Cache-Control': 'no-store',

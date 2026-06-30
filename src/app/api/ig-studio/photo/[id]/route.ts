@@ -51,7 +51,7 @@ export async function GET(
       .jpeg({ quality: 70 })
       .toBuffer();
 
-    return new Response(buf, {
+    return new Response(new Uint8Array(buf), {
       headers: {
         'Content-Type': 'image/jpeg',
         'Cache-Control': 'private, max-age=3600',
@@ -61,7 +61,7 @@ export async function GET(
 
   // Full-resolution file
   const buf = await readFile(p);
-  return new Response(buf, {
+  return new Response(new Uint8Array(buf), {
     headers: {
       'Content-Type': 'image/jpeg',
       'Cache-Control': 'private, max-age=3600',
