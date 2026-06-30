@@ -75,11 +75,12 @@ function buildSlugMap(groups: MenuGroup[]) {
 
 /** Normalize a stored overlayMode value to the 3-mode union. */
 function normalizeMode(raw: string | undefined | null, isAmbiance: boolean): OverlayMode {
-  if (isAmbiance) return 'photo-only';
+  // Honor an explicitly stored choice for ANY photo (including ambiance).
   if (raw === 'photo-only') return 'photo-only';
   if (raw === 'logo-name' || raw === 'packshot') return 'logo-name'; // packshot compat
   if (raw === 'logo-only') return 'logo-only';
-  return 'logo-only'; // new default for dish photos
+  // No stored choice → default: ambiance = photo-only, dish photo = logo-only.
+  return isAmbiance ? 'photo-only' : 'logo-only';
 }
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -485,14 +486,13 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
             overlayMode === 'logo-only'
               ? 'border-indigo-500 bg-indigo-950'
               : 'border-gray-700 bg-gray-900 hover:border-gray-600'
-          } ${isAmbiance ? 'opacity-40 cursor-not-allowed' : ''}`}>
+          }`}>
             <input
               type="radio"
               name="overlay-mode"
               value="logo-only"
               checked={overlayMode === 'logo-only'}
-              disabled={isAmbiance}
-              onChange={() => { if (!isAmbiance) { setOverlayMode('logo-only'); setIsDirty(true); } }}
+              onChange={() => { setOverlayMode('logo-only'); setIsDirty(true); }}
               className="mt-0.5"
             />
             <div>
@@ -506,14 +506,13 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
             overlayMode === 'logo-name'
               ? 'border-indigo-500 bg-indigo-950'
               : 'border-gray-700 bg-gray-900 hover:border-gray-600'
-          } ${isAmbiance ? 'opacity-40 cursor-not-allowed' : ''}`}>
+          }`}>
             <input
               type="radio"
               name="overlay-mode"
               value="logo-name"
               checked={overlayMode === 'logo-name'}
-              disabled={isAmbiance}
-              onChange={() => { if (!isAmbiance) { setOverlayMode('logo-name'); setIsDirty(true); } }}
+              onChange={() => { setOverlayMode('logo-name'); setIsDirty(true); }}
               className="mt-0.5"
             />
             <div>
@@ -593,7 +592,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
 
         {isAmbiance && (
           <p className="text-xs text-gray-500">
-            Photo d&apos;ambiance — mode &quot;Photo seule&quot; activé automatiquement.
+            Photo d&apos;ambiance — « Photo seule » par défaut. Vous pouvez quand même ajouter le logo (« Logo seul ») si vous le souhaitez.
           </p>
         )}
       </section>
