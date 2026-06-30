@@ -12,6 +12,7 @@ import {
   readClassification,
   readCaptions,
   loadMenuOptions,
+  getPhotos,
   type IgEntry,
 } from '@/lib/ig-studio/data';
 import { PhotoEditor } from './PhotoEditor';
@@ -44,6 +45,12 @@ export default async function PhotoEditorPage({ params }: PageProps) {
   const entry: IgEntry | undefined = entries.find((e) => e.file === id + '.jpg');
   const captionText = captions[id]?.text ?? '';
 
+  // Adjacent ids for batch navigation (same order as the gallery: sorted by filename)
+  const photos = await getPhotos();
+  const idx = photos.findIndex((p) => p.id === id);
+  const prevId = idx > 0 ? photos[idx - 1].id : null;
+  const nextId = idx >= 0 && idx < photos.length - 1 ? photos[idx + 1].id : null;
+
   return (
     <div className="min-h-screen bg-gray-950 text-white">
       {/* Header */}
@@ -68,7 +75,8 @@ export default async function PhotoEditorPage({ params }: PageProps) {
         entry={entry ?? null}
         caption={captionText}
         groups={menu.groups}
-        nap={menu.nap}
+        prevId={prevId}
+        nextId={nextId}
       />
     </div>
   );

@@ -5,7 +5,7 @@
  * Never imported from client components (only called as server actions).
  */
 
-import { writeFileSync } from 'fs';
+import { writeFileSync, renameSync } from 'fs';
 import { tmpdir } from 'os';
 import { resolve } from 'path';
 import { randomBytes } from 'crypto';
@@ -28,6 +28,16 @@ function tmpJson(prefix: string, data: unknown): string {
   const p = resolve(tmpdir(), `${prefix}-${randomBytes(6).toString('hex')}.json`);
   writeFileSync(p, JSON.stringify(data, null, 2));
   return p;
+}
+
+/**
+ * Atomically write a JSON store: write to a temp file in the SAME directory,
+ * then renameSync over the target. Prevents data loss / cross-process partial reads.
+ */
+function writeJsonAtomic(target: string, data: unknown): void {
+  const tmp = target + '.tmp-' + randomBytes(6).toString('hex');
+  writeFileSync(tmp, JSON.stringify(data, null, 2));
+  renameSync(tmp, target);
 }
 
 function revalidateStudio(id: string) {
@@ -97,7 +107,7 @@ export async function saveOverride(
       : [...entries, updated];
 
   next.sort((a, b) => a.file.localeCompare(b.file));
-  writeFileSync(CLASSIFICATION_PATH, JSON.stringify(next, null, 2));
+  writeJsonAtomic(CLASSIFICATION_PATH, next);
 
   revalidateStudio(id);
   return { ok: true };
@@ -121,7 +131,7 @@ export async function saveCaption(
 
   const captions = readCaptions();
   captions[id] = { text, updatedAt: new Date().toISOString() };
-  writeFileSync(CAPTIONS_PATH, JSON.stringify(captions, null, 2));
+  writeJsonAtomic(CAPTIONS_PATH, captions);
 
   revalidateStudio(id);
   return { ok: true };
@@ -158,6 +168,9 @@ export async function generateCaptionAction(
     }
 
     return { ok: true, caption: result.stdout.trim() };
+  } catch (err) {
+    // runIgStudio rejects on spawn error / timeout — convert to graceful shape.
+    return { ok: false, error: String(err) };
   } finally {
     try {
       const { unlinkSync } = await import('fs');
@@ -183,9 +196,15 @@ export async function regeneratePhoto(
     return { ok: false, error: 'invalid photo id' };
   }
 
-  const run = await runIgStudio(['src/compose.js', '--photo', id], {
-    timeoutMs: 90_000,
-  });
+  let run;
+  try {
+    run = await runIgStudio(['src/compose.js', '--photo', id], {
+      timeoutMs: 90_000,
+    });
+  } catch (err) {
+    // runIgStudio rejects on spawn error / timeout — convert to graceful shape.
+    return { ok: false, error: String(err) };
+  }
 
   if (run.code !== 0) {
     return { ok: false, error: run.stderr || `exit code ${run.code}` };

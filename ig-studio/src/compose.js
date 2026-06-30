@@ -18,7 +18,6 @@ import { pathToFileURL } from 'node:url';
 
 import { FORMATS, coverCrop } from './crop.js';
 import { applyOverlay } from './overlay.js';
-import { loadKB } from './kb.js';
 import { readStore } from './store.js';
 import { listPhotos, selectPilot, photoPath, PKG_ROOT } from './photos.js';
 
@@ -99,7 +98,6 @@ async function main() {
     const entryIdx    = args.indexOf('--entry-file');
     const entryFile   = entryIdx !== -1 ? args[entryIdx + 1] : null;
 
-    const kb    = loadKB();
     const store = readStore();
 
     // Resolve entry: --entry-file JSON beats store lookup
@@ -122,11 +120,11 @@ async function main() {
         console.error('[compose] --preview requires both --format <f> and --out <path>');
         process.exit(1);
       }
-      await composeOne(file, entry, kb, { format, outPath });
+      await composeOne(file, entry, undefined, { format, outPath });
       process.stdout.write(JSON.stringify({ photoId, format, out: outPath }) + '\n');
     } else {
       // Single-photo full export: all 3 formats → out/{photoId}/
-      const result = await composePhoto(file, entry, kb);
+      const result = await composePhoto(file, entry);
       process.stdout.write(JSON.stringify({ photoId: result.photoId, dir: result.dir, out: result.dir, applied: result.applied }) + '\n');
     }
 
@@ -138,7 +136,6 @@ async function main() {
   const limitArg = args.find(a => a.startsWith('--limit='));
   const limit    = limitArg ? parseInt(limitArg.split('=')[1], 10) : 10;
 
-  const kb    = loadKB();
   const store = readStore();
 
   // Index classification entries by file
@@ -166,7 +163,7 @@ async function main() {
       continue;
     }
 
-    const result = await composePhoto(file, entry, kb);
+    const result = await composePhoto(file, entry);
 
     const { applied } = result;
     let statusTag;

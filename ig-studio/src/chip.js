@@ -18,7 +18,7 @@ const ACCENT_GAP      = 14;   // gap between accent bar and text (was 10)
 const NAME_FONT_SIZE  = 27;   // px — dish name (serif) (was 18, now 1.5×)
 const PRICE_FONT_SIZE = 20;   // px — price (sans) (was 13, now ~1.5×)
 const PRICE_GAP       = 12;   // gap between name block and price block (was 8)
-const NAME_CHAR_W     = 16;   // approx px per char of name (serif 27px) (was 11)
+const NAME_CHAR_W     = 18;   // approx px per char of name (serif 27px) — over-estimate to avoid clipping accented serif glyphs
 const PRICE_CHAR_W    = 11;   // approx px per char of price (sans 20px) (was 7.5)
 const CORNER_R        = 14;   // corner radius (was 10)
 const PRICE_LABEL_EXTRA = 28; // extra width for price currency suffix ' €' (was 20)
@@ -26,7 +26,9 @@ const PRICE_LABEL_EXTRA = 28; // extra width for price currency suffix ' €' (w
 // ─── Format price (FR locale: dot → comma + ' €') ─────────────────────────────
 
 function formatPrice(price) {
-  return price.toFixed(2).replace('.', ',') + ' €';
+  const p = typeof price === 'number' ? price : Number(price);
+  if (!Number.isFinite(p)) return '';
+  return p.toFixed(2).replace('.', ',') + ' €';
 }
 
 // ─── Chip width calculation ────────────────────────────────────────────────────
@@ -37,7 +39,8 @@ function chipWidth(name, price) {
   const priceW = price != null
     ? PRICE_GAP + (formatPrice(price).length * PRICE_CHAR_W) + PRICE_LABEL_EXTRA
     : 0;
-  return Math.max(160, textStart + nameW + priceW + PADDING_X);
+  // Over-estimate width (extra right padding is transparent — harmless; under-estimate clips).
+  return Math.max(200, textStart + nameW + priceW + PADDING_X + Math.round(NAME_FONT_SIZE * 0.6));
 }
 
 // ─── SVG chip builder ─────────────────────────────────────────────────────────
@@ -123,8 +126,8 @@ export async function renderChipPng(opts) {
 export function buildNameSvg({ name, price = null, canvasWidth = 1080 }) {
   const FONT_SIZE   = Math.max(26, Math.round(canvasWidth * 0.033)); // ~36px @ 1080
   const PRICE_SIZE  = Math.max(18, Math.round(canvasWidth * 0.022)); // ~24px @ 1080
-  const CHAR_W      = Math.round(FONT_SIZE * 0.55);
-  const PCHAR_W     = Math.round(PRICE_SIZE * 0.55);
+  const CHAR_W      = Math.round(FONT_SIZE * 0.62);  // over-estimate per-char to avoid clipping serif glyphs
+  const PCHAR_W     = Math.round(PRICE_SIZE * 0.6);
   const LINE_GAP    = Math.round(FONT_SIZE * 0.45);
   const PAD_TOP     = 6;
   const PAD_BOT     = 10;
@@ -134,7 +137,8 @@ export function buildNameSvg({ name, price = null, canvasWidth = 1080 }) {
 
   const nameW  = Math.max(160, name.length * CHAR_W + 8);
   const priceW = hasPrice ? Math.max(80, priceLabel.length * PCHAR_W + 8) : 0;
-  const w = Math.max(nameW, priceW);
+  // Add generous right slack so the declared SVG width never crops glyphs (transparent padding).
+  const w = Math.max(nameW, priceW) + Math.round(FONT_SIZE * 0.6);
   const h = PAD_TOP + FONT_SIZE + (hasPrice ? LINE_GAP + PRICE_SIZE : 0) + PAD_BOT;
 
   const nameY  = PAD_TOP + FONT_SIZE;                            // text baseline

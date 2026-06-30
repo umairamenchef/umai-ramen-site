@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { IgPhoto } from '@/lib/ig-studio/data';
 
 interface Props {
@@ -11,10 +11,28 @@ interface Props {
 type StatusFilter = 'all' | 'validated' | 'pending';
 type ConfFilter = 'all' | 'high' | 'low';
 
+/** Read initial filter from the URL query so back-navigation restores it. */
+function readParam<T extends string>(key: string, allowed: readonly T[], fallback: T): T {
+  if (typeof window === 'undefined') return fallback;
+  const v = new URLSearchParams(window.location.search).get(key);
+  return (v && (allowed as readonly string[]).includes(v)) ? (v as T) : fallback;
+}
+
 export default function GalleryFilters({ photos, groups }: Props) {
-  const [status, setStatus] = useState<StatusFilter>('all');
-  const [group, setGroup] = useState<string>('all');
-  const [conf, setConf] = useState<ConfFilter>('all');
+  const [status, setStatus] = useState<StatusFilter>(() => readParam('status', ['all', 'validated', 'pending'] as const, 'all'));
+  const [group, setGroup] = useState<string>(() => readParam('group', ['all', ...groups], 'all'));
+  const [conf, setConf] = useState<ConfFilter>(() => readParam('conf', ['all', 'high', 'low'] as const, 'all'));
+
+  // Keep the URL query in sync so leaving and coming back (browser back) preserves filters.
+  useEffect(() => {
+    const qs = new URLSearchParams();
+    if (status !== 'all') qs.set('status', status);
+    if (group !== 'all') qs.set('group', group);
+    if (conf !== 'all') qs.set('conf', conf);
+    const next = qs.toString();
+    const url = next ? `?${next}` : window.location.pathname;
+    window.history.replaceState(null, '', url);
+  }, [status, group, conf]);
 
   const filtered = photos.filter((p) => {
     if (status !== 'all' && p.status !== status) return false;
@@ -86,7 +104,7 @@ export default function GalleryFilters({ photos, groups }: Props) {
         {/* Result count */}
         <div className="flex items-end ml-auto">
           <span className="text-sm text-neutral-500 min-h-[44px] flex items-center">
-            {filtered.length} / {photos.length} photo{photos.length > 1 ? 's' : ''}
+            {filtered.length} / {photos.length} photo{filtered.length > 1 ? 's' : ''}
           </span>
         </div>
       </div>

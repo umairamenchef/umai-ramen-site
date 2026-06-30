@@ -196,7 +196,7 @@ export async function getPhotos(): Promise<IgPhoto[]> {
       dishSlug,
       dishName,
       shotType: entry?.shotType ?? 'unknown',
-      overlayMode: entry?.overlayMode ?? 'packshot',
+      overlayMode: entry?.overlayMode ?? 'logo-only',
       confidence: entry?.confidence ?? 0,
       reasoning: entry?.reasoning ?? '',
       override,

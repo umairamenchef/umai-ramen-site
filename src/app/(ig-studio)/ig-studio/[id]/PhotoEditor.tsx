@@ -4,13 +4,12 @@
  * Per-photo editor client component.
  * Sections: Plat | Affichage | Aperçu (avec drag logo) | Légende | Actions
  *
- * v3 (drag-position rework):
- *  - 3 explicit overlay modes: photo-only / logo-only / logo-name
- *  - Logo position = normalized {x, y} in [0,1] (logo center as fraction of canvas)
- *  - 9 quick-position presets (3×3 grid: HG/HC/HD / CG/C/CD / BG/BC/BD)
- *  - Freely draggable logo handle on the live preview
- *  - Logo size (Petit/Moyen/Grand) control
- *  - "Afficher le prix" checkbox (logo-name only, OFF by default)
+ * v4 (quality pass):
+ *  - One "Enregistrer" saves BOTH réglages + légende (caption can no longer be lost)
+ *  - "Logo + nom" works on ambiance photos too (name editable in that mode)
+ *  - Live preview: out-of-order guard (AbortController) + last-good image kept on error
+ *  - Suivant / Précédent navigation for the 81-photo batch ("Enregistrer & suivant")
+ *  - Plain-language labels, readable contrast, larger tap targets
  */
 
 import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
@@ -23,20 +22,14 @@ import {
 } from '@/lib/ig-studio/actions';
 import type { IgEntry, MenuGroup } from '@/lib/ig-studio/data';
 
-interface Nap {
-  name: string;
-  address: string;
-  phone: string;
-  instagram: string;
-  website: string;
-}
-
 interface PhotoEditorProps {
   id: string;
   entry: IgEntry | null;
   caption: string;
   groups: MenuGroup[];
-  nap: Nap;
+  /** Adjacent photo ids for batch navigation (null at the ends). */
+  prevId?: string | null;
+  nextId?: string | null;
 }
 
 type PreviewFormat = 'feed' | 'square' | 'story';
@@ -45,15 +38,28 @@ type LogoSize     = 'small' | 'medium' | 'large';
 type LogoColor    = 'auto' | 'light' | 'dark';
 
 const FORMAT_LABELS: Record<PreviewFormat, string> = {
-  feed:   'Feed 1080×1350',
-  square: 'Carré 1080×1080',
-  story:  'Story 1080×1920',
+  feed:   'Publication',
+  square: 'Carré',
+  story:  'Story',
+};
+
+const FORMAT_DIMS: Record<PreviewFormat, string> = {
+  feed:   '1080×1350',
+  square: '1080×1080',
+  story:  '1080×1920',
 };
 
 const SIZE_LABELS: Record<LogoSize, string> = {
   small:  'Petit',
   medium: 'Moyen',
   large:  'Grand',
+};
+
+/** Ghost-box footprint per logo size, so the drag handle matches the real logo. */
+const SIZE_GHOST: Record<LogoSize, { w: number; h: number }> = {
+  small:  { w: 20, h: 6 },
+  medium: { w: 26, h: 8 },
+  large:  { w: 34, h: 11 },
 };
 
 const COLOR_LABELS: Record<LogoColor, string> = {
@@ -123,7 +129,7 @@ function normalizeMode(raw: string | undefined | null, isAmbiance: boolean): Ove
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
-export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }: PhotoEditorProps) {
+export function PhotoEditor({ id, entry, caption: initialCaption, groups, prevId, nextId }: PhotoEditorProps) {
   const slugMap = buildSlugMap(groups);
 
   // Derived initial slug / item
@@ -137,7 +143,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
   const [dishSlug, setDishSlug] = useState(initialSlug);
   const [dishName, setDishName] = useState(
     initialIsAmbiance
-      ? ''
+      ? (entry?.dishName ?? '')
       : (entry?.dishName ?? initialItem?.name ?? initialSlug),
   );
   const [price, setPrice]       = useState<number | null>(entry?.price ?? null);
@@ -149,8 +155,8 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
   );
 
   // Logo position — normalized {x, y} center in [0,1]
-  const initPos = typeof entry?.logoPosX === 'number' && typeof entry?.logoPosY === 'number'
-    ? { x: entry.logoPosX, y: entry.logoPosY }
+  const initPos = Number.isFinite(entry?.logoPosX) && Number.isFinite(entry?.logoPosY)
+    ? { x: entry!.logoPosX as number, y: entry!.logoPosY as number }
     : legacyEnumToXY(entry?.logoPosition);
   const [logoPosX, setLogoPosX] = useState<number>(initPos.x);
   const [logoPosY, setLogoPosY] = useState<number>(initPos.y);
@@ -168,21 +174,20 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
 
   // Caption
   const [caption, setCaption] = useState(initialCaption);
+  const [captionDirty, setCaptionDirty] = useState(false);
 
   // Format toggle for preview
   const [previewFormat, setPreviewFormat] = useState<PreviewFormat>('feed');
 
   // UI state
-  const [saveStatus, setSaveStatus]               = useState<'idle' | 'saved' | 'error'>('idle');
-  const [captionSaveStatus, setCaptionSaveStatus] = useState<'idle' | 'saved' | 'error'>('idle');
-  const [regenStatus, setRegenStatus]             = useState<'idle' | 'success' | 'error' | 'dirty'>('idle');
-  const [regenMsg, setRegenMsg]                   = useState('');
-  const [captionError, setCaptionError]           = useState('');
+  const [saveStatus, setSaveStatus]   = useState<'idle' | 'saved' | 'error'>('idle');
+  const [regenStatus, setRegenStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [regenMsg, setRegenMsg]       = useState('');
+  const [captionError, setCaptionError] = useState('');
 
-  const [isSaving, startSave]       = useTransition();
-  const [isCapSaving, startCapSave] = useTransition();
-  const [isCapGen, startCapGen]     = useTransition();
-  const [isRegen, startRegen]       = useTransition();
+  const [isSaving, startSave]   = useTransition();
+  const [isCapGen, startCapGen] = useTransition();
+  const [isRegen, startRegen]   = useTransition();
 
   // Live preview state
   const [previewUrl, setPreviewUrl]         = useState<string | null>(null);
@@ -190,9 +195,12 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
   const [previewError, setPreviewError]     = useState('');
   const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const prevObjectUrl = useRef<string | null>(null);
+  const reqIdRef      = useRef(0);
+  const abortRef      = useRef<AbortController | null>(null);
 
-  // Dirty / unsaved state
-  const [isDirty, setIsDirty] = useState(false);
+  // Réglages dirty (caption tracked separately, combined below)
+  const [settingsDirty, setSettingsDirty] = useState(false);
+  const isDirty = settingsDirty || captionDirty;
 
   // Drag refs
   const previewImgRef = useRef<HTMLImageElement>(null);
@@ -202,7 +210,8 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
   const isAmbiance  = dishSlug === 'ambiance' || slugMap.get(dishSlug)?.overlay === 'none';
   const currentItem = slugMap.get(dishSlug);
   const showLogoControls = overlayMode !== 'photo-only';
-  const showNameControls = overlayMode === 'logo-name' && !isAmbiance;
+  const showNameControls = overlayMode === 'logo-name';
+  const showNameInput    = showNameControls || !isAmbiance;
 
   // ─── Preset active check ──────────────────────────────────────────────────
 
@@ -219,26 +228,32 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
     setDishName(isAmb ? '' : (item?.name ?? slug));
     setPrice(item?.price ?? null);
     setBaseline(item?.baseline ?? '');
+    setShowPrice(false); // price flag must not leak across dishes
     if (isAmb) {
       setOverlayMode('photo-only');
     } else if (overlayMode === 'photo-only') {
       setOverlayMode('logo-only');
     }
-    setIsDirty(true);
-    setRegenStatus('dirty');
+    setSettingsDirty(true);
   }
 
-  // ─── Live preview (debounced 400 ms) ──────────────────────────────────────
+  // ─── Live preview (debounced 400 ms, out-of-order-safe) ────────────────────
 
   const triggerPreview = useCallback(() => {
     if (debounceTimer.current) clearTimeout(debounceTimer.current);
     debounceTimer.current = setTimeout(async () => {
+      // Cancel any in-flight request so a stale response can't overwrite a newer one
+      abortRef.current?.abort();
+      const ac = new AbortController();
+      abortRef.current = ac;
+      const myReq = ++reqIdRef.current;
+
       setPreviewLoading(true);
-      setPreviewError('');
       try {
         const res = await fetch('/api/ig-studio/preview', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          signal: ac.signal,
           body: JSON.stringify({
             id,
             format: previewFormat,
@@ -260,21 +275,27 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           }),
         });
 
+        if (myReq !== reqIdRef.current) return; // a newer request superseded this one
+
         if (!res.ok) {
-          const text = await res.text();
-          setPreviewError('Aperçu indisponible : ' + text.slice(0, 100));
+          setPreviewError('Aperçu momentanément indisponible — réessayez.');
           return;
         }
 
         const blob = await res.blob();
+        if (myReq !== reqIdRef.current) return;
         if (prevObjectUrl.current) URL.revokeObjectURL(prevObjectUrl.current);
         const url = URL.createObjectURL(blob);
         prevObjectUrl.current = url;
         setPreviewUrl(url);
+        setPreviewError(''); // success clears any prior error, keeps last-good otherwise
       } catch (err) {
-        setPreviewError(String(err));
+        if ((err as Error)?.name === 'AbortError') return; // expected on supersede
+        if (myReq === reqIdRef.current) {
+          setPreviewError('Aperçu momentanément indisponible — réessayez.');
+        }
       } finally {
-        setPreviewLoading(false);
+        if (myReq === reqIdRef.current) setPreviewLoading(false);
       }
     }, 400);
   }, [id, dishSlug, dishName, price, baseline, overlayMode, logoPosX, logoPosY, logoSize, showPrice, logoColor, previewFormat, entry?.shotType, entry?.confidence]);
@@ -288,6 +309,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
 
   useEffect(() => {
     return () => {
+      abortRef.current?.abort();
       if (prevObjectUrl.current) URL.revokeObjectURL(prevObjectUrl.current);
     };
   }, []);
@@ -308,35 +330,38 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
     const y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
     setLogoPosX(x);
     setLogoPosY(y);
-    setIsDirty(true);
+    setSettingsDirty(true);
   }
 
   function handleDragPointerUp(e: React.PointerEvent<HTMLDivElement>) {
     if (!e.currentTarget.hasPointerCapture(e.pointerId)) return;
     e.currentTarget.releasePointerCapture(e.pointerId);
-    // Preview auto-fires via triggerPreview debounce (logoPosX/Y changed)
   }
 
-  // ─── Save override ─────────────────────────────────────────────────────────
+  // ─── Save (réglages + légende en une fois) ─────────────────────────────────
+
+  /** Returns true on full success. */
+  async function persistAll(): Promise<boolean> {
+    const fields: OverrideFields = {
+      dishSlug, dishName, price, baseline, overlayMode,
+      logoPosX, logoPosY, logoSize, showPrice, logoColor,
+    };
+    const res = await saveOverride(id, fields);
+    let ok = res.ok;
+    if (captionDirty) {
+      const capRes = await saveCaption(id, caption);
+      ok = ok && capRes.ok;
+    }
+    return ok;
+  }
 
   function handleSave() {
     startSave(async () => {
-      const fields: OverrideFields = {
-        dishSlug,
-        dishName,
-        price,
-        baseline,
-        overlayMode,
-        logoPosX,
-        logoPosY,
-        logoSize,
-        showPrice,
-        logoColor,
-      };
-      const res = await saveOverride(id, fields);
-      if (res.ok) {
+      const ok = await persistAll();
+      if (ok) {
         setSaveStatus('saved');
-        setIsDirty(false);
+        setSettingsDirty(false);
+        setCaptionDirty(false);
         setRegenStatus('idle');
         setTimeout(() => setSaveStatus('idle'), 3000);
       } else {
@@ -346,17 +371,15 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
     });
   }
 
-  // ─── Save caption ──────────────────────────────────────────────────────────
-
-  function handleSaveCaption() {
-    startCapSave(async () => {
-      const res = await saveCaption(id, caption);
-      if (res.ok) {
-        setCaptionSaveStatus('saved');
-        setTimeout(() => setCaptionSaveStatus('idle'), 3000);
+  function handleSaveAndNext() {
+    if (!nextId) return;
+    startSave(async () => {
+      const ok = await persistAll();
+      if (ok) {
+        window.location.href = `/ig-studio/${nextId}`;
       } else {
-        setCaptionSaveStatus('error');
-        setTimeout(() => setCaptionSaveStatus('idle'), 4000);
+        setSaveStatus('error');
+        setTimeout(() => setSaveStatus('idle'), 4000);
       }
     });
   }
@@ -367,14 +390,11 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
     setCaptionError('');
     startCapGen(async () => {
       const res = await generateCaptionAction(id, {
-        dishSlug,
-        dishName,
-        price,
-        baseline,
-        overlayMode,
+        dishSlug, dishName, price, baseline, overlayMode,
       });
       if (res.ok && res.caption) {
         setCaption(res.caption);
+        setCaptionDirty(true);
       } else {
         setCaptionError(res.error ?? 'Erreur lors de la génération');
       }
@@ -389,7 +409,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
       const res = await regeneratePhoto(id);
       if (res.ok) {
         setRegenStatus('success');
-        setRegenMsg('3 formats écrits dans out/' + id + '/');
+        setRegenMsg('Les 3 formats ont été générés.');
       } else {
         setRegenStatus('error');
         setRegenMsg(res.error ?? 'Erreur lors de la régénération');
@@ -403,19 +423,25 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
 
   // ─── Render ───────────────────────────────────────────────────────────────
 
+  const ghost = SIZE_GHOST[logoSize];
+
   return (
-    <div className="flex flex-col gap-6 p-4 max-w-3xl mx-auto">
+    <div className="flex flex-col gap-6 p-4 pb-28 max-w-3xl mx-auto">
 
       {/* ── Fil conducteur ────────────────────────────────────────────────── */}
-      <p className="text-xs text-gray-500 leading-relaxed border border-gray-800 rounded-lg px-4 py-3">
-        <span className="font-semibold text-gray-400">Comment utiliser :</span>{' '}
-        1. Choisir le plat → 2. Régler l&apos;affichage → 3. Positionner le logo (glisser ou preset) → 4. Générer / éditer la légende → 5. Enregistrer → 6. Régénérer les 3 formats.
-      </p>
+      <ol className="text-xs text-gray-300 leading-relaxed border border-gray-800 rounded-lg px-4 py-3 grid gap-1 sm:grid-cols-2">
+        <li><span className="text-gray-500">1.</span> Choisir le plat</li>
+        <li><span className="text-gray-500">2.</span> Régler l&apos;affichage (logo / nom)</li>
+        <li><span className="text-gray-500">3.</span> Positionner le logo (glisser ou preset)</li>
+        <li><span className="text-gray-500">4.</span> Générer / éditer la légende</li>
+        <li><span className="text-gray-500">5.</span> Enregistrer</li>
+        <li><span className="text-gray-500">6.</span> Régénérer les 3 formats</li>
+      </ol>
 
       {/* ── Suggestion IA (lecture seule) ─────────────────────────────────── */}
       {entry && (
         <div className="rounded-lg bg-gray-900 border border-gray-800 p-3">
-          <p className="text-xs text-gray-500 mb-1 font-semibold uppercase tracking-wide">Suggestion IA</p>
+          <p className="text-xs text-gray-400 mb-1 font-semibold uppercase tracking-wide">Suggestion IA</p>
           <p className="text-sm text-gray-300">
             {entry.dishName ?? entry.dishSlug}
             {' '}
@@ -428,7 +454,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
             </span>
           </p>
           {entry.reasoning && (
-            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{entry.reasoning}</p>
+            <p className="text-xs text-gray-400 mt-1 line-clamp-2">{entry.reasoning}</p>
           )}
         </div>
       )}
@@ -437,11 +463,11 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           SECTION 1 — Plat
           ══════════════════════════════════════════════════════════════════════ */}
       <section className="flex flex-col gap-4 rounded-lg border border-gray-800 p-4">
-        <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Plat</h2>
+        <h2 className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Plat</h2>
 
         {/* Dropdown */}
         <div>
-          <label htmlFor="dish-select" className="block text-xs text-gray-400 mb-1 font-medium">
+          <label htmlFor="dish-select" className="block text-xs text-gray-300 mb-1 font-medium">
             Sélectionner le plat
           </label>
           <select
@@ -464,25 +490,34 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           </select>
         </div>
 
-        {/* Editable fields — hidden for ambiance */}
+        {/* Name input — shown for any dish, and for ambiance when "logo + nom" is on */}
+        {showNameInput && (
+          <div>
+            <label htmlFor="dish-name" className="block text-xs text-gray-300 mb-1 font-medium">
+              Nom affiché sur l&apos;image
+            </label>
+            <input
+              id="dish-name"
+              type="text"
+              value={dishName}
+              placeholder={isAmbiance ? 'Ex. Tantan Umaï' : ''}
+              onChange={(e) => { setDishName(e.target.value); setSettingsDirty(true); }}
+              className="w-full min-h-[44px] bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+            {isAmbiance && (
+              <p className="text-xs text-gray-400 mt-1">
+                Photo d&apos;ambiance — saisissez un nom pour l&apos;incruster (mode « Logo + nom »).
+              </p>
+            )}
+          </div>
+        )}
+
+        {/* Price / baseline — only for real dishes */}
         {!isAmbiance && (
           <>
-            <div>
-              <label htmlFor="dish-name" className="block text-xs text-gray-400 mb-1 font-medium">
-                Nom affiché sur l&apos;image
-              </label>
-              <input
-                id="dish-name"
-                type="text"
-                value={dishName}
-                onChange={(e) => { setDishName(e.target.value); setIsDirty(true); }}
-                className="w-full min-h-[44px] bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-            </div>
-
             <div className="flex gap-3">
               <div className="flex-1">
-                <label htmlFor="dish-price" className="block text-xs text-gray-400 mb-1 font-medium">
+                <label htmlFor="dish-price" className="block text-xs text-gray-300 mb-1 font-medium">
                   Prix (€)
                 </label>
                 <input
@@ -493,21 +528,21 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
                   onChange={(e) => {
                     const v = parseFloat(e.target.value);
                     setPrice(isNaN(v) ? null : v);
-                    setIsDirty(true);
+                    setSettingsDirty(true);
                   }}
                   className="w-full min-h-[44px] bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
 
               <div className="flex-1">
-                <label htmlFor="dish-baseline" className="block text-xs text-gray-400 mb-1 font-medium">
-                  Baseline
+                <label htmlFor="dish-baseline" className="block text-xs text-gray-300 mb-1 font-medium">
+                  Accroche
                 </label>
                 <input
                   id="dish-baseline"
                   type="text"
                   value={baseline}
-                  onChange={(e) => { setBaseline(e.target.value); setIsDirty(true); }}
+                  onChange={(e) => { setBaseline(e.target.value); setSettingsDirty(true); }}
                   className="w-full min-h-[44px] bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
@@ -521,12 +556,6 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
             )}
           </>
         )}
-
-        {isAmbiance && (
-          <p className="text-xs text-gray-500 italic">
-            Photo d&apos;ambiance — aucun texte ou nom ne sera incrusté sur l&apos;image.
-          </p>
-        )}
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════════
@@ -534,8 +563,8 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           ══════════════════════════════════════════════════════════════════════ */}
       <section className="flex flex-col gap-4 rounded-lg border border-gray-800 p-4">
         <div>
-          <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Affichage sur l&apos;image</h2>
-          <p className="text-xs text-gray-500 mt-1">
+          <h2 className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Affichage sur l&apos;image</h2>
+          <p className="text-xs text-gray-400 mt-1">
             Choisissez ce qui sera incrusté directement sur la photo publiée.
           </p>
         </div>
@@ -554,12 +583,12 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               name="overlay-mode"
               value="photo-only"
               checked={overlayMode === 'photo-only'}
-              onChange={() => { setOverlayMode('photo-only'); setIsDirty(true); }}
-              className="mt-0.5"
+              onChange={() => { setOverlayMode('photo-only'); setSettingsDirty(true); }}
+              className="mt-0.5 w-4 h-4"
             />
             <div>
-              <p className="text-sm font-medium text-gray-200">Photo seule</p>
-              <p className="text-xs text-gray-500 mt-0.5">Rien de dessiné — photo brute publiée telle quelle.</p>
+              <p className="text-sm font-medium text-gray-100">Photo seule</p>
+              <p className="text-xs text-gray-400 mt-0.5">Rien de dessiné — photo brute publiée telle quelle.</p>
             </div>
           </label>
 
@@ -574,12 +603,12 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               name="overlay-mode"
               value="logo-only"
               checked={overlayMode === 'logo-only'}
-              onChange={() => { setOverlayMode('logo-only'); setIsDirty(true); }}
-              className="mt-0.5"
+              onChange={() => { setOverlayMode('logo-only'); setSettingsDirty(true); }}
+              className="mt-0.5 w-4 h-4"
             />
             <div>
-              <p className="text-sm font-medium text-gray-200">Logo seul</p>
-              <p className="text-xs text-gray-500 mt-0.5">Uniquement le logo Umaï, positionné librement. Défaut recommandé.</p>
+              <p className="text-sm font-medium text-gray-100">Logo seul</p>
+              <p className="text-xs text-gray-400 mt-0.5">Uniquement le logo Umaï, positionné librement. Défaut recommandé.</p>
             </div>
           </label>
 
@@ -594,12 +623,15 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               name="overlay-mode"
               value="logo-name"
               checked={overlayMode === 'logo-name'}
-              onChange={() => { setOverlayMode('logo-name'); setIsDirty(true); }}
-              className="mt-0.5"
+              onChange={() => { setOverlayMode('logo-name'); setSettingsDirty(true); }}
+              className="mt-0.5 w-4 h-4"
             />
             <div>
-              <p className="text-sm font-medium text-gray-200">Logo + nom du plat</p>
-              <p className="text-xs text-gray-500 mt-0.5">Logo + nom en texte élégant (ivoire, ombre subtile). Prix optionnel ci-dessous.</p>
+              <p className="text-sm font-medium text-gray-100">Logo + nom du plat</p>
+              <p className="text-xs text-gray-400 mt-0.5">
+                Logo + nom en texte élégant (ivoire, ombre subtile).
+                {isAmbiance ? ' Saisissez le nom dans le champ ci-dessus.' : ' Prix optionnel ci-dessous.'}
+              </p>
             </div>
           </label>
         </div>
@@ -610,52 +642,52 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
 
             {/* Size buttons */}
             <div>
-              <p className="text-xs text-gray-400 font-medium mb-2">Taille du logo</p>
+              <p className="text-xs text-gray-300 font-medium mb-2">Taille du logo</p>
               <div className="flex gap-2">
                 {(Object.keys(SIZE_LABELS) as LogoSize[]).map((sz) => (
                   <button
                     key={sz}
                     type="button"
-                    onClick={() => { setLogoSize(sz); setIsDirty(true); }}
-                    className={`flex-1 min-h-[44px] rounded-lg text-xs font-medium transition-colors ${
+                    onClick={() => { setLogoSize(sz); setSettingsDirty(true); }}
+                    className={`flex-1 min-h-[44px] rounded-lg text-sm font-medium transition-colors ${
                       logoSize === sz
                         ? 'bg-indigo-600 text-white'
-                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                        : 'bg-gray-800 text-gray-200 hover:bg-gray-700'
                     }`}
                   >
                     {SIZE_LABELS[sz]}
                   </button>
                 ))}
               </div>
-              <p className="text-xs text-gray-600 mt-1">Petit = discret, Grand = bien visible.</p>
+              <p className="text-xs text-gray-400 mt-1">Petit = discret, Grand = bien visible.</p>
             </div>
 
             {/* Logo color variant */}
             <div>
-              <p className="text-xs text-gray-400 font-medium mb-2">Couleur du logo</p>
+              <p className="text-xs text-gray-300 font-medium mb-2">Couleur du logo</p>
               <div className="flex gap-2">
                 {(Object.keys(COLOR_LABELS) as LogoColor[]).map((col) => (
                   <button
                     key={col}
                     type="button"
                     title={COLOR_DESC[col]}
-                    onClick={() => { setLogoColor(col); setIsDirty(true); }}
-                    className={`flex-1 min-h-[44px] rounded-lg text-xs font-medium transition-colors ${
+                    onClick={() => { setLogoColor(col); setSettingsDirty(true); }}
+                    className={`flex-1 min-h-[44px] rounded-lg text-sm font-medium transition-colors ${
                       logoColor === col
                         ? 'bg-indigo-600 text-white'
-                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                        : 'bg-gray-800 text-gray-200 hover:bg-gray-700'
                     }`}
                   >
                     {COLOR_LABELS[col]}
                   </button>
                 ))}
               </div>
-              <p className="text-xs text-gray-600 mt-1">{COLOR_DESC[logoColor]}</p>
+              <p className="text-xs text-gray-400 mt-1">{COLOR_DESC[logoColor]}</p>
             </div>
 
             {/* 9-preset position grid */}
             <div>
-              <p className="text-xs text-gray-400 font-medium mb-2">Position rapide du logo</p>
+              <p className="text-xs text-gray-300 font-medium mb-2">Position rapide du logo</p>
               <div className="grid grid-cols-3 gap-1.5">
                 {PRESET_GRID.map((row, ri) =>
                   row.map((preset, ci) => (
@@ -666,12 +698,12 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
                       onClick={() => {
                         setLogoPosX(preset.x);
                         setLogoPosY(preset.y);
-                        setIsDirty(true);
+                        setSettingsDirty(true);
                       }}
-                      className={`min-h-[40px] rounded-lg text-xs font-medium transition-colors ${
+                      className={`min-h-[44px] rounded-lg text-xs font-medium transition-colors ${
                         isPresetActive(preset.x, preset.y)
                           ? 'bg-indigo-600 text-white ring-1 ring-indigo-400'
-                          : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                          : 'bg-gray-800 text-gray-200 hover:bg-gray-700'
                       }`}
                     >
                       {preset.label}
@@ -679,36 +711,29 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
                   ))
                 )}
               </div>
-              <p className="text-xs text-gray-600 mt-1">
-                Position actuelle : x={logoPosX.toFixed(2)} y={logoPosY.toFixed(2)}
-                {' '}— ou glissez le cadre dans l&apos;aperçu.
+              <p className="text-xs text-gray-400 mt-1">
+                Ou glissez le logo directement dans l&apos;aperçu ci-dessous.
               </p>
             </div>
 
-            {/* showPrice checkbox (logo-name only) */}
-            {showNameControls && (
+            {/* showPrice checkbox (logo-name only, real dish only) */}
+            {showNameControls && !isAmbiance && (
               <div>
                 <label className="flex items-center gap-3 cursor-pointer min-h-[44px]">
                   <input
                     type="checkbox"
                     checked={showPrice}
-                    onChange={(e) => { setShowPrice(e.target.checked); setIsDirty(true); }}
-                    className="w-4 h-4 rounded border-gray-600 bg-gray-800"
+                    onChange={(e) => { setShowPrice(e.target.checked); setSettingsDirty(true); }}
+                    className="w-5 h-5 rounded border-gray-600 bg-gray-800"
                   />
                   <div>
-                    <p className="text-sm text-gray-200 font-medium">Afficher le prix sur l&apos;image</p>
-                    <p className="text-xs text-gray-500">Désactivé par défaut — le prix va dans la légende.</p>
+                    <p className="text-sm text-gray-100 font-medium">Afficher le prix sur l&apos;image</p>
+                    <p className="text-xs text-gray-400">Désactivé par défaut — le prix va dans la légende.</p>
                   </div>
                 </label>
               </div>
             )}
           </div>
-        )}
-
-        {isAmbiance && (
-          <p className="text-xs text-gray-500">
-            Photo d&apos;ambiance — « Photo seule » par défaut. Vous pouvez quand même ajouter le logo (« Logo seul ») si vous le souhaitez.
-          </p>
         )}
       </section>
 
@@ -717,10 +742,10 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           ══════════════════════════════════════════════════════════════════════ */}
       <section className="flex flex-col gap-3 rounded-lg border border-gray-800 p-4">
         <div>
-          <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Aperçu</h2>
-          <p className="text-xs text-gray-500 mt-1">
-            Visualisez le rendu final pour chaque format Meta.
-            {showLogoControls && ' Glissez le cadre pointillé pour repositionner le logo.'}
+          <h2 className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Aperçu</h2>
+          <p className="text-xs text-gray-400 mt-1">
+            Aperçu indicatif. Les fichiers finaux exportables sont créés par « Régénérer ».
+            {showLogoControls && ' Glissez le cadre pour repositionner le logo.'}
           </p>
         </div>
 
@@ -731,13 +756,14 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               key={fmt}
               type="button"
               onClick={() => setPreviewFormat(fmt)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+              className={`min-h-[44px] px-4 rounded-lg text-sm font-medium transition-colors flex flex-col items-center justify-center leading-tight ${
                 previewFormat === fmt
                   ? 'bg-indigo-600 text-white'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  : 'bg-gray-800 text-gray-200 hover:bg-gray-700'
               }`}
             >
-              {FORMAT_LABELS[fmt]}
+              <span>{FORMAT_LABELS[fmt]}</span>
+              <span className="text-[10px] opacity-60">{FORMAT_DIMS[fmt]}</span>
             </button>
           ))}
         </div>
@@ -745,7 +771,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
         {/* Source photo + preview side by side */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1 rounded-lg overflow-hidden bg-gray-900">
-            <p className="text-xs text-gray-500 px-3 py-2 font-mono">Source originale</p>
+            <p className="text-xs text-gray-400 px-3 py-2">Source originale</p>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`/api/ig-studio/photo/${id}`}
@@ -754,19 +780,22 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
             />
           </div>
 
-          <div className="flex-1 rounded-lg overflow-hidden bg-gray-900">
+          <div className="flex-1 rounded-lg overflow-hidden bg-gray-900 min-h-[16rem] flex flex-col">
             <div className="flex items-center justify-between px-3 py-2">
-              <p className="text-xs text-gray-500 font-mono">{FORMAT_LABELS[previewFormat]}</p>
+              <p className="text-xs text-gray-400">{FORMAT_LABELS[previewFormat]} · {FORMAT_DIMS[previewFormat]}</p>
               {previewLoading && (
                 <span className="text-xs text-yellow-400 animate-pulse">Rendu en cours…</span>
               )}
             </div>
-            {previewError && (
-              <p className="text-xs text-red-400 px-3 pb-2">{previewError}</p>
-            )}
-            {previewUrl && !previewError && (
+
+            {previewUrl ? (
               /* Drag container — relative so the ghost box can be absolute-positioned */
               <div className="relative select-none">
+                {previewError && (
+                  <p className="absolute top-1 left-1 right-1 z-20 text-center text-xs text-red-200 bg-red-900/80 rounded px-2 py-1">
+                    {previewError}
+                  </p>
+                )}
                 {/* Ghost drag handle (shown when logo controls visible) */}
                 {showLogoControls && (
                   <div
@@ -776,16 +805,16 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
                       left:      `${logoPosX * 100}%`,
                       top:       `${logoPosY * 100}%`,
                       transform: 'translate(-50%, -50%)',
-                      width:     '26%',
-                      height:    '8%',
-                      minWidth:  '56px',
-                      minHeight: '16px',
+                      width:     `${ghost.w}%`,
+                      height:    `${ghost.h}%`,
+                      minWidth:  '64px',
+                      minHeight: '44px',
                     }}
                     onPointerDown={handleDragPointerDown}
                     onPointerMove={handleDragPointerMove}
                     onPointerUp={handleDragPointerUp}
                   >
-                    <span className="text-white/60 text-xs font-mono select-none pointer-events-none">⠿ logo</span>
+                    <span className="text-white/70 text-xs font-medium select-none pointer-events-none">⠿ logo</span>
                   </div>
                 )}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -793,19 +822,15 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
                   ref={previewImgRef}
                   src={previewUrl}
                   alt="Aperçu avec overlay"
-                  className="w-full object-contain pointer-events-none"
+                  className="w-full object-contain pointer-events-none max-h-[60vh]"
                   draggable={false}
                 />
-                {showLogoControls && (
-                  <p className="absolute bottom-1 left-0 right-0 text-center text-[10px] text-white/50 select-none pointer-events-none">
-                    Glissez le logo pour le positionner
-                  </p>
-                )}
               </div>
-            )}
-            {!previewUrl && !previewLoading && !previewError && (
-              <div className="flex items-center justify-center h-48 text-gray-600 text-sm">
-                Chargement…
+            ) : (
+              <div className="flex-1 flex items-center justify-center text-gray-500 text-sm p-6">
+                {previewError
+                  ? previewError
+                  : 'Préparation de l’aperçu…'}
               </div>
             )}
           </div>
@@ -816,17 +841,24 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           SECTION 4 — Légende (caption)
           ══════════════════════════════════════════════════════════════════════ */}
       <section className="flex flex-col gap-3 rounded-lg border border-gray-800 p-4">
-        <div>
-          <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Légende Instagram</h2>
-          <p className="text-xs text-gray-500 mt-1">
-            Texte publié sous la photo. Générez via IA ou saisissez librement.
-          </p>
+        <div className="flex items-center justify-between gap-2">
+          <div>
+            <h2 className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Légende Instagram</h2>
+            <p className="text-xs text-gray-400 mt-1">
+              Texte publié sous la photo. Générez via IA ou saisissez librement.
+            </p>
+          </div>
+          {captionDirty && (
+            <span className="text-xs px-2 py-0.5 rounded-full bg-yellow-900 text-yellow-300 shrink-0">
+              Non enregistrée
+            </span>
+          )}
         </div>
 
         <textarea
           id="caption-area"
           value={caption}
-          onChange={(e) => setCaption(e.target.value)}
+          onChange={(e) => { setCaption(e.target.value); setCaptionDirty(true); }}
           rows={6}
           className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm resize-y focus:outline-none focus:ring-2 focus:ring-indigo-500"
           placeholder="Légende Instagram (FR)…"
@@ -835,37 +867,17 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           <p className="text-xs text-red-400">{captionError}</p>
         )}
 
-        <div className="flex gap-2">
-          <button
-            type="button"
-            disabled={isCapGen}
-            onClick={handleGenerateCaption}
-            className={`flex-1 min-h-[44px] rounded-lg text-sm font-medium bg-gray-700 hover:bg-gray-600 text-white transition-colors ${isCapGen ? 'opacity-60 cursor-wait' : 'cursor-pointer'}`}
-          >
-            {isCapGen ? 'Génération en cours…' : 'Générer la légende (IA)'}
-          </button>
-
-          <button
-            type="button"
-            disabled={isCapSaving}
-            onClick={handleSaveCaption}
-            className={`flex-1 min-h-[44px] rounded-lg text-sm font-medium transition-colors ${
-              captionSaveStatus === 'saved'
-                ? 'bg-green-700 text-white'
-                : captionSaveStatus === 'error'
-                ? 'bg-red-700 text-white'
-                : 'bg-gray-700 hover:bg-gray-600 text-white'
-            } ${isCapSaving ? 'opacity-60 cursor-wait' : 'cursor-pointer'}`}
-          >
-            {isCapSaving
-              ? 'Enregistrement…'
-              : captionSaveStatus === 'saved'
-              ? '✓ Légende enregistrée'
-              : captionSaveStatus === 'error'
-              ? '✗ Erreur'
-              : 'Enregistrer la légende'}
-          </button>
-        </div>
+        <button
+          type="button"
+          disabled={isCapGen}
+          onClick={handleGenerateCaption}
+          className={`min-h-[44px] rounded-lg text-sm font-medium bg-indigo-700 hover:bg-indigo-600 text-white transition-colors ${isCapGen ? 'opacity-60 cursor-wait' : 'cursor-pointer'}`}
+        >
+          {isCapGen ? 'Génération en cours…' : '✨ Générer la légende (IA)'}
+        </button>
+        <p className="text-xs text-gray-400">
+          La légende est enregistrée avec le bouton « Enregistrer » plus bas.
+        </p>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════════
@@ -873,9 +885,9 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           ══════════════════════════════════════════════════════════════════════ */}
       <section className="flex flex-col gap-3 rounded-lg border border-gray-800 p-4">
         <div>
-          <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Actions</h2>
-          <p className="text-xs text-gray-500 mt-1">
-            Enregistrez les réglages, puis régénérez les 3 formats pour exporter.
+          <h2 className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Actions</h2>
+          <p className="text-xs text-gray-400 mt-1">
+            Enregistrez (réglages + légende), puis régénérez les 3 formats pour exporter.
           </p>
         </div>
 
@@ -886,7 +898,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               ? 'bg-yellow-900 text-yellow-300'
               : saveStatus === 'saved'
               ? 'bg-green-900 text-green-300'
-              : 'bg-gray-800 text-gray-400'
+              : 'bg-gray-800 text-gray-300'
           }`}>
             {isDirty
               ? 'Modifié • non enregistré'
@@ -908,7 +920,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
           disabled={isSaving}
           onClick={handleSave}
           className={`w-full min-h-[44px] rounded-lg font-semibold text-sm transition-colors ${
-            saveStatus === 'saved'
+            !isDirty && saveStatus === 'saved'
               ? 'bg-green-700 text-white'
               : saveStatus === 'error'
               ? 'bg-red-700 text-white'
@@ -917,8 +929,8 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
         >
           {isSaving
             ? 'Enregistrement…'
-            : saveStatus === 'saved'
-            ? '✓ Réglages enregistrés'
+            : !isDirty && saveStatus === 'saved'
+            ? '✓ Enregistré'
             : saveStatus === 'error'
             ? '✗ Erreur — réessayez'
             : 'Enregistrer'}
@@ -951,15 +963,56 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
             {regenMsg}
           </p>
         )}
-
-        {/* Back to gallery */}
-        <a
-          href="/ig-studio"
-          className="block text-center text-xs text-gray-500 hover:text-gray-300 transition-colors py-1"
-        >
-          ← Retour à la galerie
-        </a>
       </section>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          Sticky batch navigation
+          ══════════════════════════════════════════════════════════════════════ */}
+      <nav className="fixed bottom-0 inset-x-0 z-30 border-t border-gray-800 bg-gray-950/95 backdrop-blur supports-[backdrop-filter]:bg-gray-950/80">
+        <div className="max-w-3xl mx-auto flex items-center gap-2 px-4 py-2">
+          {prevId ? (
+            <a
+              href={`/ig-studio/${prevId}`}
+              className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-200 bg-gray-800 hover:bg-gray-700 transition-colors"
+            >
+              ← Préc.
+            </a>
+          ) : (
+            <span className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-600 bg-gray-900">← Préc.</span>
+          )}
+
+          <a
+            href="/ig-studio"
+            className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-300 hover:text-white transition-colors"
+          >
+            Galerie
+          </a>
+
+          <div className="flex-1" />
+
+          {nextId ? (
+            <>
+              <button
+                type="button"
+                disabled={isSaving}
+                onClick={handleSaveAndNext}
+                className={`min-h-[44px] px-3 flex items-center rounded-lg text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition-colors ${isSaving ? 'opacity-60 cursor-wait' : ''}`}
+                title="Enregistre puis passe à la photo suivante"
+              >
+                {isSaving ? '…' : 'Enregistrer & suivant'}
+              </button>
+              <a
+                href={`/ig-studio/${nextId}`}
+                className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-200 bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                Suiv. →
+              </a>
+            </>
+          ) : (
+            <span className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-600 bg-gray-900">Suiv. →</span>
+          )}
+        </div>
+      </nav>
     </div>
   );
 }

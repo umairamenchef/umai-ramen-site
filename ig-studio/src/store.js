@@ -7,7 +7,8 @@
  *   AI-generated entries always start with `"override": false`.
  */
 
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
+import { randomBytes } from 'node:crypto';
 import { resolve } from 'node:path';
 import { PKG_ROOT } from './photos.js';
 
@@ -77,7 +78,10 @@ export function mergeAndWrite(fresh) {
     a.file.localeCompare(b.file)
   );
 
-  writeFileSync(STORE_PATH, JSON.stringify(merged, null, 2));
+  // Atomic write: write to a temp file in the same dir, then rename over target.
+  const tmp = STORE_PATH + '.tmp-' + randomBytes(6).toString('hex');
+  writeFileSync(tmp, JSON.stringify(merged, null, 2));
+  renameSync(tmp, STORE_PATH);
 
   return { written, preservedOverrides };
 }

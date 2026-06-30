@@ -25,7 +25,7 @@
  *   logoColor?:    'auto'|'light'|'dark'                                 (default 'auto')
  *
  * Label resolution (logo-name only):
- *   entry.dishName (human-supplied) → dishLabel(slug) → menuLabel(slug) → null (no name drawn)
+ *   entry.dishName (human-supplied) → menuLabel(slug) [canonical] → dishLabel(slug) [legacy KB] → null
  *
  * BRAND-05: sharp-only pipeline — no Chrome, no network.
  */
@@ -63,8 +63,9 @@ const LEGACY_ENUM_MAP = {
  * @returns {{ cx: number, cy: number }} — normalized center in [0,1]
  */
 function resolveLogoPosNorm(entry) {
-  if (typeof entry.logoPosX === 'number' && typeof entry.logoPosY === 'number') {
-    return { cx: entry.logoPosX, cy: entry.logoPosY };
+  if (Number.isFinite(entry.logoPosX) && Number.isFinite(entry.logoPosY)) {
+    const clamp01 = (v) => Math.min(1, Math.max(0, v));
+    return { cx: clamp01(entry.logoPosX), cy: clamp01(entry.logoPosY) };
   }
   if (entry.logoPosition && LEGACY_ENUM_MAP[entry.logoPosition]) {
     return LEGACY_ENUM_MAP[entry.logoPosition];
@@ -232,7 +233,8 @@ export async function applyOverlay(canvasBuffer, dims, entry, kb) {
     if (!isAmbiguousName) {
       label = { name: entry.dishName, price: entry.price ?? null };
     } else if (entry.dishSlug && entry.dishSlug !== 'ambiance') {
-      const resolved = dishLabel(entry.dishSlug) ?? menuLabel(entry.dishSlug) ?? null;
+      // Canonical menu-options.json wins; old summer-menu KB only as last resort.
+      const resolved = menuLabel(entry.dishSlug) ?? dishLabel(entry.dishSlug) ?? null;
       if (resolved) label = resolved;
     }
 

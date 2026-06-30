@@ -49,17 +49,26 @@ export async function POST(req: Request): Promise<Response> {
   try {
     writeFileSync(entryPath, JSON.stringify(entryData, null, 2));
 
-    const run = await runIgStudio(
-      [
-        'src/compose.js',
-        '--photo', id,
-        '--preview',
-        '--format', previewFormat,
-        '--out', outPng,
-        '--entry-file', entryPath,
-      ],
-      { timeoutMs: 30_000 },
-    );
+    let run;
+    try {
+      run = await runIgStudio(
+        [
+          'src/compose.js',
+          '--photo', id,
+          '--preview',
+          '--format', previewFormat,
+          '--out', outPng,
+          '--entry-file', entryPath,
+        ],
+        { timeoutMs: 30_000 },
+      );
+    } catch (err) {
+      // runIgStudio rejects on spawn error / timeout — return JSON 500 (cleanup in finally).
+      return new Response(
+        JSON.stringify({ error: String(err) }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } },
+      );
+    }
 
     if (run.code !== 0) {
       return new Response(

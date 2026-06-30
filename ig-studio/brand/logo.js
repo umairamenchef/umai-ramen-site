@@ -70,18 +70,29 @@ export async function getLogoOverlayPng({ height = 120, variant = 'light' } = {}
   // Read the committed SVG
   const svgSrc = readFileSync(LOGO_SRC, 'utf-8');
 
+  // Replace once, warning if the anchor isn't found (makes a lost-shadow regression visible).
+  const applyReplace = (str, pattern, replacement, label) => {
+    const next = str.replace(pattern, replacement);
+    if (next === str) {
+      console.warn(`[brand:logo] drop-shadow injection no-op: "${label}" anchor not matched in SVG`);
+    }
+    return next;
+  };
+
   // 1. Inject fill + opacity into the root <svg> tag
-  let svg = svgSrc.replace(
-    '<svg',
+  let svg = applyReplace(
+    svgSrc,
+    /<svg/,
     `<svg fill="${fillColor}" fill-opacity="${OVERLAY.logoOpacity}"`,
+    '<svg',
   );
 
-  // 2. Inject the drop shadow filter into existing <defs>
-  svg = svg.replace('<defs>', `<defs>${buildShadowFilter()}`);
+  // 2. Inject the drop shadow filter into existing <defs> (whitespace-tolerant anchor)
+  svg = applyReplace(svg, /<defs>/, `<defs>${buildShadowFilter()}`, '<defs>');
 
-  // 3. Apply the filter to the outermost content <g> (the one right after </defs>)
+  // 3. Apply the filter to the outermost content <g> (right after </defs>), whitespace-tolerant.
   //    The SVG structure is: <svg><defs>...</defs><g>...</g></svg>
-  svg = svg.replace('</defs><g>', '</defs><g filter="url(#umai-shadow)">');
+  svg = applyReplace(svg, /<\/defs>\s*<g>/, '</defs><g filter="url(#umai-shadow)">', '</defs><g>');
 
   const buffer = await sharp(Buffer.from(svg))
     .resize({ width, height })
