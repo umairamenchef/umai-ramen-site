@@ -240,10 +240,32 @@ export async function applyOverlay(canvasBuffer, dims, entry, kb) {
 
     if (label) {
       const showPrice = entry.showPrice === true;
+
+      // Auto-contrast the dish name like the logo: sample the bottom-left region
+      // where the name sits and pick dark text on light backgrounds (and vice-versa).
+      // A forced logoColor preference applies to the name too.
+      let nameVariant;
+      if (logoColorPref === 'light') {
+        nameVariant = 'light';
+      } else if (logoColorPref === 'dark') {
+        nameVariant = 'dark';
+      } else {
+        const sampleH = Math.round(height * 0.22);
+        const sampleW = Math.round(width * 0.60);
+        const lumName = await sampleRegionLuminance(canvasBuffer, {
+          left:   margin,
+          top:    Math.max(0, height - sampleH - margin),
+          width:  sampleW,
+          height: sampleH,
+        });
+        nameVariant = lumName > OVERLAY.autoLuminanceThreshold ? 'dark' : 'light';
+      }
+
       const namePng = await renderNamePng({
         name: label.name,
         price: showPrice ? (label.price ?? null) : null,
         canvasWidth: width,
+        variant: nameVariant,
       });
       const nameMeta = await sharp(namePng).metadata();
       const nameH = nameMeta.height;

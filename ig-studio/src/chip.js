@@ -115,45 +115,95 @@ export async function renderChipPng(opts) {
 // ─── Elegant name renderer (logo-name mode) ───────────────────────────────────
 
 /**
- * Build an elegant minimal name SVG — ivoire serif text with drop shadow, no box.
- * Used for 'logo-name' overlay mode.
+ * Greedy-balanced word wrap into at most 2 lines.
+ * Short names (≤ 11 chars) stay on one line; longer multi-word names split into
+ * two balanced lines so the type can be set large without overflowing the canvas.
+ */
+function wrapName(name) {
+  const clean = String(name ?? '').trim();
+  const words = clean.split(/\s+/).filter(Boolean);
+  if (words.length <= 1) return [clean];
+  if (clean.length <= 11) return [clean];
+  let best = { lines: [clean], score: Infinity };
+  for (let i = 1; i < words.length; i++) {
+    const l1 = words.slice(0, i).join(' ');
+    const l2 = words.slice(i).join(' ');
+    const score = Math.abs(l1.length - l2.length) + Math.max(l1.length, l2.length);
+    if (score < best.score) best = { lines: [l1, l2], score };
+  }
+  return best.lines;
+}
+
+/**
+ * Build a large, editorial dish-name SVG — ivoire DM Serif Display, no box,
+ * with a short vert accent rule and an optional price below. Sized to read at
+ * roughly logo scale (Instagram-grade), wrapping long names to two lines and
+ * auto-fitting the type so the widest line never exceeds ~66% of the canvas.
  *
- * Font size scales with canvasWidth; text width is approximated for SVG viewport.
- *
- * @param {{ name: string, price?: number|null, canvasWidth?: number }} opts
+ * @param {{ name: string, price?: number|null, canvasWidth?: number,
+ *           variant?: 'light'|'dark' }} opts
+ *   variant 'light' (default) → ivoire text for dark backgrounds;
+ *           'dark' → charcoal text for light backgrounds (auto-contrast).
  * @returns {string} SVG markup
  */
-export function buildNameSvg({ name, price = null, canvasWidth = 1080 }) {
-  const FONT_SIZE   = Math.max(26, Math.round(canvasWidth * 0.033)); // ~36px @ 1080
-  const PRICE_SIZE  = Math.max(18, Math.round(canvasWidth * 0.022)); // ~24px @ 1080
-  const CHAR_W      = Math.round(FONT_SIZE * 0.62);  // over-estimate per-char to avoid clipping serif glyphs
-  const PCHAR_W     = Math.round(PRICE_SIZE * 0.6);
-  const LINE_GAP    = Math.round(FONT_SIZE * 0.45);
-  const PAD_TOP     = 6;
-  const PAD_BOT     = 10;
+export function buildNameSvg({ name, price = null, canvasWidth = 1080, variant = 'light' }) {
+  const lines = wrapName(name);
+  const TEXT_FILL = variant === 'dark' ? COLORS.ink : COLORS.ivoire;
+  // Shadow: a soft dark halo lifts light text off busy photos; for dark text on a
+  // light background a faint light halo keeps edges crisp.
+  const SHADOW_COLOR   = variant === 'dark' ? '#FFFFFF' : '#000000';
+  const SHADOW_OPACITY = variant === 'dark' ? 0.35 : 0.55;
+
+  // Base type ~8.5% of canvas width (≈ logo presence), auto-fit down if too wide.
+  const CHAR_W_FACTOR = 0.6; // approx serif advance per font px
+  let FONT_SIZE = Math.max(44, Math.round(canvasWidth * 0.085)); // ~92px @ 1080
+  const maxChars = Math.max(...lines.map((l) => l.length), 1);
+  const maxLineW = canvasWidth * 0.66;
+  const estW = maxChars * FONT_SIZE * CHAR_W_FACTOR;
+  if (estW > maxLineW) {
+    FONT_SIZE = Math.max(40, Math.floor((FONT_SIZE * maxLineW) / estW));
+  }
+
+  const PRICE_SIZE = Math.max(20, Math.round(FONT_SIZE * 0.36));
+  const LINE_H     = Math.round(FONT_SIZE * 1.02);
+  const PAD        = Math.round(FONT_SIZE * 0.10);
+  const SHADOW_BLUR    = Math.max(3, Math.round(FONT_SIZE * 0.06));
+  const ACCENT_TOP_GAP = Math.round(FONT_SIZE * 0.26);
+  const ACCENT_H       = Math.max(3, Math.round(FONT_SIZE * 0.07));
+  const ACCENT_LEN     = Math.round(FONT_SIZE * 1.7);
+  const PRICE_GAP      = Math.round(FONT_SIZE * 0.34);
 
   const hasPrice = price != null;
   const priceLabel = hasPrice ? formatPrice(price) : '';
 
-  const nameW  = Math.max(160, name.length * CHAR_W + 8);
-  const priceW = hasPrice ? Math.max(80, priceLabel.length * PCHAR_W + 8) : 0;
-  // Add generous right slack so the declared SVG width never crops glyphs (transparent padding).
-  const w = Math.max(nameW, priceW) + Math.round(FONT_SIZE * 0.6);
-  const h = PAD_TOP + FONT_SIZE + (hasPrice ? LINE_GAP + PRICE_SIZE : 0) + PAD_BOT;
+  const CHAR_W   = FONT_SIZE * CHAR_W_FACTOR;
+  const longestW = maxChars * CHAR_W;
+  const w = Math.round(
+    Math.max(longestW, ACCENT_LEN, hasPrice ? priceLabel.length * PRICE_SIZE * 0.6 : 0)
+    + FONT_SIZE * 0.5,
+  );
 
-  const nameY  = PAD_TOP + FONT_SIZE;                            // text baseline
-  const priceY = nameY + LINE_GAP + PRICE_SIZE;
+  const firstBaseline = PAD + FONT_SIZE;
+  const lastBaseline  = firstBaseline + (lines.length - 1) * LINE_H;
+  const accentY       = lastBaseline + ACCENT_TOP_GAP;
+  const priceBaseline = accentY + (hasPrice ? PRICE_GAP + PRICE_SIZE : 0);
+  const h = Math.round((hasPrice ? priceBaseline : accentY + ACCENT_H) + PAD);
+
+  const textLines = lines.map((ln, i) =>
+    `<text x="0" y="${firstBaseline + i * LINE_H}" dominant-baseline="auto" ` +
+    `font-family="${FONTS.serif}" font-size="${FONT_SIZE}" fill="${TEXT_FILL}" ` +
+    `font-weight="400" letter-spacing="0.01em" filter="url(#ts)">${escSvg(ln)}</text>`,
+  ).join('\n  ');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
-  <filter id="ts" x="-5%" y="-10%" width="120%" height="140%">
-    <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000000" flood-opacity="0.60"/>
+  <filter id="ts" x="-8%" y="-10%" width="130%" height="155%">
+    <feDropShadow dx="0" dy="2" stdDeviation="${SHADOW_BLUR}" flood-color="${SHADOW_COLOR}" flood-opacity="${SHADOW_OPACITY}"/>
   </filter>
-  <text x="0" y="${nameY}" dominant-baseline="auto"
-        font-family="${FONTS.serif}" font-size="${FONT_SIZE}" fill="${COLORS.ivoire}"
-        font-weight="400" letter-spacing="0.02em" filter="url(#ts)">${escSvg(name)}</text>${hasPrice ? `
-  <text x="0" y="${priceY}" dominant-baseline="auto"
-        font-family="${FONTS.sans}" font-size="${PRICE_SIZE}" fill="${COLORS.vert}"
-        font-weight="600" filter="url(#ts)">${escSvg(priceLabel)}</text>` : ''}
+  ${textLines}
+  <line x1="2" y1="${accentY}" x2="${ACCENT_LEN}" y2="${accentY}" stroke="${COLORS.vert}" stroke-width="${ACCENT_H}" stroke-linecap="round" filter="url(#ts)"/>${hasPrice ? `
+  <text x="0" y="${priceBaseline}" dominant-baseline="auto"
+        font-family="${FONTS.sans}" font-size="${PRICE_SIZE}" fill="${TEXT_FILL}"
+        font-weight="600" letter-spacing="0.01em" filter="url(#ts)">${escSvg(priceLabel)}</text>` : ''}
 </svg>`;
 }
 
