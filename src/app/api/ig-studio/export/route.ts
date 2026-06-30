@@ -104,6 +104,15 @@ export async function GET() {
         'Content-Length': String(zipBuffer.byteLength),
       },
     });
+  } catch (err) {
+    // The `zip` binary or a file op failed — return a clear JSON error instead of
+    // an opaque 500 (e.g. `zip` not installed on the host).
+    const message = err instanceof Error ? err.message : String(err);
+    console.error('[ig-studio/export] failed:', message);
+    return new Response(
+      JSON.stringify({ error: 'Export impossible', detail: message }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } },
+    );
   } finally {
     // Best-effort cleanup — do not let errors here mask the main response
     try {

@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { COOKIE_NAME, expectedToken, tokenFor } from '@/lib/ig-studio/auth';
+import { COOKIE_NAME, expectedToken, tokenFor, timingSafeEqual } from '@/lib/ig-studio/auth';
 
 export async function login(
   _prev: unknown,
@@ -18,7 +18,7 @@ export async function login(
   }
 
   const submitted = await tokenFor(password);
-  if (submitted !== expected) {
+  if (!timingSafeEqual(submitted, expected)) {
     return { error: 'Mot de passe incorrect.' };
   }
 

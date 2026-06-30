@@ -35,6 +35,19 @@ export async function expectedToken(): Promise<string | null> {
 }
 
 /**
+ * Constant-time string comparison (both inputs are fixed-length SHA-256 hex).
+ * Avoids leaking how many leading chars matched via early-exit timing.
+ */
+export function timingSafeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) {
+    diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return diff === 0;
+}
+
+/**
  * Returns true iff the supplied cookie value matches the expected token.
  * Fails closed on unset env var or missing value.
  */
@@ -44,7 +57,7 @@ export async function isValidStudioCookie(
   if (!value) return false;
   const expected = await expectedToken();
   if (!expected) return false;
-  return value === expected;
+  return timingSafeEqual(value, expected);
 }
 
 /**

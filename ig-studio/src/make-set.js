@@ -22,7 +22,8 @@
  */
 
 import sharp from 'sharp';
-import { writeFileSync, readFileSync, mkdirSync, existsSync } from 'node:fs';
+import { writeFileSync, readFileSync, mkdirSync, existsSync, renameSync } from 'node:fs';
+import { randomBytes } from 'node:crypto';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -135,7 +136,9 @@ function augmentEntry(raw, menuBySlug) {
     logoPosX:  0.85,
     logoPosY:  0.90,
     showPrice: false, // no price shown in overlay
-    dishName:  menuItem?.name    ?? raw.dishName ?? slug,
+    // Fall back to null (not the raw slug) so overlay.js resolves a clean label
+    // via menuLabel/dishLabel rather than printing a literal slug on the image.
+    dishName:  menuItem?.name    ?? raw.dishName ?? null,
     price:     menuItem?.price   ?? raw.price    ?? null,
     baseline:  menuItem?.baseline ?? raw.baseline ?? '',
   };
@@ -175,7 +178,11 @@ function patchStore(store, augmented) {
   const sorted = [...storeByFile.values()].sort((a, b) =>
     a.file.localeCompare(b.file)
   );
-  writeFileSync(storePath, JSON.stringify(sorted, null, 2), 'utf-8');
+  // Atomic write (temp + rename), matching store.js — a crash mid-write must not
+  // corrupt the canonical classification.json that every later run depends on.
+  const tmp = storePath + '.tmp-' + randomBytes(6).toString('hex');
+  writeFileSync(tmp, JSON.stringify(sorted, null, 2), 'utf-8');
+  renameSync(tmp, storePath);
 }
 
 // ─── Verification ─────────────────────────────────────────────────────────────

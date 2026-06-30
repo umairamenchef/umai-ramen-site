@@ -26,7 +26,11 @@ const PRICE_LABEL_EXTRA = 28; // extra width for price currency suffix ' €' (w
 // ─── Format price (FR locale: dot → comma + ' €') ─────────────────────────────
 
 function formatPrice(price) {
-  const p = typeof price === 'number' ? price : Number(price);
+  // Accept numbers and FR-formatted strings ("12,50") — normalise the decimal
+  // comma before parsing so a comma-typed price isn't silently dropped.
+  const p = typeof price === 'number'
+    ? price
+    : Number(String(price ?? '').trim().replace(',', '.'));
   if (!Number.isFinite(p)) return '';
   return p.toFixed(2).replace('.', ',') + ' €';
 }
@@ -178,9 +182,15 @@ export function buildNameSvg({ name, price = null, canvasWidth = 1080, variant =
 
   const CHAR_W   = FONT_SIZE * CHAR_W_FACTOR;
   const longestW = maxChars * CHAR_W;
-  const w = Math.round(
-    Math.max(longestW, ACCENT_LEN, hasPrice ? priceLabel.length * PRICE_SIZE * 0.6 : 0)
-    + FONT_SIZE * 0.5,
+  // Cap the PNG width to the canvas: sharp throws if a composite input is WIDER
+  // than the base image. A pathologically long unwrappable name is clipped at the
+  // viewport edge rather than crashing the render.
+  const w = Math.min(
+    Math.round(canvasWidth * 0.94),
+    Math.round(
+      Math.max(longestW, ACCENT_LEN, hasPrice ? priceLabel.length * PRICE_SIZE * 0.6 : 0)
+      + FONT_SIZE * 0.5,
+    ),
   );
 
   const firstBaseline = PAD + FONT_SIZE;

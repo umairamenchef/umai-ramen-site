@@ -6,7 +6,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import { writeFileSync, readFileSync, unlinkSync } from 'fs';
+import { writeFileSync, readFileSync, unlinkSync, existsSync } from 'fs';
 import { tmpdir } from 'os';
 import { resolve } from 'path';
 import { randomBytes } from 'crypto';
@@ -73,6 +73,15 @@ export async function POST(req: Request): Promise<Response> {
     if (run.code !== 0) {
       return new Response(
         JSON.stringify({ error: run.stderr || `exit code ${run.code}` }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } },
+      );
+    }
+
+    // compose.js can exit 0 without producing the PNG (e.g. unexpected internal
+    // path) — guard so we return a clean JSON error, not an opaque 500.
+    if (!existsSync(outPng)) {
+      return new Response(
+        JSON.stringify({ error: 'Aperçu non généré (fichier de sortie manquant)' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } },
       );
     }

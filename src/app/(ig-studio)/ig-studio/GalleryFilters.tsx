@@ -19,12 +19,27 @@ function readParam<T extends string>(key: string, allowed: readonly T[], fallbac
 }
 
 export default function GalleryFilters({ photos, groups }: Props) {
-  const [status, setStatus] = useState<StatusFilter>(() => readParam('status', ['all', 'validated', 'pending'] as const, 'all'));
-  const [group, setGroup] = useState<string>(() => readParam('group', ['all', ...groups], 'all'));
-  const [conf, setConf] = useState<ConfFilter>(() => readParam('conf', ['all', 'high', 'low'] as const, 'all'));
+  // Start at the SSR-safe fallback so server markup and the first client render
+  // match (no hydration mismatch), then adopt the URL params after mount.
+  const [status, setStatus] = useState<StatusFilter>('all');
+  const [group, setGroup] = useState<string>('all');
+  const [conf, setConf] = useState<ConfFilter>('all');
+  const [hydrated, setHydrated] = useState(false);
 
-  // Keep the URL query in sync so leaving and coming back (browser back) preserves filters.
+  // Adopt filters from the URL query once, after mount.
   useEffect(() => {
+    setStatus(readParam('status', ['all', 'validated', 'pending'] as const, 'all'));
+    setGroup(readParam('group', ['all', ...groups], 'all'));
+    setConf(readParam('conf', ['all', 'high', 'low'] as const, 'all'));
+    setHydrated(true);
+    // groups is stable for the page lifetime; run once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Keep the URL query in sync so leaving and coming back (browser back) preserves
+  // filters. Gated on `hydrated` so it doesn't wipe the query before adoption.
+  useEffect(() => {
+    if (!hydrated) return;
     const qs = new URLSearchParams();
     if (status !== 'all') qs.set('status', status);
     if (group !== 'all') qs.set('group', group);
@@ -32,7 +47,7 @@ export default function GalleryFilters({ photos, groups }: Props) {
     const next = qs.toString();
     const url = next ? `?${next}` : window.location.pathname;
     window.history.replaceState(null, '', url);
-  }, [status, group, conf]);
+  }, [status, group, conf, hydrated]);
 
   const filtered = photos.filter((p) => {
     if (status !== 'all' && p.status !== status) return false;

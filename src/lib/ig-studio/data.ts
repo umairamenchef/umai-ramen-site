@@ -132,15 +132,25 @@ export function readCaptions(): Record<string, { text: string; updatedAt: string
 }
 
 export function loadMenuOptions(): MenuOptions & { slugToGroup: Map<string, string>; menuLabel: (slug: string) => string } {
-  const raw = readFileSync(MENU_OPTIONS_PATH, 'utf-8');
-  const menu = JSON.parse(raw) as MenuOptions & { _note?: string; currency?: string; classification_axes?: Record<string, string> };
+  // Resilient read: a missing or corrupt menu-options.json must not 500 the whole
+  // app (gallery, generated view AND editor all call this). Fall back to an empty
+  // menu, mirroring readClassification()/readCaptions().
+  const EMPTY_NAP = { name: '', address: '', phone: '', instagram: '', website: '' };
+  let menu: MenuOptions & { _note?: string; currency?: string; classification_axes?: Record<string, string> };
+  try {
+    const raw = readFileSync(MENU_OPTIONS_PATH, 'utf-8');
+    const parsed = JSON.parse(raw) as MenuOptions;
+    menu = parsed && Array.isArray(parsed.groups) ? parsed : { nap: EMPTY_NAP, groups: [] };
+  } catch {
+    menu = { nap: EMPTY_NAP, groups: [] };
+  }
 
   // Build a slug → group name map for fast lookup
   const slugToGroup = new Map<string, string>();
   const slugToLabel = new Map<string, string>();
 
-  for (const grp of menu.groups) {
-    for (const item of grp.items) {
+  for (const grp of menu.groups ?? []) {
+    for (const item of grp.items ?? []) {
       slugToGroup.set(item.slug, grp.group);
       slugToLabel.set(item.slug, item.name);
     }

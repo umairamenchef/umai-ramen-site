@@ -193,45 +193,30 @@ export async function applyOverlay(canvasBuffer, dims, entry, kb) {
   const logoW = Math.round(logoH * SVG_ORIG_W / SVG_ORIG_H);
 
   const { cx, cy } = resolveLogoPosNorm(entry);
-  const { top: logoTop, left: logoLeft } = logoCoordsXY({
+  let { top: logoTop, left: logoLeft } = logoCoordsXY({
     cx, cy, logoW, logoH, canvasW: width, canvasH: height, margin,
   });
 
-  // ── Auto-contrast: determine logo variant ─────────────────────────────────
   const logoColorPref = entry.logoColor ?? 'auto';
-  let logoVariant;
-  if (logoColorPref === 'light') {
-    logoVariant = 'light';
-  } else if (logoColorPref === 'dark') {
-    logoVariant = 'dark';
-  } else {
-    // Auto: sample average luminance of the canvas region where the logo sits
-    const lum = await sampleRegionLuminance(canvasBuffer, {
-      left:   logoLeft,
-      top:    logoTop,
-      width:  logoW,
-      height: logoH,
-    });
-    // Light background (high luminance) → dark logo for contrast; dark bg → light logo
-    logoVariant = lum > OVERLAY.autoLuminanceThreshold ? 'dark' : 'light';
-  }
 
-  const logoPng = await getLogoOverlayPng({ height: logoH, variant: logoVariant });
-
-  composites.push({ input: logoPng, top: logoTop, left: logoLeft });
-  applied.logo = true;
-
-  // 2. Dish name text (logo-name only) ─────────────────────────────────────────
+  // ── Pre-resolve the dish name (logo-name mode) ────────────────────────────────
+  // We render/measure the name BEFORE finalising the logo position so we can (a)
+  // detect a logo↔name collision (both gravitate to the bottom) and lift the logo,
+  // and (b) sample the EXACT name box for auto-contrast (not a fixed guess box).
+  let namePng = null;
+  let nameBox = null; // { left, top, width, height }
   if (mode === 'logo-name') {
-    // Resolve label: human dishName first (only if not an ambiance placeholder)
+    // Resolve label: human dishName first (only if not an ambiance/empty placeholder)
     let label = null;
+    const nm = entry.dishName;
     const isAmbiguousName =
-      !entry.dishName ||
-      entry.dishName === 'ambiance' ||
-      entry.dishName.toLowerCase().startsWith('ambiance');
+      !nm ||
+      typeof nm !== 'string' ||
+      nm.trim() === '' ||
+      nm.trim().toLowerCase().startsWith('ambiance');
 
     if (!isAmbiguousName) {
-      label = { name: entry.dishName, price: entry.price ?? null };
+      label = { name: nm.trim(), price: entry.price ?? null };
     } else if (entry.dishSlug && entry.dishSlug !== 'ambiance') {
       // Canonical menu-options.json wins; old summer-menu KB only as last resort.
       const resolved = menuLabel(entry.dishSlug) ?? dishLabel(entry.dishSlug) ?? null;
@@ -240,43 +225,66 @@ export async function applyOverlay(canvasBuffer, dims, entry, kb) {
 
     if (label) {
       const showPrice = entry.showPrice === true;
+      const namePrice = showPrice ? (label.price ?? null) : null;
 
-      // Auto-contrast the dish name like the logo: sample the bottom-left region
-      // where the name sits and pick dark text on light backgrounds (and vice-versa).
-      // A forced logoColor preference applies to the name too.
+      // Render once (light) only to MEASURE — dimensions are variant-independent.
+      const measurePng = await renderNamePng({
+        name: label.name, price: namePrice, canvasWidth: width, variant: 'light',
+      });
+      const meta = await sharp(measurePng).metadata();
+      const nameTop = Math.max(0, height - meta.height - margin);
+      nameBox = { left: margin, top: nameTop, width: meta.width, height: meta.height };
+
+      // Collision avoidance: if the logo box would overlap the name box, lift the
+      // logo to the top band (keeping its horizontal side). The name stays anchored
+      // bottom-left. This protects long names from sitting under the wordmark.
+      const gap = Math.round(margin * 0.5);
+      const overlapX = logoLeft < nameBox.left + nameBox.width + gap &&
+                       logoLeft + logoW + gap > nameBox.left;
+      const overlapY = logoTop < nameBox.top + nameBox.height + gap &&
+                       logoTop + logoH + gap > nameBox.top;
+      if (overlapX && overlapY) {
+        logoTop = margin;
+      }
+
+      // Auto-contrast: sample the EXACT name box. A forced logoColor applies too.
       let nameVariant;
       if (logoColorPref === 'light') {
         nameVariant = 'light';
       } else if (logoColorPref === 'dark') {
         nameVariant = 'dark';
       } else {
-        const sampleH = Math.round(height * 0.22);
-        const sampleW = Math.round(width * 0.60);
-        const lumName = await sampleRegionLuminance(canvasBuffer, {
-          left:   margin,
-          top:    Math.max(0, height - sampleH - margin),
-          width:  sampleW,
-          height: sampleH,
-        });
+        const lumName = await sampleRegionLuminance(canvasBuffer, nameBox);
         nameVariant = lumName > OVERLAY.autoLuminanceThreshold ? 'dark' : 'light';
       }
 
-      const namePng = await renderNamePng({
-        name: label.name,
-        price: showPrice ? (label.price ?? null) : null,
-        canvasWidth: width,
-        variant: nameVariant,
-      });
-      const nameMeta = await sharp(namePng).metadata();
-      const nameH = nameMeta.height;
-
-      // Place name at bottom-left regardless of logo position (avoids collision)
-      const nameTop = Math.max(0, height - nameH - margin);
-      const nameLeft = margin;
-
-      composites.push({ input: namePng, top: nameTop, left: nameLeft });
-      applied.name = true;
+      namePng = nameVariant === 'light'
+        ? measurePng
+        : await renderNamePng({ name: label.name, price: namePrice, canvasWidth: width, variant: nameVariant });
     }
+  }
+
+  // ── Logo auto-contrast at its FINAL (possibly lifted) position ────────────────
+  let logoVariant;
+  if (logoColorPref === 'light') {
+    logoVariant = 'light';
+  } else if (logoColorPref === 'dark') {
+    logoVariant = 'dark';
+  } else {
+    const lum = await sampleRegionLuminance(canvasBuffer, {
+      left: logoLeft, top: logoTop, width: logoW, height: logoH,
+    });
+    logoVariant = lum > OVERLAY.autoLuminanceThreshold ? 'dark' : 'light';
+  }
+
+  const logoPng = await getLogoOverlayPng({ height: logoH, variant: logoVariant });
+  composites.push({ input: logoPng, top: logoTop, left: logoLeft });
+  applied.logo = true;
+
+  // 2. Dish name composite (if resolved) ────────────────────────────────────────
+  if (namePng && nameBox) {
+    composites.push({ input: namePng, top: nameBox.top, left: nameBox.left });
+    applied.name = true;
   }
 
   // ── Composite all layers ─────────────────────────────────────────────────────

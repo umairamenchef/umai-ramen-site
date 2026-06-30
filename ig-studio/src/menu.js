@@ -25,7 +25,16 @@ let _cached = null;
 export function loadMenu() {
   if (_cached) return _cached;
 
-  const raw = JSON.parse(readFileSync(MENU_PATH, 'utf-8'));
+  // Resilient read: a missing/corrupt menu-options.json must not crash the render
+  // pipeline (overlay label resolution, captions). Degrade to an empty menu —
+  // overlay then falls back to the legacy KB / slug, mirroring store.js.
+  let raw;
+  try {
+    raw = JSON.parse(readFileSync(MENU_PATH, 'utf-8'));
+  } catch {
+    raw = { groups: [], nap: {} };
+  }
+  if (!raw || !Array.isArray(raw.groups)) raw = { groups: [], nap: raw?.nap ?? {} };
 
   /** @type {Array<object>} */
   const items = [];
@@ -33,7 +42,7 @@ export function loadMenu() {
   const bySlug = new Map();
 
   for (const group of raw.groups) {
-    for (const item of group.items) {
+    for (const item of group.items ?? []) {
       const enriched = { ...item, group: group.group };
       items.push(enriched);
       bySlug.set(item.slug, enriched);

@@ -147,6 +147,11 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, prevId
       : (entry?.dishName ?? initialItem?.name ?? initialSlug),
   );
   const [price, setPrice]       = useState<number | null>(entry?.price ?? null);
+  // Raw text mirror of the price field so a French user can type "12,50" (comma)
+  // without the controlled number value erasing the in-progress decimal separator.
+  const [priceText, setPriceText] = useState<string>(
+    entry?.price != null ? String(entry.price).replace('.', ',') : '',
+  );
   const [baseline, setBaseline] = useState(entry?.baseline ?? '');
 
   // Overlay mode — 3 explicit options
@@ -202,6 +207,24 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, prevId
   const [settingsDirty, setSettingsDirty] = useState(false);
   const isDirty = settingsDirty || captionDirty;
 
+  // Warn before leaving (tab close / refresh) while there are unsaved changes.
+  useEffect(() => {
+    if (!isDirty) return;
+    const handler = (e: BeforeUnloadEvent) => { e.preventDefault(); e.returnValue = ''; };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, [isDirty]);
+
+  // Intercept in-app navigation links (Préc. / Galerie) when there are unsaved
+  // changes, so a tap to peek at another photo doesn't silently discard edits.
+  const guardNav = (e: React.MouseEvent) => {
+    if (isDirty && !window.confirm(
+      'Des modifications ne sont pas enregistrées. Quitter cette photo sans enregistrer ?',
+    )) {
+      e.preventDefault();
+    }
+  };
+
   // Drag refs
   const previewImgRef = useRef<HTMLImageElement>(null);
 
@@ -227,6 +250,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, prevId
     setDishSlug(slug);
     setDishName(isAmb ? '' : (item?.name ?? slug));
     setPrice(item?.price ?? null);
+    setPriceText(item?.price != null ? String(item.price).replace('.', ',') : '');
     setBaseline(item?.baseline ?? '');
     setShowPrice(false); // price flag must not leak across dishes
     if (isAmb) {
@@ -404,6 +428,10 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, prevId
   // ─── Regenerate ────────────────────────────────────────────────────────────
 
   function handleRegenerate() {
+    if (typeof window !== 'undefined' &&
+        !window.confirm('Régénérer et écraser les 3 formats exportés de cette photo ?')) {
+      return;
+    }
     setRegenMsg('');
     startRegen(async () => {
       const res = await regeneratePhoto(id);
@@ -476,6 +504,11 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, prevId
             onChange={(e) => handleDishChange(e.target.value)}
             className="w-full min-h-[44px] bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
+            {/* Fallback: if the stored slug was removed from the menu, keep a matching
+                option so the controlled <select> doesn't silently show the wrong dish. */}
+            {!slugMap.has(dishSlug) && (
+              <option value={dishSlug}>{dishName || dishSlug} (hors menu)</option>
+            )}
             {groups.map((g) => (
               <optgroup key={g.group} label={g.group}>
                 {g.items.map((item) => (
@@ -522,12 +555,15 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, prevId
                 </label>
                 <input
                   id="dish-price"
-                  type="number"
-                  step="0.10"
-                  value={price ?? ''}
+                  type="text"
+                  inputMode="decimal"
+                  placeholder="0,00"
+                  value={priceText}
                   onChange={(e) => {
-                    const v = parseFloat(e.target.value);
-                    setPrice(isNaN(v) ? null : v);
+                    const t = e.target.value;
+                    setPriceText(t);
+                    const v = parseFloat(t.replace(',', '.'));
+                    setPrice(t.trim() === '' || isNaN(v) ? null : v);
                     setSettingsDirty(true);
                   }}
                   className="w-full min-h-[44px] bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -969,48 +1005,43 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, prevId
           Sticky batch navigation
           ══════════════════════════════════════════════════════════════════════ */}
       <nav className="fixed bottom-0 inset-x-0 z-30 border-t border-gray-800 bg-gray-950/95 backdrop-blur supports-[backdrop-filter]:bg-gray-950/80">
-        <div className="max-w-3xl mx-auto flex items-center gap-2 px-4 py-2">
+        <div className="max-w-3xl mx-auto flex items-center gap-2 px-3 sm:px-4 py-2">
           {prevId ? (
             <a
               href={`/ig-studio/${prevId}`}
-              className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-200 bg-gray-800 hover:bg-gray-700 transition-colors"
+              onClick={guardNav}
+              className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-200 bg-gray-800 hover:bg-gray-700 transition-colors shrink-0"
             >
-              ← Préc.
+              ←<span className="hidden sm:inline">&nbsp;Préc.</span>
             </a>
           ) : (
-            <span className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-600 bg-gray-900">← Préc.</span>
+            <span className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-600 bg-gray-900 shrink-0">←<span className="hidden sm:inline">&nbsp;Préc.</span></span>
           )}
 
           <a
             href="/ig-studio"
-            className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-300 hover:text-white transition-colors"
+            onClick={guardNav}
+            className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-300 hover:text-white transition-colors shrink-0"
           >
             Galerie
           </a>
 
           <div className="flex-1" />
 
-          {nextId ? (
-            <>
-              <button
-                type="button"
-                disabled={isSaving}
-                onClick={handleSaveAndNext}
-                className={`min-h-[44px] px-3 flex items-center rounded-lg text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition-colors ${isSaving ? 'opacity-60 cursor-wait' : ''}`}
-                title="Enregistre puis passe à la photo suivante"
-              >
-                {isSaving ? '…' : 'Enregistrer & suivant'}
-              </button>
-              <a
-                href={`/ig-studio/${nextId}`}
-                className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-200 bg-gray-800 hover:bg-gray-700 transition-colors"
-              >
-                Suiv. →
-              </a>
-            </>
-          ) : (
-            <span className="min-h-[44px] px-3 flex items-center rounded-lg text-sm text-gray-600 bg-gray-900">Suiv. →</span>
-          )}
+          {/* Single forward CTA: "Enregistrer & suivant" already advances the batch,
+              so the redundant standalone "Suiv. →" link is dropped (it overflowed the
+              row on small phones). On the last photo it becomes a plain "Enregistrer". */}
+          <button
+            type="button"
+            disabled={isSaving}
+            onClick={nextId ? handleSaveAndNext : handleSave}
+            className={`min-h-[44px] px-4 flex items-center rounded-lg text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition-colors min-w-0 ${isSaving ? 'opacity-60 cursor-wait' : ''}`}
+            title={nextId ? 'Enregistre puis passe à la photo suivante' : 'Enregistre cette photo'}
+          >
+            <span className="truncate">
+              {isSaving ? '…' : nextId ? 'Enregistrer & suivant →' : 'Enregistrer'}
+            </span>
+          </button>
         </div>
       </nav>
     </div>

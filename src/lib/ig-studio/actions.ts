@@ -45,6 +45,36 @@ function revalidateStudio(id: string) {
   revalidatePath('/ig-studio/' + id);
 }
 
+/**
+ * Serialize read-modify-write of the JSON stores. Each save reads the whole array,
+ * mutates one entry, and writes it back; without a lock two concurrent saves (double
+ * tap on "Enregistrer & suivant", two tabs) can clobber each other (lost update).
+ * An in-process promise chain serializes the critical sections.
+ */
+let _writeChain: Promise<unknown> = Promise.resolve();
+function withWriteLock<T>(fn: () => T | Promise<T>): Promise<T> {
+  const run = _writeChain.then(fn, fn);
+  _writeChain = run.then(() => {}, () => {});
+  return run as Promise<T>;
+}
+
+// ─── Field sanitizers (defence-in-depth: never trust the client payload) ───────
+const clamp01 = (v: unknown): number =>
+  Number.isFinite(v as number) ? Math.min(1, Math.max(0, v as number)) : 0.5;
+
+const sanitizePrice = (v: unknown): number | null => {
+  if (v === null || v === undefined || v === '') return null;
+  const n = typeof v === 'number' ? v : Number(String(v).replace(',', '.'));
+  if (!Number.isFinite(n)) return null;
+  return Math.min(9999, Math.max(0, n));
+};
+
+const capStr = (v: unknown, max: number): string =>
+  typeof v === 'string' ? v.slice(0, max) : '';
+
+const oneOf = <T extends string>(v: unknown, allowed: readonly T[], fallback: T): T =>
+  allowed.includes(v as T) ? (v as T) : fallback;
+
 // ─── saveOverride ─────────────────────────────────────────────────────────────
 
 export type OverrideFields = {
@@ -78,36 +108,38 @@ export async function saveOverride(
   }
 
   const file = id + '.jpg';
-  const entries = readClassification();
-  const idx = entries.findIndex((e) => e.file === file);
 
-  const prior: Partial<IgEntry> = idx >= 0 ? entries[idx] : {};
+  await withWriteLock(() => {
+    const entries = readClassification();
+    const idx = entries.findIndex((e) => e.file === file);
+    const prior: Partial<IgEntry> = idx >= 0 ? entries[idx] : {};
 
-  const updated: IgEntry = {
-    file,
-    dishSlug: fields.dishSlug,
-    dishName: fields.dishName,
-    price: fields.price,
-    baseline: fields.baseline,
-    overlayMode: fields.overlayMode,
-    logoPosX: fields.logoPosX,
-    logoPosY: fields.logoPosY,
-    logoSize: fields.logoSize,
-    showPrice: fields.showPrice,
-    logoColor: fields.logoColor ?? 'auto',
-    shotType: prior.shotType ?? 'unknown',
-    confidence: prior.confidence ?? 0,
-    reasoning: prior.reasoning ?? '',
-    override: true,
-  };
+    const updated: IgEntry = {
+      file,
+      dishSlug: capStr(fields.dishSlug, 64),
+      dishName: capStr(fields.dishName, 120),
+      price: sanitizePrice(fields.price),
+      baseline: capStr(fields.baseline, 300),
+      overlayMode: oneOf(fields.overlayMode, ['photo-only', 'logo-only', 'logo-name'] as const, 'logo-only'),
+      logoPosX: clamp01(fields.logoPosX),
+      logoPosY: clamp01(fields.logoPosY),
+      logoSize: oneOf(fields.logoSize, ['small', 'medium', 'large'] as const, 'medium'),
+      showPrice: fields.showPrice === true,
+      logoColor: oneOf(fields.logoColor, ['auto', 'light', 'dark'] as const, 'auto'),
+      shotType: prior.shotType ?? 'unknown',
+      confidence: prior.confidence ?? 0,
+      reasoning: prior.reasoning ?? '',
+      override: true,
+    };
 
-  const next: IgEntry[] =
-    idx >= 0
-      ? entries.map((e, i) => (i === idx ? updated : e))
-      : [...entries, updated];
+    const next: IgEntry[] =
+      idx >= 0
+        ? entries.map((e, i) => (i === idx ? updated : e))
+        : [...entries, updated];
 
-  next.sort((a, b) => a.file.localeCompare(b.file));
-  writeJsonAtomic(CLASSIFICATION_PATH, next);
+    next.sort((a, b) => a.file.localeCompare(b.file));
+    writeJsonAtomic(CLASSIFICATION_PATH, next);
+  });
 
   revalidateStudio(id);
   return { ok: true };
@@ -129,9 +161,13 @@ export async function saveCaption(
     return { ok: false, error: 'invalid photo id' };
   }
 
-  const captions = readCaptions();
-  captions[id] = { text, updatedAt: new Date().toISOString() };
-  writeJsonAtomic(CAPTIONS_PATH, captions);
+  const safeText = capStr(text, 2200); // IG caption hard limit
+
+  await withWriteLock(() => {
+    const captions = readCaptions();
+    captions[id] = { text: safeText, updatedAt: new Date().toISOString() };
+    writeJsonAtomic(CAPTIONS_PATH, captions);
+  });
 
   revalidateStudio(id);
   return { ok: true };
