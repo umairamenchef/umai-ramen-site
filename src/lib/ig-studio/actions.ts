@@ -43,7 +43,10 @@ export type OverrideFields = {
   price: number | null;
   baseline: string;
   overlayMode: string;
-  logoPosition: string;
+  /** Normalized logo center x in [0,1] — replaces legacy logoPosition enum. */
+  logoPosX: number;
+  /** Normalized logo center y in [0,1] — replaces legacy logoPosition enum. */
+  logoPosY: number;
   logoSize: string;
   showPrice: boolean;
 };
@@ -75,7 +78,8 @@ export async function saveOverride(
     price: fields.price,
     baseline: fields.baseline,
     overlayMode: fields.overlayMode,
-    logoPosition: fields.logoPosition,
+    logoPosX: fields.logoPosX,
+    logoPosY: fields.logoPosY,
     logoSize: fields.logoSize,
     showPrice: fields.showPrice,
     shotType: prior.shotType ?? 'unknown',

@@ -149,7 +149,7 @@ describe('applyOverlay — logo-name mode', () => {
   });
 });
 
-describe('applyOverlay — logo position & size', () => {
+describe('applyOverlay — logo position & size (legacy enum)', () => {
   let kb;
   let canvas;
 
@@ -159,7 +159,7 @@ describe('applyOverlay — logo position & size', () => {
   });
 
   for (const position of ['top-left', 'top-right', 'bottom-left', 'bottom-right']) {
-    it(`logo position "${position}" → logo applied, buffer differs from canvas`, async () => {
+    it(`legacy logoPosition "${position}" → logo applied, buffer differs from canvas`, async () => {
       const entry = {
         overlayMode: 'logo-only',
         dishSlug: 'tantan-umai',
@@ -177,7 +177,7 @@ describe('applyOverlay — logo position & size', () => {
       const entry = {
         overlayMode: 'logo-only',
         dishSlug: 'tantan-umai',
-        logoPosition: 'top-right',
+        logoPosX: 0.88, logoPosY: 0.12,
         logoSize: size,
       };
       const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
@@ -186,11 +186,103 @@ describe('applyOverlay — logo position & size', () => {
   }
 
   it('logo size "large" produces wider logo buffer than "small"', async () => {
-    const base = { overlayMode: 'logo-only', dishSlug: 'tantan-umai', logoPosition: 'top-right' };
+    const base = { overlayMode: 'logo-only', dishSlug: 'tantan-umai', logoPosX: 0.88, logoPosY: 0.12 };
     const small  = await applyOverlay(canvas, { width: 1080, height: 1350 }, { ...base, logoSize: 'small'  }, kb);
     const large  = await applyOverlay(canvas, { width: 1080, height: 1350 }, { ...base, logoSize: 'large'  }, kb);
     // Both differ from canvas; large must produce a different (larger logo) composite
     assert.ok(!small.buffer.equals(large.buffer), 'small and large logo buffers must differ');
+  });
+});
+
+describe('applyOverlay — x/y position model', () => {
+  let kb;
+  let canvas;
+
+  before(async () => {
+    kb = loadKB();
+    canvas = await makeCanvas(1080, 1350);
+  });
+
+  it('logoPosX/logoPosY used when both present → logo applied', async () => {
+    const entry = {
+      overlayMode: 'logo-only',
+      dishSlug: 'tantan-umai',
+      logoPosX: 0.5,
+      logoPosY: 0.5,
+      logoSize: 'medium',
+    };
+    const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+    assert.equal(result.applied.logo, true);
+    assert.ok(!result.buffer.equals(canvas), 'centered logo buffer must differ from canvas');
+  });
+
+  it('center {0.5, 0.5} and top-left {0.12, 0.12} produce different composites', async () => {
+    const base = { overlayMode: 'logo-only', dishSlug: 'tantan-umai', logoSize: 'medium' };
+    const center    = await applyOverlay(canvas, { width: 1080, height: 1350 }, { ...base, logoPosX: 0.5,  logoPosY: 0.5  }, kb);
+    const topLeft   = await applyOverlay(canvas, { width: 1080, height: 1350 }, { ...base, logoPosX: 0.12, logoPosY: 0.12 }, kb);
+    assert.ok(!center.buffer.equals(topLeft.buffer), 'center and top-left composites must differ');
+  });
+
+  it('clamping: extreme x=1.5 stays on-canvas (no sharp composite error)', async () => {
+    const entry = {
+      overlayMode: 'logo-only',
+      dishSlug: 'tantan-umai',
+      logoPosX: 1.5,   // way outside — must clamp to right edge minus margin
+      logoPosY: -0.5,  // way outside — must clamp to top edge plus margin
+      logoSize: 'medium',
+    };
+    // Should not throw; logo clamped to canvas bounds
+    const result = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+    assert.equal(result.applied.logo, true);
+    assert.ok(!result.buffer.equals(canvas), 'clamped logo still differs from plain canvas');
+  });
+
+  it('clamping: {0.0, 0.0} and {1.0, 1.0} both produce valid composites that differ', async () => {
+    const base = { overlayMode: 'logo-only', dishSlug: 'tantan-umai', logoSize: 'medium' };
+    const tl = await applyOverlay(canvas, { width: 1080, height: 1350 }, { ...base, logoPosX: 0.0, logoPosY: 0.0 }, kb);
+    const br = await applyOverlay(canvas, { width: 1080, height: 1350 }, { ...base, logoPosX: 1.0, logoPosY: 1.0 }, kb);
+    assert.equal(tl.applied.logo, true);
+    assert.equal(br.applied.logo, true);
+    assert.ok(!tl.buffer.equals(br.buffer), 'top-left-clamped and bottom-right-clamped must differ');
+  });
+
+  it('x/y takes priority over legacy logoPosition enum', async () => {
+    const entry = {
+      overlayMode: 'logo-only',
+      dishSlug: 'tantan-umai',
+      logoSize: 'medium',
+      logoPosX: 0.5,
+      logoPosY: 0.5,
+      logoPosition: 'top-right',   // should be ignored since logoPosX/Y are present
+    };
+    const withXY     = await applyOverlay(canvas, { width: 1080, height: 1350 }, entry, kb);
+    const legacyOnly = await applyOverlay(canvas, { width: 1080, height: 1350 }, {
+      overlayMode: 'logo-only',
+      dishSlug: 'tantan-umai',
+      logoSize: 'medium',
+      logoPosition: 'top-right',
+    }, kb);
+    // Center x/y vs top-right enum should produce different composites
+    assert.ok(!withXY.buffer.equals(legacyOnly.buffer), 'x/y center must differ from legacy top-right');
+  });
+
+  it('all 3 canvas formats accept x/y model without error', async () => {
+    const formats = [
+      { width: 1080, height: 1350 },
+      { width: 1080, height: 1080 },
+      { width: 1080, height: 1920 },
+    ];
+    for (const dims of formats) {
+      const cvs = await makeCanvas(dims.width, dims.height);
+      const result = await applyOverlay(cvs, dims, {
+        overlayMode: 'logo-only',
+        dishSlug: 'tantan-umai',
+        logoPosX: 0.5,
+        logoPosY: 0.5,
+        logoSize: 'medium',
+      }, kb);
+      assert.equal(result.applied.logo, true, `format ${dims.width}×${dims.height} must apply logo`);
+    }
   });
 });
 

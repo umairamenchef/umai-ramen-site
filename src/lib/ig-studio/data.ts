@@ -31,7 +31,14 @@ export interface IgEntry {
   dishName?: string;
   price?: number | null;
   baseline?: string;
-  /** 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' — default 'top-right' */
+  /**
+   * Normalized logo center position in [0,1].
+   * logoPosX/logoPosY take priority over the legacy logoPosition enum.
+   * x=0 is left edge, x=1 is right edge; y=0 is top, y=1 is bottom.
+   */
+  logoPosX?: number;
+  logoPosY?: number;
+  /** Legacy enum — kept for backward compat; ignored when logoPosX/logoPosY are present. */
   logoPosition?: string;
   /** 'small' | 'medium' | 'large' — default 'medium' */
   logoSize?: string;

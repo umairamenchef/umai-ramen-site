@@ -2,14 +2,15 @@
 
 /**
  * Per-photo editor client component.
- * Sections: Plat | Affichage | Légende | Aperçu | Actions
+ * Sections: Plat | Affichage | Aperçu (avec drag logo) | Légende | Actions
  *
- * v2 (overlay-UX rework):
+ * v3 (drag-position rework):
  *  - 3 explicit overlay modes: photo-only / logo-only / logo-name
- *  - Logo position (4 corners) + size (Petit/Moyen/Grand) controls
+ *  - Logo position = normalized {x, y} in [0,1] (logo center as fraction of canvas)
+ *  - 9 quick-position presets (3×3 grid: HG/HC/HD / CG/C/CD / BG/BC/BD)
+ *  - Freely draggable logo handle on the live preview
+ *  - Logo size (Petit/Moyen/Grand) control
  *  - "Afficher le prix" checkbox (logo-name only, OFF by default)
- *  - Elegant minimal name text (no beige chip box) handled in overlay.js
- *  - dishName always synced to selected dish; ambiance never draws any text
  */
 
 import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
@@ -40,7 +41,6 @@ interface PhotoEditorProps {
 
 type PreviewFormat = 'feed' | 'square' | 'story';
 type OverlayMode  = 'photo-only' | 'logo-only' | 'logo-name';
-type LogoPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 type LogoSize     = 'small' | 'medium' | 'large';
 
 const FORMAT_LABELS: Record<PreviewFormat, string> = {
@@ -49,18 +49,45 @@ const FORMAT_LABELS: Record<PreviewFormat, string> = {
   story:  'Story 1080×1920',
 };
 
-const POSITION_LABELS: Record<LogoPosition, string> = {
-  'top-left':     'Haut gauche',
-  'top-right':    'Haut droite',
-  'bottom-left':  'Bas gauche',
-  'bottom-right': 'Bas droite',
-};
-
 const SIZE_LABELS: Record<LogoSize, string> = {
   small:  'Petit',
   medium: 'Moyen',
   large:  'Grand',
 };
+
+// ─── 9-preset grid ────────────────────────────────────────────────────────────
+
+const PRESET_GRID = [
+  [
+    { label: 'HG',  longLabel: 'Haut gauche',    x: 0.12, y: 0.12 },
+    { label: 'HC',  longLabel: 'Haut centre',    x: 0.50, y: 0.12 },
+    { label: 'HD',  longLabel: 'Haut droite',    x: 0.88, y: 0.12 },
+  ],
+  [
+    { label: 'CG',  longLabel: 'Centre gauche',  x: 0.12, y: 0.50 },
+    { label: 'C',   longLabel: 'Centre',          x: 0.50, y: 0.50 },
+    { label: 'CD',  longLabel: 'Centre droite',  x: 0.88, y: 0.50 },
+  ],
+  [
+    { label: 'BG',  longLabel: 'Bas gauche',     x: 0.12, y: 0.88 },
+    { label: 'BC',  longLabel: 'Bas centre',     x: 0.50, y: 0.88 },
+    { label: 'BD',  longLabel: 'Bas droite',     x: 0.88, y: 0.88 },
+  ],
+] as const;
+
+const PRESET_TOL = 0.05;
+
+// ─── Backward compat: legacy logoPosition enum → {x, y} ──────────────────────
+
+function legacyEnumToXY(pos: string | undefined): { x: number; y: number } {
+  switch (pos) {
+    case 'top-left':     return { x: 0.12, y: 0.12 };
+    case 'top-right':    return { x: 0.88, y: 0.12 };
+    case 'bottom-left':  return { x: 0.12, y: 0.88 };
+    case 'bottom-right': return { x: 0.88, y: 0.88 };
+    default:             return { x: 0.88, y: 0.12 }; // top-right default
+  }
+}
 
 // Build a flat slug → item map from all groups
 function buildSlugMap(groups: MenuGroup[]) {
@@ -75,11 +102,9 @@ function buildSlugMap(groups: MenuGroup[]) {
 
 /** Normalize a stored overlayMode value to the 3-mode union. */
 function normalizeMode(raw: string | undefined | null, isAmbiance: boolean): OverlayMode {
-  // Honor an explicitly stored choice for ANY photo (including ambiance).
   if (raw === 'photo-only') return 'photo-only';
-  if (raw === 'logo-name' || raw === 'packshot') return 'logo-name'; // packshot compat
+  if (raw === 'logo-name' || raw === 'packshot') return 'logo-name';
   if (raw === 'logo-only') return 'logo-only';
-  // No stored choice → default: ambiance = photo-only, dish photo = logo-only.
   return isAmbiance ? 'photo-only' : 'logo-only';
 }
 
@@ -98,7 +123,6 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
 
   const [dishSlug, setDishSlug] = useState(initialSlug);
   const [dishName, setDishName] = useState(
-    // For ambiance, dishName is irrelevant (never drawn) — but keep a safe value
     initialIsAmbiance
       ? ''
       : (entry?.dishName ?? initialItem?.name ?? initialSlug),
@@ -111,10 +135,14 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
     normalizeMode(entry?.overlayMode, initialIsAmbiance),
   );
 
-  // Logo controls
-  const [logoPosition, setLogoPosition] = useState<LogoPosition>(
-    (entry?.logoPosition as LogoPosition | undefined) ?? 'top-right',
-  );
+  // Logo position — normalized {x, y} center in [0,1]
+  const initPos = typeof entry?.logoPosX === 'number' && typeof entry?.logoPosY === 'number'
+    ? { x: entry.logoPosX, y: entry.logoPosY }
+    : legacyEnumToXY(entry?.logoPosition);
+  const [logoPosX, setLogoPosX] = useState<number>(initPos.x);
+  const [logoPosY, setLogoPosY] = useState<number>(initPos.y);
+
+  // Logo size
   const [logoSize, setLogoSize] = useState<LogoSize>(
     (entry?.logoSize as LogoSize | undefined) ?? 'medium',
   );
@@ -148,6 +176,9 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
   // Dirty / unsaved state
   const [isDirty, setIsDirty] = useState(false);
 
+  // Drag refs
+  const previewImgRef = useRef<HTMLImageElement>(null);
+
   // ─── Derived ──────────────────────────────────────────────────────────────
 
   const isAmbiance  = dishSlug === 'ambiance' || slugMap.get(dishSlug)?.overlay === 'none';
@@ -155,20 +186,24 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
   const showLogoControls = overlayMode !== 'photo-only';
   const showNameControls = overlayMode === 'logo-name' && !isAmbiance;
 
+  // ─── Preset active check ──────────────────────────────────────────────────
+
+  function isPresetActive(px: number, py: number): boolean {
+    return Math.abs(logoPosX - px) < PRESET_TOL && Math.abs(logoPosY - py) < PRESET_TOL;
+  }
+
   // ─── Dish selection ────────────────────────────────────────────────────────
 
   function handleDishChange(slug: string) {
     const item = slugMap.get(slug);
     const isAmb = slug === 'ambiance' || item?.overlay === 'none';
     setDishSlug(slug);
-    // Always sync name to the menu item's actual name; clear for ambiance (never drawn)
     setDishName(isAmb ? '' : (item?.name ?? slug));
     setPrice(item?.price ?? null);
     setBaseline(item?.baseline ?? '');
     if (isAmb) {
       setOverlayMode('photo-only');
     } else if (overlayMode === 'photo-only') {
-      // Switching from ambiance to a real dish → reset to default logo-only
       setOverlayMode('logo-only');
     }
     setIsDirty(true);
@@ -196,7 +231,8 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               price,
               baseline,
               overlayMode,
-              logoPosition,
+              logoPosX,
+              logoPosY,
               logoSize,
               showPrice,
               shotType: entry?.shotType ?? 'packshot',
@@ -222,7 +258,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
         setPreviewLoading(false);
       }
     }, 400);
-  }, [id, dishSlug, dishName, price, baseline, overlayMode, logoPosition, logoSize, showPrice, previewFormat, entry?.shotType, entry?.confidence]);
+  }, [id, dishSlug, dishName, price, baseline, overlayMode, logoPosX, logoPosY, logoSize, showPrice, previewFormat, entry?.shotType, entry?.confidence]);
 
   useEffect(() => {
     triggerPreview();
@@ -237,6 +273,31 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
     };
   }, []);
 
+  // ─── Logo drag handlers ────────────────────────────────────────────────────
+
+  function handleDragPointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    e.preventDefault();
+    e.currentTarget.setPointerCapture(e.pointerId);
+  }
+
+  function handleDragPointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (!e.currentTarget.hasPointerCapture(e.pointerId)) return;
+    const img = previewImgRef.current;
+    if (!img) return;
+    const rect = img.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+    setLogoPosX(x);
+    setLogoPosY(y);
+    setIsDirty(true);
+  }
+
+  function handleDragPointerUp(e: React.PointerEvent<HTMLDivElement>) {
+    if (!e.currentTarget.hasPointerCapture(e.pointerId)) return;
+    e.currentTarget.releasePointerCapture(e.pointerId);
+    // Preview auto-fires via triggerPreview debounce (logoPosX/Y changed)
+  }
+
   // ─── Save override ─────────────────────────────────────────────────────────
 
   function handleSave() {
@@ -247,7 +308,8 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
         price,
         baseline,
         overlayMode,
-        logoPosition,
+        logoPosX,
+        logoPosY,
         logoSize,
         showPrice,
       };
@@ -327,7 +389,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
       {/* ── Fil conducteur ────────────────────────────────────────────────── */}
       <p className="text-xs text-gray-500 leading-relaxed border border-gray-800 rounded-lg px-4 py-3">
         <span className="font-semibold text-gray-400">Comment utiliser :</span>{' '}
-        1. Choisir le plat → 2. Régler l&apos;affichage → 3. Générer / éditer la légende → 4. Enregistrer → 5. Régénérer les 3 formats.
+        1. Choisir le plat → 2. Régler l&apos;affichage → 3. Positionner le logo (glisser ou preset) → 4. Générer / éditer la légende → 5. Enregistrer → 6. Régénérer les 3 formats.
       </p>
 
       {/* ── Suggestion IA (lecture seule) ─────────────────────────────────── */}
@@ -497,7 +559,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
             />
             <div>
               <p className="text-sm font-medium text-gray-200">Logo seul</p>
-              <p className="text-xs text-gray-500 mt-0.5">Uniquement le logo Umaï, positionné au coin choisi. Défaut recommandé.</p>
+              <p className="text-xs text-gray-500 mt-0.5">Uniquement le logo Umaï, positionné librement. Défaut recommandé.</p>
             </div>
           </label>
 
@@ -524,29 +586,7 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
 
         {/* ── Logo controls (shown when mode != photo-only) ─────────────────── */}
         {showLogoControls && (
-          <div className="flex flex-col gap-3 pt-1 border-t border-gray-800">
-
-            {/* Position picker */}
-            <div>
-              <p className="text-xs text-gray-400 font-medium mb-2">Position du logo</p>
-              <div className="grid grid-cols-2 gap-2">
-                {(Object.keys(POSITION_LABELS) as LogoPosition[]).map((pos) => (
-                  <button
-                    key={pos}
-                    type="button"
-                    onClick={() => { setLogoPosition(pos); setIsDirty(true); }}
-                    className={`min-h-[44px] rounded-lg text-xs font-medium transition-colors ${
-                      logoPosition === pos
-                        ? 'bg-indigo-600 text-white'
-                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                    }`}
-                  >
-                    {POSITION_LABELS[pos]}
-                  </button>
-                ))}
-              </div>
-              <p className="text-xs text-gray-600 mt-1">Coin où le logo est placé sur la photo.</p>
-            </div>
+          <div className="flex flex-col gap-4 pt-1 border-t border-gray-800">
 
             {/* Size buttons */}
             <div>
@@ -568,6 +608,38 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
                 ))}
               </div>
               <p className="text-xs text-gray-600 mt-1">Petit = discret, Grand = bien visible.</p>
+            </div>
+
+            {/* 9-preset position grid */}
+            <div>
+              <p className="text-xs text-gray-400 font-medium mb-2">Position rapide du logo</p>
+              <div className="grid grid-cols-3 gap-1.5">
+                {PRESET_GRID.map((row, ri) =>
+                  row.map((preset, ci) => (
+                    <button
+                      key={`${ri}-${ci}`}
+                      type="button"
+                      title={preset.longLabel}
+                      onClick={() => {
+                        setLogoPosX(preset.x);
+                        setLogoPosY(preset.y);
+                        setIsDirty(true);
+                      }}
+                      className={`min-h-[40px] rounded-lg text-xs font-medium transition-colors ${
+                        isPresetActive(preset.x, preset.y)
+                          ? 'bg-indigo-600 text-white ring-1 ring-indigo-400'
+                          : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                      }`}
+                    >
+                      {preset.label}
+                    </button>
+                  ))
+                )}
+              </div>
+              <p className="text-xs text-gray-600 mt-1">
+                Position actuelle : x={logoPosX.toFixed(2)} y={logoPosY.toFixed(2)}
+                {' '}— ou glissez le cadre dans l&apos;aperçu.
+              </p>
             </div>
 
             {/* showPrice checkbox (logo-name only) */}
@@ -598,7 +670,107 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════════
-          SECTION 3 — Légende (caption)
+          SECTION 3 — Aperçu (avec drag logo)
+          ══════════════════════════════════════════════════════════════════════ */}
+      <section className="flex flex-col gap-3 rounded-lg border border-gray-800 p-4">
+        <div>
+          <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Aperçu</h2>
+          <p className="text-xs text-gray-500 mt-1">
+            Visualisez le rendu final pour chaque format Meta.
+            {showLogoControls && ' Glissez le cadre pointillé pour repositionner le logo.'}
+          </p>
+        </div>
+
+        {/* Format toggle */}
+        <div className="flex gap-2 flex-wrap">
+          {(Object.keys(FORMAT_LABELS) as PreviewFormat[]).map((fmt) => (
+            <button
+              key={fmt}
+              type="button"
+              onClick={() => setPreviewFormat(fmt)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                previewFormat === fmt
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+            >
+              {FORMAT_LABELS[fmt]}
+            </button>
+          ))}
+        </div>
+
+        {/* Source photo + preview side by side */}
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex-1 rounded-lg overflow-hidden bg-gray-900">
+            <p className="text-xs text-gray-500 px-3 py-2 font-mono">Source originale</p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`/api/ig-studio/photo/${id}`}
+              alt={`Photo source ${id}`}
+              className="w-full object-contain max-h-72"
+            />
+          </div>
+
+          <div className="flex-1 rounded-lg overflow-hidden bg-gray-900">
+            <div className="flex items-center justify-between px-3 py-2">
+              <p className="text-xs text-gray-500 font-mono">{FORMAT_LABELS[previewFormat]}</p>
+              {previewLoading && (
+                <span className="text-xs text-yellow-400 animate-pulse">Rendu en cours…</span>
+              )}
+            </div>
+            {previewError && (
+              <p className="text-xs text-red-400 px-3 pb-2">{previewError}</p>
+            )}
+            {previewUrl && !previewError && (
+              /* Drag container — relative so the ghost box can be absolute-positioned */
+              <div className="relative select-none">
+                {/* Ghost drag handle (shown when logo controls visible) */}
+                {showLogoControls && (
+                  <div
+                    title="Glissez le logo pour le positionner"
+                    className="absolute z-10 border-2 border-dashed border-white/80 bg-white/10 hover:bg-white/20 rounded cursor-grab active:cursor-grabbing flex items-center justify-center touch-none"
+                    style={{
+                      left:      `${logoPosX * 100}%`,
+                      top:       `${logoPosY * 100}%`,
+                      transform: 'translate(-50%, -50%)',
+                      width:     '26%',
+                      height:    '8%',
+                      minWidth:  '56px',
+                      minHeight: '16px',
+                    }}
+                    onPointerDown={handleDragPointerDown}
+                    onPointerMove={handleDragPointerMove}
+                    onPointerUp={handleDragPointerUp}
+                  >
+                    <span className="text-white/60 text-xs font-mono select-none pointer-events-none">⠿ logo</span>
+                  </div>
+                )}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  ref={previewImgRef}
+                  src={previewUrl}
+                  alt="Aperçu avec overlay"
+                  className="w-full object-contain pointer-events-none"
+                  draggable={false}
+                />
+                {showLogoControls && (
+                  <p className="absolute bottom-1 left-0 right-0 text-center text-[10px] text-white/50 select-none pointer-events-none">
+                    Glissez le logo pour le positionner
+                  </p>
+                )}
+              </div>
+            )}
+            {!previewUrl && !previewLoading && !previewError && (
+              <div className="flex items-center justify-center h-48 text-gray-600 text-sm">
+                Chargement…
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          SECTION 4 — Légende (caption)
           ══════════════════════════════════════════════════════════════════════ */}
       <section className="flex flex-col gap-3 rounded-lg border border-gray-800 p-4">
         <div>
@@ -650,74 +822,6 @@ export function PhotoEditor({ id, entry, caption: initialCaption, groups, nap }:
               ? '✗ Erreur'
               : 'Enregistrer la légende'}
           </button>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════════════
-          SECTION 4 — Aperçu
-          ══════════════════════════════════════════════════════════════════════ */}
-      <section className="flex flex-col gap-3 rounded-lg border border-gray-800 p-4">
-        <div>
-          <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">Aperçu</h2>
-          <p className="text-xs text-gray-500 mt-1">
-            Visualisez le rendu final pour chaque format Meta.
-          </p>
-        </div>
-
-        {/* Format toggle */}
-        <div className="flex gap-2 flex-wrap">
-          {(Object.keys(FORMAT_LABELS) as PreviewFormat[]).map((fmt) => (
-            <button
-              key={fmt}
-              type="button"
-              onClick={() => setPreviewFormat(fmt)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                previewFormat === fmt
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-              }`}
-            >
-              {FORMAT_LABELS[fmt]}
-            </button>
-          ))}
-        </div>
-
-        {/* Source photo + preview side by side */}
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="flex-1 rounded-lg overflow-hidden bg-gray-900">
-            <p className="text-xs text-gray-500 px-3 py-2 font-mono">Source originale</p>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`/api/ig-studio/photo/${id}`}
-              alt={`Photo source ${id}`}
-              className="w-full object-contain max-h-72"
-            />
-          </div>
-
-          <div className="flex-1 rounded-lg overflow-hidden bg-gray-900">
-            <div className="flex items-center justify-between px-3 py-2">
-              <p className="text-xs text-gray-500 font-mono">{FORMAT_LABELS[previewFormat]}</p>
-              {previewLoading && (
-                <span className="text-xs text-yellow-400 animate-pulse">Rendu en cours…</span>
-              )}
-            </div>
-            {previewError && (
-              <p className="text-xs text-red-400 px-3 pb-2">{previewError}</p>
-            )}
-            {previewUrl && !previewError && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={previewUrl}
-                alt="Aperçu avec overlay"
-                className="w-full object-contain"
-              />
-            )}
-            {!previewUrl && !previewLoading && !previewError && (
-              <div className="flex items-center justify-center h-48 text-gray-600 text-sm">
-                Chargement…
-              </div>
-            )}
-          </div>
         </div>
       </section>
 

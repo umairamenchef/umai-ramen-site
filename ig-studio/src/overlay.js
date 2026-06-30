@@ -34,27 +34,59 @@ import { OVERLAY } from '../brand/tokens.js';
 
 const SIZE_FRAC = { small: 0.65, medium: 1.0, large: 1.5 };
 
-// ─── Logo corner placement ────────────────────────────────────────────────────
+// ─── Logo position: normalized x/y model ─────────────────────────────────────
 
 /**
- * Compute top/left pixel coordinates for the logo given the chosen corner.
+ * Legacy enum → normalized center map (backward compat).
+ * These intentionally differ slightly from the 9-preset grid values so old
+ * entries can be detected as "not matching a preset exactly".
+ */
+const LEGACY_ENUM_MAP = {
+  'top-left':     { cx: 0.12, cy: 0.10 },
+  'top-right':    { cx: 0.88, cy: 0.10 },
+  'bottom-left':  { cx: 0.12, cy: 0.90 },
+  'bottom-right': { cx: 0.88, cy: 0.90 },
+};
+
+/**
+ * Resolve logo center from entry.
+ * Priority: logoPosX/logoPosY → legacy logoPosition enum → default top-right.
  *
- * @param {{ position: string, logoW: number, logoH: number,
+ * @param {object} entry
+ * @returns {{ cx: number, cy: number }} — normalized center in [0,1]
+ */
+function resolveLogoPosNorm(entry) {
+  if (typeof entry.logoPosX === 'number' && typeof entry.logoPosY === 'number') {
+    return { cx: entry.logoPosX, cy: entry.logoPosY };
+  }
+  if (entry.logoPosition && LEGACY_ENUM_MAP[entry.logoPosition]) {
+    return LEGACY_ENUM_MAP[entry.logoPosition];
+  }
+  // Default: upper-right (matches top-right preset {0.88, 0.12})
+  return { cx: 0.85, cy: 0.12 };
+}
+
+/**
+ * Compute top/left pixel coordinates from a normalized center {cx, cy},
+ * clamping so the entire logo stays within the canvas minus margin.
+ *
+ * @param {{ cx: number, cy: number, logoW: number, logoH: number,
  *           canvasW: number, canvasH: number, margin: number }} opts
  * @returns {{ top: number, left: number }}
  */
-function logoCoords({ position, logoW, logoH, canvasW, canvasH, margin }) {
-  switch (position) {
-    case 'top-left':
-      return { top: margin, left: margin };
-    case 'bottom-left':
-      return { top: canvasH - logoH - margin, left: margin };
-    case 'bottom-right':
-      return { top: canvasH - logoH - margin, left: canvasW - logoW - margin };
-    case 'top-right':
-    default:
-      return { top: margin, left: canvasW - logoW - margin };
-  }
+function logoCoordsXY({ cx, cy, logoW, logoH, canvasW, canvasH, margin }) {
+  const rawLeft = Math.round(cx * canvasW - logoW / 2);
+  const rawTop  = Math.round(cy * canvasH - logoH / 2);
+
+  const minLeft = margin;
+  const maxLeft = canvasW - logoW - margin;
+  const minTop  = margin;
+  const maxTop  = canvasH - logoH - margin;
+
+  return {
+    left: Math.max(minLeft, Math.min(maxLeft, rawLeft)),
+    top:  Math.max(minTop,  Math.min(maxTop,  rawTop)),
+  };
 }
 
 // ─── applyOverlay ─────────────────────────────────────────────────────────────
@@ -116,9 +148,9 @@ export async function applyOverlay(canvasBuffer, dims, entry, kb) {
   const logoMeta = await sharp(logoPng).metadata();
   const logoW = logoMeta.width;
 
-  const position = entry.logoPosition ?? 'top-right';
-  const { top: logoTop, left: logoLeft } = logoCoords({
-    position, logoW, logoH, canvasW: width, canvasH: height, margin,
+  const { cx, cy } = resolveLogoPosNorm(entry);
+  const { top: logoTop, left: logoLeft } = logoCoordsXY({
+    cx, cy, logoW, logoH, canvasW: width, canvasH: height, margin,
   });
 
   composites.push({ input: logoPng, top: logoTop, left: logoLeft });
