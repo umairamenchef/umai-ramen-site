@@ -96,6 +96,7 @@ Sanity is public-read. Verified counts & fields:
 | C-5 | 🟠 | **/galerie** renders the lightbox with an empty array and **no empty-state message** (0 Sanity images). | Add images (CONTENT-05) + optionally an empty-state guard in the gallery component. |
 | C-6 | 🟠 | **/notre-histoire** has no hero image; if any section image is missing it shows a grey `bg-umai-line` box. | Add hero + section images (CONTENT-05). |
 | C-7 | 🟡 | **/commander** Click & Collect card shows "Bientôt disponible" — `clickCollectUrl` unset in Sanity. | Set the Gusty C&C URL in Sanity when available (already a known pending todo). |
+| C-8 | 🟠 | **Site-wide missing diacritics in UI strings.** `src/messages/fr.json` has **1** accented char total, `de.json` **2** — French shows "Reservez / equipe / fraiches", German "Offnungszeiten / Haufig". Unprofessional for a FR restaurant; also affects readability/search. (Sanity editorial content keeps its accents — this is only the hardcoded dictionaries.) | Dedicated re-accentuation pass over `messages/fr.json` + `de.json` (mechanical, correctness-only). Phase 10. |
 
 **Note:** legal placeholders and EN/DE strings live in the **repo** (`src/messages/*.json` + hero component), so I can fix the translation *plumbing* myself once EK provides the legal values and confirms the EN/DE catchphrase should be localized (vs. keeping the FR tagline as a brand constant).
 
@@ -131,6 +132,7 @@ Production build **succeeds** (81s, Turbopack, 40 static pages, standalone). **N
 - Confirm menu = current summer menu, prices correct _(EK ground truth)_.
 - **P-1** Wire `@next/bundle-analyzer` (DEBT-02) + refresh the PERF-05 number.
 - Confirm C-2 hero EN/DE (my re-check was inconclusive).
+- **C-8** Site-wide re-accentuation of `messages/fr.json` + `de.json` (French/German diacritics stripped).
 
 ### 🟡 Minor (post-launch OK)
 - C-7 Click & Collect URL unset ("Bientôt disponible") — set Gusty C&C URL in Sanity when ready.
