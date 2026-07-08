@@ -24,14 +24,20 @@ See: .planning/PROJECT.md (updated 2026-07-08 after v2.1 milestone opening)
 
 ## Current Position
 
-Phase: **08 — Audit go-live & gap analysis** (next to plan)
+Phase: **08 — Audit go-live & gap analysis → COMPLETE** (deliverable: `phases/08-audit-go-live/08-AUDIT-GAP-LIST.md`)
 Plan: —
-Status: Ready to plan Phase 08
-Last activity: 2026-07-08 — Roadmap v2.1 created (ROADMAP.md phases 08–11 written)
+Status: Audit done (AUDIT-01..07). Next: Phase 09 (content) ∥ Phase 10 (debt). Awaiting EK inputs (legal values, assets, menu confirmation) — batched in the gap-list §7.
+Last activity: 2026-07-09 — Go-live audit executed autonomously; prioritized gap list produced
 
-Progress (v2.1): [░░░░░░░░░░] 0% (0/4 phases complete)
+Progress (v2.1): [██░░░░░░░░] 25% (1/4 phases complete — audit)
 
-Next action: `/gsd:plan-phase 8`
+Next action: EK to answer §7 decisions; meanwhile execute no-input fixes (EN/DE i18n leaks, og-image, gallery empty-state, bundle-analyzer) then `/gsd:plan-phase 9`/`10`.
+
+## Go-live gap headlines (2026-07-09 audit)
+
+🔴 Blockers: legal pages unfilled `[PLACEHOLDER]` (FR/EN/DE); EN/DE FR-leak strings (reservation subtitle, Infos FAQ; hero to confirm); `/og-image.jpg` 404; Galerie empty (0 Sanity images); post-cutover turfu.in→prod canonical.
+🟠 Major: 4 menu items missing photos; Notre Histoire hero; confirm summer-menu/prices; wire bundle-analyzer.
+✅ Good: cutover is mechanically trivial (old site = one-pager, baseUrl = 1 env var + rebuild, /ig-studio auth host-agnostic); build healthy; JSON-LD + NAP + hreflang solid.
 
 ## Performance Metrics
 

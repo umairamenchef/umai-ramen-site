@@ -218,7 +218,7 @@ Plans:
 | 5. Brand Kit & Compositing | v2.0 | 2/2 | Complete | 2026-06-29 |
 | 6. Captions & Full Assembly | v2.0 | 0/? | Deferred (subsumed by Phase 07) | — |
 | 7. IG Studio Editor (web UI) | v2.0 | 4/5 | In Progress | — |
-| 8. Audit go-live & gap analysis | v2.1 | 0/? | Not started | — |
+| 8. Audit go-live & gap analysis | v2.1 | 1/1 | Complete | 2026-07-09 |
 | 9. Contenu & visuels production (Sanity) | v2.1 | 0/? | Not started | — |
 | 10. Résorption dette & polish | v2.1 | 0/? | Not started | — |
 | 11. Cutover domaine & vérifications live | v2.1 | 0/? | Not started | — |

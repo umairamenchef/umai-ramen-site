@@ -19,13 +19,13 @@
 
 ### Audit & Gap Analysis (go-live readiness)
 
-- [ ] **AUDIT-01**: Page-by-page review of every live page on umai.turfu.in (Accueil, Menu, Réservation, Commander, Notre Histoire, Infos, Galerie, 4 legal pages) producing a documented list of missing/placeholder content, broken links, and untranslated FR/EN/DE strings
-- [ ] **AUDIT-02**: Menu audit — verify the live menu matches the current summer menu (dishes, prices, availability, dietary tags) against the in-restaurant ground truth; list every discrepancy
-- [ ] **AUDIT-03**: Visual/asset audit — identify placeholder or low-quality images (hero, gallery, OG) and produce the list of real assets required from EK
-- [ ] **AUDIT-04**: SEO/metadata audit — verify per-page title/description/OG/hreflang, Restaurant + Menu JSON-LD, canonical URLs, and that sitemap.xml + robots.txt are correct for the production domain
-- [ ] **AUDIT-05**: Redirect/URL audit — enumerate the old GitHub Pages site's indexed URLs and define the old→new 301 redirect map to preserve SEO
-- [ ] **AUDIT-06**: Performance audit — Lighthouse + Core Web Vitals on a production-like build, with the first-load JS breakdown and any regressions identified
-- [ ] **AUDIT-07**: Cutover-readiness dossier — exact Caddy config change, DNS records to change (apex A + www), TTL-lowering plan, TLS provisioning approach, and a single prioritized go-live gap list with severities
+- [x] **AUDIT-01**: Page-by-page review of every live page on umai.turfu.in (Accueil, Menu, Réservation, Commander, Notre Histoire, Infos, Galerie, 4 legal pages) producing a documented list of missing/placeholder content, broken links, and untranslated FR/EN/DE strings
+- [x] **AUDIT-02**: Menu audit — verify the live menu matches the current summer menu (dishes, prices, availability, dietary tags) against the in-restaurant ground truth; list every discrepancy
+- [x] **AUDIT-03**: Visual/asset audit — identify placeholder or low-quality images (hero, gallery, OG) and produce the list of real assets required from EK
+- [x] **AUDIT-04**: SEO/metadata audit — verify per-page title/description/OG/hreflang, Restaurant + Menu JSON-LD, canonical URLs, and that sitemap.xml + robots.txt are correct for the production domain
+- [x] **AUDIT-05**: Redirect/URL audit — enumerate the old GitHub Pages site's indexed URLs and define the old→new 301 redirect map to preserve SEO
+- [x] **AUDIT-06**: Performance audit — Lighthouse + Core Web Vitals on a production-like build, with the first-load JS breakdown and any regressions identified
+- [x] **AUDIT-07**: Cutover-readiness dossier — exact Caddy config change, DNS records to change (apex A + www), TTL-lowering plan, TLS provisioning approach, and a single prioritized go-live gap list with severities
 
 ### Production Content Completion
 
@@ -72,13 +72,13 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUDIT-01 | Phase 08 — Audit go-live & gap analysis | Pending |
-| AUDIT-02 | Phase 08 — Audit go-live & gap analysis | Pending |
-| AUDIT-03 | Phase 08 — Audit go-live & gap analysis | Pending |
-| AUDIT-04 | Phase 08 — Audit go-live & gap analysis | Pending |
-| AUDIT-05 | Phase 08 — Audit go-live & gap analysis | Pending |
-| AUDIT-06 | Phase 08 — Audit go-live & gap analysis | Pending |
-| AUDIT-07 | Phase 08 — Audit go-live & gap analysis | Pending |
+| AUDIT-01 | Phase 08 — Audit go-live & gap analysis | Complete |
+| AUDIT-02 | Phase 08 — Audit go-live & gap analysis | Complete |
+| AUDIT-03 | Phase 08 — Audit go-live & gap analysis | Complete |
+| AUDIT-04 | Phase 08 — Audit go-live & gap analysis | Complete |
+| AUDIT-05 | Phase 08 — Audit go-live & gap analysis | Complete |
+| AUDIT-06 | Phase 08 — Audit go-live & gap analysis | Complete |
+| AUDIT-07 | Phase 08 — Audit go-live & gap analysis | Complete |
 | CONTENT-01 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
 | CONTENT-02 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
 | CONTENT-03 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
