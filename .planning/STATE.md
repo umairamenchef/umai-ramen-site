@@ -1,39 +1,41 @@
 ---
 gsd_state_version: 1.0
-milestone: v2.0
-milestone_name: IG Content Studio
-status: completed
-stopped_at: Completed 07-ig-studio-ui-05-PLAN.md
-last_updated: "2026-06-29T14:14:51.475Z"
-last_activity: 2026-06-29 — 04-01 + 04-02 Task 1 executed; live pilot run completed (10 photos classified)
+milestone: v2.1
+milestone_name: Production go-live & umai-ramen.fr cutover
+status: in_progress
+stopped_at: Milestone v2.1 opened — defining requirements
+last_updated: "2026-07-08T00:00:00.000Z"
+last_activity: 2026-07-08 — Milestone v2.1 started (questioning done, writing artifacts)
 progress:
   total_phases: 4
-  completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-06-29 after v2.0 milestone opening)
+See: .planning/PROJECT.md (updated 2026-07-08 after v2.1 milestone opening)
 
-**Core value (v2.0):** From ~81 professional photos → batch-generate Instagram-ready posts with correct dish labels, Umaï branding, and FR captions; human override step for classification corrections.
-**Current focus:** v2.0 Phase 04 — Ingestion & Classification (Pilot)
+**Core value (v2.1):** Publish the new Next.js site on umai-ramen.fr (today the old GitHub Pages site) with complete production content and a controlled, low-risk domain/DNS cutover.
+**Current focus:** v2.1 — go-live audit → content/debt → cutover. Target week of 2026-07-11.
 
 ## Current Position
 
-Phase: 04 — Ingestion & Classification (Pilot)
-Plan: 04-02 Task 2 — CHECKPOINT (pilot sign-off pending owner)
-Status: 04-01 complete (3/3 tasks); 04-02 Task 1 complete — awaiting human pilot review
-Last activity: 2026-06-29 — 04-01 + 04-02 Task 1 executed; live pilot run completed (10 photos classified)
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-07-08 — Milestone v2.1 started
 
-Progress (v2.0): [██░░░░░░░░] 25% (1/4 phases in progress — pilot gate pending)
+Progress (v2.1): [░░░░░░░░░░] 0% (requirements being defined)
 
 ## Performance Metrics
 
-**v2.0 velocity:** Not yet measured — Phase 04 not started.
+**v2.1 velocity:** Not yet measured.
+
+**v2.0 (IG Content Studio):** built + deployed on umai.turfu.in/ig-studio; not formally archived.
 
 **v1.0 history (archived):**
 

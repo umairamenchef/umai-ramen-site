@@ -12,6 +12,10 @@ Visitors can reserve a table (Gusty) or order food (Uber Eats / Click & Collect)
 
 **v1.0 shipped 2026-02-23.** Deployed to VPS srv1417179 via docker compose (`umai`) behind Caddy reverse proxy. Accessible at umai.turfu.in (staging). Production domain umai-ramen.fr pending DNS cutover.
 
+**v2.0 (IG Content Studio) de facto delivered & deployed** on umai.turfu.in/ig-studio (CLI classify/compose + `/ig-studio` review editor, Azure-free sharp pipeline). Not yet formally archived in GSD.
+
+**v2.1 (open 2026-07-08): production go-live & domain cutover.** Objective: publish the new Next.js site onto the primary domain umai-ramen.fr — which today still serves the OLD site via GitHub Pages (`185.199.10x.153` / `umairamenchef.github.io`) — by adding the domain to Caddy (TLS) and cutting DNS to the VPS (`76.13.61.239`), after a go-live audit + content/debt remediation. Target: week of 2026-07-11.
+
 The VPS (valid until 2027-02-23) is a multi-site host intended for umai-ramen.fr, mokorita.fr, and other SAS/restaurant sites managed by EK.
 
 ## Requirements
@@ -45,14 +49,16 @@ The VPS (valid until 2027-02-23) is a multi-site host intended for umai-ramen.fr
 - ✓ Catchphrase editable via Sanity (default: "Nouilles fraiches. Bouillons maison.") — v1.0
 - ✓ Accent color adjustable via Sanity siteSettings.accentColor — v1.0
 
-### Active (v2.0 — IG Content Studio)
+### Active (v2.1 — Production go-live & umai-ramen.fr cutover)
 
-> **v2.0 milestone opened 2026-06-29.** Current focus: Phase 04 — Ingestion & Classification (Pilot).
+> **v2.1 milestone opened 2026-07-08.** Detailed REQ-IDs in REQUIREMENTS.md. Phases 8–11.
 
-- [ ] **INGEST**: Fetch ~81 Nis&For photos from Google Drive → local; classify with Claude Vision → `classification.json` + HTML contact sheet (Phase 04)
-- [ ] **BRAND**: Brand kit module + puppeteer/sips compositing pipeline → 3 Meta format PNGs per photo (Phase 05)
-- [ ] **CAPTION**: Claude-generated FR captions per post + per-photo `out/` deliverable tree + full 81-photo industrialization (Phase 06)
-- [ ] **REVIEW**: In-repo `/ig-studio` web UI — browse, correct, edit captions, regenerate (Phase 07)
+- [ ] **AUDIT**: Real page-by-page review of umai.turfu.in — missing content/visuals, summer-menu info, legal, SEO/OG/sitemap/robots, redirects, perf, + domain/DNS/TLS/Caddy mechanics → prioritized gap list (Phase 08)
+- [ ] **CONTENT**: Complete Sanity prod content — real hero photos, summer menu + prices, hours, legal pages, Notre Histoire (EK supplies graphic assets progressively from 2026-07-09) (Phase 09)
+- [ ] **DEBT**: SEO-07 (footer NAP), PERF-05 (first-load JS budget + wire bundle-analyzer), + audit-surfaced fixes (Phase 10)
+- [ ] **CUTOVER**: Caddy adds umai-ramen.fr + www→apex redirect + `/ig-studio` on public domain (password) + TLS; DNS switch GitHub Pages→VPS (short maintenance window); old-URL redirects; live verification (Lighthouse>90, CWV, sitemap, TLS) (Phase 11)
+
+> v2.0 (IG Content Studio, phases 04–07) is built and deployed on umai.turfu.in/ig-studio; to be formally archived via `/gsd:complete-milestone` when convenient.
 
 **Active context:**
 - Photo source: Google Drive folder `JPEG_72dpi` (id `19JmEURV-XqcMm97jZwU7AV9uG7y6-t7M`), ~81 files
@@ -123,13 +129,34 @@ The VPS (valid until 2027-02-23) is a multi-site host intended for umai-ramen.fr
 | Docker standalone output on VPS (NOT Vercel) | Multi-site hosting, cost control, control over infra | ✓ Good — umai.turfu.in live, multi-site Caddy ready |
 | NAP dual-source pattern | `seo.ts` constants for JSON-LD/SEO, Sanity siteSettings for editorial | ⚠️ Revisit — footer not wired to NAP constants (SEO-07 debt) |
 
-## Next Milestone Goals
+## Current Milestone: v2.1 — Mise en ligne production & bascule umai-ramen.fr
 
-**v2.0 — Umaï IG Content Studio** (opened 2026-06-29)
+**Goal:** Publish the new Next.js site on the primary domain umai-ramen.fr (today still the old GitHub Pages site) with complete production content and a controlled cutover, target go-live week of 2026-07-11.
 
-Turn ~81 professional Nis&For photos into a ready-to-post Instagram content batch: AI vision classification assigns each photo a dish label or ambiance tag; a CLI pipeline overlays Umaï branding per shot type and generates appetizing FR captions targeting Strasbourg; a human override step corrects classification errors; a web UI makes future corrections fast. Output: `ig-studio/out/{photo-id}/` with `feed.png`, `square.png`, `story.png`, `caption.txt` per photo.
+**Target features:**
+- Go-live audit: real page-by-page review of umai.turfu.in surfacing missing content/visuals (incl. summer-menu info), legal, SEO/OG/sitemap/robots, redirects, perf, and the domain/DNS/TLS/Caddy cutover mechanics
+- Production content completion in Sanity (real hero photos, summer menu + prices, hours, legal, Notre Histoire), assets supplied by EK progressively from 2026-07-09
+- Tech-debt remediation: SEO-07 (footer NAP), PERF-05 (first-load JS budget + bundle-analyzer), plus audit-surfaced fixes
+- Domain cutover: Caddy serves umai-ramen.fr + www→apex redirect + `/ig-studio` (password) on the public domain with TLS; DNS switched from GitHub Pages to the VPS with a short maintenance window; old-URL redirects; live verification (Lighthouse>90, CWV, sitemap, TLS)
 
-Phases: 04 Ingestion & Classification → 05 Brand Kit & Compositing → 06 Captions & Assembly → 07 Web Review UI
+**Key context:** GitHub origin `umairamenchef/umai-ramen-site` kept (branch `v2-2026`); VPS Docker + Caddy + HMAC deployer; short maintenance window acceptable; domain research skipped (ops milestone).
+
+## Evolution
+
+This document evolves at phase transitions and milestone boundaries.
+
+**After each phase transition** (via `/gsd:transition`):
+1. Requirements invalidated? → Move to Out of Scope with reason
+2. Requirements validated? → Move to Validated with phase reference
+3. New requirements emerged? → Add to Active
+4. Decisions to log? → Add to Key Decisions
+5. "What This Is" still accurate? → Update if drifted
+
+**After each milestone** (via `/gsd:complete-milestone`):
+1. Full review of all sections
+2. Core Value check — still the right priority?
+3. Audit Out of Scope — reasons still valid?
+4. Update Context with current state
 
 ---
-*Last updated: 2026-06-29 after v2.0 milestone opening*
+*Last updated: 2026-07-08 after v2.1 milestone opening*
