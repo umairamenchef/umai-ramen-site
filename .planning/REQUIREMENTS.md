@@ -70,18 +70,35 @@
 
 ## Traceability
 
-*Filled by the roadmapper (Phase mapping). Expected phases 08–11.*
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUDIT-01..07 | Phase 08 | Pending |
-| CONTENT-01..06 | Phase 09 | Pending |
-| DEBT-01..04 | Phase 10 | Pending |
-| CUTOVER-01..07 | Phase 11 | Pending |
+| AUDIT-01 | Phase 08 — Audit go-live & gap analysis | Pending |
+| AUDIT-02 | Phase 08 — Audit go-live & gap analysis | Pending |
+| AUDIT-03 | Phase 08 — Audit go-live & gap analysis | Pending |
+| AUDIT-04 | Phase 08 — Audit go-live & gap analysis | Pending |
+| AUDIT-05 | Phase 08 — Audit go-live & gap analysis | Pending |
+| AUDIT-06 | Phase 08 — Audit go-live & gap analysis | Pending |
+| AUDIT-07 | Phase 08 — Audit go-live & gap analysis | Pending |
+| CONTENT-01 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
+| CONTENT-02 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
+| CONTENT-03 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
+| CONTENT-04 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
+| CONTENT-05 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
+| CONTENT-06 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
+| DEBT-01 | Phase 10 — Résorption dette & polish | Pending |
+| DEBT-02 | Phase 10 — Résorption dette & polish | Pending |
+| DEBT-03 | Phase 10 — Résorption dette & polish | Pending |
+| DEBT-04 | Phase 10 — Résorption dette & polish | Pending |
+| CUTOVER-01 | Phase 11 — Cutover domaine & vérifications live | Pending |
+| CUTOVER-02 | Phase 11 — Cutover domaine & vérifications live | Pending |
+| CUTOVER-03 | Phase 11 — Cutover domaine & vérifications live | Pending |
+| CUTOVER-04 | Phase 11 — Cutover domaine & vérifications live | Pending |
+| CUTOVER-05 | Phase 11 — Cutover domaine & vérifications live | Pending |
+| CUTOVER-06 | Phase 11 — Cutover domaine & vérifications live | Pending |
+| CUTOVER-07 | Phase 11 — Cutover domaine & vérifications live | Pending |
 
-**Coverage:**
-- v2.1 requirements: 24 total (AUDIT 7, CONTENT 6, DEBT 4, CUTOVER 7)
-- Mapped to phases: pending roadmapper confirmation
+**Coverage:** 24/24 v2.1 requirements mapped (AUDIT 7, CONTENT 6, DEBT 4, CUTOVER 7) — 100%
 
 ---
 *Requirements defined: 2026-07-08 (v2.1 milestone opening)*
+*Traceability updated: 2026-07-08 (roadmap created)*

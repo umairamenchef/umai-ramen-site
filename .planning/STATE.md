@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v2.1
 milestone_name: Production go-live & umai-ramen.fr cutover
 status: in_progress
-stopped_at: Milestone v2.1 opened — defining requirements
+stopped_at: Roadmap v2.1 created — Phase 08 is next to plan
 last_updated: "2026-07-08T00:00:00.000Z"
-last_activity: 2026-07-08 — Milestone v2.1 started (questioning done, writing artifacts)
+last_activity: 2026-07-08 — Roadmap v2.1 written (phases 08–11, 24 requirements mapped)
 progress:
   total_phases: 4
   completed_phases: 0
@@ -24,12 +24,14 @@ See: .planning/PROJECT.md (updated 2026-07-08 after v2.1 milestone opening)
 
 ## Current Position
 
-Phase: Not started (defining requirements)
+Phase: **08 — Audit go-live & gap analysis** (next to plan)
 Plan: —
-Status: Defining requirements
-Last activity: 2026-07-08 — Milestone v2.1 started
+Status: Ready to plan Phase 08
+Last activity: 2026-07-08 — Roadmap v2.1 created (ROADMAP.md phases 08–11 written)
 
-Progress (v2.1): [░░░░░░░░░░] 0% (requirements being defined)
+Progress (v2.1): [░░░░░░░░░░] 0% (0/4 phases complete)
+
+Next action: `/gsd:plan-phase 8`
 
 ## Performance Metrics
 
@@ -45,6 +47,15 @@ Progress (v2.1): [░░░░░░░░░░] 0% (requirements being defined
 - Phase breakdown: 01-foundation 65min, 02-content-pages 43min, 03-seo-compliance ~30min
 
 ## Accumulated Context
+
+### Key Decisions (v2.1)
+
+- Phases 09 and 10 are unblocked in parallel once Phase 08 produces the gap list (content audit → 09, blocking bugs → 10)
+- Phase 11 is the go-live gate — requires 08 (cutover dossier), 09 (content complete), 10 (blocking debt cleared)
+- Short maintenance window acceptable; rollback = revert DNS (apex A + www) to GitHub Pages IPs `185.199.10x.153`
+- Sanity dataset: `c7twe801/production` — all content changes go directly to production dataset
+- GitHub: `umairamenchef/umai-ramen-site`, branch `v2-2026`
+- Target: week of 2026-07-11
 
 ### Key Decisions (v2.0)
 
@@ -62,32 +73,31 @@ Progress (v2.1): [░░░░░░░░░░] 0% (requirements being defined
 Stack locked: Next.js 16.1.6, React 19.2, Sanity v5, next-intl v4.8.3, motion v12, Tailwind CSS 4.
 Deployment: Docker standalone on VPS srv1417179 (valid 2027-02-23), multi-site Caddy, umai.turfu.in.
 
-### Tech Debt (v1.0 — parked, not blocking v2.0)
+### Tech Debt (v1.0 — addressed in Phase 10)
 
-- SEO-07: Footer NAP not wired to `seo.ts` constants
-- PERF-05: First-load JS ~220KB > 150KB target (irreducible framework floor)
-- bundle-analyzer: `@next/bundle-analyzer` not wired into `next.config.ts`
+- SEO-07: Footer NAP not wired to `seo.ts` constants → DEBT-01
+- PERF-05: First-load JS ~220KB > 150KB target (irreducible framework floor) → DEBT-03
+- bundle-analyzer: `@next/bundle-analyzer` not wired into `next.config.ts` → DEBT-02
 
 ### Pending Todos (owner-side)
 
-- Gusty Click & Collect URL — Sanity placeholder in place
-- Final photo selection from Nis&For 29-photo preselection (for Sanity gallery)
-- "Notre Histoire" text validation with Loan Nguyen
+- Photo assets from EK: progressively from 2026-07-09 (hero + gallery, from JPEG_72dpi Google Drive)
+- Summer menu ground truth from Loan Nguyen — verify dishes/prices/tags against in-restaurant reality
+- Notre Histoire text validation with Loan Nguyen
 - EN/DE Sanity content translations
-- DNS cutover: umai-ramen.fr → VPS
-- Google Drive access credentials for ig-studio photo fetch (service account or OAuth)
+- DNS cutover decision: TTL lowering timing, maintenance window announcement
 
 ### Blockers/Concerns
 
-- RESOLVED: Google Drive auth — photos are already local (no Drive fetch needed)
+- RESOLVED: Google Drive auth — photos are already local (no Drive fetch needed for ig-studio)
 - PENDING: umai_037.jpg classified as ambiance — appears to be an udon dish (not on summer ramen menu). Owner should review during pilot sign-off.
 - PENDING: Pilot sign-off — owner must review contact-sheet.html and run `npm run signoff` to unblock --all
 
 ## Session Continuity
 
-Last session: 2026-06-29T14:14:51.468Z
-Stopped at: Completed 07-ig-studio-ui-05-PLAN.md
-Resume: Owner reviews ig-studio/contact-sheet.html, applies corrections (override:true), runs `npm run signoff`, then confirms "approved" to continue Phase 04 → 04-02 Task 2 sign-off → Phase 05 compositing
+Last session: 2026-07-08
+Stopped at: Roadmap v2.1 written (phases 08–11). REQUIREMENTS.md traceability updated. STATE.md updated.
+Resume: Run `/gsd:plan-phase 8` to create the execution plan for Phase 08 (Audit go-live & gap analysis).
 
 ### Key Decisions Added (v2.0 execution)
 

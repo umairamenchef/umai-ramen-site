@@ -4,6 +4,7 @@
 
 - ✅ **v1.0 MVP Launch** — Phases 1–3, 11 plans (shipped 2026-02-23) → [archive](.planning/milestones/v1.0-ROADMAP.md)
 - 🚧 **v2.0 IG Content Studio** — Phases 4–7, in progress (opened 2026-06-29)
+- 🚧 **v2.1 Mise en ligne production & bascule umai-ramen.fr** — Phases 8–11, in progress (opened 2026-07-08)
 
 ## Phases
 
@@ -119,6 +120,93 @@ Plans:
 
 ---
 
+## v2.1 — Mise en ligne production & bascule umai-ramen.fr
+
+**Core value:** Publish the new Next.js site on the primary domain umai-ramen.fr (today still the old GitHub Pages site at `185.199.10x.153`) with complete production content and a controlled, low-risk cutover. Target go-live: week of 2026-07-11.
+
+**Key context:**
+- Staging: umai.turfu.in — VPS srv1417179, Docker + Caddy + HMAC deployer
+- Production domain: umai-ramen.fr — today GitHub Pages (`umairamenchef.github.io`), target VPS `76.13.61.239`
+- Sanity: project `c7twe801`, dataset `production`
+- GitHub: `umairamenchef/umai-ramen-site`, branch `v2-2026`
+- Short maintenance window acceptable; rollback = revert DNS to GitHub Pages IPs
+
+### Phase 08: Audit go-live & gap analysis
+
+**Goal:** A documented, prioritized gap list covering content, SEO, performance, redirects, and cutover mechanics — produced by real page-by-page review of umai.turfu.in — that gates all execution in Phases 09, 10, and 11.
+
+**Depends on:** umai.turfu.in accessible (staging site running on VPS)
+
+**Requirements:** AUDIT-01, AUDIT-02, AUDIT-03, AUDIT-04, AUDIT-05, AUDIT-06, AUDIT-07
+
+**Success criteria (what must be TRUE):**
+1. Every page on umai.turfu.in has a written review documenting missing content, placeholder images, broken links, and untranslated FR/EN/DE strings
+2. Menu discrepancies against the current in-restaurant summer menu are listed at dish/price/tag/availability granularity
+3. An old-URL → new-URL 301 redirect map is produced from the indexed GitHub Pages URL set, covering all paths that appear in search results or external links
+4. A cutover-readiness dossier exists with the exact Caddy config diff, DNS records to change (apex A + www CNAME/A), TTL-lowering plan, and TLS provisioning approach
+5. A single prioritized gap list (blocking / major / minor) is in hand and drives the scope of Phases 09 and 10
+
+**Plans:** TBD
+
+---
+
+### Phase 09: Contenu & visuels production (Sanity)
+
+**Goal:** Sanity production dataset (`c7twe801/production`) holds real hero photography, accurate summer menu, verified contact/hours/NAP, complete legal pages in FR/EN/DE, validated Notre Histoire copy and gallery, and on-brand OG images — nothing placeholder remains before the domain goes live.
+
+**Depends on:** Phase 08 (asset list from AUDIT-03 and content discrepancy list from AUDIT-01/02)
+
+**Requirements:** CONTENT-01, CONTENT-02, CONTENT-03, CONTENT-04, CONTENT-05, CONTENT-06
+
+**Success criteria (what must be TRUE):**
+1. Accueil hero and any per-page heroes display real Nis&For photography — no placeholder images remain visible on umai.turfu.in
+2. Summer menu in Sanity matches the current in-restaurant offering: all dishes present in FR/EN/DE with correct prices, dietary tags, and availability flags
+3. Legal pages (mentions légales, confidentialité, cookies, CGV) are complete and accurate in all three languages, including éditeur, directeur de publication, hébergeur, and SIRET
+4. Notre Histoire copy is validated with Loan and the Galerie page is populated with the final selected photos
+5. Opening a key page link on social media shows a real, on-brand OG image (not a placeholder or the default fallback)
+
+**Plans:** TBD
+**UI hint:** yes
+
+---
+
+### Phase 10: Résorption dette & polish
+
+**Goal:** Known tech debt (SEO-07 footer NAP, PERF-05 JS budget, bundle-analyzer unwired) is resolved and every blocking/major issue from the Phase 08 audit is fixed — the site on umai.turfu.in is production-worthy before any domain cutover starts.
+
+**Depends on:** Phase 08 (prioritized gap list drives DEBT-04 scope)
+
+**Requirements:** DEBT-01, DEBT-02, DEBT-03, DEBT-04
+
+**Success criteria (what must be TRUE):**
+1. Footer NAP (address, phone, hours) is wired to `seo.ts` constants and visually matches JSON-LD output across all three locales — no divergence between footer text and structured data
+2. `ANALYZE=true npm run build` completes without error and opens the bundle-analyzer report
+3. First-load JS budget is documented with the irreducible framework floor; any achievable reductions are applied and the final number is committed to DEBT-03 plan summary
+4. Every issue marked "blocking" in the Phase 08 gap list is closed and verified on umai.turfu.in
+
+**Plans:** TBD
+
+---
+
+### Phase 11: Cutover domaine & vérifications live
+
+**Goal:** umai-ramen.fr serves the new Next.js site over HTTPS with a single canonical host, old indexed URLs 301-redirect to their new equivalents, and post-cutover verification confirms the site is production-healthy — Lighthouse > 90, Core Web Vitals pass, Search Console updated.
+
+**Depends on:** Phase 08 (cutover dossier: Caddy config + DNS records), Phase 09 (all content ready), Phase 10 (all blocking debt fixed). This is the go-live gate.
+
+**Requirements:** CUTOVER-01, CUTOVER-02, CUTOVER-03, CUTOVER-04, CUTOVER-05, CUTOVER-06, CUTOVER-07
+
+**Success criteria (what must be TRUE):**
+1. umai-ramen.fr and www.umai-ramen.fr both resolve to the VPS with a valid TLS certificate — no browser security warnings, no mixed-content errors
+2. www.umai-ramen.fr permanently (301) redirects to the apex domain on every request, enforcing a single canonical host
+3. A representative sample of old GitHub Pages URLs return 301 to their correct new equivalents — no terminal 404s on indexed inbound links
+4. Post-cutover Lighthouse score > 90, Core Web Vitals pass, sitemap.xml and robots.txt resolve correctly, JSON-LD validates, reservation and order CTAs are functional, and `/ig-studio` is reachable behind its password gate on the public domain
+5. The rollback procedure (revert apex A and www records to GitHub Pages IPs + disable Caddy site block) is written and Search Console shows the new sitemap submitted with a reindex request
+
+**Plans:** TBD
+
+---
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -127,7 +215,10 @@ Plans:
 | 2. Content Pages | v1.0 | 5/5 | Complete | 2026-02-23 |
 | 3. SEO, Compliance, and Launch | v1.0 | 3/3 | Complete | 2026-02-23 |
 | 4. Ingestion & Classification (Pilot) | v2.0 | 0/2 | Pending | — |
-| 5. Brand Kit & Compositing | v2.0 | 2/2 | Complete   | 2026-06-29 |
+| 5. Brand Kit & Compositing | v2.0 | 2/2 | Complete | 2026-06-29 |
 | 6. Captions & Full Assembly | v2.0 | 0/? | Deferred (subsumed by Phase 07) | — |
-| 7. IG Studio Editor (web UI) | v2.0 | 4/5 | In Progress|  |
-</content>
+| 7. IG Studio Editor (web UI) | v2.0 | 4/5 | In Progress | — |
+| 8. Audit go-live & gap analysis | v2.1 | 0/? | Not started | — |
+| 9. Contenu & visuels production (Sanity) | v2.1 | 0/? | Not started | — |
+| 10. Résorption dette & polish | v2.1 | 0/? | Not started | — |
+| 11. Cutover domaine & vérifications live | v2.1 | 0/? | Not started | — |
