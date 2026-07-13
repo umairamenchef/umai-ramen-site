@@ -31,7 +31,20 @@ Last activity: 2026-07-09 — Go-live audit executed autonomously; prioritized g
 
 Progress (v2.1): [██░░░░░░░░] 25% (1/4 phases complete — audit)
 
-Next action: EK to answer §7 decisions; meanwhile execute no-input fixes (EN/DE i18n leaks, og-image, gallery empty-state, bundle-analyzer) then `/gsd:plan-phase 9`/`10`.
+Next action: EK to supply legal values + photos + menu confirmation (gap-list §7); meanwhile continue no-input fixes (re-accentuation C-8 next) then `/gsd:plan-phase 9`/`10`.
+
+### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
+- EN/DE i18n leaks fixed (reservation microcopy + Infos FAQ ×3) ✓
+- og-image.jpg 1200×630 on-brand created — 404→200 ✓ (fallback; EK may replace with a photo)
+- DEBT-02 bundle-analyzer wired (ANALYZE=true) ✓ COMPLETE
+- /galerie empty-state guard ✓
+- C-2 (EN/DE hero) resolved as false alarm — hero correctly localized
+- Decisions from EK: canonical = apex umai-ramen.fr (www→apex 301); catchphrase localized EN/DE; og fallback approved
+
+### Still blocked on EK inputs
+- Legal values (SIRET, raison sociale, forme juridique, RCS, capital, directeur pub, email légal) → fill 4 legal pages
+- Photos: gallery, Notre Histoire hero, 4 menu items without images
+- Confirm 17-item Sanity menu = current summer carte + prices
 
 ## Go-live gap headlines (2026-07-09 audit)
 

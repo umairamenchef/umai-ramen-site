@@ -39,7 +39,7 @@
 ### Tech-Debt Remediation
 
 - [ ] **DEBT-01**: Footer wired to the NAP constants (seo.ts) — resolves SEO-07; footer NAP matches JSON-LD across all locales
-- [ ] **DEBT-02**: `@next/bundle-analyzer` wired into next.config.ts, producing a first-load JS report
+- [x] **DEBT-02**: `@next/bundle-analyzer` wired into next.config.ts, producing a first-load JS report
 - [ ] **DEBT-03**: First-load JS reduced toward budget where feasible (PERF-05); document the irreducible framework floor and any wins achieved
 - [ ] **DEBT-04**: Go-live-blocking issues surfaced by the Phase 08 audit are fixed (catch-all, scoped by severity)
 
@@ -86,7 +86,7 @@
 | CONTENT-05 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
 | CONTENT-06 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
 | DEBT-01 | Phase 10 — Résorption dette & polish | Pending |
-| DEBT-02 | Phase 10 — Résorption dette & polish | Pending |
+| DEBT-02 | Phase 10 — Résorption dette & polish | Complete |
 | DEBT-03 | Phase 10 — Résorption dette & polish | Pending |
 | DEBT-04 | Phase 10 — Résorption dette & polish | Pending |
 | CUTOVER-01 | Phase 11 — Cutover domaine & vérifications live | Pending |
