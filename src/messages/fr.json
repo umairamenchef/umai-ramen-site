@@ -12,214 +12,214 @@
   },
   "home": {
     "title": "Bienvenue chez UMAI",
-    "subtitle": "Nouilles fraiches. Bouillons maison.",
-    "heroTitle": "Nouilles fraiches. Bouillons maison.",
-    "heroSubtitle": "Ramen artisanal au coeur de Strasbourg",
+    "subtitle": "Nouilles fraîches. Bouillons maison.",
+    "heroTitle": "Nouilles fraîches. Bouillons maison.",
+    "heroSubtitle": "Ramen artisanal au cœur de Strasbourg",
     "menuPreviewTitle": "Notre Menu",
     "menuPreviewCta": "Voir le menu complet",
     "uspTitle": "Notre engagement",
-    "uspNouilles": "Nouilles fraiches",
+    "uspNouilles": "Nouilles fraîches",
     "uspBouillons": "Bouillons maison",
     "uspLocal": "Produits locaux",
-    "uspNouillesDesc": "Nos nouilles sont preparees chaque jour dans notre cuisine",
+    "uspNouillesDesc": "Nos nouilles sont préparées chaque jour dans notre cuisine",
     "uspBouillonsDesc": "Nos bouillons mijotent pendant plus de 12 heures",
-    "uspLocalDesc": "Nous privilegions les producteurs locaux alsaciens",
+    "uspLocalDesc": "Nous privilégions les producteurs locaux alsaciens",
     "histoireTitle": "Notre Histoire",
-    "histoireTeaser": "Une passion pour le ramen, nee d'un voyage au Japon et d'un amour profond pour les saveurs authentiques",
-    "histoireCta": "Decouvrir notre histoire",
+    "histoireTeaser": "Une passion pour le ramen, née d'un voyage au Japon et d'un amour profond pour les saveurs authentiques",
+    "histoireCta": "Découvrir notre histoire",
     "galleryCta": "Voir toute la galerie",
     "socialTitle": "Rejoignez-nous",
     "socialHashtag": "#umairamen"
   },
   "menu": {
     "title": "Notre Menu",
-    "subtitle": "Des plats prepares avec passion, des ingredients frais et locaux",
+    "subtitle": "Des plats préparés avec passion, des ingrédients frais et locaux",
     "extrasTitle": "Extras",
     "formulesTitle": "Nos Formules",
-    "eazeeLinkCta": "Consulter la carte complete",
+    "eazeeLinkCta": "Consulter la carte complète",
     "includes": "Comprend"
   },
   "reservation": {
-    "title": "Reserver une table",
+    "title": "Réserver une table",
     "subtitle": "Assurez-vous une place dans notre restaurant",
-    "ctaLabel": "Reserver maintenant",
+    "ctaLabel": "Réserver maintenant",
     "microCopy": "Gratuit, sans commission",
     "practicalInfoTitle": "Informations pratiques",
     "hoursTitle": "Horaires",
     "addressTitle": "Adresse",
-    "phoneTitle": "Telephone"
+    "phoneTitle": "Téléphone"
   },
   "commander": {
     "title": "Commander",
-    "subtitle": "Degustez UMAI chez vous ou emportez votre commande",
+    "subtitle": "Dégustez UMAI chez vous ou emportez votre commande",
     "uberEatsTitle": "Uber Eats",
-    "uberEatsDesc": "Livraison a domicile",
+    "uberEatsDesc": "Livraison à domicile",
     "clickCollectTitle": "Click & Collect",
     "clickCollectDesc": "Commandez et venez chercher",
     "eazeeLinkTitle": "Carte digitale",
-    "eazeeLinkDesc": "Consultez notre carte complete",
+    "eazeeLinkDesc": "Consultez notre carte complète",
     "ctaLabel": "Commander"
   },
   "histoire": {
     "title": "Notre Histoire",
     "subtitle": "Une passion pour le ramen et les saveurs japonaises",
-    "ctaLabel": "Reserver une table"
+    "ctaLabel": "Réserver une table"
   },
   "infos": {
     "title": "Informations pratiques",
     "subtitle": "Tout ce qu'il faut savoir pour votre visite",
     "hoursTitle": "Horaires d'ouverture",
     "addressTitle": "Adresse",
-    "phoneTitle": "Telephone",
-    "faqTitle": "Questions frequentes",
-    "faqAllergens": "Comment gerez-vous les allergenes ?",
-    "faqAllergensAnswer": "Notre equipe est a votre ecoute pour toute question sur les allergenes. N'hesitez pas a nous consulter.",
+    "phoneTitle": "Téléphone",
+    "faqTitle": "Questions fréquentes",
+    "faqAllergens": "Comment gérez-vous les allergènes ?",
+    "faqAllergensAnswer": "Notre équipe est à votre écoute pour toute question sur les allergènes. N'hésitez pas à nous consulter.",
     "faqGroups": "Acceptez-vous les groupes ?",
-    "faqGroupsAnswer": "Pour les groupes de 8 personnes et plus, merci de nous contacter directement par telephone.",
-    "faqVegetarian": "Avez-vous des options vegetariennes ?",
-    "faqVegetarianAnswer": "Nous proposons des options vegetariennes et sans gluten. Consultez notre menu pour les details.",
+    "faqGroupsAnswer": "Pour les groupes de 8 personnes et plus, merci de nous contacter directement par téléphone.",
+    "faqVegetarian": "Avez-vous des options végétariennes ?",
+    "faqVegetarianAnswer": "Nous proposons des options végétariennes et sans gluten. Consultez notre menu pour les détails.",
     "contactTitle": "Nous contacter"
   },
   "gallery": {
     "title": "Galerie",
-    "subtitle": "Decouvrez l'ambiance et les plats de UMAI Ramen"
+    "subtitle": "Découvrez l'ambiance et les plats de UMAI Ramen"
   },
   "consent": {
-    "message": "Ce site utilise des cookies a des fins de mesure d'audience.",
+    "message": "Ce site utilise des cookies à des fins de mesure d'audience.",
     "moreInfo": "En savoir plus",
     "accept": "Accepter",
     "reject": "Refuser"
   },
   "legal": {
     "mentionsLegales": {
-      "title": "Mentions legales",
+      "title": "Mentions légales",
       "company": {
         "heading": "Identification de l'entreprise",
-        "content": "Raison sociale : [COMPANY NAME]\nForme juridique : [LEGAL FORM]\nCapital social : [SHARE CAPITAL]\nSIRET : [SIRET NUMBER]\nRCS : [RCS CITY]\nDirecteur de la publication : [DIRECTOR NAME]\nAdresse : 5 Rue des Orphelins, 67000 Strasbourg\nTelephone : +33 9 52 34 34 38"
+        "content": "Raison sociale : [COMPANY NAME]\nForme juridique : [LEGAL FORM]\nCapital social : [SHARE CAPITAL]\nSIRET : [SIRET NUMBER]\nRCS : [RCS CITY]\nDirecteur de la publication : [DIRECTOR NAME]\nAdresse : 5 Rue des Orphelins, 67000 Strasbourg\nTéléphone : +33 9 52 34 34 38"
       },
       "hosting": {
-        "heading": "Hebergement",
-        "content": "Hebergeur : [HOSTING PROVIDER]\nAdresse : [HOSTING ADDRESS]\nTelephone : [HOSTING PHONE]"
+        "heading": "Hébergement",
+        "content": "Hébergeur : [HOSTING PROVIDER]\nAdresse : [HOSTING ADDRESS]\nTéléphone : [HOSTING PHONE]"
       },
       "ip": {
-        "heading": "Propriete intellectuelle",
-        "content": "L'ensemble du contenu de ce site (textes, images, photographies, logos, marques) est protege par le droit de la propriete intellectuelle. Toute reproduction, representation ou diffusion, en tout ou partie, du contenu de ce site est interdite sans l'autorisation prealable ecrite de [COMPANY NAME]."
+        "heading": "Propriété intellectuelle",
+        "content": "L'ensemble du contenu de ce site (textes, images, photographies, logos, marques) est protégé par le droit de la propriété intellectuelle. Toute reproduction, représentation ou diffusion, en tout ou partie, du contenu de ce site est interdite sans l'autorisation préalable écrite de [COMPANY NAME]."
       }
     },
     "politiqueConfidentialite": {
-      "title": "Politique de confidentialite",
+      "title": "Politique de confidentialité",
       "controller": {
         "heading": "Responsable du traitement",
-        "content": "[COMPANY NAME]\n5 Rue des Orphelins, 67000 Strasbourg\nEmail : [CONTACT EMAIL]\nTelephone : +33 9 52 34 34 38"
+        "content": "[COMPANY NAME]\n5 Rue des Orphelins, 67000 Strasbourg\nEmail : [CONTACT EMAIL]\nTéléphone : +33 9 52 34 34 38"
       },
       "data": {
-        "heading": "Donnees collectees",
-        "content": "Ce site ne collecte aucune donnee personnelle via des formulaires. Seuls des cookies de mesure d'audience (Google Analytics 4) sont utilises, sous reserve de votre consentement explicite."
+        "heading": "Données collectées",
+        "content": "Ce site ne collecte aucune donnée personnelle via des formulaires. Seuls des cookies de mesure d'audience (Google Analytics 4) sont utilisés, sous réserve de votre consentement explicite."
       },
       "basis": {
-        "heading": "Base legale du traitement",
-        "content": "Le traitement des donnees de navigation est fonde sur votre consentement (article 6.1.a du RGPD). Vous pouvez retirer votre consentement a tout moment en supprimant vos cookies."
+        "heading": "Base légale du traitement",
+        "content": "Le traitement des données de navigation est fondé sur votre consentement (article 6.1.a du RGPD). Vous pouvez retirer votre consentement à tout moment en supprimant vos cookies."
       },
       "retention": {
-        "heading": "Duree de conservation",
-        "content": "Les cookies de mesure d'audience sont conserves pour une duree maximale de 13 mois. Les donnees de navigation anonymisees sont conservees pendant 26 mois conformement aux recommandations de la CNIL."
+        "heading": "Durée de conservation",
+        "content": "Les cookies de mesure d'audience sont conservés pour une durée maximale de 13 mois. Les données de navigation anonymisées sont conservées pendant 26 mois conformément aux recommandations de la CNIL."
       },
       "rights": {
         "heading": "Vos droits",
-        "content": "Conformement au RGPD, vous disposez des droits suivants :\n- Droit d'acces a vos donnees\n- Droit de rectification\n- Droit a l'effacement\n- Droit a la portabilite\n- Droit d'opposition au traitement\n\nPour exercer ces droits, contactez-nous a [CONTACT EMAIL]."
+        "content": "Conformément au RGPD, vous disposez des droits suivants :\n- Droit d'accès à vos données\n- Droit de rectification\n- Droit à l'effacement\n- Droit à la portabilité\n- Droit d'opposition au traitement\n\nPour exercer ces droits, contactez-nous à [CONTACT EMAIL]."
       },
       "cnil": {
-        "heading": "Reclamation aupres de la CNIL",
-        "content": "Si vous estimez que le traitement de vos donnees constitue une violation du RGPD, vous pouvez introduire une reclamation aupres de la CNIL : www.cnil.fr"
+        "heading": "Réclamation auprès de la CNIL",
+        "content": "Si vous estimez que le traitement de vos données constitue une violation du RGPD, vous pouvez introduire une réclamation auprès de la CNIL : www.cnil.fr"
       }
     },
     "politiqueCookies": {
       "title": "Politique cookies",
       "what": {
         "heading": "Qu'est-ce qu'un cookie ?",
-        "content": "Un cookie est un petit fichier texte depose sur votre terminal lors de la visite d'un site web. Il permet de stocker des informations relatives a votre navigation."
+        "content": "Un cookie est un petit fichier texte déposé sur votre terminal lors de la visite d'un site web. Il permet de stocker des informations relatives à votre navigation."
       },
       "used": {
-        "heading": "Cookies utilises sur ce site",
-        "content": "umai_consent : cookie de consentement, duree 13 mois, enregistre votre choix d'acceptation ou de refus.\n_ga : cookie Google Analytics, duree 2 ans, identifiant unique pour les statistiques de visite.\n_gid : cookie Google Analytics, duree 24 heures, identifiant unique pour les statistiques de session."
+        "heading": "Cookies utilisés sur ce site",
+        "content": "umai_consent : cookie de consentement, durée 13 mois, enregistre votre choix d'acceptation ou de refus.\n_ga : cookie Google Analytics, durée 2 ans, identifiant unique pour les statistiques de visite.\n_gid : cookie Google Analytics, durée 24 heures, identifiant unique pour les statistiques de session."
       },
       "manage": {
         "heading": "Gestion de vos cookies",
-        "content": "Lors de votre premiere visite, un bandeau vous propose d'accepter ou de refuser les cookies. Votre choix est enregistre pour 13 mois. Pour modifier votre choix, supprimez vos cookies via les parametres de votre navigateur : le bandeau reapparaitra lors de votre prochaine visite."
+        "content": "Lors de votre première visite, un bandeau vous propose d'accepter ou de refuser les cookies. Votre choix est enregistré pour 13 mois. Pour modifier votre choix, supprimez vos cookies via les paramètres de votre navigateur : le bandeau réapparaîtra lors de votre prochaine visite."
       },
       "google": {
         "heading": "En savoir plus sur Google Analytics",
-        "content": "Google Analytics est un outil de mesure d'audience fourni par Google. Pour en savoir plus sur la gestion de vos donnees par Google : https://policies.google.com/privacy"
+        "content": "Google Analytics est un outil de mesure d'audience fourni par Google. Pour en savoir plus sur la gestion de vos données par Google : https://policies.google.com/privacy"
       }
     },
     "cgv": {
-      "title": "Conditions generales de vente",
+      "title": "Conditions générales de vente",
       "scope": {
         "heading": "Objet et champ d'application",
-        "content": "Le site umai-ramen.fr est un site vitrine a vocation informative. Il ne propose pas de vente directe en ligne. Les commandes de plats s'effectuent via des plateformes tierces (Uber Eats, Gusty) qui disposent de leurs propres conditions generales."
+        "content": "Le site umai-ramen.fr est un site vitrine à vocation informative. Il ne propose pas de vente directe en ligne. Les commandes de plats s'effectuent via des plateformes tierces (Uber Eats, Gusty) qui disposent de leurs propres conditions générales."
       },
       "platforms": {
         "heading": "Plateformes de commande",
-        "content": "Les commandes passees via Uber Eats, Gusty ou tout autre partenaire sont soumises aux conditions generales de ces plateformes respectives. [COMPANY NAME] decline toute responsabilite en cas de litige lie a l'utilisation de ces services tiers."
+        "content": "Les commandes passées via Uber Eats, Gusty ou tout autre partenaire sont soumises aux conditions générales de ces plateformes respectives. [COMPANY NAME] décline toute responsabilité en cas de litige lié à l'utilisation de ces services tiers."
       },
       "ip": {
-        "heading": "Propriete intellectuelle",
-        "content": "Tous les contenus presentes sur ce site (textes, images, logos, marques) sont la propriete exclusive de [COMPANY NAME] ou de ses partenaires et sont proteges par les lois relatives a la propriete intellectuelle."
+        "heading": "Propriété intellectuelle",
+        "content": "Tous les contenus présentés sur ce site (textes, images, logos, marques) sont la propriété exclusive de [COMPANY NAME] ou de ses partenaires et sont protégés par les lois relatives à la propriété intellectuelle."
       },
       "liability": {
-        "heading": "Limitation de responsabilite",
-        "content": "[COMPANY NAME] s'efforce d'assurer l'exactitude des informations diffusees sur ce site, mais ne saurait etre tenue responsable d'erreurs, d'omissions ou de resultats obtenus suite a l'utilisation de ces informations."
+        "heading": "Limitation de responsabilité",
+        "content": "[COMPANY NAME] s'efforce d'assurer l'exactitude des informations diffusées sur ce site, mais ne saurait être tenue responsable d'erreurs, d'omissions ou de résultats obtenus suite à l'utilisation de ces informations."
       },
       "law": {
         "heading": "Droit applicable et juridiction",
-        "content": "Les presentes conditions sont regies par le droit francais. En cas de litige, les tribunaux de Strasbourg seront seuls competents."
+        "content": "Les présentes conditions sont régies par le droit français. En cas de litige, les tribunaux de Strasbourg seront seuls compétents."
       }
     }
   },
   "meta": {
     "home": {
-      "title": "Umaï Ramen | Restaurant de ramen artisanal a Strasbourg",
-      "description": "Ramen artisanal au coeur de Strasbourg. Nouilles fraiches, bouillons maison et ingredients locaux. Reservez ou commandez en ligne."
+      "title": "Umaï Ramen | Restaurant de ramen artisanal à Strasbourg",
+      "description": "Ramen artisanal au cœur de Strasbourg. Nouilles fraîches, bouillons maison et ingrédients locaux. Réservez ou commandez en ligne."
     },
     "menu": {
       "title": "Menu | Umaï Ramen Strasbourg",
-      "description": "Decouvrez notre carte : ramens signatures, bouillons, extras et formules. Ingredients frais et locaux, prepares chaque jour."
+      "description": "Découvrez notre carte : ramens signatures, bouillons, extras et formules. Ingrédients frais et locaux, préparés chaque jour."
     },
     "reservation": {
-      "title": "Reserver une table | Umaï Ramen Strasbourg",
-      "description": "Reservez votre table chez Umaï Ramen a Strasbourg. Reservation gratuite et sans commission via notre partenaire."
+      "title": "Réserver une table | Umaï Ramen Strasbourg",
+      "description": "Réservez votre table chez Umaï Ramen à Strasbourg. Réservation gratuite et sans commission via notre partenaire."
     },
     "commander": {
       "title": "Commander en ligne | Umaï Ramen Strasbourg",
-      "description": "Commandez vos ramens en livraison via Uber Eats ou en Click & Collect. Degustez Umaï Ramen chez vous."
+      "description": "Commandez vos ramens en livraison via Uber Eats ou en Click & Collect. Dégustez Umaï Ramen chez vous."
     },
     "histoire": {
       "title": "Notre Histoire | Umaï Ramen Strasbourg",
-      "description": "L'histoire d'Umaï Ramen : une passion pour le ramen nee au Japon, des saveurs authentiques au coeur de Strasbourg."
+      "description": "L'histoire d'Umaï Ramen : une passion pour le ramen née au Japon, des saveurs authentiques au cœur de Strasbourg."
     },
     "infos": {
       "title": "Infos pratiques | Umaï Ramen Strasbourg",
-      "description": "Horaires, adresse, telephone et plan d'acces pour Umaï Ramen au 5 rue des Orphelins, 67000 Strasbourg."
+      "description": "Horaires, adresse, téléphone et plan d'accès pour Umaï Ramen au 5 rue des Orphelins, 67000 Strasbourg."
     },
     "galerie": {
       "title": "Galerie photos | Umaï Ramen Strasbourg",
-      "description": "Decouvrez en images l'ambiance et les plats de Umaï Ramen Strasbourg. Ramens, interieur et moments de partage."
+      "description": "Découvrez en images l'ambiance et les plats de Umaï Ramen Strasbourg. Ramens, intérieur et moments de partage."
     },
     "mentionsLegales": {
-      "title": "Mentions legales | Umaï Ramen",
-      "description": "Mentions legales du site Umaï Ramen. Identification de l'entreprise, hebergeur et propriete intellectuelle."
+      "title": "Mentions légales | Umaï Ramen",
+      "description": "Mentions légales du site Umaï Ramen. Identification de l'entreprise, hébergeur et propriété intellectuelle."
     },
     "politiqueConfidentialite": {
-      "title": "Politique de confidentialite | Umaï Ramen",
-      "description": "Politique de confidentialite et protection des donnees personnelles du site Umaï Ramen, conforme au RGPD."
+      "title": "Politique de confidentialité | Umaï Ramen",
+      "description": "Politique de confidentialité et protection des données personnelles du site Umaï Ramen, conforme au RGPD."
     },
     "politiqueCookies": {
       "title": "Politique cookies | Umaï Ramen",
-      "description": "Informations sur les cookies utilises par le site Umaï Ramen et gestion de vos preferences."
+      "description": "Informations sur les cookies utilisés par le site Umaï Ramen et gestion de vos préférences."
     },
     "cgv": {
-      "title": "Conditions generales de vente | Umaï Ramen",
-      "description": "Conditions generales de vente et d'utilisation du site Umaï Ramen. Droit applicable et juridiction."
+      "title": "Conditions générales de vente | Umaï Ramen",
+      "description": "Conditions générales de vente et d'utilisation du site Umaï Ramen. Droit applicable et juridiction."
     }
   }
 }

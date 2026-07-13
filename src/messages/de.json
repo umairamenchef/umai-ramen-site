@@ -13,19 +13,19 @@
   "home": {
     "title": "Willkommen bei UMAI",
     "subtitle": "Frische Nudeln. Hausgemachte Brühen.",
-    "heroTitle": "Nouilles fraiches. Bouillons maison.",
-    "heroSubtitle": "Artisan Ramen im Herzen von Strassburg",
+    "heroTitle": "Frische Nudeln. Hausgemachte Brühen.",
+    "heroSubtitle": "Handwerkliches Ramen im Herzen von Straßburg",
     "menuPreviewTitle": "Unsere Speisekarte",
-    "menuPreviewCta": "Vollstandige Speisekarte ansehen",
+    "menuPreviewCta": "Vollständige Speisekarte ansehen",
     "uspTitle": "Unser Versprechen",
     "uspNouilles": "Frische Nudeln",
-    "uspBouillons": "Hausgemachte Bruhen",
+    "uspBouillons": "Hausgemachte Brühen",
     "uspLocal": "Lokale Produkte",
-    "uspNouillesDesc": "Unsere Nudeln werden taglich in unserer Kuche zubereitet",
-    "uspBouillonsDesc": "Unsere Bruhen kocheln uber 12 Stunden",
+    "uspNouillesDesc": "Unsere Nudeln werden täglich in unserer Küche zubereitet",
+    "uspBouillonsDesc": "Unsere Brühen köcheln über 12 Stunden",
     "uspLocalDesc": "Wir bevorzugen lokale Produzenten aus dem Elsass",
     "histoireTitle": "Unsere Geschichte",
-    "histoireTeaser": "Eine Leidenschaft fur Ramen, geboren aus einer Reise nach Japan und einer tiefen Liebe fur authentische Geschmacker",
+    "histoireTeaser": "Eine Leidenschaft für Ramen, geboren aus einer Reise nach Japan und einer tiefen Liebe für authentische Aromen",
     "histoireCta": "Unsere Geschichte entdecken",
     "galleryCta": "Gesamte Galerie ansehen",
     "socialTitle": "Folgen Sie uns",
@@ -36,8 +36,8 @@
     "subtitle": "Gerichte mit Leidenschaft zubereitet, frische und lokale Zutaten",
     "extrasTitle": "Extras",
     "formulesTitle": "Unsere Menüs",
-    "eazeeLinkCta": "Vollstandige Karte ansehen",
-    "includes": "Enthalt"
+    "eazeeLinkCta": "Vollständige Karte ansehen",
+    "includes": "Enthält"
   },
   "reservation": {
     "title": "Tisch reservieren",
@@ -45,33 +45,33 @@
     "ctaLabel": "Jetzt reservieren",
     "microCopy": "Kostenlos, ohne Provision",
     "practicalInfoTitle": "Praktische Informationen",
-    "hoursTitle": "Offnungszeiten",
+    "hoursTitle": "Öffnungszeiten",
     "addressTitle": "Adresse",
     "phoneTitle": "Telefon"
   },
   "commander": {
     "title": "Bestellen",
-    "subtitle": "Geniessen Sie UMAI zu Hause oder zum Mitnehmen",
+    "subtitle": "Genießen Sie UMAI zu Hause oder zum Mitnehmen",
     "uberEatsTitle": "Uber Eats",
     "uberEatsDesc": "Lieferung nach Hause",
     "clickCollectTitle": "Click & Collect",
     "clickCollectDesc": "Bestellen und abholen",
     "eazeeLinkTitle": "Digitale Speisekarte",
-    "eazeeLinkDesc": "Vollstandige Karte ansehen",
+    "eazeeLinkDesc": "Vollständige Karte ansehen",
     "ctaLabel": "Bestellen"
   },
   "histoire": {
     "title": "Unsere Geschichte",
-    "subtitle": "Eine Leidenschaft fur Ramen und japanische Geschmacker",
+    "subtitle": "Eine Leidenschaft für Ramen und japanische Aromen",
     "ctaLabel": "Tisch reservieren"
   },
   "infos": {
     "title": "Praktische Informationen",
-    "subtitle": "Alles, was Sie fur Ihren Besuch wissen mussen",
-    "hoursTitle": "Offnungszeiten",
+    "subtitle": "Alles, was Sie für Ihren Besuch wissen müssen",
+    "hoursTitle": "Öffnungszeiten",
     "addressTitle": "Adresse",
     "phoneTitle": "Telefon",
-    "faqTitle": "Haufig gestellte Fragen",
+    "faqTitle": "Häufig gestellte Fragen",
     "faqAllergens": "Wie gehen Sie mit Allergenen um?",
     "faqAllergensAnswer": "Unser Team beantwortet gerne alle Fragen zu Allergenen. Sprechen Sie uns einfach an.",
     "faqGroups": "Nehmen Sie Gruppen an?",
@@ -82,7 +82,7 @@
   },
   "gallery": {
     "title": "Galerie",
-    "subtitle": "Entdecken Sie die Atmosphare und die Gerichte von UMAI Ramen"
+    "subtitle": "Entdecken Sie die Atmosphäre und die Gerichte von UMAI Ramen"
   },
   "consent": {
     "message": "Diese Website verwendet Cookies zur Besuchermessung.",
@@ -95,7 +95,7 @@
       "title": "Impressum",
       "company": {
         "heading": "Unternehmensidentifikation",
-        "content": "Firmenname: [COMPANY NAME]\nRechtsform: [LEGAL FORM]\nStammkapital: [SHARE CAPITAL]\nSIRET: [SIRET NUMBER]\nRCS: [RCS CITY]\nVerantwortlicher Herausgeber: [DIRECTOR NAME]\nAdresse: 5 Rue des Orphelins, 67000 Strassburg, Frankreich\nTelefon: +33 9 52 34 34 38"
+        "content": "Firmenname: [COMPANY NAME]\nRechtsform: [LEGAL FORM]\nStammkapital: [SHARE CAPITAL]\nSIRET: [SIRET NUMBER]\nRCS: [RCS CITY]\nVerantwortlicher Herausgeber: [DIRECTOR NAME]\nAdresse: 5 Rue des Orphelins, 67000 Straßburg, Frankreich\nTelefon: +33 9 52 34 34 38"
       },
       "hosting": {
         "heading": "Hosting-Anbieter",
@@ -103,123 +103,123 @@
       },
       "ip": {
         "heading": "Geistiges Eigentum",
-        "content": "Alle Inhalte dieser Website (Texte, Bilder, Fotos, Logos, Marken) sind durch das Recht des geistigen Eigentums geschutzt. Jede Vervielfaltigung, Darstellung oder Verbreitung, ganz oder teilweise, des Inhalts dieser Website ist ohne vorherige schriftliche Genehmigung von [COMPANY NAME] untersagt."
+        "content": "Alle Inhalte dieser Website (Texte, Bilder, Fotos, Logos, Marken) sind durch das Recht des geistigen Eigentums geschützt. Jede Vervielfältigung, Darstellung oder Verbreitung, ganz oder teilweise, des Inhalts dieser Website ist ohne vorherige schriftliche Genehmigung von [COMPANY NAME] untersagt."
       }
     },
     "politiqueConfidentialite": {
-      "title": "Datenschutzerklarung",
+      "title": "Datenschutzerklärung",
       "controller": {
-        "heading": "Verantwortlicher fur die Datenverarbeitung",
-        "content": "[COMPANY NAME]\n5 Rue des Orphelins, 67000 Strassburg, Frankreich\nE-Mail: [CONTACT EMAIL]\nTelefon: +33 9 52 34 34 38"
+        "heading": "Verantwortlicher für die Datenverarbeitung",
+        "content": "[COMPANY NAME]\n5 Rue des Orphelins, 67000 Straßburg, Frankreich\nE-Mail: [CONTACT EMAIL]\nTelefon: +33 9 52 34 34 38"
       },
       "data": {
         "heading": "Erhobene Daten",
-        "content": "Diese Website erhebt keine personenbezogenen Daten uber Formulare. Es werden ausschliesslich Cookies zur Besuchermessung (Google Analytics 4) verwendet, vorbehaltlich Ihrer ausdrucklichen Zustimmung."
+        "content": "Diese Website erhebt keine personenbezogenen Daten über Formulare. Es werden ausschließlich Cookies zur Besuchermessung (Google Analytics 4) verwendet, vorbehaltlich Ihrer ausdrücklichen Zustimmung."
       },
       "basis": {
         "heading": "Rechtsgrundlage der Verarbeitung",
-        "content": "Die Verarbeitung von Navigationsdaten basiert auf Ihrer Einwilligung (Artikel 6.1.a der DSGVO). Sie konnen Ihre Einwilligung jederzeit widerrufen, indem Sie Ihre Cookies loschen."
+        "content": "Die Verarbeitung von Navigationsdaten basiert auf Ihrer Einwilligung (Artikel 6.1.a der DSGVO). Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie Ihre Cookies löschen."
       },
       "retention": {
         "heading": "Aufbewahrungsdauer",
-        "content": "Cookies zur Besuchermessung werden fur maximal 13 Monate aufbewahrt. Anonymisierte Navigationsdaten werden fur 26 Monate gemas den CNIL-Empfehlungen aufbewahrt."
+        "content": "Cookies zur Besuchermessung werden für maximal 13 Monate aufbewahrt. Anonymisierte Navigationsdaten werden für 26 Monate gemäß den CNIL-Empfehlungen aufbewahrt."
       },
       "rights": {
         "heading": "Ihre Rechte",
-        "content": "Gemas der DSGVO haben Sie folgende Rechte:\n- Recht auf Zugang zu Ihren Daten\n- Recht auf Berichtigung\n- Recht auf Loschung\n- Recht auf Datenubertragbarkeit\n- Widerspruchsrecht gegen die Verarbeitung\n\nUm diese Rechte auszuuben, kontaktieren Sie uns unter [CONTACT EMAIL]."
+        "content": "Gemäß der DSGVO haben Sie folgende Rechte:\n- Recht auf Zugang zu Ihren Daten\n- Recht auf Berichtigung\n- Recht auf Löschung\n- Recht auf Datenübertragbarkeit\n- Widerspruchsrecht gegen die Verarbeitung\n\nUm diese Rechte auszuüben, kontaktieren Sie uns unter [CONTACT EMAIL]."
       },
       "cnil": {
         "heading": "Beschwerde bei der CNIL",
-        "content": "Wenn Sie der Meinung sind, dass die Verarbeitung Ihrer Daten einen Verstoss gegen die DSGVO darstellt, konnen Sie eine Beschwerde bei der CNIL einreichen: www.cnil.fr"
+        "content": "Wenn Sie der Meinung sind, dass die Verarbeitung Ihrer Daten einen Verstoß gegen die DSGVO darstellt, können Sie eine Beschwerde bei der CNIL einreichen: www.cnil.fr"
       }
     },
     "politiqueCookies": {
       "title": "Cookie-Richtlinie",
       "what": {
         "heading": "Was ist ein Cookie?",
-        "content": "Ein Cookie ist eine kleine Textdatei, die beim Besuch einer Website auf Ihrem Endgerat gespeichert wird. Sie speichert Informationen zu Ihrem Browsing-Verhalten."
+        "content": "Ein Cookie ist eine kleine Textdatei, die beim Besuch einer Website auf Ihrem Endgerät gespeichert wird. Sie speichert Informationen zu Ihrem Browsing-Verhalten."
       },
       "used": {
         "heading": "Auf dieser Website verwendete Cookies",
-        "content": "umai_consent: Einwilligungs-Cookie, Dauer 13 Monate, speichert Ihre Zustimmung oder Ablehnung.\n_ga: Google Analytics Cookie, Dauer 2 Jahre, eindeutiger Identifikator fur Besuchsstatistiken.\n_gid: Google Analytics Cookie, Dauer 24 Stunden, eindeutiger Identifikator fur Sitzungsstatistiken."
+        "content": "umai_consent: Einwilligungs-Cookie, Dauer 13 Monate, speichert Ihre Zustimmung oder Ablehnung.\n_ga: Google Analytics Cookie, Dauer 2 Jahre, eindeutiger Identifikator für Besuchsstatistiken.\n_gid: Google Analytics Cookie, Dauer 24 Stunden, eindeutiger Identifikator für Sitzungsstatistiken."
       },
       "manage": {
         "heading": "Verwaltung Ihrer Cookies",
-        "content": "Bei Ihrem ersten Besuch bietet Ihnen ein Banner an, Cookies zu akzeptieren oder abzulehnen. Ihre Wahl wird fur 13 Monate gespeichert. Um Ihre Wahl zu andern, loschen Sie Ihre Cookies uber Ihre Browsereinstellungen: Das Banner erscheint bei Ihrem nachsten Besuch erneut."
+        "content": "Bei Ihrem ersten Besuch bietet Ihnen ein Banner an, Cookies zu akzeptieren oder abzulehnen. Ihre Wahl wird für 13 Monate gespeichert. Um Ihre Wahl zu ändern, löschen Sie Ihre Cookies über Ihre Browsereinstellungen: Das Banner erscheint bei Ihrem nächsten Besuch erneut."
       },
       "google": {
-        "heading": "Mehr uber Google Analytics erfahren",
-        "content": "Google Analytics ist ein Besuchermessungstool von Google. Mehr daruber, wie Google Ihre Daten verwaltet: https://policies.google.com/privacy"
+        "heading": "Mehr über Google Analytics erfahren",
+        "content": "Google Analytics ist ein Besuchermessungstool von Google. Mehr darüber, wie Google Ihre Daten verwaltet: https://policies.google.com/privacy"
       }
     },
     "cgv": {
-      "title": "Allgemeine Geschaftsbedingungen",
+      "title": "Allgemeine Geschäftsbedingungen",
       "scope": {
         "heading": "Gegenstand und Geltungsbereich",
-        "content": "Die Website umai-ramen.fr ist eine informative Prasentationswebsite. Sie bietet keinen direkten Online-Verkauf an. Essensbestellungen erfolgen uber Drittanbieterplattformen (Uber Eats, Gusty), die uber eigene Allgemeine Geschaftsbedingungen verfugen."
+        "content": "Die Website umai-ramen.fr ist eine informative Präsentationswebsite. Sie bietet keinen direkten Online-Verkauf an. Essensbestellungen erfolgen über Drittanbieterplattformen (Uber Eats, Gusty), die über eigene Allgemeine Geschäftsbedingungen verfügen."
       },
       "platforms": {
         "heading": "Bestellplattformen",
-        "content": "Bestellungen uber Uber Eats, Gusty oder andere Partner unterliegen den Allgemeinen Geschaftsbedingungen der jeweiligen Plattformen. [COMPANY NAME] ubernimmt keine Haftung im Falle eines Rechtsstreits im Zusammenhang mit der Nutzung dieser Drittanbieterdienste."
+        "content": "Bestellungen über Uber Eats, Gusty oder andere Partner unterliegen den Allgemeinen Geschäftsbedingungen der jeweiligen Plattformen. [COMPANY NAME] übernimmt keine Haftung im Falle eines Rechtsstreits im Zusammenhang mit der Nutzung dieser Drittanbieterdienste."
       },
       "ip": {
         "heading": "Geistiges Eigentum",
-        "content": "Alle auf dieser Website dargestellten Inhalte (Texte, Bilder, Logos, Marken) sind das ausschliessliche Eigentum von [COMPANY NAME] oder seiner Partner und sind durch die Gesetze zum Schutz des geistigen Eigentums geschutzt."
+        "content": "Alle auf dieser Website dargestellten Inhalte (Texte, Bilder, Logos, Marken) sind das ausschließliche Eigentum von [COMPANY NAME] oder seiner Partner und sind durch die Gesetze zum Schutz des geistigen Eigentums geschützt."
       },
       "liability": {
-        "heading": "Haftungsbeschrankung",
-        "content": "[COMPANY NAME] bemuht sich um die Richtigkeit der auf dieser Website verbreiteten Informationen, kann jedoch nicht fur Fehler, Auslassungen oder Ergebnisse haftbar gemacht werden, die sich aus der Nutzung dieser Informationen ergeben."
+        "heading": "Haftungsbeschränkung",
+        "content": "[COMPANY NAME] bemüht sich um die Richtigkeit der auf dieser Website verbreiteten Informationen, kann jedoch nicht für Fehler, Auslassungen oder Ergebnisse haftbar gemacht werden, die sich aus der Nutzung dieser Informationen ergeben."
       },
       "law": {
         "heading": "Anwendbares Recht und Gerichtsstand",
-        "content": "Diese Bedingungen unterliegen dem franzosischen Recht. Im Falle eines Rechtsstreits sind ausschliesslich die Gerichte in Strassburg zustandig."
+        "content": "Diese Bedingungen unterliegen dem französischen Recht. Im Falle eines Rechtsstreits sind ausschließlich die Gerichte in Straßburg zuständig."
       }
     }
   },
   "meta": {
     "home": {
-      "title": "Umaï Ramen | Handgemachtes Ramen Restaurant in Strassburg",
-      "description": "Handgemachtes Ramen im Herzen von Strassburg. Frische Nudeln, hausgemachte Bruhen und lokale Zutaten. Reservieren oder online bestellen."
+      "title": "Umaï Ramen | Handgemachtes Ramen-Restaurant in Straßburg",
+      "description": "Handgemachtes Ramen im Herzen von Straßburg. Frische Nudeln, hausgemachte Brühen und lokale Zutaten. Reservieren oder online bestellen."
     },
     "menu": {
-      "title": "Speisekarte | Umaï Ramen Strassburg",
-      "description": "Entdecken Sie unsere Karte: Signature Ramens, Bruhen, Extras und Menus. Frische lokale Zutaten, taglich zubereitet."
+      "title": "Speisekarte | Umaï Ramen Straßburg",
+      "description": "Entdecken Sie unsere Karte: Signature-Ramen, Brühen, Extras und Menüs. Frische lokale Zutaten, täglich zubereitet."
     },
     "reservation": {
-      "title": "Tisch reservieren | Umaï Ramen Strassburg",
-      "description": "Reservieren Sie Ihren Tisch bei Umaï Ramen in Strassburg. Kostenlose Reservierung ohne Provision."
+      "title": "Tisch reservieren | Umaï Ramen Straßburg",
+      "description": "Reservieren Sie Ihren Tisch bei Umaï Ramen in Straßburg. Kostenlose Reservierung ohne Provision."
     },
     "commander": {
-      "title": "Online bestellen | Umaï Ramen Strassburg",
-      "description": "Bestellen Sie Ihre Ramen zur Lieferung uber Uber Eats oder zum Abholen. Geniessen Sie Umaï Ramen zu Hause."
+      "title": "Online bestellen | Umaï Ramen Straßburg",
+      "description": "Bestellen Sie Ihre Ramen zur Lieferung über Uber Eats oder zum Abholen. Genießen Sie Umaï Ramen zu Hause."
     },
     "histoire": {
-      "title": "Unsere Geschichte | Umaï Ramen Strassburg",
-      "description": "Die Geschichte von Umaï Ramen: eine Leidenschaft fur Ramen, geboren in Japan, authentische Aromen im Herzen von Strassburg."
+      "title": "Unsere Geschichte | Umaï Ramen Straßburg",
+      "description": "Die Geschichte von Umaï Ramen: eine Leidenschaft für Ramen, geboren in Japan, authentische Aromen im Herzen von Straßburg."
     },
     "infos": {
-      "title": "Praktische Infos | Umaï Ramen Strassburg",
-      "description": "Offnungszeiten, Adresse, Telefon und Anfahrt zu Umaï Ramen, 5 rue des Orphelins, 67000 Strassburg."
+      "title": "Praktische Infos | Umaï Ramen Straßburg",
+      "description": "Öffnungszeiten, Adresse, Telefon und Anfahrt zu Umaï Ramen, 5 rue des Orphelins, 67000 Straßburg."
     },
     "galerie": {
-      "title": "Fotogalerie | Umaï Ramen Strassburg",
-      "description": "Entdecken Sie die Atmosphare und die Gerichte von Umaï Ramen Strassburg in Bildern. Ramen, Interieur und gemeinsame Momente."
+      "title": "Fotogalerie | Umaï Ramen Straßburg",
+      "description": "Entdecken Sie die Atmosphäre und die Gerichte von Umaï Ramen Straßburg in Bildern. Ramen, Interieur und gemeinsame Momente."
     },
     "mentionsLegales": {
       "title": "Impressum | Umaï Ramen",
       "description": "Impressum der Website Umaï Ramen. Unternehmensidentifikation, Hosting-Anbieter und geistiges Eigentum."
     },
     "politiqueConfidentialite": {
-      "title": "Datenschutzerklarung | Umaï Ramen",
-      "description": "Datenschutzerklarung und Schutz personenbezogener Daten der Website Umaï Ramen, DSGVO-konform."
+      "title": "Datenschutzerklärung | Umaï Ramen",
+      "description": "Datenschutzerklärung und Schutz personenbezogener Daten der Website Umaï Ramen, DSGVO-konform."
     },
     "politiqueCookies": {
       "title": "Cookie-Richtlinie | Umaï Ramen",
-      "description": "Informationen uber Cookies auf der Website Umaï Ramen und Verwaltung Ihrer Praferenzen."
+      "description": "Informationen über Cookies auf der Website Umaï Ramen und Verwaltung Ihrer Präferenzen."
     },
     "cgv": {
-      "title": "Allgemeine Geschaftsbedingungen | Umaï Ramen",
-      "description": "Allgemeine Geschaftsbedingungen und Nutzungsbedingungen der Website Umaï Ramen."
+      "title": "Allgemeine Geschäftsbedingungen | Umaï Ramen",
+      "description": "Allgemeine Geschäftsbedingungen und Nutzungsbedingungen der Website Umaï Ramen."
     }
   }
 }
