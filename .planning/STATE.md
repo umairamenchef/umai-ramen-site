@@ -39,6 +39,7 @@ Next action: EK to supply legal values + photos + menu confirmation (gap-list §
 - DEBT-02 bundle-analyzer wired (ANALYZE=true) ✓ COMPLETE
 - /galerie empty-state guard ✓
 - C-2 (EN/DE hero) resolved as false alarm — hero correctly localized
+- C-8 (commit 5162dd4): re-accentuated fr.json (188 accents) + de.json (ä/ö/ü/ß, "Straßburg") — site-wide FR/DE diacritics restored ✓
 - Decisions from EK: canonical = apex umai-ramen.fr (www→apex 301); catchphrase localized EN/DE; og fallback approved
 
 ### Still blocked on EK inputs
