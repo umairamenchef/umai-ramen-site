@@ -43,7 +43,7 @@
     "title": "Tisch reservieren",
     "subtitle": "Sichern Sie sich Ihren Platz in unserem Restaurant",
     "ctaLabel": "Jetzt reservieren",
-    "microCopy": "Gratuit, sans commission",
+    "microCopy": "Kostenlos, ohne Provision",
     "practicalInfoTitle": "Praktische Informationen",
     "hoursTitle": "Offnungszeiten",
     "addressTitle": "Adresse",
@@ -73,11 +73,11 @@
     "phoneTitle": "Telefon",
     "faqTitle": "Haufig gestellte Fragen",
     "faqAllergens": "Wie gehen Sie mit Allergenen um?",
-    "faqAllergensAnswer": "Notre equipe est a votre ecoute pour toute question sur les allergenes. N'hesitez pas a nous consulter.",
+    "faqAllergensAnswer": "Unser Team beantwortet gerne alle Fragen zu Allergenen. Sprechen Sie uns einfach an.",
     "faqGroups": "Nehmen Sie Gruppen an?",
-    "faqGroupsAnswer": "Pour les groupes de 8 personnes et plus, merci de nous contacter directement par telephone.",
+    "faqGroupsAnswer": "Für Gruppen ab 8 Personen kontaktieren Sie uns bitte direkt telefonisch.",
     "faqVegetarian": "Haben Sie vegetarische Optionen?",
-    "faqVegetarianAnswer": "Nous proposons des options vegetariennes et sans gluten. Consultez notre menu pour les details.",
+    "faqVegetarianAnswer": "Wir bieten vegetarische und glutenfreie Optionen an. Details finden Sie in unserer Speisekarte.",
     "contactTitle": "Kontaktieren Sie uns"
   },
   "gallery": {

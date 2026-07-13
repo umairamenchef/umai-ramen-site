@@ -90,7 +90,7 @@ Sanity is public-read. Verified counts & fields:
 | # | Sev | Finding | Location / fix |
 |---|-----|---------|----------------|
 | C-1 | 🔴 | **4 legal pages show unfilled `[PLACEHOLDER]` templates** in all 3 locales (see §3). | `src/messages/{fr,en,de}.json` — fill with EK-supplied legal values. |
-| C-2 | 🔴 | **EN & DE home hero shows FR** `"Nouilles fraiches. Bouillons maison."` although `page.tsx:98` DOES call `localized(settings.catchphrase, locale, frFallback)` and Sanity HAS en/de values. → root cause is either a **stale build/ISR** on the live container or a bug in `localized()` returning the FR fallback. | Diagnose `localized()` + force revalidate; verify on a fresh build. |
+| C-2 | ✅ | **RESOLVED — false alarm.** Definitive live check: `/en` hero renders "FRESH NOODLES. HOUSE-MADE BROTH", `/de` "FRISCHE NUDELN" — the hero IS correctly localized (`localized()` works, Sanity has en/de). The FR string the earlier agent flagged appears **once per page in a metadata field**, not the visible hero. | None for the hero. Minor: one FR fallback string leaks into EN/DE `<meta>` (generateMetadata) — localize later (🟡). |
 | C-3 | 🔴 | **EN & DE `/reservation` subtitle shows FR** `"Gratuit, sans commission"`. | `messages/{en,de}.json` — add translation. |
 | C-4 | 🔴 | **EN & DE `/infos` FAQ — all 3 answers in FR** (allergens / groups / vegetarian). | `messages/{en,de}.json` FAQ keys — translate. |
 | C-5 | 🟠 | **/galerie** renders the lightbox with an empty array and **no empty-state message** (0 Sanity images). | Add images (CONTENT-05) + optionally an empty-state guard in the gallery component. |

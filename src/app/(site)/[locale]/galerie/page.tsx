@@ -79,7 +79,17 @@ export default async function GaleriePage({ params }: Props) {
         jpLabel="ギャラリー"
         subtitle={t('subtitle')}
       />
-      <GalleryLightbox photos={photos} locale={locale} />
+      {photos.length === 0 ? (
+        <p className="text-center text-umai-text-muted py-16">
+          {locale === 'en'
+            ? 'Photos coming soon.'
+            : locale === 'de'
+            ? 'Fotos folgen in Kürze.'
+            : 'Photos à venir prochainement.'}
+        </p>
+      ) : (
+        <GalleryLightbox photos={photos} locale={locale} />
+      )}
     </div>
   );
 }
