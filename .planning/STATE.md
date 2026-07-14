@@ -42,9 +42,12 @@ Next action: EK to supply legal values + photos + menu confirmation (gap-list §
 - C-8 (commit 5162dd4): re-accentuated fr.json (188 accents) + de.json (ä/ö/ü/ß, "Straßburg") — site-wide FR/DE diacritics restored ✓
 - Decisions from EK: canonical = apex umai-ramen.fr (www→apex 301); catchphrase localized EN/DE; og fallback approved
 
+### Legal pages FILLED (commit 7a34316, verified live)
+- Registry-verified MOKORITA SAS data (SIREN 892 691 619, capital 20 000 €, RCS Strasbourg, APE 5610A) via annuaire-entreprises.data.gouv.fr; directeur de publication Christopher Keopraseuth (DG & co-fondateur, per EK); hébergeur Hostinger; contact@umai-ramen.fr. FR/EN/DE. → CONTENT-04 COMPLETE.
+- OPEN (minor confirms, non-blocking): EK-SARL treatment (affiliation vs distinct éditeur entity needing its own SIREN); confirm contact@umai-ramen.fr mailbox exists.
+
 ### Still blocked on EK inputs
-- Legal values (SIRET, raison sociale, forme juridique, RCS, capital, directeur pub, email légal) → fill 4 legal pages
-- Photos: gallery, Notre Histoire hero, 4 menu items without images
+- Photos: gallery (0 Sanity images), Notre Histoire hero, 4 menu items without images
 - Confirm 17-item Sanity menu = current summer carte + prices
 
 ## Go-live gap headlines (2026-07-09 audit)

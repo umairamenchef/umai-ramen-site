@@ -120,11 +120,11 @@ Production build **succeeds** (81s, Turbopack, 40 static pages, standalone). **N
 ## 6. Prioritized go-live gap list
 
 ### 🔴 Blocking (before public cutover)
-- **C-1 / Legal** Fill the 4 legal pages (mentions légales, confidentialité, cookies, CGV) in FR/EN/DE — currently `[PLACEHOLDER]` templates. _(EK supplies legal values → I fill `messages/*.json`.)_
-- **C-2/C-3/C-4 / i18n** Translate FR strings leaking on EN/DE: home hero catchphrase, reservation subtitle, Infos FAQ (×3). _(I can fix in `messages/{en,de}.json` + hero component.)_
-- **SEO-1** Create real `public/og-image.jpg` (1200×630) — currently 404.
-- **Galerie** Populate Sanity `galleryImage` (currently 0). _(EK assets)_ + empty-state guard.
-- **SEO-2 strategy** Post-cutover 301 turfu.in→umai-ramen.fr (avoid duplicate indexing).
+- ✅ **C-1 / Legal** DONE (commit 7a34316): 4 legal pages filled FR/EN/DE with registry-verified MOKORITA data + Christopher Keopraseuth as directeur de publication + Hostinger. _(Open: EK-SARL treatment + contact email mailbox — see §7.)_
+- ✅ **C-3/C-4 / i18n** DONE: reservation subtitle + Infos FAQ translated EN/DE. C-2 (hero) was a false alarm.
+- ✅ **SEO-1** DONE: `public/og-image.jpg` 1200×630 created (404→200; branded fallback).
+- **Galerie** Populate Sanity `galleryImage` (currently 0). _(EK assets)_ — empty-state guard shipped.
+- **SEO-2 strategy** Post-cutover 301 turfu.in→umai-ramen.fr (avoid duplicate indexing) — Phase 11.
 
 ### 🟠 Major (should fix for a clean launch)
 - 4 menu items missing photos _(EK assets)_.
