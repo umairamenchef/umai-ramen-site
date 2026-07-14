@@ -45,7 +45,9 @@
     "subtitle": "Our seasonal selection — cold noodles, tsukemen and Japanese freshness. Available all summer.",
     "downloadPdf": "Download the PDF",
     "viewFullMenu": "See the full menu",
-    "imageAlt": "Umaï Ramen summer menu — page {page}"
+    "imageAlt": "Umaï Ramen summer menu — page {page}",
+    "zoomHint": "Tap to zoom",
+    "close": "Close"
   },
   "menu": {
     "title": "Our Menu",

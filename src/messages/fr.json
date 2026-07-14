@@ -45,7 +45,9 @@
     "subtitle": "Notre sélection de saison — nouilles froides, tsukemen et fraîcheur japonaise. Disponible tout l'été.",
     "downloadPdf": "Télécharger le PDF",
     "viewFullMenu": "Voir la carte complète",
-    "imageAlt": "Carte d'été Umaï Ramen — page {page}"
+    "imageAlt": "Carte d'été Umaï Ramen — page {page}",
+    "zoomHint": "Toucher pour agrandir",
+    "close": "Fermer"
   },
   "menu": {
     "title": "Notre Menu",

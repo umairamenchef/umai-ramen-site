@@ -45,7 +45,9 @@
     "subtitle": "Unsere saisonale Auswahl — kalte Nudeln, Tsukemen und japanische Frische. Den ganzen Sommer verfügbar.",
     "downloadPdf": "PDF herunterladen",
     "viewFullMenu": "Zur vollständigen Karte",
-    "imageAlt": "Umaï Ramen Sommerkarte — Seite {page}"
+    "imageAlt": "Umaï Ramen Sommerkarte — Seite {page}",
+    "zoomHint": "Zum Vergrößern tippen",
+    "close": "Schließen"
   },
   "menu": {
     "title": "Unsere Speisekarte",

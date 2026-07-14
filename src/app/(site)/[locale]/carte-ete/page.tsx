@@ -1,10 +1,9 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { BASE_URL, OG_IMAGE, buildAlternates } from '@/lib/seo';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button, buttonClasses } from '@/components/ui/Button';
-import { FadeInUp } from '@/components/ui/FadeInUp';
+import { CarteEteViewer } from '@/components/carte-ete/CarteEteViewer';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -61,21 +60,16 @@ export default async function CarteEtePage({ params }: Props) {
         </Button>
       </div>
 
-      <div className="flex flex-col items-center gap-8 max-w-[880px] mx-auto">
-        {PAGES.map((src, i) => (
-          <FadeInUp key={src} delay={i * 0.1} className="w-full">
-            <Image
-              src={src}
-              alt={t('imageAlt', { page: i + 1 })}
-              width={PAGE_W}
-              height={PAGE_H}
-              priority={i === 0}
-              className="w-full h-auto rounded-lg border border-umai-line shadow-lg"
-              sizes="(max-width: 900px) 100vw, 880px"
-            />
-          </FadeInUp>
-        ))}
-      </div>
+      <CarteEteViewer
+        pages={PAGES.map((src, i) => ({
+          src,
+          alt: t('imageAlt', { page: i + 1 }),
+          w: PAGE_W,
+          h: PAGE_H,
+        }))}
+        zoomHint={t('zoomHint')}
+        closeLabel={t('close')}
+      />
     </div>
   );
 }
