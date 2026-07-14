@@ -3,17 +3,19 @@
 import { useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui/Button';
+import { Button, buttonClasses } from '@/components/ui/Button';
+import { OrderButton } from '@/components/order/OrderButton';
+import type { OrderUrls } from '@/components/order/OrderModal';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { MobileMenu } from '@/components/layout/MobileMenu';
 import { Logo } from '@/components/ui/Logo';
 
 interface HeaderProps {
   reservationUrl: string;
-  uberEatsUrl: string;
+  orderUrls: OrderUrls;
 }
 
-export function Header({ reservationUrl, uberEatsUrl }: HeaderProps) {
+export function Header({ reservationUrl, orderUrls }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const tCommon = useTranslations('common');
   const tNav = useTranslations('nav');
@@ -66,14 +68,9 @@ export function Header({ reservationUrl, uberEatsUrl }: HeaderProps) {
             >
               {tCommon('reserve')}
             </Button>
-            <Button
-              variant="primary"
-              href={uberEatsUrl}
-              external
-              className="py-2 px-5 text-xs"
-            >
+            <OrderButton urls={orderUrls} className={buttonClasses('primary', 'py-2 px-5 text-xs')}>
               {tCommon('order')}
-            </Button>
+            </OrderButton>
           </div>
 
           {/* Right: Mobile — language switcher + hamburger */}
@@ -99,7 +96,7 @@ export function Header({ reservationUrl, uberEatsUrl }: HeaderProps) {
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         reservationUrl={reservationUrl}
-        uberEatsUrl={uberEatsUrl}
+        orderUrls={orderUrls}
       />
     </>
   );

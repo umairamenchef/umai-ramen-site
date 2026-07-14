@@ -4,7 +4,9 @@ import { useEffect } from 'react';
 import { AnimatePresence, m } from 'motion/react';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui/Button';
+import { Button, buttonClasses } from '@/components/ui/Button';
+import { OrderButton } from '@/components/order/OrderButton';
+import type { OrderUrls } from '@/components/order/OrderModal';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { Logo } from '@/components/ui/Logo';
 
@@ -12,10 +14,10 @@ interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
   reservationUrl: string;
-  uberEatsUrl: string;
+  orderUrls: OrderUrls;
 }
 
-export function MobileMenu({ isOpen, onClose, reservationUrl, uberEatsUrl }: MobileMenuProps) {
+export function MobileMenu({ isOpen, onClose, reservationUrl, orderUrls }: MobileMenuProps) {
   const tCommon = useTranslations('common');
   const tNav = useTranslations('nav');
 
@@ -95,14 +97,9 @@ export function MobileMenu({ isOpen, onClose, reservationUrl, uberEatsUrl }: Mob
               >
                 {tCommon('reserve')}
               </Button>
-              <Button
-                variant="outline"
-                href={uberEatsUrl}
-                external
-                className="w-full justify-center"
-              >
+              <OrderButton urls={orderUrls} className={buttonClasses('outline', 'w-full justify-center')}>
                 {tCommon('order')}
-              </Button>
+              </OrderButton>
             </div>
 
             {/* Language switcher */}

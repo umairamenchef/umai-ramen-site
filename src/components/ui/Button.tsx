@@ -1,6 +1,22 @@
 import Link from 'next/link';
 
-type ButtonVariant = 'primary' | 'outline' | 'outline-white';
+export type ButtonVariant = 'primary' | 'outline' | 'outline-white';
+
+const BASE_STYLES =
+  'inline-flex items-center justify-center gap-2 min-h-[44px] px-8 py-3 font-body text-sm font-medium uppercase tracking-widest transition-all duration-300 cursor-pointer';
+
+const VARIANT_STYLES: Record<ButtonVariant, string> = {
+  primary: 'bg-umai-accent text-umai-white hover:bg-umai-accent-hover',
+  outline:
+    'bg-transparent border border-umai-accent text-umai-accent hover:bg-umai-accent hover:text-umai-white',
+  'outline-white':
+    'bg-transparent border border-white text-white hover:bg-white/10',
+};
+
+/** Shared button class string — reused by OrderButton so triggers match Button visually. */
+export function buttonClasses(variant: ButtonVariant = 'primary', extra = ''): string {
+  return `${BASE_STYLES} ${VARIANT_STYLES[variant]} ${extra}`;
+}
 
 interface ButtonProps {
   variant?: ButtonVariant;
@@ -19,18 +35,7 @@ export function Button({
   external = false,
   onClick,
 }: ButtonProps) {
-  const baseStyles =
-    'inline-flex items-center justify-center gap-2 min-h-[44px] px-8 py-3 font-body text-sm font-medium uppercase tracking-widest transition-all duration-300 cursor-pointer';
-
-  const variantStyles: Record<ButtonVariant, string> = {
-    primary: 'bg-umai-accent text-umai-white hover:bg-umai-accent-hover',
-    outline:
-      'bg-transparent border border-umai-accent text-umai-accent hover:bg-umai-accent hover:text-umai-white',
-    'outline-white':
-      'bg-transparent border border-white text-white hover:bg-white/10',
-  };
-
-  const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${className}`;
+  const combinedStyles = buttonClasses(variant, className);
 
   if (href) {
     if (external) {

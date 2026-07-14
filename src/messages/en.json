@@ -221,5 +221,15 @@
       "title": "Terms and Conditions | Umaï Ramen",
       "description": "Terms and conditions of use for the Umaï Ramen website. Applicable law and jurisdiction."
     }
+  },
+  "orderModal": {
+    "title": "How would you like to order?",
+    "delivery": "Delivery",
+    "deliveryDesc": "To your door via Uber Eats",
+    "takeaway": "Takeaway",
+    "takeawayDesc": "Order & pay online",
+    "clickCollect": "Click & Collect",
+    "clickCollectDesc": "Order, pick up in store",
+    "close": "Close"
   }
 }

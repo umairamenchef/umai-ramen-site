@@ -1,13 +1,15 @@
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { Logo } from '@/components/ui/Logo';
+import { OrderButton } from '@/components/order/OrderButton';
+import type { OrderUrls } from '@/components/order/OrderModal';
 
 interface FooterProps {
   reservationUrl: string;
-  uberEatsUrl: string;
+  orderUrls: OrderUrls;
 }
 
-export function Footer({ reservationUrl, uberEatsUrl }: FooterProps) {
+export function Footer({ reservationUrl, orderUrls }: FooterProps) {
   const tCommon = useTranslations('common');
   const tNav = useTranslations('nav');
 
@@ -103,14 +105,12 @@ export function Footer({ reservationUrl, uberEatsUrl }: FooterProps) {
                 </a>
               </li>
               <li>
-                <a
-                  href={uberEatsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <OrderButton
+                  urls={orderUrls}
                   className="font-body text-sm text-umai-bg/60 hover:text-umai-accent transition-colors duration-200"
                 >
                   {tCommon('order')}
-                </a>
+                </OrderButton>
               </li>
               <li>
                 <Link

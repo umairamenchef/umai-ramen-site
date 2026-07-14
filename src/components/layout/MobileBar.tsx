@@ -1,11 +1,13 @@
 import { useTranslations } from 'next-intl';
+import { OrderButton } from '@/components/order/OrderButton';
+import type { OrderUrls } from '@/components/order/OrderModal';
 
 interface MobileBarProps {
   reservationUrl: string;
-  uberEatsUrl: string;
+  orderUrls: OrderUrls;
 }
 
-export function MobileBar({ reservationUrl, uberEatsUrl }: MobileBarProps) {
+export function MobileBar({ reservationUrl, orderUrls }: MobileBarProps) {
   const t = useTranslations('common');
 
   return (
@@ -18,14 +20,12 @@ export function MobileBar({ reservationUrl, uberEatsUrl }: MobileBarProps) {
       >
         {t('reserve')}
       </a>
-      <a
-        href={uberEatsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <OrderButton
+        urls={orderUrls}
         className="flex items-center justify-center bg-umai-accent text-umai-white font-body text-sm font-medium uppercase tracking-widest hover:bg-umai-accent-hover transition-colors duration-200"
       >
         {t('order')}
-      </a>
+      </OrderButton>
     </div>
   );
 }

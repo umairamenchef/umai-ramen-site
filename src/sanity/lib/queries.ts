@@ -2,7 +2,7 @@ import { defineQuery } from 'next-sanity';
 
 export const SITE_SETTINGS_QUERY = defineQuery(`
   *[_type == "siteSettings"][0]{
-    reservationUrl, uberEatsUrl, clickCollectUrl, eazeeLinkUrl,
+    reservationUrl, uberEatsUrl, clickCollectUrl, obypayUrl, eazeeLinkUrl,
     phone, address, openingHours, socialLinks
   }
 `);

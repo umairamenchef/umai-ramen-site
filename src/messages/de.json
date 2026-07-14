@@ -221,5 +221,15 @@
       "title": "Allgemeine Geschäftsbedingungen | Umaï Ramen",
       "description": "Allgemeine Geschäftsbedingungen und Nutzungsbedingungen der Website Umaï Ramen."
     }
+  },
+  "orderModal": {
+    "title": "Wie möchten Sie bestellen?",
+    "delivery": "Lieferung",
+    "deliveryDesc": "Nach Hause über Uber Eats",
+    "takeaway": "Zum Mitnehmen",
+    "takeawayDesc": "Online bestellen & bezahlen",
+    "clickCollect": "Click & Collect",
+    "clickCollectDesc": "Bestellen, im Laden abholen",
+    "close": "Schließen"
   }
 }

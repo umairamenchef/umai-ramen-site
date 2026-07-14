@@ -221,5 +221,15 @@
       "title": "Conditions générales de vente | Umaï Ramen",
       "description": "Conditions générales de vente et d'utilisation du site Umaï Ramen. Droit applicable et juridiction."
     }
+  },
+  "orderModal": {
+    "title": "Comment souhaitez-vous commander ?",
+    "delivery": "Livraison",
+    "deliveryDesc": "À domicile via Uber Eats",
+    "takeaway": "À emporter",
+    "takeawayDesc": "Commandez & payez en ligne",
+    "clickCollect": "Click & Collect",
+    "clickCollectDesc": "Commandez, récupérez sur place",
+    "close": "Fermer"
   }
 }

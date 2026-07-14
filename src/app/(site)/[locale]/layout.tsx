@@ -57,13 +57,15 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale);
   const messages = await getMessages();
   let reservationUrl = '#';
-  let uberEatsUrl = '#';
+  let orderUrls: { uberEats?: string | null; obypay?: string | null; clickCollect?: string | null } = {};
   try {
-    const siteSettings = await sanityFetch({ query: SITE_SETTINGS_QUERY, tags: ['siteSettings'] });
-    reservationUrl = (siteSettings as { reservationUrl?: string } | null)?.reservationUrl ?? '#';
-    uberEatsUrl = (siteSettings as { uberEatsUrl?: string } | null)?.uberEatsUrl ?? '#';
+    const s = (await sanityFetch({ query: SITE_SETTINGS_QUERY, tags: ['siteSettings'] })) as {
+      reservationUrl?: string; uberEatsUrl?: string; obypayUrl?: string; clickCollectUrl?: string;
+    } | null;
+    reservationUrl = s?.reservationUrl ?? '#';
+    orderUrls = { uberEats: s?.uberEatsUrl, obypay: s?.obypayUrl, clickCollect: s?.clickCollectUrl };
   } catch {
-    // Sanity not configured — fall back to '#' (non-blocking for dev builds without credentials)
+    // Sanity not configured — fall back (non-blocking for dev builds without credentials)
   }
 
   return (
@@ -93,12 +95,12 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="font-body bg-umai-bg text-umai-text antialiased">
         <NextIntlClientProvider messages={messages}>
           <MotionProvider>
-            <Header reservationUrl={reservationUrl} uberEatsUrl={uberEatsUrl} />
+            <Header reservationUrl={reservationUrl} orderUrls={orderUrls} />
             <main className="min-h-screen pb-16 md:pb-0">
               {children}
             </main>
-            <Footer reservationUrl={reservationUrl} uberEatsUrl={uberEatsUrl} />
-            <MobileBar reservationUrl={reservationUrl} uberEatsUrl={uberEatsUrl} />
+            <Footer reservationUrl={reservationUrl} orderUrls={orderUrls} />
+            <MobileBar reservationUrl={reservationUrl} orderUrls={orderUrls} />
           </MotionProvider>
           <CookieBanner />
         </NextIntlClientProvider>
