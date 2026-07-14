@@ -7,6 +7,8 @@ import { HOMEPAGE_QUERY } from '@/sanity/lib/queries';
 import { localized } from '@/lib/localized';
 import { NAP, BASE_URL, OG_IMAGE, OPENING_HOURS, buildAlternates } from '@/lib/seo';
 import { Hero } from '@/components/home/Hero';
+import { SummerBanner } from '@/components/home/SummerBanner';
+import { SignatureSection } from '@/components/home/SignatureSection';
 import { MenuPreview } from '@/components/home/MenuPreview';
 import { UspSection } from '@/components/home/UspSection';
 import { HistoireTeaser } from '@/components/home/HistoireTeaser';
@@ -76,10 +78,12 @@ export default async function HomePage({ params }: Props) {
       alt?: string;
       image: SanityImageSource;
     }>;
+    signature?: { price?: number } | null;
   } = {
     settings: null,
     menuCategories: [],
     galleryPreview: [],
+    signature: null,
   };
 
   try {
@@ -95,7 +99,7 @@ export default async function HomePage({ params }: Props) {
     // Sanity not configured — render with fallback content
   }
 
-  const { settings, menuCategories, galleryPreview } = homepageData;
+  const { settings, menuCategories, galleryPreview, signature } = homepageData;
 
   const catchphrase = settings?.catchphrase
     ? localized(settings.catchphrase, locale, 'Nouilles fraiches. Bouillons maison.')
@@ -164,6 +168,14 @@ export default async function HomePage({ params }: Props) {
         orderLabel={tCommon('order')}
       />
 
+      {/* 1b. Summer menu promo band */}
+      <SummerBanner
+        label={tHome('summerLabel')}
+        title={tHome('summerTitle')}
+        description={tHome('summerDesc')}
+        ctaLabel={tHome('summerCta')}
+      />
+
       <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10">
         {/* 2. Menu Preview */}
         <MenuPreview
@@ -172,9 +184,16 @@ export default async function HomePage({ params }: Props) {
           title={tHome('menuPreviewTitle')}
           ctaLabel={tHome('menuPreviewCta')}
         />
-
-        {/* 3. USP Section */}
       </div>
+
+      {/* 2b. Signature dish — the Tantan */}
+      <SignatureSection
+        label={tHome('signatureLabel')}
+        title={tHome('signatureTitle')}
+        description={tHome('signatureDesc')}
+        ctaLabel={tHome('signatureCta')}
+        price={signature?.price}
+      />
 
       {/* USP has its own full-width bg (bg-umai-bg-alt) */}
       <UspSection
