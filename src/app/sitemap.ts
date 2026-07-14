@@ -4,6 +4,7 @@ import { BASE_URL, LOCALES } from '@/lib/seo';
 const contentPages = [
   '',
   '/menu',
+  '/carte-ete',
   '/reservation',
   '/commander',
   '/notre-histoire',

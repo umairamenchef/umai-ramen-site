@@ -39,6 +39,14 @@
     "socialTitle": "Rejoignez-nous",
     "socialHashtag": "#umairamen"
   },
+  "carteEte": {
+    "title": "Carte d'été",
+    "jpLabel": "夏のメニュー",
+    "subtitle": "Notre sélection de saison — nouilles froides, tsukemen et fraîcheur japonaise. Disponible tout l'été.",
+    "downloadPdf": "Télécharger le PDF",
+    "viewFullMenu": "Voir la carte complète",
+    "imageAlt": "Carte d'été Umaï Ramen — page {page}"
+  },
   "menu": {
     "title": "Notre Menu",
     "subtitle": "Des plats préparés avec passion, des ingrédients frais et locaux",
@@ -192,6 +200,10 @@
     "menu": {
       "title": "Menu | Umaï Ramen Strasbourg",
       "description": "Découvrez notre carte : ramens signatures, bouillons, extras et formules. Ingrédients frais et locaux, préparés chaque jour."
+    },
+    "carteEte": {
+      "title": "Carte d'été | Umaï Ramen Strasbourg",
+      "description": "La carte d'été d'Umaï : hiyashi chuka, tsukemen, tantan et sélection de saison. À découvrir à Strasbourg tout l'été."
     },
     "reservation": {
       "title": "Réserver une table | Umaï Ramen Strasbourg",

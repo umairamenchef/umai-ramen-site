@@ -39,6 +39,14 @@
     "socialTitle": "Folgen Sie uns",
     "socialHashtag": "#umairamen"
   },
+  "carteEte": {
+    "title": "Sommerkarte",
+    "jpLabel": "夏のメニュー",
+    "subtitle": "Unsere saisonale Auswahl — kalte Nudeln, Tsukemen und japanische Frische. Den ganzen Sommer verfügbar.",
+    "downloadPdf": "PDF herunterladen",
+    "viewFullMenu": "Zur vollständigen Karte",
+    "imageAlt": "Umaï Ramen Sommerkarte — Seite {page}"
+  },
   "menu": {
     "title": "Unsere Speisekarte",
     "subtitle": "Gerichte mit Leidenschaft zubereitet, frische und lokale Zutaten",
@@ -192,6 +200,10 @@
     "menu": {
       "title": "Speisekarte | Umaï Ramen Straßburg",
       "description": "Entdecken Sie unsere Karte: Signature-Ramen, Brühen, Extras und Menüs. Frische lokale Zutaten, täglich zubereitet."
+    },
+    "carteEte": {
+      "title": "Sommerkarte | Umaï Ramen Straßburg",
+      "description": "Umaïs Sommerkarte: Hiyashi Chuka, Tsukemen, Tantan und saisonale Auswahl. Den ganzen Sommer in Straßburg."
     },
     "reservation": {
       "title": "Tisch reservieren | Umaï Ramen Straßburg",

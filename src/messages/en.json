@@ -39,6 +39,14 @@
     "socialTitle": "Join us",
     "socialHashtag": "#umairamen"
   },
+  "carteEte": {
+    "title": "Summer Menu",
+    "jpLabel": "夏のメニュー",
+    "subtitle": "Our seasonal selection — cold noodles, tsukemen and Japanese freshness. Available all summer.",
+    "downloadPdf": "Download the PDF",
+    "viewFullMenu": "See the full menu",
+    "imageAlt": "Umaï Ramen summer menu — page {page}"
+  },
   "menu": {
     "title": "Our Menu",
     "subtitle": "Dishes prepared with passion, fresh and local ingredients",
@@ -192,6 +200,10 @@
     "menu": {
       "title": "Menu | Umaï Ramen Strasbourg",
       "description": "Explore our menu: signature ramens, broths, extras and set menus. Fresh local ingredients prepared daily."
+    },
+    "carteEte": {
+      "title": "Summer Menu | Umaï Ramen Strasbourg",
+      "description": "Umaï's summer menu: hiyashi chuka, tsukemen, tantan and seasonal picks. In Strasbourg all summer long."
     },
     "reservation": {
       "title": "Reserve a Table | Umaï Ramen Strasbourg",

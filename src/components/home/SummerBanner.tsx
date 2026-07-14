@@ -30,7 +30,7 @@ export function SummerBanner({ label, title, description, ctaLabel }: SummerBann
             </p>
           </div>
           <div className="shrink-0">
-            <Button variant="outline-white" href="/menu">
+            <Button variant="outline-white" href="/carte-ete">
               {ctaLabel}
             </Button>
           </div>
