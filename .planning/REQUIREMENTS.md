@@ -30,7 +30,7 @@
 ### Production Content Completion
 
 - [x] **CONTENT-01**: Real hero photography set in Sanity (Accueil + any per-page heroes), replacing placeholders (assets from EK, provided progressively from 2026-07-09)
-- [ ] **CONTENT-02**: Summer menu fully entered in Sanity — dishes, FR/EN/DE names, prices, dietary tags, availability — matching the current in-restaurant menu
+- [x] **CONTENT-02**: Summer menu fully entered in Sanity — dishes, FR/EN/DE names, prices, dietary tags, availability — matching the current in-restaurant menu
 - [x] **CONTENT-03**: Opening hours, address, phone verified/updated in Sanity siteSettings (single NAP source), consistent with seo.ts constants
 - [x] **CONTENT-04**: Legal pages complete and accurate in FR/EN/DE — mentions légales (éditeur, directeur de publication, hébergeur, SIRET), confidentialité, cookies, CGV
 - [x] **CONTENT-05**: "Notre Histoire" copy validated with Loan and the gallery populated with the final selected photos
@@ -80,7 +80,7 @@
 | AUDIT-06 | Phase 08 — Audit go-live & gap analysis | Complete |
 | AUDIT-07 | Phase 08 — Audit go-live & gap analysis | Complete |
 | CONTENT-01 | Phase 09 — Contenu & visuels production (Sanity) | Complete |
-| CONTENT-02 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
+| CONTENT-02 | Phase 09 — Contenu & visuels production (Sanity) | Complete |
 | CONTENT-03 | Phase 09 — Contenu & visuels production (Sanity) | Complete |
 | CONTENT-04 | Phase 09 — Contenu & visuels production (Sanity) | Complete |
 | CONTENT-05 | Phase 09 — Contenu & visuels production (Sanity) | Complete |

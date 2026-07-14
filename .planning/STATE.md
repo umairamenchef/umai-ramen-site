@@ -52,10 +52,17 @@ Next action: EK to supply legal values + photos + menu confirmation (gap-list §
 - **Menu photos**: 13→**14/17**. Attached umai_064 (crémeux matcha) to `item-panna-cotta`. Remaining 3 without photos (Edamame, Mochi glacé, Tiramisu Framboise-Litchi) — no accurate Nis&For match; left empty rather than mismatched. EK to supply if wanted.
 - **EK SARL** added to directeur-de-publication line (commit 11a86ea).
 
-### Still needs EK (validation only, non-blocking for a soft launch)
-- Confirm 17-item Sanity menu = current carte + prices (only EK can validate).
+### Menu FULLY REBUILT from eazee-link (2026-07-14, CONTENT-02 done, verified live)
+- Source of truth = eazee-link current menu (sticker GIK39GHKQZ, API api-menu.vazeetap.com). Cross-checked vs summer-2026 PDF + relecture PDF.
+- Old 17-item menu was heavily outdated (phantom dishes Tori Paitan/Shoyu/Shio Ramen/Panna Cotta; wrong prices ~everywhere; ~25 dishes missing).
+- Rebuilt: **167 menuItems + 26 menuCategories** (food + desserts + menus + extras + full drinks), correct FR names/prices/descriptions, categories FR/EN/DE. Item names en/de = fr; item descriptions FR-only (localized() fallback) → EN/DE translations are the "edit later" part. Tags (veg/GF) heuristic — refine in Studio.
+- Old items + cat-soba deleted. Panna-cotta photo asset now orphaned (harmless).
+
+### Still needs EK (validation/refinement only — non-blocking)
 - Confirm contact@umai-ramen.fr mailbox active.
-- Optional: real photos for Edamame / Mochi / Tiramisu; a photo-based og-image.
+- EN/DE menu translations (names+descriptions) — currently FR fallback.
+- Veg/gluten-free tags per item (set heuristically).
+- Optional: dish photos (most items have none), photo-based og-image, EK-SARL entity treatment.
 
 ## Go-live gap headlines (2026-07-09 audit)
 
