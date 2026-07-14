@@ -36,5 +36,16 @@ Tu reprends le projet **Umaï Ramen — site web 2026** (`/Users/ekitcho/Desktop
 - « EK SARL » : simple mention (fait) ou entité éditrice distincte (→ son SIREN) ?
 - Périmètre carte confirmé : plats+boissons+extras (fait).
 
-## Statut requirements v2.1
-AUDIT 7/7 ✓ · CONTENT 6/6 ✓ · DEBT 1/4 (DEBT-02 ✓) · CUTOVER 0/7. Prochaine phase GSD : finir DEBT (Phase 10) puis CUTOVER (Phase 11).
+## Statut requirements v2.1 (maj 2026-07-14 session 2)
+AUDIT 7/7 ✓ · CONTENT 6/6 ✓ · **DEBT 4/4 ✓** (01 footer NAP, 02 analyzer, 03 first-load JS mesuré ~228KB/floor documenté, 04 blockers audit clos) · CUTOVER 0/7. Reste avant go-live : rien de bloquant côté code/contenu — **CUTOVER (Phase 11) sur « go cutover »** uniquement.
+
+### Fait session 2 (tout déployé + vérifié live umai.turfu.in) — ne pas refaire
+- Hero CTA → modale Commander (d85b741).
+- Story fondateur : 4 bodies Notre Histoire remplis FR/EN/DE (Sanity) ; teaser home enrichi.
+- Tantan signature : `SignatureSection` home (photo `public/signature-tantan.jpg`, prix live) + photo umai_022 sur menuItem Tantan (Sanity).
+- Bandeau « Carte d'été » : `SummerBanner` home. i18n `signature*`/`summer*` FR/EN/DE.
+- DEBT-01 footer NAP→seo.ts (8166a38). DEBT-03/04 documentés/clos.
+- ⚠️ CONFIRM EK : bouillons **6h** (aligné partout ; brief=6h, ancien site=12h).
+
+### Reste « edit-later » (non bloquant, cf. §À FAIRE.4)
+Trad EN/DE des 167 plats (noms+desc, actuellement fallback FR) · tags végé/sans-gluten à l'estime · photos plats manquantes · contact@umai-ramen.fr à confirmer actif · EK-SARL entité.

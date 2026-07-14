@@ -60,7 +60,18 @@ Next action: EK to supply legal values + photos + menu confirmation (gap-list §
 
 ### Order popup shipped 2026-07-14 (commit 957e4d3, verified live)
 - "Commander" opens a 3-choice modal: Livraison (Uber Eats) / À emporter (obypay) / Click & Collect (Flipdish). Components `src/components/order/{OrderModal,OrderButton}.tsx`; wired Header/MobileBar/Footer/MobileMenu; URLs from Sanity siteSettings (added `obypayUrl` field+value); i18n `orderModal` FR/EN/DE.
-- **TODO next**: Hero CTA still direct-links Uber Eats — pass `orderUrls` to Hero (home page HOME query must also fetch obypayUrl+clickCollectUrl).
+- **Hero CTA → modal DONE** (commit d85b741, verified live): HOME query fetches obypayUrl+clickCollectUrl; Hero takes `orderUrls` + renders `OrderButton` (outline-white). 0 direct uber-anchors on `/fr`. ✓
+
+### Session 2 — 2026-07-14 (post-/clear): Hero, EK's 3 content points, DEBT — ALL verified live on umai.turfu.in
+- **Hero → order modal** (d85b741) ✓ [above].
+- **Founder story** (Sanity, ISR): filled the 4 empty `page-notre-histoire` section bodies FR/EN/DE (were heading+image only, no body) — passion/formation au Japon, fait-maison + bouillons 6h, 100% local (poulet fermier d'Alsace), expérience/Tantan signature. Live ✓.
+- **Tantan signature** (commit 6557338): new `SignatureSection` home block (editorial photo `public/signature-tantan.jpg` from umai_066 + live price 14,90 € from Sanity, `name.fr == "Tantan Ramen"`) after MenuPreview; enriched `histoireTeaser`. Menu photo: uploaded umai_022 → Tantan menuItem `item-e3480254`. Live ✓.
+- **Summer menu promo** (6557338): new `SummerBanner` accent band (Hiyashi Chuka / tsukemen teaser → /menu) after Hero. i18n `summer*`/`signature*` FR/EN/DE (home keys 19→27, parity ✓). Live ✓.
+- **DEBT-01** (commit 8166a38): Footer contact block wired to `NAP` constants in `src/lib/seo.ts` (address/postal/phone/maps) — single source of truth, matches JSON-LD. Live shows +33 9 52 34 34 38 / 5 Rue des Orphelins / 67000 Strasbourg. ✓
+- **DEBT-03**: measured real first-load JS on live `/fr` = **~228 KB compressed** (14 chunks). Above 150 KB target but ≈ Next 16/React 19 framework floor; Studio + ig-studio route-isolated, motion via LazyMotion. Documented; no risky pre-go-live cuts. → treat DEBT-03 done (documented).
+- **DEBT-04** (catch-all audit blockers): all 08-audit go-live blockers already cleared (legal, EN/DE i18n, og-image, gallery empty-state, canonical strategy) → done.
+- ⚠️ **FLAG for EK (1-line confirm):** broth simmer time — EK's brief said "bouillons 6h"; old site/USP said "12 heures". I aligned everything to **6h** (`uspBouillonsDesc` + Notre Histoire body, FR/EN/DE). Correct either way in 30s if wrong.
+- Signature query uses exact `==` (not full-text `match`) for build determinism. Note: React renders price as `14,90<!-- --> €` (comment splits number/€) — grep `"NN,NN €"` will miss it; grep the number alone.
 
 ### ▶ HANDOFF: full resume instructions in `.planning/RESUME-PROMPT.md`
 Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, Tantan signature highlight, summer-menu promo), (3) DEBT-01/03/04, (4) menu EN/DE translations + tags + photos (edit-later), (5) CUTOVER on "go cutover".

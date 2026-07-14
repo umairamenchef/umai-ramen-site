@@ -38,10 +38,10 @@
 
 ### Tech-Debt Remediation
 
-- [ ] **DEBT-01**: Footer wired to the NAP constants (seo.ts) — resolves SEO-07; footer NAP matches JSON-LD across all locales
+- [x] **DEBT-01**: Footer wired to the NAP constants (seo.ts) — resolves SEO-07; footer NAP matches JSON-LD across all locales _(commit 8166a38, live)_
 - [x] **DEBT-02**: `@next/bundle-analyzer` wired into next.config.ts, producing a first-load JS report
-- [ ] **DEBT-03**: First-load JS reduced toward budget where feasible (PERF-05); document the irreducible framework floor and any wins achieved
-- [ ] **DEBT-04**: Go-live-blocking issues surfaced by the Phase 08 audit are fixed (catch-all, scoped by severity)
+- [x] **DEBT-03**: First-load JS measured on live `/fr` = ~228 KB compressed (14 chunks); ≈ Next 16/React 19 framework floor. Wins: Studio + ig-studio route-isolated, motion via LazyMotion. Documented; no risky pre-go-live cuts _(2026-07-14)_
+- [x] **DEBT-04**: All Phase 08 audit go-live blockers cleared (legal FR/EN/DE, EN/DE i18n leaks, og-image, gallery empty-state, canonical/cutover strategy) _(2026-07-14)_
 
 ### Domain Cutover & Live Verification
 
