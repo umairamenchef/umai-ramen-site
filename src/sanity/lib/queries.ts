@@ -53,7 +53,7 @@ export const HOMEPAGE_QUERY = defineQuery(`
       catchphrase, heroImage, reservationUrl, uberEatsUrl, obypayUrl, clickCollectUrl, socialLinks
     },
     "menuCategories": *[_type == "menuCategory"] | order(order asc) [0...3]{
-      _id, name, slug, "image": *[_type == "menuItem" && references(^._id) && available == true][0].image
+      _id, name, slug, "image": *[_type == "menuItem" && references(^._id) && available == true && defined(image)][0].image
     },
     "galleryPreview": *[_type == "gallery"] | order(order asc) [0...6]{
       _id, title, alt, image
