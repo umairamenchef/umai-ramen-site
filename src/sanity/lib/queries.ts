@@ -50,7 +50,7 @@ export const GALLERY_QUERY = defineQuery(`
 export const HOMEPAGE_QUERY = defineQuery(`
   {
     "settings": *[_type == "siteSettings"][0]{
-      catchphrase, heroImage, reservationUrl, uberEatsUrl, socialLinks
+      catchphrase, heroImage, reservationUrl, uberEatsUrl, obypayUrl, clickCollectUrl, socialLinks
     },
     "menuCategories": *[_type == "menuCategory"] | order(order asc) [0...3]{
       _id, name, slug, "image": *[_type == "menuItem" && references(^._id) && available == true][0].image

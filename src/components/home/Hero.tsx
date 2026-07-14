@@ -1,12 +1,14 @@
 import Image from 'next/image';
 import type { SanityImageSource } from '@sanity/image-url';
-import { Button } from '@/components/ui/Button';
+import { Button, buttonClasses } from '@/components/ui/Button';
+import { OrderButton } from '@/components/order/OrderButton';
+import type { OrderUrls } from '@/components/order/OrderModal';
 import { urlFor } from '@/sanity/lib/image';
 
 interface HeroProps {
   catchphrase: string;
   reservationUrl: string;
-  uberEatsUrl: string;
+  orderUrls: OrderUrls;
   heroImage?: SanityImageSource;
   reserveLabel: string;
   orderLabel: string;
@@ -15,7 +17,7 @@ interface HeroProps {
 export function Hero({
   catchphrase,
   reservationUrl,
-  uberEatsUrl,
+  orderUrls,
   heroImage,
   reserveLabel,
   orderLabel,
@@ -64,9 +66,9 @@ export function Hero({
           <Button variant="primary" href={reservationUrl} external>
             {reserveLabel}
           </Button>
-          <Button variant="outline-white" href={uberEatsUrl} external>
+          <OrderButton urls={orderUrls} className={buttonClasses('outline-white')}>
             {orderLabel}
-          </Button>
+          </OrderButton>
         </div>
       </div>
     </section>

@@ -60,6 +60,8 @@ export default async function HomePage({ params }: Props) {
       heroImage?: SanityImageSource;
       reservationUrl?: string;
       uberEatsUrl?: string;
+      obypayUrl?: string;
+      clickCollectUrl?: string;
       socialLinks?: { instagram?: string };
     } | null;
     menuCategories: Array<{
@@ -100,7 +102,11 @@ export default async function HomePage({ params }: Props) {
     : 'Nouilles fraiches. Bouillons maison.';
 
   const reservationUrl = settings?.reservationUrl ?? '#';
-  const uberEatsUrl = settings?.uberEatsUrl ?? '#';
+  const orderUrls = {
+    uberEats: settings?.uberEatsUrl ?? null,
+    obypay: settings?.obypayUrl ?? null,
+    clickCollect: settings?.clickCollectUrl ?? null,
+  };
   const instagramUrl = settings?.socialLinks?.instagram ?? 'https://instagram.com/umai_ramen_strasbourg';
 
   const usps = [
@@ -152,7 +158,7 @@ export default async function HomePage({ params }: Props) {
       <Hero
         catchphrase={catchphrase}
         reservationUrl={reservationUrl}
-        uberEatsUrl={uberEatsUrl}
+        orderUrls={orderUrls}
         heroImage={settings?.heroImage}
         reserveLabel={tCommon('reserve')}
         orderLabel={tCommon('order')}
