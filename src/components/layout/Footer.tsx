@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { Logo } from '@/components/ui/Logo';
 import { OrderButton } from '@/components/order/OrderButton';
 import type { OrderUrls } from '@/components/order/OrderModal';
+import { NAP } from '@/lib/seo';
 
 interface FooterProps {
   reservationUrl: string;
@@ -48,25 +49,27 @@ export function Footer({ reservationUrl, orderUrls }: FooterProps) {
             <ul className="space-y-2.5">
               <li>
                 <a
-                  href="https://maps.google.com/?q=5+rue+des+Orphelins+67000+Strasbourg"
+                  href={`https://maps.google.com/?q=${encodeURIComponent(
+                    `${NAP.streetAddress} ${NAP.postalCode} ${NAP.addressLocality}`
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-sm text-umai-bg/60 hover:text-umai-accent transition-colors duration-200"
                 >
-                  5 rue des Orphelins
+                  {NAP.streetAddress}
                 </a>
               </li>
               <li>
                 <span className="font-body text-sm text-umai-bg/60">
-                  67000 Strasbourg
+                  {NAP.postalCode} {NAP.addressLocality}
                 </span>
               </li>
               <li>
                 <a
-                  href="tel:0952343438"
+                  href={`tel:${NAP.telephone}`}
                   className="font-body text-sm text-umai-bg/60 hover:text-umai-accent transition-colors duration-200"
                 >
-                  09 52 34 34 38
+                  {NAP.telephoneDisplay}
                 </a>
               </li>
             </ul>

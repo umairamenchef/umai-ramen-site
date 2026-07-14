@@ -58,7 +58,7 @@ export const HOMEPAGE_QUERY = defineQuery(`
     "galleryPreview": *[_type == "gallery"] | order(order asc) [0...6]{
       _id, title, alt, image
     },
-    "signature": *[_type == "menuItem" && name.fr match "Tantan Ramen"][0]{ price }
+    "signature": *[_type == "menuItem" && name.fr == "Tantan Ramen"][0]{ price }
   }
 `);
 
