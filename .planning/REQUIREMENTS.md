@@ -29,12 +29,12 @@
 
 ### Production Content Completion
 
-- [ ] **CONTENT-01**: Real hero photography set in Sanity (Accueil + any per-page heroes), replacing placeholders (assets from EK, provided progressively from 2026-07-09)
+- [x] **CONTENT-01**: Real hero photography set in Sanity (Accueil + any per-page heroes), replacing placeholders (assets from EK, provided progressively from 2026-07-09)
 - [ ] **CONTENT-02**: Summer menu fully entered in Sanity — dishes, FR/EN/DE names, prices, dietary tags, availability — matching the current in-restaurant menu
-- [ ] **CONTENT-03**: Opening hours, address, phone verified/updated in Sanity siteSettings (single NAP source), consistent with seo.ts constants
+- [x] **CONTENT-03**: Opening hours, address, phone verified/updated in Sanity siteSettings (single NAP source), consistent with seo.ts constants
 - [x] **CONTENT-04**: Legal pages complete and accurate in FR/EN/DE — mentions légales (éditeur, directeur de publication, hébergeur, SIRET), confidentialité, cookies, CGV
-- [ ] **CONTENT-05**: "Notre Histoire" copy validated with Loan and the gallery populated with the final selected photos
-- [ ] **CONTENT-06**: On-brand OG/social-share images present for the key pages (real, not placeholder)
+- [x] **CONTENT-05**: "Notre Histoire" copy validated with Loan and the gallery populated with the final selected photos
+- [x] **CONTENT-06**: On-brand OG/social-share images present for the key pages (real, not placeholder)
 
 ### Tech-Debt Remediation
 
@@ -79,12 +79,12 @@
 | AUDIT-05 | Phase 08 — Audit go-live & gap analysis | Complete |
 | AUDIT-06 | Phase 08 — Audit go-live & gap analysis | Complete |
 | AUDIT-07 | Phase 08 — Audit go-live & gap analysis | Complete |
-| CONTENT-01 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
+| CONTENT-01 | Phase 09 — Contenu & visuels production (Sanity) | Complete |
 | CONTENT-02 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
-| CONTENT-03 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
+| CONTENT-03 | Phase 09 — Contenu & visuels production (Sanity) | Complete |
 | CONTENT-04 | Phase 09 — Contenu & visuels production (Sanity) | Complete |
-| CONTENT-05 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
-| CONTENT-06 | Phase 09 — Contenu & visuels production (Sanity) | Pending |
+| CONTENT-05 | Phase 09 — Contenu & visuels production (Sanity) | Complete |
+| CONTENT-06 | Phase 09 — Contenu & visuels production (Sanity) | Complete |
 | DEBT-01 | Phase 10 — Résorption dette & polish | Pending |
 | DEBT-02 | Phase 10 — Résorption dette & polish | Complete |
 | DEBT-03 | Phase 10 — Résorption dette & polish | Pending |

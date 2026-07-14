@@ -46,9 +46,16 @@ Next action: EK to supply legal values + photos + menu confirmation (gap-list §
 - Registry-verified MOKORITA SAS data (SIREN 892 691 619, capital 20 000 €, RCS Strasbourg, APE 5610A) via annuaire-entreprises.data.gouv.fr; directeur de publication Christopher Keopraseuth (DG & co-fondateur, per EK); hébergeur Hostinger; contact@umai-ramen.fr. FR/EN/DE. → CONTENT-04 COMPLETE.
 - OPEN (minor confirms, non-blocking): EK-SARL treatment (affiliation vs distinct éditeur entity needing its own SIREN); confirm contact@umai-ramen.fr mailbox exists.
 
-### Still blocked on EK inputs
-- Photos: gallery (0 Sanity images), Notre Histoire hero, 4 menu items without images
-- Confirm 17-item Sanity menu = current summer carte + prices
+### Content populated autonomously 2026-07-14 (Sanity production, via write token)
+- **Gallery**: was NOT empty (9 `gallery` docs — earlier "0" was a wrong-type query on `galleryImage`). Renders live ✓.
+- **Notre Histoire**: 4 sections had no images → uploaded 4 Nis&For photos (umai_009 passion, umai_001 fait-maison, umai_013 intérieur, umai_011 équipe) + patched `page-notre-histoire`. (Page schema has NO heroImage field — the "missing hero" finding was a false positive.)
+- **Menu photos**: 13→**14/17**. Attached umai_064 (crémeux matcha) to `item-panna-cotta`. Remaining 3 without photos (Edamame, Mochi glacé, Tiramisu Framboise-Litchi) — no accurate Nis&For match; left empty rather than mismatched. EK to supply if wanted.
+- **EK SARL** added to directeur-de-publication line (commit 11a86ea).
+
+### Still needs EK (validation only, non-blocking for a soft launch)
+- Confirm 17-item Sanity menu = current carte + prices (only EK can validate).
+- Confirm contact@umai-ramen.fr mailbox active.
+- Optional: real photos for Edamame / Mochi / Tiramisu; a photo-based og-image.
 
 ## Go-live gap headlines (2026-07-09 audit)
 
