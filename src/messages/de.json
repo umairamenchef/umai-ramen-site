@@ -33,7 +33,7 @@
     "summerDesc": "Kalte Hiyashi-Chuka-Nudeln, Tsukemen zum Eintauchen, Frische und Leichtigkeit: Entdecken Sie unsere Sommergerichte, nur für die Saison.",
     "summerCta": "Entdecken",
     "histoireTitle": "Unsere Geschichte",
-    "histoireTeaser": "Von Japan bis Singapur lernte Loan Ramen bei den Meistern — und brachte eine Technik, 100% hausgemachte Nudeln und einen Ort mit: Umaï.",
+    "histoireTeaser": "Von Japan bis Singapur lernte Loan bei den Ramen-Meistern. Sie brachte eine Technik mit, 100% hausgemachte Nudeln und einen Ort: Umaï.",
     "histoireCta": "Unsere Geschichte entdecken",
     "galleryCta": "Gesamte Galerie ansehen",
     "socialTitle": "Folgen Sie uns",
@@ -42,7 +42,7 @@
   "carteEte": {
     "title": "Sommerkarte",
     "jpLabel": "夏のメニュー",
-    "subtitle": "Unsere saisonale Auswahl — kalte Nudeln, Tsukemen und japanische Frische. Den ganzen Sommer verfügbar.",
+    "subtitle": "Unsere saisonale Auswahl: kalte Nudeln, Tsukemen und japanische Frische. Den ganzen Sommer verfügbar.",
     "downloadPdf": "PDF herunterladen",
     "viewFullMenu": "Zur vollständigen Karte",
     "vegOption": "Vegetarische Variante verfügbar",
@@ -112,7 +112,7 @@
       "title": "Impressum",
       "company": {
         "heading": "Unternehmensidentifikation",
-        "content": "Firmenname: MOKORITA\nRechtsform: SAS (vereinfachte Aktiengesellschaft französischen Rechts)\nStammkapital: 20.000 €\nSIRET: 892 691 619 00019\nRCS: Strasbourg 892 691 619\nVerantwortlicher Herausgeber: Christopher Keopraseuth (Geschäftsführer und Mitgründer — EK SARL)\nAdresse: 5 Rue des Orphelins, 67000 Straßburg, Frankreich\nTelefon: +33 9 52 34 34 38"
+        "content": "Firmenname: MOKORITA\nRechtsform: SAS (vereinfachte Aktiengesellschaft französischen Rechts)\nStammkapital: 20.000 €\nSIRET: 892 691 619 00019\nRCS: Strasbourg 892 691 619\nVerantwortlicher Herausgeber: Christopher Keopraseuth (Geschäftsführer und Mitgründer, EK SARL)\nAdresse: 5 Rue des Orphelins, 67000 Straßburg, Frankreich\nTelefon: +33 9 52 34 34 38"
       },
       "hosting": {
         "heading": "Hosting-Anbieter",

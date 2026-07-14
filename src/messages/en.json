@@ -33,7 +33,7 @@
     "summerDesc": "Cold Hiyashi Chuka noodles, dip-style tsukemen, freshness and lightness: discover our summer dishes, for the season only.",
     "summerCta": "Discover",
     "histoireTitle": "Our Story",
-    "histoireTeaser": "From Japan to Singapore, Loan learned ramen from the masters — and brought back a technique, 100% house-made noodles, and a place: Umaï.",
+    "histoireTeaser": "From Japan to Singapore, Loan trained with the ramen masters. She brought back a technique, 100% house-made noodles, and a place: Umaï.",
     "histoireCta": "Discover our story",
     "galleryCta": "See the full gallery",
     "socialTitle": "Join us",
@@ -42,7 +42,7 @@
   "carteEte": {
     "title": "Summer Menu",
     "jpLabel": "夏のメニュー",
-    "subtitle": "Our seasonal selection — cold noodles, tsukemen and Japanese freshness. Available all summer.",
+    "subtitle": "Our seasonal selection: cold noodles, tsukemen and Japanese freshness. Available all summer.",
     "downloadPdf": "Download the PDF",
     "viewFullMenu": "See the full menu",
     "vegOption": "Vegetarian option available",
@@ -90,7 +90,7 @@
     "phoneTitle": "Phone",
     "faqTitle": "Frequently asked questions",
     "faqAllergens": "How do you handle allergens?",
-    "faqAllergensAnswer": "Our team is happy to answer any questions about allergens — just ask us.",
+    "faqAllergensAnswer": "Our team is happy to answer any questions about allergens. Just ask us.",
     "faqGroups": "Do you accept groups?",
     "faqGroupsAnswer": "For groups of 8 or more, please contact us directly by phone.",
     "faqVegetarian": "Do you have vegetarian options?",
@@ -112,7 +112,7 @@
       "title": "Legal Notice",
       "company": {
         "heading": "Company Identification",
-        "content": "Company name: MOKORITA\nLegal form: SAS (French simplified joint-stock company)\nShare capital: €20,000\nSIRET: 892 691 619 00019\nRCS: Strasbourg 892 691 619\nPublication director: Christopher Keopraseuth (Managing Director and co-founder — EK SARL)\nAddress: 5 Rue des Orphelins, 67000 Strasbourg, France\nPhone: +33 9 52 34 34 38"
+        "content": "Company name: MOKORITA\nLegal form: SAS (French simplified joint-stock company)\nShare capital: €20,000\nSIRET: 892 691 619 00019\nRCS: Strasbourg 892 691 619\nPublication director: Christopher Keopraseuth (Managing Director and co-founder, EK SARL)\nAddress: 5 Rue des Orphelins, 67000 Strasbourg, France\nPhone: +33 9 52 34 34 38"
       },
       "hosting": {
         "heading": "Hosting Provider",

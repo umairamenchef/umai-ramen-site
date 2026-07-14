@@ -33,7 +33,7 @@
     "summerDesc": "Nouilles froides Hiyashi Chuka, tsukemen à tremper, fraîcheur et légèreté : découvrez nos plats d'été, le temps de la saison.",
     "summerCta": "Découvrir",
     "histoireTitle": "Notre Histoire",
-    "histoireTeaser": "Du Japon à Singapour, Loan a appris le ramen auprès des maîtres — et en a rapporté une technique, des nouilles 100% maison et un lieu : Umaï.",
+    "histoireTeaser": "Du Japon à Singapour, Loan s'est formée auprès des maîtres du ramen. Elle en a rapporté une technique, des nouilles 100% maison, et un lieu : Umaï.",
     "histoireCta": "Découvrir notre histoire",
     "galleryCta": "Voir toute la galerie",
     "socialTitle": "Rejoignez-nous",
@@ -42,7 +42,7 @@
   "carteEte": {
     "title": "Carte d'été",
     "jpLabel": "夏のメニュー",
-    "subtitle": "Notre sélection de saison — nouilles froides, tsukemen et fraîcheur japonaise. Disponible tout l'été.",
+    "subtitle": "Notre sélection de saison : nouilles froides, tsukemen et fraîcheur japonaise. Disponible tout l'été.",
     "downloadPdf": "Télécharger le PDF",
     "viewFullMenu": "Voir la carte complète",
     "vegOption": "Version végétarienne disponible",
@@ -112,7 +112,7 @@
       "title": "Mentions légales",
       "company": {
         "heading": "Identification de l'entreprise",
-        "content": "Raison sociale : MOKORITA\nForme juridique : SAS (société par actions simplifiée)\nCapital social : 20 000 €\nSIRET : 892 691 619 00019\nRCS : Strasbourg 892 691 619\nDirecteur de la publication : Christopher Keopraseuth (Directeur Général et co-fondateur — EK SARL)\nAdresse : 5 Rue des Orphelins, 67000 Strasbourg\nTéléphone : +33 9 52 34 34 38"
+        "content": "Raison sociale : MOKORITA\nForme juridique : SAS (société par actions simplifiée)\nCapital social : 20 000 €\nSIRET : 892 691 619 00019\nRCS : Strasbourg 892 691 619\nDirecteur de la publication : Christopher Keopraseuth (Directeur Général et co-fondateur, EK SARL)\nAdresse : 5 Rue des Orphelins, 67000 Strasbourg\nTéléphone : +33 9 52 34 34 38"
       },
       "hosting": {
         "heading": "Hébergement",
