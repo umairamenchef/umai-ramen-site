@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { FadeInUp } from '@/components/ui/FadeInUp';
 import { Button } from '@/components/ui/Button';
 
@@ -13,26 +14,15 @@ export function HistoireTeaser({ title, teaser, ctaLabel }: HistoireTeaserProps)
     <section className="py-[var(--spacing-section)]">
       <FadeInUp>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Left: decorative image placeholder */}
+          {/* Left: story photo */}
           <div className="aspect-[4/5] relative overflow-hidden bg-umai-bg-alt">
-            {/* Placeholder — owner will add real photo via Sanity */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center opacity-30">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 64 64"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  className="w-16 h-16 mx-auto text-umai-text-muted"
-                  aria-hidden="true"
-                >
-                  <rect x="4" y="4" width="56" height="56" rx="2" />
-                  <circle cx="22" cy="22" r="8" />
-                  <path d="M4 44 L20 28 L32 40 L44 28 L60 44" />
-                </svg>
-              </div>
-            </div>
+            <Image
+              src="/histoire-teaser.jpg"
+              alt={title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
 
           {/* Right: text + CTA */}
