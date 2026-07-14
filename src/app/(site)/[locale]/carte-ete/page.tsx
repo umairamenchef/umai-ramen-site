@@ -44,7 +44,7 @@ export default async function CarteEtePage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: 'carteEte' });
 
   return (
-    <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10 py-[var(--spacing-section)]">
+    <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10 py-[var(--spacing-section)] overflow-x-clip">
       {/* Brand emblem */}
       <img
         src="/seal.svg"

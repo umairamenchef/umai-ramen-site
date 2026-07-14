@@ -49,11 +49,11 @@ export function SummerMenu({ locale, vegOption }: { locale: string; vegOption: s
             {section.dishes.map((dish) => (
               <li key={dish.name}>
                 <div className="flex items-baseline gap-2">
-                  <span className="font-body font-medium text-umai-text">{dish.name}</span>
+                  <span className="min-w-0 font-body font-medium text-umai-text">{dish.name}</span>
                   {dish.price && (
                     <>
-                      <span className="flex-1 translate-y-[-3px] border-b border-dotted border-umai-line" aria-hidden="true" />
-                      <span className="whitespace-nowrap font-body text-umai-accent">{dish.price} €</span>
+                      <span className="min-w-4 flex-1 translate-y-[-3px] border-b border-dotted border-umai-line" aria-hidden="true" />
+                      <span className="shrink-0 whitespace-nowrap font-body text-umai-accent">{dish.price} €</span>
                     </>
                   )}
                 </div>
