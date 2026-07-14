@@ -58,6 +58,13 @@ Next action: EK to supply legal values + photos + menu confirmation (gap-list §
 - Rebuilt: **167 menuItems + 26 menuCategories** (food + desserts + menus + extras + full drinks), correct FR names/prices/descriptions, categories FR/EN/DE. Item names en/de = fr; item descriptions FR-only (localized() fallback) → EN/DE translations are the "edit later" part. Tags (veg/GF) heuristic — refine in Studio.
 - Old items + cat-soba deleted. Panna-cotta photo asset now orphaned (harmless).
 
+### Order popup shipped 2026-07-14 (commit 957e4d3, verified live)
+- "Commander" opens a 3-choice modal: Livraison (Uber Eats) / À emporter (obypay) / Click & Collect (Flipdish). Components `src/components/order/{OrderModal,OrderButton}.tsx`; wired Header/MobileBar/Footer/MobileMenu; URLs from Sanity siteSettings (added `obypayUrl` field+value); i18n `orderModal` FR/EN/DE.
+- **TODO next**: Hero CTA still direct-links Uber Eats — pass `orderUrls` to Hero (home page HOME query must also fetch obypayUrl+clickCollectUrl).
+
+### ▶ HANDOFF: full resume instructions in `.planning/RESUME-PROMPT.md`
+Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, Tantan signature highlight, summer-menu promo), (3) DEBT-01/03/04, (4) menu EN/DE translations + tags + photos (edit-later), (5) CUTOVER on "go cutover".
+
 ### Still needs EK (validation/refinement only — non-blocking)
 - Confirm contact@umai-ramen.fr mailbox active.
 - EN/DE menu translations (names+descriptions) — currently FR fallback.
