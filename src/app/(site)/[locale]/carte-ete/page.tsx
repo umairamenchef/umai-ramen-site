@@ -3,18 +3,14 @@ import type { Metadata } from 'next';
 import { BASE_URL, OG_IMAGE, buildAlternates } from '@/lib/seo';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button, buttonClasses } from '@/components/ui/Button';
-import { CarteEteViewer } from '@/components/carte-ete/CarteEteViewer';
+import { SummerMenu } from '@/components/carte-ete/SummerMenu';
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
-// Static assets rendered from the final summer PDF (public/) — the web page
-// preserves the print design pixel-for-pixel. Source PDF stays downloadable.
+// The designed print version stays downloadable; the page itself is native HTML.
 const PDF_HREF = '/carte-ete-umai-2026.pdf';
-const PAGES = ['/carte-ete-2026-1.jpg', '/carte-ete-2026-2.jpg'];
-const PAGE_W = 1654;
-const PAGE_H = 2363;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -49,9 +45,17 @@ export default async function CarteEtePage({ params }: Props) {
 
   return (
     <div className="max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10 py-[var(--spacing-section)]">
+      {/* Brand emblem */}
+      <img
+        src="/seal.svg"
+        alt=""
+        aria-hidden="true"
+        className="mx-auto mb-5 h-14 w-14 opacity-70 pointer-events-none select-none"
+      />
+
       <SectionHeader title={t('title')} jpLabel={t('jpLabel')} subtitle={t('subtitle')} />
 
-      <div className="flex flex-col sm:flex-row gap-4 justify-center mb-14">
+      <div className="mb-14 flex flex-col sm:flex-row gap-4 justify-center">
         <a href={PDF_HREF} target="_blank" rel="noopener noreferrer" className={buttonClasses('outline')}>
           {t('downloadPdf')}
         </a>
@@ -60,16 +64,12 @@ export default async function CarteEtePage({ params }: Props) {
         </Button>
       </div>
 
-      <CarteEteViewer
-        pages={PAGES.map((src, i) => ({
-          src,
-          alt: t('imageAlt', { page: i + 1 }),
-          w: PAGE_W,
-          h: PAGE_H,
-        }))}
-        zoomHint={t('zoomHint')}
-        closeLabel={t('close')}
-      />
+      <SummerMenu locale={locale} vegOption={t('vegOption')} />
+
+      {/* Closing band */}
+      <div className="mt-14 rounded-lg bg-umai-accent px-6 py-5 text-center">
+        <p className="font-body text-sm uppercase tracking-[0.15em] text-white">{t('footerNote')}</p>
+      </div>
     </div>
   );
 }
