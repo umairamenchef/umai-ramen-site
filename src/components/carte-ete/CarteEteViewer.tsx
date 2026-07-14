@@ -2,14 +2,15 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 type Page = { src: string; alt: string; w: number; h: number };
 
 /**
- * Summer-menu image viewer with a tap-to-zoom lightbox. The menu is a dense
- * two-column A-format layout, so on mobile the thumbnails are hard to read —
- * tapping opens a full-screen overlay where the page can be zoomed (tap toggles
- * fit ↔ full resolution, and native pinch-zoom works on top) and panned.
+ * Summer-menu viewer. The menu is a dense two-column A-format layout, so on
+ * mobile the thumbnails are hard to read. Tapping a page opens a full-screen
+ * viewer with real gesture controls (pinch-to-zoom, drag-to-pan, double-tap),
+ * powered by react-zoom-pan-pinch — plus +/−/reset buttons and page nav.
  */
 export function CarteEteViewer({
   pages,
@@ -21,17 +22,15 @@ export function CarteEteViewer({
   closeLabel: string;
 }) {
   const [open, setOpen] = useState<number | null>(null);
-  const [zoomed, setZoomed] = useState(false);
 
-  const close = useCallback(() => {
-    setOpen(null);
-    setZoomed(false);
-  }, []);
+  const close = useCallback(() => setOpen(null), []);
 
   useEffect(() => {
     if (open === null) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') setOpen((i) => (i === null ? i : (i + 1) % pages.length));
+      if (e.key === 'ArrowLeft') setOpen((i) => (i === null ? i : (i - 1 + pages.length) % pages.length));
     };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
@@ -39,19 +38,20 @@ export function CarteEteViewer({
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
     };
-  }, [open, close]);
+  }, [open, close, pages.length]);
+
+  const ctrlBtn =
+    'flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-xl text-white backdrop-blur-sm transition-colors hover:bg-white/30 active:bg-white/40';
 
   return (
     <>
+      {/* Thumbnails */}
       <div className="flex flex-col items-center gap-8 max-w-[880px] mx-auto">
         {pages.map((p, i) => (
           <button
             key={p.src}
             type="button"
-            onClick={() => {
-              setOpen(i);
-              setZoomed(false);
-            }}
+            onClick={() => setOpen(i)}
             aria-label={zoomHint}
             className="group relative w-full cursor-zoom-in"
           >
@@ -87,42 +87,90 @@ export function CarteEteViewer({
         ))}
       </div>
 
+      {/* Full-screen gesture viewer */}
       {open !== null && (
-        <div
-          className="fixed inset-0 z-[70] bg-black/90"
-          role="dialog"
-          aria-modal="true"
-          onClick={close}
-        >
-          <button
-            type="button"
-            onClick={close}
-            aria-label={closeLabel}
-            className="fixed top-4 right-4 z-[71] flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-2xl text-white transition-colors hover:bg-white/20"
-          >
-            ✕
-          </button>
-          <div
-            className="h-full w-full overflow-auto flex items-start justify-center p-3 sm:p-6"
-            style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pinch-zoom' }}
-          >
-            {/* Raw <img> so we control zoom sizing precisely; native pinch-zoom
-                works on top of the tap-to-toggle fit ↔ full-resolution. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={pages[open].src}
-              alt={pages[open].alt}
-              onClick={(e) => {
-                e.stopPropagation();
-                setZoomed((z) => !z);
-              }}
-              className={
-                zoomed
-                  ? 'max-w-none h-auto cursor-zoom-out'
-                  : 'max-h-[92vh] w-auto max-w-full object-contain cursor-zoom-in'
-              }
-              style={zoomed ? { width: pages[open].w } : undefined}
-            />
+        <div className="fixed inset-0 z-[70] flex flex-col bg-black/95" role="dialog" aria-modal="true">
+          {/* Top bar */}
+          <div className="flex shrink-0 items-center justify-between px-4 py-3 text-white">
+            <span className="text-sm tabular-nums opacity-80">
+              {open + 1} / {pages.length}
+            </span>
+            <button type="button" onClick={close} aria-label={closeLabel} className={ctrlBtn}>
+              ✕
+            </button>
+          </div>
+
+          {/* Zoomable stage */}
+          <div className="relative min-h-0 flex-1">
+            <TransformWrapper
+              key={open}
+              minScale={1}
+              maxScale={6}
+              initialScale={1}
+              centerOnInit
+              doubleClick={{ mode: 'toggle', step: 2.5 }}
+              wheel={{ step: 0.15 }}
+              pinch={{ step: 8 }}
+              panning={{ velocityDisabled: true }}
+            >
+              {({ zoomIn, zoomOut, resetTransform }) => (
+                <>
+                  <TransformComponent
+                    wrapperStyle={{ width: '100%', height: '100%' }}
+                    contentStyle={{
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={pages[open].src}
+                      alt={pages[open].alt}
+                      draggable={false}
+                      style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
+                    />
+                  </TransformComponent>
+
+                  {/* Prev / next page */}
+                  {pages.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setOpen((i) => (i === null ? i : (i - 1 + pages.length) % pages.length))}
+                        aria-label="←"
+                        className={`absolute left-3 top-1/2 -translate-y-1/2 ${ctrlBtn}`}
+                      >
+                        ‹
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setOpen((i) => (i === null ? i : (i + 1) % pages.length))}
+                        aria-label="→"
+                        className={`absolute right-3 top-1/2 -translate-y-1/2 ${ctrlBtn}`}
+                      >
+                        ›
+                      </button>
+                    </>
+                  )}
+
+                  {/* Zoom controls */}
+                  <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full bg-black/40 p-1.5 backdrop-blur-sm">
+                    <button type="button" onClick={() => zoomOut()} aria-label="−" className={ctrlBtn}>
+                      −
+                    </button>
+                    <button type="button" onClick={() => resetTransform()} aria-label="reset" className={`${ctrlBtn} text-sm`}>
+                      ⟲
+                    </button>
+                    <button type="button" onClick={() => zoomIn()} aria-label="+" className={ctrlBtn}>
+                      +
+                    </button>
+                  </div>
+                </>
+              )}
+            </TransformWrapper>
           </div>
         </div>
       )}
