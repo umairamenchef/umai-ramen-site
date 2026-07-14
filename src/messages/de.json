@@ -95,22 +95,22 @@
       "title": "Impressum",
       "company": {
         "heading": "Unternehmensidentifikation",
-        "content": "Firmenname: [COMPANY NAME]\nRechtsform: [LEGAL FORM]\nStammkapital: [SHARE CAPITAL]\nSIRET: [SIRET NUMBER]\nRCS: [RCS CITY]\nVerantwortlicher Herausgeber: [DIRECTOR NAME]\nAdresse: 5 Rue des Orphelins, 67000 Straßburg, Frankreich\nTelefon: +33 9 52 34 34 38"
+        "content": "Firmenname: MOKORITA\nRechtsform: SAS (vereinfachte Aktiengesellschaft französischen Rechts)\nStammkapital: 20.000 €\nSIRET: 892 691 619 00019\nRCS: Strasbourg 892 691 619\nVerantwortlicher Herausgeber: Christopher Keopraseuth (Geschäftsführer und Mitgründer)\nAdresse: 5 Rue des Orphelins, 67000 Straßburg, Frankreich\nTelefon: +33 9 52 34 34 38"
       },
       "hosting": {
         "heading": "Hosting-Anbieter",
-        "content": "Hoster: [HOSTING PROVIDER]\nAdresse: [HOSTING ADDRESS]\nTelefon: [HOSTING PHONE]"
+        "content": "Hoster: Hostinger International Ltd\nAdresse: 61 Lordou Vironos Street, 6023 Larnaca, Zypern\nTelefon: +357 22 030 085"
       },
       "ip": {
         "heading": "Geistiges Eigentum",
-        "content": "Alle Inhalte dieser Website (Texte, Bilder, Fotos, Logos, Marken) sind durch das Recht des geistigen Eigentums geschützt. Jede Vervielfältigung, Darstellung oder Verbreitung, ganz oder teilweise, des Inhalts dieser Website ist ohne vorherige schriftliche Genehmigung von [COMPANY NAME] untersagt."
+        "content": "Alle Inhalte dieser Website (Texte, Bilder, Fotos, Logos, Marken) sind durch das Recht des geistigen Eigentums geschützt. Jede Vervielfältigung, Darstellung oder Verbreitung, ganz oder teilweise, des Inhalts dieser Website ist ohne vorherige schriftliche Genehmigung von MOKORITA untersagt."
       }
     },
     "politiqueConfidentialite": {
       "title": "Datenschutzerklärung",
       "controller": {
         "heading": "Verantwortlicher für die Datenverarbeitung",
-        "content": "[COMPANY NAME]\n5 Rue des Orphelins, 67000 Straßburg, Frankreich\nE-Mail: [CONTACT EMAIL]\nTelefon: +33 9 52 34 34 38"
+        "content": "MOKORITA\n5 Rue des Orphelins, 67000 Straßburg, Frankreich\nE-Mail: contact@umai-ramen.fr\nTelefon: +33 9 52 34 34 38"
       },
       "data": {
         "heading": "Erhobene Daten",
@@ -126,7 +126,7 @@
       },
       "rights": {
         "heading": "Ihre Rechte",
-        "content": "Gemäß der DSGVO haben Sie folgende Rechte:\n- Recht auf Zugang zu Ihren Daten\n- Recht auf Berichtigung\n- Recht auf Löschung\n- Recht auf Datenübertragbarkeit\n- Widerspruchsrecht gegen die Verarbeitung\n\nUm diese Rechte auszuüben, kontaktieren Sie uns unter [CONTACT EMAIL]."
+        "content": "Gemäß der DSGVO haben Sie folgende Rechte:\n- Recht auf Zugang zu Ihren Daten\n- Recht auf Berichtigung\n- Recht auf Löschung\n- Recht auf Datenübertragbarkeit\n- Widerspruchsrecht gegen die Verarbeitung\n\nUm diese Rechte auszuüben, kontaktieren Sie uns unter contact@umai-ramen.fr."
       },
       "cnil": {
         "heading": "Beschwerde bei der CNIL",
@@ -160,15 +160,15 @@
       },
       "platforms": {
         "heading": "Bestellplattformen",
-        "content": "Bestellungen über Uber Eats, Gusty oder andere Partner unterliegen den Allgemeinen Geschäftsbedingungen der jeweiligen Plattformen. [COMPANY NAME] übernimmt keine Haftung im Falle eines Rechtsstreits im Zusammenhang mit der Nutzung dieser Drittanbieterdienste."
+        "content": "Bestellungen über Uber Eats, Gusty oder andere Partner unterliegen den Allgemeinen Geschäftsbedingungen der jeweiligen Plattformen. MOKORITA übernimmt keine Haftung im Falle eines Rechtsstreits im Zusammenhang mit der Nutzung dieser Drittanbieterdienste."
       },
       "ip": {
         "heading": "Geistiges Eigentum",
-        "content": "Alle auf dieser Website dargestellten Inhalte (Texte, Bilder, Logos, Marken) sind das ausschließliche Eigentum von [COMPANY NAME] oder seiner Partner und sind durch die Gesetze zum Schutz des geistigen Eigentums geschützt."
+        "content": "Alle auf dieser Website dargestellten Inhalte (Texte, Bilder, Logos, Marken) sind das ausschließliche Eigentum von MOKORITA oder seiner Partner und sind durch die Gesetze zum Schutz des geistigen Eigentums geschützt."
       },
       "liability": {
         "heading": "Haftungsbeschränkung",
-        "content": "[COMPANY NAME] bemüht sich um die Richtigkeit der auf dieser Website verbreiteten Informationen, kann jedoch nicht für Fehler, Auslassungen oder Ergebnisse haftbar gemacht werden, die sich aus der Nutzung dieser Informationen ergeben."
+        "content": "MOKORITA bemüht sich um die Richtigkeit der auf dieser Website verbreiteten Informationen, kann jedoch nicht für Fehler, Auslassungen oder Ergebnisse haftbar gemacht werden, die sich aus der Nutzung dieser Informationen ergeben."
       },
       "law": {
         "heading": "Anwendbares Recht und Gerichtsstand",

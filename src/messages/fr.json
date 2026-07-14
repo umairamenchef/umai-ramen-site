@@ -95,22 +95,22 @@
       "title": "Mentions légales",
       "company": {
         "heading": "Identification de l'entreprise",
-        "content": "Raison sociale : [COMPANY NAME]\nForme juridique : [LEGAL FORM]\nCapital social : [SHARE CAPITAL]\nSIRET : [SIRET NUMBER]\nRCS : [RCS CITY]\nDirecteur de la publication : [DIRECTOR NAME]\nAdresse : 5 Rue des Orphelins, 67000 Strasbourg\nTéléphone : +33 9 52 34 34 38"
+        "content": "Raison sociale : MOKORITA\nForme juridique : SAS (société par actions simplifiée)\nCapital social : 20 000 €\nSIRET : 892 691 619 00019\nRCS : Strasbourg 892 691 619\nDirecteur de la publication : Christopher Keopraseuth (Directeur Général et co-fondateur)\nAdresse : 5 Rue des Orphelins, 67000 Strasbourg\nTéléphone : +33 9 52 34 34 38"
       },
       "hosting": {
         "heading": "Hébergement",
-        "content": "Hébergeur : [HOSTING PROVIDER]\nAdresse : [HOSTING ADDRESS]\nTéléphone : [HOSTING PHONE]"
+        "content": "Hébergeur : Hostinger International Ltd\nAdresse : 61 Lordou Vironos Street, 6023 Larnaca, Chypre\nTéléphone : +357 22 030 085"
       },
       "ip": {
         "heading": "Propriété intellectuelle",
-        "content": "L'ensemble du contenu de ce site (textes, images, photographies, logos, marques) est protégé par le droit de la propriété intellectuelle. Toute reproduction, représentation ou diffusion, en tout ou partie, du contenu de ce site est interdite sans l'autorisation préalable écrite de [COMPANY NAME]."
+        "content": "L'ensemble du contenu de ce site (textes, images, photographies, logos, marques) est protégé par le droit de la propriété intellectuelle. Toute reproduction, représentation ou diffusion, en tout ou partie, du contenu de ce site est interdite sans l'autorisation préalable écrite de MOKORITA."
       }
     },
     "politiqueConfidentialite": {
       "title": "Politique de confidentialité",
       "controller": {
         "heading": "Responsable du traitement",
-        "content": "[COMPANY NAME]\n5 Rue des Orphelins, 67000 Strasbourg\nEmail : [CONTACT EMAIL]\nTéléphone : +33 9 52 34 34 38"
+        "content": "MOKORITA\n5 Rue des Orphelins, 67000 Strasbourg\nEmail : contact@umai-ramen.fr\nTéléphone : +33 9 52 34 34 38"
       },
       "data": {
         "heading": "Données collectées",
@@ -126,7 +126,7 @@
       },
       "rights": {
         "heading": "Vos droits",
-        "content": "Conformément au RGPD, vous disposez des droits suivants :\n- Droit d'accès à vos données\n- Droit de rectification\n- Droit à l'effacement\n- Droit à la portabilité\n- Droit d'opposition au traitement\n\nPour exercer ces droits, contactez-nous à [CONTACT EMAIL]."
+        "content": "Conformément au RGPD, vous disposez des droits suivants :\n- Droit d'accès à vos données\n- Droit de rectification\n- Droit à l'effacement\n- Droit à la portabilité\n- Droit d'opposition au traitement\n\nPour exercer ces droits, contactez-nous à contact@umai-ramen.fr."
       },
       "cnil": {
         "heading": "Réclamation auprès de la CNIL",
@@ -160,15 +160,15 @@
       },
       "platforms": {
         "heading": "Plateformes de commande",
-        "content": "Les commandes passées via Uber Eats, Gusty ou tout autre partenaire sont soumises aux conditions générales de ces plateformes respectives. [COMPANY NAME] décline toute responsabilité en cas de litige lié à l'utilisation de ces services tiers."
+        "content": "Les commandes passées via Uber Eats, Gusty ou tout autre partenaire sont soumises aux conditions générales de ces plateformes respectives. MOKORITA décline toute responsabilité en cas de litige lié à l'utilisation de ces services tiers."
       },
       "ip": {
         "heading": "Propriété intellectuelle",
-        "content": "Tous les contenus présentés sur ce site (textes, images, logos, marques) sont la propriété exclusive de [COMPANY NAME] ou de ses partenaires et sont protégés par les lois relatives à la propriété intellectuelle."
+        "content": "Tous les contenus présentés sur ce site (textes, images, logos, marques) sont la propriété exclusive de MOKORITA ou de ses partenaires et sont protégés par les lois relatives à la propriété intellectuelle."
       },
       "liability": {
         "heading": "Limitation de responsabilité",
-        "content": "[COMPANY NAME] s'efforce d'assurer l'exactitude des informations diffusées sur ce site, mais ne saurait être tenue responsable d'erreurs, d'omissions ou de résultats obtenus suite à l'utilisation de ces informations."
+        "content": "MOKORITA s'efforce d'assurer l'exactitude des informations diffusées sur ce site, mais ne saurait être tenue responsable d'erreurs, d'omissions ou de résultats obtenus suite à l'utilisation de ces informations."
       },
       "law": {
         "heading": "Droit applicable et juridiction",

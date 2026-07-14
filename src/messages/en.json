@@ -95,22 +95,22 @@
       "title": "Legal Notice",
       "company": {
         "heading": "Company Identification",
-        "content": "Company name: [COMPANY NAME]\nLegal form: [LEGAL FORM]\nShare capital: [SHARE CAPITAL]\nSIRET: [SIRET NUMBER]\nRCS: [RCS CITY]\nPublication director: [DIRECTOR NAME]\nAddress: 5 Rue des Orphelins, 67000 Strasbourg, France\nPhone: +33 9 52 34 34 38"
+        "content": "Company name: MOKORITA\nLegal form: SAS (French simplified joint-stock company)\nShare capital: €20,000\nSIRET: 892 691 619 00019\nRCS: Strasbourg 892 691 619\nPublication director: Christopher Keopraseuth (Managing Director and co-founder)\nAddress: 5 Rue des Orphelins, 67000 Strasbourg, France\nPhone: +33 9 52 34 34 38"
       },
       "hosting": {
         "heading": "Hosting Provider",
-        "content": "Host: [HOSTING PROVIDER]\nAddress: [HOSTING ADDRESS]\nPhone: [HOSTING PHONE]"
+        "content": "Host: Hostinger International Ltd\nAddress: 61 Lordou Vironos Street, 6023 Larnaca, Cyprus\nPhone: +357 22 030 085"
       },
       "ip": {
         "heading": "Intellectual Property",
-        "content": "All content on this site (texts, images, photographs, logos, trademarks) is protected by intellectual property law. Any reproduction, representation or distribution, in whole or in part, of the content of this site is prohibited without prior written authorisation from [COMPANY NAME]."
+        "content": "All content on this site (texts, images, photographs, logos, trademarks) is protected by intellectual property law. Any reproduction, representation or distribution, in whole or in part, of the content of this site is prohibited without prior written authorisation from MOKORITA."
       }
     },
     "politiqueConfidentialite": {
       "title": "Privacy Policy",
       "controller": {
         "heading": "Data Controller",
-        "content": "[COMPANY NAME]\n5 Rue des Orphelins, 67000 Strasbourg, France\nEmail: [CONTACT EMAIL]\nPhone: +33 9 52 34 34 38"
+        "content": "MOKORITA\n5 Rue des Orphelins, 67000 Strasbourg, France\nEmail: contact@umai-ramen.fr\nPhone: +33 9 52 34 34 38"
       },
       "data": {
         "heading": "Data Collected",
@@ -126,7 +126,7 @@
       },
       "rights": {
         "heading": "Your Rights",
-        "content": "Under the GDPR, you have the following rights:\n- Right of access to your data\n- Right to rectification\n- Right to erasure\n- Right to data portability\n- Right to object to processing\n\nTo exercise these rights, contact us at [CONTACT EMAIL]."
+        "content": "Under the GDPR, you have the following rights:\n- Right of access to your data\n- Right to rectification\n- Right to erasure\n- Right to data portability\n- Right to object to processing\n\nTo exercise these rights, contact us at contact@umai-ramen.fr."
       },
       "cnil": {
         "heading": "Complaint to the CNIL",
@@ -160,15 +160,15 @@
       },
       "platforms": {
         "heading": "Ordering Platforms",
-        "content": "Orders placed via Uber Eats, Gusty or any other partner are subject to the terms and conditions of those respective platforms. [COMPANY NAME] accepts no liability in the event of a dispute related to the use of these third-party services."
+        "content": "Orders placed via Uber Eats, Gusty or any other partner are subject to the terms and conditions of those respective platforms. MOKORITA accepts no liability in the event of a dispute related to the use of these third-party services."
       },
       "ip": {
         "heading": "Intellectual Property",
-        "content": "All content presented on this site (texts, images, logos, trademarks) is the exclusive property of [COMPANY NAME] or its partners and is protected by intellectual property laws."
+        "content": "All content presented on this site (texts, images, logos, trademarks) is the exclusive property of MOKORITA or its partners and is protected by intellectual property laws."
       },
       "liability": {
         "heading": "Limitation of Liability",
-        "content": "[COMPANY NAME] endeavours to ensure the accuracy of information published on this site, but cannot be held liable for errors, omissions or results obtained through the use of this information."
+        "content": "MOKORITA endeavours to ensure the accuracy of information published on this site, but cannot be held liable for errors, omissions or results obtained through the use of this information."
       },
       "law": {
         "heading": "Applicable Law and Jurisdiction",
