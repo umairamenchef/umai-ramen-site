@@ -43,7 +43,7 @@ AUDIT 7/7 ✓ · CONTENT 6/6 ✓ · **DEBT 4/4 ✓** (01 footer NAP, 02 analyzer
 - Hero CTA → modale Commander (d85b741).
 - Story fondateur : 4 bodies Notre Histoire remplis FR/EN/DE (Sanity) ; teaser home enrichi.
 - Tantan signature : `SignatureSection` home (photo `public/signature-tantan.jpg`, prix live) + photo umai_022 sur menuItem Tantan (Sanity).
-- Bandeau « Carte d'été » : `SummerBanner` home. i18n `signature*`/`summer*` FR/EN/DE.
+- Bandeau « Carte d'été » : `SummerBanner` home → **page dédiée `/carte-ete`** (rendu web fidèle du PDF été v4 en images + download PDF, montre UNIQUEMENT la carte d'été). i18n `signature*`/`summer*`/`carteEte` FR/EN/DE. Note push : `git config http.postBuffer 524288000` requis pour les assets binaires.
 - DEBT-01 footer NAP→seo.ts (8166a38). DEBT-03/04 documentés/clos.
 - ⚠️ CONFIRM EK : bouillons **6h** (aligné partout ; brief=6h, ancien site=12h).
 
