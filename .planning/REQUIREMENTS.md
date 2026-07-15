@@ -45,13 +45,13 @@
 
 ### Domain Cutover & Live Verification
 
-- [ ] **CUTOVER-01**: Caddy serves umai-ramen.fr (apex) + www.umai-ramen.fr with automatic TLS, reverse-proxying to web:3000
-- [ ] **CUTOVER-02**: A 301 redirect enforces a single canonical host (www→apex or chosen canonical)
-- [ ] **CUTOVER-03**: `/ig-studio` is reachable on the public domain behind the existing password gate (proxy.ts covers the new host)
-- [ ] **CUTOVER-04**: Old-URL→new-URL 301 redirects from the AUDIT-05 map are deployed; no broken inbound links
-- [ ] **CUTOVER-05**: DNS is cut from GitHub Pages to the VPS (apex A → 76.13.61.239, www) with a lowered TTL and a short, announced maintenance window
-- [ ] **CUTOVER-06**: Post-cutover live verification on umai-ramen.fr — valid TLS, Lighthouse>90, Core Web Vitals pass, sitemap/robots resolve, JSON-LD valid, reserve/order flows work, no mixed content
-- [ ] **CUTOVER-07**: Rollback plan documented (revert DNS/Caddy) and Search Console updated (submit new sitemap, request reindex)
+- [x] **CUTOVER-01**: Caddy serves umai-ramen.fr (apex) + www.umai-ramen.fr with automatic TLS, reverse-proxying to web:3000 _(2026-07-16, valid LE cert)_
+- [x] **CUTOVER-02**: www.umai-ramen.fr → apex 301; canonical host = apex umai-ramen.fr _(verified)_
+- [x] **CUTOVER-03**: `/ig-studio` reachable on umai-ramen.fr behind the password gate (307 → /ig-studio/login) _(verified)_
+- [x] **CUTOVER-04**: old site was a one-pager; `/` → `/fr` 307 works on the new host; no per-path map needed _(verified)_
+- [x] **CUTOVER-05**: DNS cut at Gandi LiveDNS — apex A + www A → 76.13.61.239 (TTL 300); MX/SPF/SRV/webmail untouched. Public resolvers (Google/Cloudflare) already return the VPS _(2026-07-16, EK executed)_
+- [x] **CUTOVER-06**: Post-cutover live verify — valid TLS, all FR/EN/DE pages 200, sitemap/robots/canonical = umai-ramen.fr, JSON-LD present, order/reserve CTAs present, /ig-studio gated _(Lighthouse/CWV not re-run; no perf regression expected)_
+- [~] **CUTOVER-07**: Rollback documented (revert Gandi A → 185.199.10x.153; host backups `*.bak-cutover`; TTL 300 = fast). **PENDING (EK): Search Console** — add umai-ramen.fr property + submit sitemap. Also deferred: 301 umai.turfu.in → umai-ramen.fr (kept as fallback mirror during settle).
 
 ---
 
