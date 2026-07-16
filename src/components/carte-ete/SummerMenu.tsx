@@ -63,6 +63,9 @@ export function SummerMenu({ locale, vegOption }: { locale: string; vegOption: s
                 {dish.desc && (
                   <p className="mt-0.5 font-body text-sm italic text-umai-text-muted">{dish.desc}</p>
                 )}
+                {dish.note && (
+                  <p className="mt-0.5 font-body text-xs text-umai-text-muted/80">{dish.note}</p>
+                )}
                 {dish.veg && (
                   <p className="mt-1 inline-flex items-center gap-1.5 font-body text-xs text-umai-accent">
                     <LeafIcon />
@@ -72,6 +75,12 @@ export function SummerMenu({ locale, vegOption }: { locale: string; vegOption: s
               </li>
             ))}
           </ul>
+
+          {section.footnote && (
+            <p className="mt-4 font-body text-xs italic text-umai-text-muted">
+              {localized(section.footnote, locale)}
+            </p>
+          )}
         </section>
       ))}
     </div>

@@ -14,6 +14,8 @@ export type Dish = {
   portions?: string;
   /** short FR description */
   desc?: string;
+  /** small FR note under the dish (e.g. spice notice) */
+  note?: string;
   /** show a "vegetarian option available" note */
   veg?: boolean;
 };
@@ -25,6 +27,8 @@ export type Section = {
   /** serving size note shown next to the title, e.g. "20cl" */
   unit?: string;
   dishes: Dish[];
+  /** localized note shown after the dishes (spice / customization) */
+  footnote?: Loc;
   /** which column group: 'food' | 'drinks' */
   group: 'food' | 'drinks';
 };
@@ -42,44 +46,74 @@ export const SUMMER_MENU: Section[] = [
       'Unsere Spezialität seit 2021'
     ),
     dishes: [
-      { name: 'Tantan Ramen', price: '15,90', desc: 'Ramen au sésame, bœuf épicé, pakchoï, pousses de soja', veg: true },
-      { name: 'Tantan Mazesoba', price: '15,90', desc: 'Nouilles sans bouillon, bœuf épicé, œuf onsen, cébette' },
-      { name: 'Tantan Tsukemen', price: '16,90', desc: 'Nouilles à tremper, bœuf épicé, œuf mariné, cébette' },
+      {
+        name: 'Tantan Ramen',
+        price: '15,90',
+        desc: 'Notre spécialité maison. Ramen crémeux au sésame et lait de soja, bœuf aux 5 épices, pakchoï, pousses de soja, daikon, demi-œuf mariné et huile de piment 🌶️.',
+      },
+      {
+        name: 'Tantan Mazesoba',
+        price: '15,90',
+        desc: 'Nouilles à mélanger sans bouillon, bœuf aux 5 épices, huile de piment 🌶️, œuf onsen, cébette et cacahuètes.',
+      },
+      {
+        name: 'Tantan Tsukemen',
+        price: '16,90',
+        desc: 'Nouilles à tremper dans un bouillon crémeux au sésame et lait de soja, relevé d’huile de piment 🌶️, bœuf aux 5 épices, œuf mariné et cébette.',
+      },
     ],
+    footnote: L(
+      '🌶️ Nos Tantan sont servis avec de l’huile de piment. Version sans piment ou plus relevée sur demande.',
+      '🌶️ Our Tantan come with chili oil. Milder or spicier version on request.',
+      '🌶️ Unsere Tantan werden mit Chiliöl serviert. Mildere oder schärfere Variante auf Anfrage.'
+    ),
   },
   {
     key: 'tsukemen',
     group: 'food',
     title: L('Tsukemen', 'Tsukemen', 'Tsukemen'),
     sub: L(
-      'Nouilles servies froides à tremper dans un bouillon chaud et concentré',
-      'Cold noodles to dip in a hot, concentrated broth',
-      'Kalte Nudeln zum Eintauchen in eine heiße, konzentrierte Brühe'
+      'Nouilles froides à tremper dans un bouillon chaud et concentré. Servis avec un œuf mariné entier, des pousses de bambou, de la cébette et 2 tranches de chashu porc.',
+      'Cold noodles to dip in a hot, concentrated broth. Served with a whole marinated egg, bamboo shoots, spring onion and 2 slices of pork chashu.',
+      'Kalte Nudeln zum Eintauchen in eine heiße, konzentrierte Brühe. Serviert mit einem ganzen marinierten Ei, Bambussprossen, Frühlingszwiebel und 2 Scheiben Schweine-Chashu.'
     ),
     dishes: [
-      { name: 'Miso', price: '15,90', desc: 'Miso riche, pousses de soja, cébette' },
-      { name: 'Gyokai', price: '16,90', desc: 'Poulet & poisson, umami marin, nori' },
-      { name: 'Curry Tomato', price: '15,90', desc: 'Curry japonais, tomate, oignons frits' },
+      { name: 'Miso', price: '15,90', desc: 'Bouillon de poulet au miso, riche et crémeux.' },
+      { name: 'Noukou Gyokai', price: '16,90', desc: 'Bouillon de poulet et poisson, aux saveurs marines et umami.' },
+      { name: 'Curry Tomato', price: '15,90', desc: 'Bouillon de légumes au curry japonais et à la tomate.' },
     ],
+    footnote: L(
+      'Ⓥ Personnalisez votre tsukemen : version végétarienne (tempura de légumes), chashu poulet ou tempuras de crevettes disponibles sur demande.',
+      'Ⓥ Customize your tsukemen: vegetarian version (vegetable tempura), chicken chashu or shrimp tempura available on request.',
+      'Ⓥ Personalisieren Sie Ihr Tsukemen: vegetarische Variante (Gemüse-Tempura), Hähnchen-Chashu oder Garnelen-Tempura auf Anfrage.'
+    ),
   },
   {
     key: 'mazesoba',
     group: 'food',
     title: L('Mazesoba', 'Mazesoba', 'Mazesoba'),
-    sub: L('Nouilles sans bouillon à mélanger', 'Brothless noodles to mix', 'Nudeln ohne Brühe zum Mischen'),
+    sub: L(
+      'Nouilles sans bouillon à mélanger. Servis avec un œuf onsen, de la cébette, du daikon et du nori.',
+      'Brothless noodles to mix. Served with an onsen egg, spring onion, daikon and nori.',
+      'Nudeln ohne Brühe zum Mischen. Serviert mit Onsen-Ei, Frühlingszwiebel, Daikon und Nori.'
+    ),
     dishes: [
-      { name: 'Karaage Mazesoba', price: '14,90', desc: 'Poulet frit, cébette, œuf onsen' },
-      { name: 'Chashu Mazesoba', price: '14,90', desc: 'Porc braisé, œuf onsen, nori' },
+      { name: 'Karaage Mazesoba', price: '14,90', desc: 'Poulet frit japonais.' },
+      { name: 'Chashu Mazesoba', price: '14,90', desc: 'Porc braisé au soja et oignons frits.' },
     ],
   },
   {
     key: 'ramen',
     group: 'food',
     title: L('Ramen', 'Ramen', 'Ramen'),
-    sub: L('Sélection été', 'Summer selection', 'Sommerauswahl'),
+    sub: L(
+      'Servis avec un bouillon clair de poulet, shoyu tare, huile de niboshi, demi-œuf mariné, pakchoï, pousses de bambou et cébette.',
+      'Served with a clear chicken broth, shoyu tare, niboshi oil, half a marinated egg, pak choi, bamboo shoots and spring onion.',
+      'Serviert mit klarer Hühnerbrühe, Shoyu-Tare, Niboshi-Öl, halbem mariniertem Ei, Pak Choi, Bambussprossen und Frühlingszwiebel.'
+    ),
     dishes: [
-      { name: 'Yuzu Ramen', price: '14,90', desc: 'Bouillon clair, chashu poulet, bambou, cébette' },
-      { name: 'Shoyu Ramen', price: '13,90', desc: 'Bouillon clair, chashu porc, bambou, cébette' },
+      { name: 'Tokyo', price: '13,90', desc: 'Chashu porc.' },
+      { name: 'Yuzu', price: '14,90', desc: 'Jus de yuzu, chashu de poulet et ail frit.' },
     ],
   },
   {
