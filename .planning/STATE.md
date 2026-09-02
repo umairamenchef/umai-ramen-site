@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-07-08 after v2.1 milestone opening)
 Phase: **08 — Audit go-live & gap analysis → COMPLETE** (deliverable: `phases/08-audit-go-live/08-AUDIT-GAP-LIST.md`)
 Plan: —
 Status: Audit done (AUDIT-01..07). Next: Phase 09 (content) ∥ Phase 10 (debt). Awaiting EK inputs (legal values, assets, menu confirmation) — batched in the gap-list §7.
-Last activity: 2026-07-09 — Go-live audit executed autonomously; prioritized gap list produced
+Last activity: 2026-09-02 - Completed quick task 260902-lmz: Supprimer le Click & Collect Flipdish du site
 
 Progress (v2.1): [██░░░░░░░░] 25% (1/4 phases complete — audit)
 
@@ -168,6 +168,12 @@ Deployment: Docker standalone on VPS srv1417179 (valid 2027-02-23), multi-site C
 - RESOLVED: Google Drive auth — photos are already local (no Drive fetch needed for ig-studio)
 - PENDING: umai_037.jpg classified as ambiance — appears to be an udon dish (not on summer ramen menu). Owner should review during pilot sign-off.
 - PENDING: Pilot sign-off — owner must review contact-sheet.html and run `npm run signoff` to unblock --all
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260902-lmz | Supprimer le Click & Collect Flipdish du site | 2026-09-02 | b7c2c10 | [260902-lmz-supprimer-le-click-collect-flipdish-du-s](./quick/260902-lmz-supprimer-le-click-collect-flipdish-du-s/) |
 
 ## Session Continuity
 
