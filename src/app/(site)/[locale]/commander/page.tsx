@@ -41,7 +41,6 @@ export async function generateMetadata(
 
 type SiteSettings = {
   uberEatsUrl?: string;
-  clickCollectUrl?: string;
   eazeeLinkUrl?: string;
 } | null;
 
@@ -65,28 +64,6 @@ function DeliveryIcon() {
       />
       <path
         d="M18 10V24H42"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function BagIcon() {
-  return (
-    <svg
-      width="48"
-      height="48"
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="mx-auto text-umai-accent"
-      aria-hidden="true"
-    >
-      <path
-        d="M16 20V14C16 9.58172 19.5817 6 24 6C28.4183 6 32 9.58172 32 14V20M10 20H38L40 40H8L10 20Z"
         stroke="currentColor"
         strokeWidth="2.5"
         strokeLinecap="round"
@@ -136,7 +113,6 @@ export default async function CommanderPage({ params }: Props) {
   }
 
   const uberEatsUrl = settings?.uberEatsUrl ?? '#';
-  const clickCollectUrl = settings?.clickCollectUrl;
   const eazeeLinkUrl = settings?.eazeeLinkUrl ?? '#';
 
   const cards = [
@@ -146,13 +122,6 @@ export default async function CommanderPage({ params }: Props) {
       desc: t('uberEatsDesc'),
       url: uberEatsUrl,
       variant: 'primary' as const,
-    },
-    {
-      icon: <BagIcon />,
-      title: t('clickCollectTitle'),
-      desc: t('clickCollectDesc'),
-      url: clickCollectUrl,
-      variant: 'outline' as const,
     },
     {
       icon: <MenuIcon />,
@@ -171,7 +140,7 @@ export default async function CommanderPage({ params }: Props) {
         subtitle={t('subtitle')}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
         {cards.map((card, i) => (
           <FadeInUp key={card.title} delay={i * 0.1}>
             <div className="border border-umai-line p-8 text-center flex flex-col items-center gap-4 h-full">

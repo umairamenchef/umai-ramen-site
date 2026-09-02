@@ -6,12 +6,11 @@ import { useTranslations } from 'next-intl';
 export type OrderUrls = {
   uberEats?: string | null;
   obypay?: string | null;
-  clickCollect?: string | null;
 };
 
 /**
- * Order-choice modal: lets the visitor pick a channel (delivery / takeaway /
- * click & collect). Options with no configured URL are hidden.
+ * Order-choice modal: lets the visitor pick a channel (delivery / takeaway).
+ * Options with no configured URL are hidden.
  */
 export function OrderModal({
   open,
@@ -43,7 +42,6 @@ export function OrderModal({
   const options = [
     valid(urls.uberEats) && { href: urls.uberEats!, label: t('delivery'), desc: t('deliveryDesc'), icon: '🛵' },
     valid(urls.obypay) && { href: urls.obypay!, label: t('takeaway'), desc: t('takeawayDesc'), icon: '🥡' },
-    valid(urls.clickCollect) && { href: urls.clickCollect!, label: t('clickCollect'), desc: t('clickCollectDesc'), icon: '🛍️' },
   ].filter(Boolean) as { href: string; label: string; desc: string; icon: string }[];
 
   return (

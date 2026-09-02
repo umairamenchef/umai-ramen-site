@@ -63,7 +63,6 @@ export default async function HomePage({ params }: Props) {
       reservationUrl?: string;
       uberEatsUrl?: string;
       obypayUrl?: string;
-      clickCollectUrl?: string;
       socialLinks?: { instagram?: string };
     } | null;
     menuCategories: Array<{
@@ -109,7 +108,6 @@ export default async function HomePage({ params }: Props) {
   const orderUrls = {
     uberEats: settings?.uberEatsUrl ?? null,
     obypay: settings?.obypayUrl ?? null,
-    clickCollect: settings?.clickCollectUrl ?? null,
   };
   const instagramUrl = settings?.socialLinks?.instagram ?? 'https://instagram.com/umai_ramen_strasbourg';
 

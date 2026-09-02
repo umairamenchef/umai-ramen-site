@@ -2,7 +2,7 @@ import { defineQuery } from 'next-sanity';
 
 export const SITE_SETTINGS_QUERY = defineQuery(`
   *[_type == "siteSettings"][0]{
-    reservationUrl, uberEatsUrl, clickCollectUrl, obypayUrl, eazeeLinkUrl,
+    reservationUrl, uberEatsUrl, obypayUrl, eazeeLinkUrl,
     phone, address, openingHours, socialLinks
   }
 `);
@@ -50,7 +50,7 @@ export const GALLERY_QUERY = defineQuery(`
 export const HOMEPAGE_QUERY = defineQuery(`
   {
     "settings": *[_type == "siteSettings"][0]{
-      catchphrase, heroImage, reservationUrl, uberEatsUrl, obypayUrl, clickCollectUrl, socialLinks
+      catchphrase, heroImage, reservationUrl, uberEatsUrl, obypayUrl, socialLinks
     },
     "menuCategories": *[_type == "menuCategory"] | order(order asc) [0...3]{
       _id, name, slug, "image": *[_type == "menuItem" && references(^._id) && available == true && defined(image)][0].image

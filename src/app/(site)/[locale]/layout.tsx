@@ -57,13 +57,13 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale);
   const messages = await getMessages();
   let reservationUrl = '#';
-  let orderUrls: { uberEats?: string | null; obypay?: string | null; clickCollect?: string | null } = {};
+  let orderUrls: { uberEats?: string | null; obypay?: string | null } = {};
   try {
     const s = (await sanityFetch({ query: SITE_SETTINGS_QUERY, tags: ['siteSettings'] })) as {
-      reservationUrl?: string; uberEatsUrl?: string; obypayUrl?: string; clickCollectUrl?: string;
+      reservationUrl?: string; uberEatsUrl?: string; obypayUrl?: string;
     } | null;
     reservationUrl = s?.reservationUrl ?? '#';
-    orderUrls = { uberEats: s?.uberEatsUrl, obypay: s?.obypayUrl, clickCollect: s?.clickCollectUrl };
+    orderUrls = { uberEats: s?.uberEatsUrl, obypay: s?.obypayUrl };
   } catch {
     // Sanity not configured — fall back (non-blocking for dev builds without credentials)
   }

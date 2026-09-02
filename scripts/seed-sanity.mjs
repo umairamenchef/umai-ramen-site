@@ -62,7 +62,6 @@ const siteSettings = {
   },
   reservationUrl: 'https://gusty.app/booking/1667924751880x258346136410259460?source=SITE',
   uberEatsUrl: 'https://www.ubereats.com/fr/store/umai-ramen/8yLiOMdPVTudC_Pgbe209g',
-  clickCollectUrl: 'https://my.flipdish.com/umai-ramen/order',
   eazeeLinkUrl: 'https://menu.eazee-link.com/?id=E7FNRP0ET3&o=q',
   openingHours: [
     { _key: key(), _type: 'object', day: 'Lundi', periods: [{ _key: key(), _type: 'object', open: '12:00', close: '14:30' }, { _key: key(), _type: 'object', open: '19:00', close: '22:30' }] },

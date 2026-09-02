@@ -67,13 +67,6 @@ export const siteSettings = defineType({
       group: 'links',
     }),
     defineField({
-      name: 'clickCollectUrl',
-      title: 'Lien Click & Collect (Flipdish)',
-      type: 'url',
-      description: 'URL Click & Collect',
-      group: 'links',
-    }),
-    defineField({
       name: 'obypayUrl',
       title: 'Lien à emporter (obypay)',
       type: 'url',

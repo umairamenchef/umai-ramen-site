@@ -71,8 +71,6 @@
     "subtitle": "Dégustez UMAI chez vous ou emportez votre commande",
     "uberEatsTitle": "Uber Eats",
     "uberEatsDesc": "Livraison à domicile",
-    "clickCollectTitle": "Click & Collect",
-    "clickCollectDesc": "Commandez et venez chercher",
     "eazeeLinkTitle": "Carte digitale",
     "eazeeLinkDesc": "Consultez notre carte complète",
     "ctaLabel": "Commander"
@@ -249,8 +247,6 @@
     "deliveryDesc": "À domicile via Uber Eats",
     "takeaway": "À emporter",
     "takeawayDesc": "Commandez & payez en ligne",
-    "clickCollect": "Click & Collect",
-    "clickCollectDesc": "Commandez, récupérez sur place",
     "close": "Fermer"
   }
 }
