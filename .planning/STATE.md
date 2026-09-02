@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-07-08 after v2.1 milestone opening)
 Phase: **08 — Audit go-live & gap analysis → COMPLETE** (deliverable: `phases/08-audit-go-live/08-AUDIT-GAP-LIST.md`)
 Plan: —
 Status: Audit done (AUDIT-01..07). Next: Phase 09 (content) ∥ Phase 10 (debt). Awaiting EK inputs (legal values, assets, menu confirmation) — batched in the gap-list §7.
-Last activity: 2026-09-02 - Completed quick task 260902-lmz: Supprimer le Click & Collect Flipdish du site
+Last activity: 2026-09-02 - Quick task 260902-lmz (suppression C&C Flipdish) déployé en prod manuellement ; webhook de deploy découvert cassé (DNS umai.turfu.in)
 
 Progress (v2.1): [██░░░░░░░░] 25% (1/4 phases complete — audit)
 
@@ -162,6 +162,23 @@ Deployment: Docker standalone on VPS srv1417179 (valid 2027-02-23), multi-site C
 - Notre Histoire text validation with Loan Nguyen
 - EN/DE Sanity content translations
 - DNS cutover decision: TTL lowering timing, maintenance window announcement
+
+### ⚠️ Webhook de deploy CASSÉ — constaté 2026-09-02
+
+`dig umai.turfu.in` ne résout plus (enregistrement DNS disparu). GitHub ne peut donc
+plus joindre `https://umai.turfu.in/webhook/*` → **`git push origin v2-2026` ne déploie
+plus rien**. Dernier deploy automatique réussi : 2026-07-16T16:37Z. Le VPS était resté
+2 commits en arrière (25468c7) jusqu'au 2026-09-02.
+
+**Deploy manuel en attendant** :
+```
+ssh umai-app 'cd /home/ek/apps/umai && git fetch origin v2-2026 && git reset --hard origin/v2-2026 && docker compose -p umai up -d --build web'
+```
+
+**À faire (EK)** : soit recréer le A record `umai.turfu.in → 76.13.61.239`, soit déplacer
+le webhook sur `umai-ramen.fr` (ajouter un bloc `handle /webhook/*` → `deployer:9000`
+dans le Caddyfile du VPS + changer l'URL du webhook côté GitHub, scope `admin:repo_hook`
+requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de prod.
 
 ### Blockers/Concerns
 
