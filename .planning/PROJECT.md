@@ -49,7 +49,11 @@ The VPS (valid until 2027-02-23) is a multi-site host intended for umai-ramen.fr
 - ✓ Catchphrase editable via Sanity (default: "Nouilles fraiches. Bouillons maison.") — v1.0
 - ✓ Accent color adjustable via Sanity siteSettings.accentColor — v1.0
 
-### Active (v2.1 — Production go-live & umai-ramen.fr cutover)
+### Active (v2.2 — Menu multilingue & QR codes touristes)
+
+> **v2.2 milestone opened 2026-11-22.** Detailed REQ-IDs in REQUIREMENTS.md.
+
+### Delivered (v2.1 — Production go-live & umai-ramen.fr cutover, all REQs checked; live on umai-ramen.fr since 2026-07-16)
 
 > **v2.1 milestone opened 2026-07-08.** Detailed REQ-IDs in REQUIREMENTS.md. Phases 8–11.
 
@@ -129,17 +133,18 @@ The VPS (valid until 2027-02-23) is a multi-site host intended for umai-ramen.fr
 | Docker standalone output on VPS (NOT Vercel) | Multi-site hosting, cost control, control over infra | ✓ Good — umai.turfu.in live, multi-site Caddy ready |
 | NAP dual-source pattern | `seo.ts` constants for JSON-LD/SEO, Sanity siteSettings for editorial | ⚠️ Revisit — footer not wired to NAP constants (SEO-07 debt) |
 
-## Current Milestone: v2.1 — Mise en ligne production & bascule umai-ramen.fr
+## Current Milestone: v2.2 — Menu multilingue & QR codes touristes
 
-**Goal:** Publish the new Next.js site on the primary domain umai-ramen.fr (today still the old GitHub Pages site) with complete production content and a controlled cutover, target go-live week of 2026-07-11.
+**Goal:** A foreign tourist scans a QR code and reads the 2026 menu in their language on their phone, with each dish's French name always visible so the server can take the order.
 
 **Target features:**
-- Go-live audit: real page-by-page review of umai.turfu.in surfacing missing content/visuals (incl. summer-menu info), legal, SEO/OG/sitemap/robots, redirects, perf, and the domain/DNS/TLS/Caddy cutover mechanics
-- Production content completion in Sanity (real hero photos, summer menu + prices, hours, legal, Notre Histoire), assets supplied by EK progressively from 2026-07-09
-- Tech-debt remediation: SEO-07 (footer NAP), PERF-05 (first-load JS budget + bundle-analyzer), plus audit-surfaced fixes
-- Domain cutover: Caddy serves umai-ramen.fr + www→apex redirect + `/ig-studio` (password) on the public domain with TLS; DNS switched from GitHub Pages to the VPS with a short maintenance window; old-URL redirects; live verification (Lighthouse>90, CWV, sitemap, TLS)
+- Web menu (Sanity) synced to the 2026 printed menu (Exaprint BAT = source of truth): dishes, prices, descriptions, categories, drinks
+- New menu-only locales IT + ZH (simplified Chinese): Sanity `localeString`/`localeText` extended fr/en/de → +it/zh; next-intl locales scoped to the menu (EN/DE stay site-wide)
+- Full menu translation EN/DE/IT/ZH by Claude (names, descriptions, categories, UI labels); Japanese dish names kept with a short explanation; ZH flagged "to review"
+- Mobile-first menu page: translation primary, FR dish name secondary but legible, price + dietary badges
+- Printable QR-code sheet: one QR per language (FR/EN/DE/IT/中文) → umai-ramen.fr/{locale}/menu
 
-**Key context:** GitHub origin `umairamenchef/umai-ramen-site` kept (branch `v2-2026`); VPS Docker + Caddy + HMAC deployer; short maintenance window acceptable; domain research skipped (ops milestone).
+**Key context:** Locked by EK 2026-11-22 — IT/ZH = menu only (+ QR page); simplified Chinese only; Claude translates, native review optional later; mobile web page, no per-language PDF for now. BAT files: `180x2505mm_Menu_UMAI_RAMEN_2026_BAT.pdf` + `360x2505mm_Ouvert_Menu_UMAI_RAMEN_2026_BAT.pdf` (vector, outlined text — content must be transcribed, not text-extracted).
 
 ## Evolution
 
@@ -159,4 +164,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-08 after v2.1 milestone opening*
+*Last updated: 2026-11-22 after v2.2 milestone opening*

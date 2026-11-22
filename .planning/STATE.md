@@ -1,11 +1,11 @@
 ---
 gsd_state_version: 1.0
-milestone: v2.1
-milestone_name: Production go-live & umai-ramen.fr cutover
-status: in_progress
-stopped_at: Roadmap v2.1 created — Phase 08 is next to plan
-last_updated: "2026-07-08T00:00:00.000Z"
-last_activity: 2026-07-08 — Roadmap v2.1 written (phases 08–11, 24 requirements mapped)
+milestone: v2.2
+milestone_name: Menu multilingue & QR codes touristes
+status: defining_requirements
+stopped_at: Milestone v2.2 opened — defining requirements
+last_updated: "2026-11-22T00:00:00.000Z"
+last_activity: 2026-11-22 — Milestone v2.2 started
 progress:
   total_phases: 4
   completed_phases: 0
@@ -17,21 +17,17 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-07-08 after v2.1 milestone opening)
+See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
-**Core value (v2.1):** Publish the new Next.js site on umai-ramen.fr (today the old GitHub Pages site) with complete production content and a controlled, low-risk domain/DNS cutover.
-**Current focus:** v2.1 — go-live audit → content/debt → cutover. Target week of 2026-07-11.
+**Core value (v2.2):** A foreign tourist scans a QR code and reads the 2026 menu in their language (EN/DE/IT/ZH), with the FR dish name always visible for ordering.
+**Current focus:** v2.2 — requirements → roadmap.
 
 ## Current Position
 
-Phase: **08 — Audit go-live & gap analysis → COMPLETE** (deliverable: `phases/08-audit-go-live/08-AUDIT-GAP-LIST.md`)
+Phase: Not started (defining requirements)
 Plan: —
-Status: Audit done (AUDIT-01..07). Next: Phase 09 (content) ∥ Phase 10 (debt). Awaiting EK inputs (legal values, assets, menu confirmation) — batched in the gap-list §7.
-Last activity: 2026-09-02 - Quick task 260902-lmz (suppression C&C Flipdish) déployé en prod manuellement ; webhook de deploy découvert cassé (DNS umai.turfu.in)
-
-Progress (v2.1): [██░░░░░░░░] 25% (1/4 phases complete — audit)
-
-Next action: EK to supply legal values + photos + menu confirmation (gap-list §7); meanwhile continue no-input fixes (re-accentuation C-8 next) then `/gsd:plan-phase 9`/`10`.
+Status: Defining requirements
+Last activity: 2026-11-22 — Milestone v2.2 started (menu multilingue EN/DE/IT/ZH + QR codes touristes)
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 - EN/DE i18n leaks fixed (reservation microcopy + Infos FAQ ×3) ✓
