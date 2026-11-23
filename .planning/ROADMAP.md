@@ -303,10 +303,10 @@ Plans:
   2. A printable A4 sheet (vector PDF) shows the 5 QR codes, each labelled in its own language and script ("Menu in English", "中文菜单", …), in the Umaï brand look.
   3. A print-ready table tent (A6 or folded card, PDF with bleed, Exaprint-compatible) carries the 5 QR codes, and EK can send it to Exaprint without rework.
   4. EK or Loan can open `/menu/qr` at any time, see the 5 QR codes, and download each as SVG or PNG plus the A4 and table-tent PDFs.
-**Plans:** 4 plans
+**Plans:** 1/4 plans executed
 
 Plans:
-- [ ] 15-01-PLAN.md — QR contract `src/lib/qr.ts` (TDD), qrcode + jsqr devDeps, generator + decoder verifier (live URL check), public/qr/umai-menu-{fr,en,de,it,zh}.{svg,png} (QR-01) [wave 1]
+- [x] 15-01-PLAN.md — QR contract `src/lib/qr.ts` (TDD), qrcode + jsqr devDeps, generator + decoder verifier (live URL check), public/qr/umai-menu-{fr,en,de,it,zh}.{svg,png} (QR-01) [wave 1]
 - [ ] 15-02-PLAN.md — OFL fonts, vector logo from the 2026 print, A4 sheet + A6 recto/verso card PDFs (bleed variants 1/2/3 mm), print-readiness + decode of all printed codes (QR-02, QR-03) [wave 2]
 - [ ] 15-03-PLAN.md — /menu/qr page (noindex, downloads), qrPage strings, `useCdn: false` + freshness probe, X-Robots-Tag on /qr/*, local gate incl. 375 px (QR-04) [wave 3]
 - [ ] 15-04-PLAN.md — Secret scan, push, SSH deploy gated on PUSHED, live proof, freshness probe live, FR hand-off for EK (QR-01..04) [wave 4]
@@ -336,4 +336,4 @@ Plans:
 | 12. Synchronisation menu print 2026 → Sanity | v2.2 | 3/3 | Complete    | 2026-11-23 |
 | 13. Fondations multilingues & page menu touriste | v2.2 | 3/3 | Complete    | 2026-11-23 |
 | 14. Traductions EN/DE/IT/ZH | v2.2 | 3/3 | Complete    | 2026-11-23 |
-| 15. QR codes & supports imprimables | v2.2 | 0/? | Not started | — |
+| 15. QR codes & supports imprimables | v2.2 | 1/4 | In Progress|  |

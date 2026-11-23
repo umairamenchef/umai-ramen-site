@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: Executing Phase 15
-stopped_at: Completed 14-03-PLAN.md
-last_updated: "2026-11-23T23:38:45.725Z"
+status: Ready to execute
+stopped_at: Completed 15-01-PLAN.md
+last_updated: "2026-11-23T23:46:27.026Z"
 progress:
   total_phases: 12
   completed_phases: 6
   total_plans: 22
-  completed_plans: 18
+  completed_plans: 19
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 ## Current Position
 
 Phase: 15 (QR codes & supports imprimables) — EXECUTING
-Plan: 1 of 4
+Plan: 2 of 4
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
@@ -135,6 +135,7 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 | Phase 13 P02 | 19min | 3 tasks | 16 files |
 | Phase 13 P03 | 51min | 3 tasks | 8 files |
 | Phase 14 P03 | 19min | 3 tasks | 5 files |
+| Phase 15 P01 | 6min | 2 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -171,6 +172,9 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Phase 14-03: the 712 EN/DE/IT/ZH translations are live. Sanity transaction `lWwPwzVj4paFn3vV2NnUyI` set them field by field on the 97 m26 documents after the committed backup `.planning/phases/14-traductions-en-de-it-zh/backup/translations-backup-20261123-232132.json` (rollback dry-run `set=0 unset=712`). `scripts/menu-2026/menu-2026.json` is the single FR + EN/DE/IT/ZH source (the two overlays are deleted). From now on Studio wins over the JSON: `apply-translations.mjs` reports a Studio-edited translation as CONFLICT, and `sync-menu.mjs --apply` must never be re-run (it would createOrReplace the m26 documents).
 - Phase 14-03: publish gate = poll the site's exact `MENU_CATEGORIES_QUERY` + `HOMEPAGE_QUERY` (read from `src/sanity/lib/queries.ts`) through the API CDN with the site's client options until they serve the new content, then `revalidate.mjs`. Measured: the site's queries were fresh 105 s after the write, while a simple GROQ query (`*[_id=="m26-item-karaage"][0].name.zh`) was fresh about 60 s earlier, so a simpler query is not a safe proxy. With that gate every live check passed on attempt 1.
 - Phase 14-03: TRANS-01..03 proven live and ticked: `VERIFY OK checks=309` on fr/en/de/it/zh (+ home fr/en/de), `VERIFY TRANSLATIONS OK locales=5` (FR secondary lines fr 0, en 25, de 26, it 26, zh 26), `ROUTING OK checks=84`, `MOBILE OK` + zh glyph screenshots (no tofu). `14-REVIEW-SHEET.csv` was regenerated from Sanity (178 rows, empty=0, `SHEET == JSON`). Pushed `86068ab..f125909` (no `src/` change, no deploy). Cosmetic notes for later: DE cookie link `consent.moreInfo` « Mehr erfahren » vs « Cookie policy »; zh heading « TANTAN UMAÏ（担担面） » wraps before the full-width parenthesis at 375 px.
+- Phase 15-01: QR codes = version 3, error correction Q (not M: every menu URL is 29 bytes and fits version 3 at Q as at M, 29 x 29 modules, so the stronger level costs nothing), quiet zone 4, black on white, no logo. Files `public/qr/umai-menu-{fr,en,de,it,zh}.svg` (vector, 37 mm, 1 module = 1 mm) + `.png` (1036 px, 28 px per module), deterministic (`node scripts/qr/generate.mjs`).
+- Phase 15-01: `src/lib/qr.ts` (import-free, 12 node:test cases) is the single source of the QR URLs (literal `https://umai-ramen.fr`, never `NEXT_PUBLIC_BASE_URL`, which bakes umai.turfu.in into local builds), the native-script labels, the file names and the SVG renderer; Plans 02/03 and every `scripts/qr/*` import it.
+- Phase 15-01: phone-scan proxy = `node scripts/qr/verify.mjs --urls` (byte-identical SVG regeneration, mutool + jsQR decode of the 10 files, live 200 with `redirect: 'manual'` + `<html lang>` + menu switcher): `QR VERIFY OK assets=10 urls=5 checks=55`. devDependencies `qrcode` 1.5.4 + `jsqr` 1.4.0 (20 dev-only lock entries, existing versions unchanged, `npm ci --dry-run` OK). QR-01 stays unticked until the 15-04 live proof.
 
 ### Key Decisions (v2.1)
 
@@ -255,9 +259,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ## Session Continuity
 
-Last session: 2026-11-23T23:33:17.853Z
-Stopped at: Completed 14-03-PLAN.md
-Resume: Phases 12, 13 and 14 complete and live. Phase 14: EN/DE/IT/ZH menu content published to Sanity (field-level, backup + rollback ready), proven live on /{fr,en,de,it,zh}/menu, review sheet `14-REVIEW-SHEET.csv` + FR hand-off in `14-03-SUMMARY.md`; TRANS-01..03 ticked; pushed `f125909` (no code change, no deploy). Next: Phase 15 (QR codes & supports imprimables); its real-phone scan test and the Exaprint order can now proceed.
+Last session: 2026-11-23T23:46:27.019Z
+Stopped at: Completed 15-01-PLAN.md
+Resume: Phases 12, 13 and 14 complete and live. Phase 14: EN/DE/IT/ZH menu content published to Sanity (field-level, backup + rollback ready), proven live on /{fr,en,de,it,zh}/menu, review sheet `14-REVIEW-SHEET.csv` + FR hand-off in `14-03-SUMMARY.md`; TRANS-01..03 ticked; pushed `f125909` (no code change, no deploy). Phase 15 in progress: 15-01 done (QR contract `src/lib/qr.ts`, 10 codes in `public/qr/`, `verify.mjs --urls` OK; not pushed, not deployed). Next: 15-02 (print PDFs), then 15-03 (/menu/qr page), 15-04 (deploy + live proof, ticks QR-01..04).
 
 ### Key Decisions Added (v2.0 execution)
 
