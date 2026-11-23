@@ -40,4 +40,9 @@
   h1, h2 {
     @apply font-display;
   }
+  /* /zh/menu (I18N-05): simplified-Chinese system fonts after the Latin webfonts, no CJK download. */
+  html:lang(zh-Hans) {
+    --font-body: var(--font-outfit), "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+    --font-display: var(--font-dm-serif-display), "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", serif;
+  }
 }

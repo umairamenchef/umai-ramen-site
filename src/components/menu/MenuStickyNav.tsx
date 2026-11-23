@@ -1,19 +1,23 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { localized } from '@/lib/localized';
+import type { LocaleField, MenuSection } from '@/lib/menu';
 
 interface MenuStickyNavCategory {
   slug: { current: string };
-  name: { fr: string; en?: string; de?: string };
+  name: LocaleField;
+  section?: MenuSection | null;
 }
 
 interface MenuStickyNavProps {
   categories: MenuStickyNavCategory[];
   locale: string;
+  /** Accessible name of the nav landmark (menu.categoriesNavLabel). */
+  label: string;
 }
 
-export function MenuStickyNav({ categories, locale }: MenuStickyNavProps) {
+export function MenuStickyNav({ categories, locale, label }: MenuStickyNavProps) {
   const [activeSlug, setActiveSlug] = useState<string>(
     categories[0]?.slug?.current ?? ''
   );
@@ -75,26 +79,34 @@ export function MenuStickyNav({ categories, locale }: MenuStickyNavProps) {
   return (
     <nav
       ref={navRef}
+      aria-label={label}
       className="sticky top-20 z-30 bg-umai-bg border-b border-umai-line overflow-x-auto"
     >
       <div className="flex gap-0 max-w-[var(--max-width-content)] mx-auto px-6 lg:px-10">
-        {categories.map((cat) => {
+        {categories.map((cat, index) => {
           const slug = cat.slug.current;
+          // Thin divider where the section changes (Plats | Boissons).
+          const sectionStart =
+            index > 0 && (cat.section ?? null) !== (categories[index - 1].section ?? null);
           return (
-            <button
-              key={slug}
-              ref={(el) => {
-                btnRefs.current[slug] = el;
-              }}
-              onClick={() => scrollTo(slug)}
-              className={`px-5 py-4 font-body text-xs uppercase tracking-widest whitespace-nowrap transition-colors border-b-2 ${
-                activeSlug === slug
-                  ? 'border-umai-accent text-umai-accent'
-                  : 'border-transparent text-umai-text-muted hover:text-umai-text'
-              }`}
-            >
-              {localized(cat.name, locale)}
-            </button>
+            <Fragment key={slug}>
+              {sectionStart && (
+                <span aria-hidden="true" className="my-3 w-px shrink-0 bg-umai-line" />
+              )}
+              <button
+                ref={(el) => {
+                  btnRefs.current[slug] = el;
+                }}
+                onClick={() => scrollTo(slug)}
+                className={`px-5 py-4 font-body text-xs uppercase tracking-widest whitespace-nowrap transition-colors border-b-2 ${
+                  activeSlug === slug
+                    ? 'border-umai-accent text-umai-accent'
+                    : 'border-transparent text-umai-text-muted hover:text-umai-text'
+                }`}
+              >
+                {localized(cat.name, locale)}
+              </button>
+            </Fragment>
           );
         })}
       </div>
