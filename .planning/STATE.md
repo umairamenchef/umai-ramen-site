@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: Executing Phase 13
-stopped_at: Completed 12-03-PLAN.md
-last_updated: "2026-11-23T21:10:47.817Z"
+status: Ready to execute
+stopped_at: Completed 13-01-PLAN.md
+last_updated: "2026-11-23T21:28:45.523Z"
 progress:
   total_phases: 12
   completed_phases: 4
-  total_plans: 15
-  completed_plans: 12
+  total_plans: 17
+  completed_plans: 13
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 ## Current Position
 
 Phase: 13 (Fondations multilingues & page menu touriste) — EXECUTING
-Plan: 1 of 3
+Plan: 2 of 3
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
@@ -131,6 +131,7 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Phase breakdown: 01-foundation 65min, 02-content-pages 43min, 03-seo-compliance ~30min
 
 | Phase 12 P03 | 29min | 3 tasks | 4 files |
+| Phase 13 P01 | 17min | 3 tasks | 15 files |
 
 ## Accumulated Context
 
@@ -152,6 +153,11 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Phase 12-01: REQUIREMENTS.md MENU-01/02/03/05/06 are left Pending on purpose after 12-01 (capability delivered and render-tested, but the requirements describe the live menu): tick them after 12-03 proves the live outcome.
 - Phase 12-03: publishing menu content = `sync-menu.mjs --apply`, then `node --env-file=.env.local scripts/menu-2026/revalidate.mjs` (signed revalidateTag for menuCategory/menuItem/menuExtra/menuFormule). Tagged Sanity fetches never expire on their own and no Sanity webhook reaches umai-ramen.fr today (waiting 4 min changed nothing). Phase 14 publishes the same way.
 - Phase 12-03: live gate = `scripts/menu-2026/verify-live.mjs` (`--expect legacy` before a content write, `m26` after it; `--home` checks the 3 Sanity card photos + the Tantan price). Rollback points: VPS code `2523057`; Sanity `backup/menu-backup-20261123-201142.json` (`--rollback --dry-run` → restore=174 delete=97). MENU-01..06 ticked after the live proof.
+- Phase 13-01: IT/ZH are menu-only in the proxy. Every non-menu `/it/*` and `/zh/*` answers 307 (not 308: reversible) to the same path under `/en`, query kept. next-intl's detection redirect (Accept-Language or `NEXT_LOCALE` = it/zh) is retargeted to `/en` by rewriting its Location, and the decision is taken on decoded path segments (`/z%68/infos` is `/zh/infos` for next-intl). `/menu` with those hints still goes to `/zh/menu` / `/it/menu`.
+- Phase 13-01: `src/i18n/locales.ts` (import-free, erasable TS, 19 node:test cases) is the single source of truth: `LOCALES`, `FULL_SITE_LOCALES`, `MENU_ONLY_LOCALES`, `localesForPath`, `siteLocaleFor`, `htmlLang` (zh to zh-Hans), `ogLocale`, `menuOnlyRedirectPath`, `mergeMessages`. Later plans import from it, never a local list.
+- Phase 13-01: IT/ZH message files hold only what they translate (common, nav, menu, consent, orderModal, footer, meta.menu); `request.ts` deep-merges `en.json` underneath, so a missing key falls back to English, never to a raw key. FR/EN/DE loading is unchanged. `scripts/i18n/check-messages.mjs` is the 5-locale contract (parity, ICU, no em-dash, golden units, FR-leak guard); `menu.eazeeLinkCta` is a documented dead key until 13-02 removes the CTA.
+- Phase 13-01: layout `generateStaticParams` = fr/en/de (non-menu it/zh pages are not prerendered); `/it/menu` and `/zh/menu` render on demand until 13-02 adds them to the menu page's own static params. `alternateLinks` is off in routing: hreflang comes only from `buildAlternates` (IT/ZH for `/menu` only, x-default `/fr`), sitemap = 38 URLs. `scripts/i18n/verify-routing.mjs --base <url>` proves it on any host (local `ROUTING OK checks=84`; the live site still fails 33 checks until the 13-03 deploy).
+- Phase 13-01: UI-04 headroom: Noto Sans JP weight 300 and DM Serif italic dropped (nothing renders them). Noto CSS chunk 188 KB / 249 `@font-face` to 94 KB / 125, font preloads 3 to 2, no visual change; `verify-live.mjs` still `VERIFY OK` on fr/en/de.
 
 ### Key Decisions (v2.1)
 
@@ -218,7 +224,7 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 ### Blockers/Concerns
 
 - v2.2 / Phase 12: APPLIED and live-verified 2026-11-23 (12-03) with the autonomy-grant defaults (see Key Decisions v2.2); EK post-hoc review of `12-DISCREPANCY-REPORT.md` + Année Lumière prices still wanted.
-- v2.2 / Phase 13: language of the site chrome (header, footer, cookie banner, order modal) on `/it/menu` and `/zh/menu` is undecided: EN fallback vs minimal IT/ZH strings.
+- RESOLVED (13-01): language of the site chrome on `/it/menu` and `/zh/menu`: minimal IT/ZH strings where `it.json` / `zh.json` define them (nav, common, consent, order modal, footer, menu labels), English for everything else through the EN deep merge in `request.ts`. Plan 13-02 wires the header, footer and cookie banner links.
 - Tooling: the v2.0 and v2.1 sections of ROADMAP.md are not collapsed in `<details>`, so `gsd-tools roadmap analyze` counts phases 4–15 as the current milestone (`next_phase` resolves to 06, `phase_count` 12). Explicit `/gsd:*-phase 12` commands are unaffected; run `/gsd:complete-milestone` for v2.0/v2.1 to clean this up.
 - RESOLVED: Google Drive auth — photos are already local (no Drive fetch needed for ig-studio)
 - PENDING: umai_037.jpg classified as ambiance — appears to be an udon dish (not on summer ramen menu). Owner should review during pilot sign-off.
@@ -232,9 +238,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ## Session Continuity
 
-Last session: 2026-11-23T20:20:18.010Z
-Stopped at: Completed 12-03-PLAN.md
-Resume: Phase 12 complete and live (12-01 schema/rendering, 12-02 transcription + sync tool, 12-03 deploy + sync + live verify). Next: Phase 12 verification, then Phase 13 (tourist menu page, IT/ZH locales).
+Last session: 2026-11-23T21:28:45.517Z
+Stopped at: Completed 13-01-PLAN.md
+Resume: Phase 12 complete and live. Phase 13 plan 13-01 done (locale rules module, IT/ZH menu-only routing + messages, hreflang/sitemap, routing + message verifiers; local only, nothing deployed). Next: 13-02 (tourist menu page: pill switcher, bilingual rows, zh font stack, Studio it/zh fields, chrome strings), then 13-03 (deploy + live proof, ticks I18N/UI requirements).
 
 ### Key Decisions Added (v2.0 execution)
 

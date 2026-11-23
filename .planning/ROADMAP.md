@@ -262,10 +262,10 @@ Plans:
   3. A language switcher at the top of the menu page (FR · EN · DE · IT · 中文) changes the language while keeping the visitor on the menu; section headings, badges, price units and the « allergen list available on request » and « service included » notes all appear in the selected language.
   4. On the `/en`, `/de`, `/it` and `/zh` menu pages every item shows the translated name as primary text and the French name as clearly legible secondary text next to the price (shown once when identical, e.g. Japanese names), while `/fr/menu` stays French-only with no duplicate name; Chinese text renders in simplified glyphs with no missing characters under a simplified-Chinese `lang`.
   5. On a 375px-wide phone the menu offers a category quick-nav with no horizontal scroll, and Lighthouse stays above 90 on every menu locale, including `/zh/menu`.
-**Plans:** 3 plans
+**Plans:** 1/3 plans executed
 
 Plans:
-- [ ] 13-01-PLAN.md — Locale rules module (`src/i18n/locales.ts`), message checker, it.json/zh.json (EN-merged base), proxy redirect non-menu /it|/zh → /en, `<html lang>` (zh-Hans), hreflang + sitemap (menu only), routing verifier (I18N-02/03/05, UI-04) [wave 1]
+- [x] 13-01-PLAN.md — Locale rules module (`src/i18n/locales.ts`), message checker, it.json/zh.json (EN-merged base), proxy redirect non-menu /it|/zh → /en, `<html lang>` (zh-Hans), hreflang + sitemap (menu only), routing verifier (I18N-02/03/05, UI-04) [wave 1]
 - [ ] 13-02-PLAN.md — Studio it/zh fields + FR-secondary-name rule (TDD), menu-page language pills, bilingual item row, zh system font stack, eazee CTA removed, lighter quick-nav, it/zh prerender, chrome strings, translated dietary pills, meta description without formules (I18N-01/04/05, UI-01..04) [wave 2]
 - [ ] 13-03-PLAN.md — Local production gate, SSH deploy, live checks (routing matrix, 5-locale menu verify, 375px browser check), Lighthouse 3 runs × 5 locales, reversible Studio→it/zh probe (all 9) [wave 3]
 **UI hint**: yes
@@ -323,6 +323,6 @@ Plans:
 | 10. Résorption dette & polish | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
 | 11. Cutover domaine & vérifications live | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
 | 12. Synchronisation menu print 2026 → Sanity | v2.2 | 3/3 | Complete    | 2026-11-23 |
-| 13. Fondations multilingues & page menu touriste | v2.2 | 0/? | Not started | — |
+| 13. Fondations multilingues & page menu touriste | v2.2 | 1/3 | In Progress|  |
 | 14. Traductions EN/DE/IT/ZH | v2.2 | 0/? | Not started | — |
 | 15. QR codes & supports imprimables | v2.2 | 0/? | Not started | — |
