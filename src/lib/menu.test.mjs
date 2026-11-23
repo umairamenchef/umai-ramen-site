@@ -5,6 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   pickLocale,
+  secondaryFrenchName,
   formatEuro,
   formatQuantity,
   getPriceDisplay,
@@ -39,6 +40,48 @@ test('pickLocale falls back to French when the locale is missing', () => {
 test('pickLocale returns an empty string for null or undefined', () => {
   assert.equal(pickLocale(null, 'fr'), '');
   assert.equal(pickLocale(undefined, 'en'), '');
+});
+
+// ---------------------------------------------------------------------------
+// pickLocale (it/zh, blank)
+// ---------------------------------------------------------------------------
+
+test('pickLocale reads the it and zh translations', () => {
+  const field = { fr: 'Entrées', it: 'Antipasti', zh: '小吃' };
+  assert.equal(pickLocale(field, 'zh'), '小吃');
+  assert.equal(pickLocale(field, 'it'), 'Antipasti');
+  // a locale without a value still falls back to French
+  assert.equal(pickLocale(field, 'en'), 'Entrées');
+});
+
+test('pickLocale: an empty or whitespace-only translation counts as missing', () => {
+  assert.equal(pickLocale({ fr: 'Entrées', en: '' }, 'en'), 'Entrées');
+  assert.equal(pickLocale({ fr: 'Entrées', zh: '   ' }, 'zh'), 'Entrées');
+  assert.equal(pickLocale({ fr: 'Entrées', it: '\n\t' }, 'it'), 'Entrées');
+  assert.equal(pickLocale({ fr: 'Entrées', de: `${NBSP}` }, 'de'), 'Entrées');
+});
+
+test('pickLocale: a non-string translation (a Sanity null) falls back to French', () => {
+  assert.equal(pickLocale({ fr: 'Entrées', de: null }, 'de'), 'Entrées');
+  assert.equal(pickLocale({ fr: 'Entrées', de: 42 }, 'de'), 'Entrées');
+});
+
+test('pickLocale: a missing or non-string French value gives an empty string, never undefined', () => {
+  assert.equal(pickLocale({ fr: '' }, 'zh'), '');
+  assert.equal(pickLocale({ fr: undefined }, 'en'), '');
+  assert.equal(pickLocale({ fr: null, en: '' }, 'en'), '');
+});
+
+test('blank translations fall back to French in the helpers built on pickLocale', () => {
+  assert.equal(variantQuantityText({ label: { fr: 'Verre', en: '' }, price: 5.5 }, 'en', stub), 'Verre');
+  const items = [
+    { _id: 'a', name: { fr: 'a' }, subgroup: { fr: 'Pressions', zh: '  ' } },
+    { _id: 'b', name: { fr: 'b' }, subgroup: { fr: 'Bouteilles', zh: '瓶装' } },
+  ];
+  assert.deepEqual(
+    withSubgroupHeadings(items, 'zh').map((r) => r.heading),
+    ['Pressions', '瓶装'],
+  );
 });
 
 // ---------------------------------------------------------------------------
@@ -277,4 +320,57 @@ test('withSubgroupHeadings: headings follow the locale with French fallback', ()
     withSubgroupHeadings(items, 'en').map((r) => r.heading),
     ['Draught', 'Bouteilles'],
   );
+});
+
+// ---------------------------------------------------------------------------
+// secondaryFrenchName (UI-01)
+// ---------------------------------------------------------------------------
+
+test('secondaryFrenchName: never on the French menu, whatever the name', () => {
+  assert.equal(secondaryFrenchName({ fr: 'Karaage' }, 'fr'), null);
+  assert.equal(secondaryFrenchName({ fr: 'Gyozas', en: 'Gyoza', zh: '饺子' }, 'fr'), null);
+});
+
+test('secondaryFrenchName: an untranslated name (French fallback) shows once', () => {
+  assert.equal(secondaryFrenchName({ fr: 'Karaage' }, 'zh'), null);
+  assert.equal(secondaryFrenchName({ fr: 'Karaage' }, 'en'), null);
+  // empty, blank or null translations are fallbacks too
+  assert.equal(secondaryFrenchName({ fr: 'Karaage', en: '' }, 'en'), null);
+  assert.equal(secondaryFrenchName({ fr: 'Karaage', zh: '   ' }, 'zh'), null);
+  assert.equal(secondaryFrenchName({ fr: 'Karaage', de: null }, 'de'), null);
+});
+
+test('secondaryFrenchName: a translation that is, or contains, the French name shows once', () => {
+  assert.equal(secondaryFrenchName({ fr: 'Tantan Ramen', en: 'Tantan Ramen' }, 'en'), null);
+  // case-insensitive, and a no-break space (U+00A0) is a space
+  assert.equal(secondaryFrenchName({ fr: 'Tantan Ramen', de: `TANTAN${NBSP}RAMEN` }, 'de'), null);
+  assert.equal(secondaryFrenchName({ fr: `Tantan${NBSP}Ramen`, de: 'Tantan  Ramen' }, 'de'), null);
+  assert.equal(secondaryFrenchName({ fr: 'Karaage', en: 'Karaage (Japanese fried chicken)' }, 'en'), null);
+  assert.equal(secondaryFrenchName({ fr: 'Karaage', zh: '日式炸鸡 Karaage' }, 'zh'), null);
+  // accents compare composed or decomposed
+  assert.equal(secondaryFrenchName({ fr: 'Café gourmand', en: 'CAFÉ GOURMAND' }, 'en'), null);
+  assert.equal(secondaryFrenchName({ fr: 'Café', it: 'Café (caffè)' }, 'it'), null);
+});
+
+test('secondaryFrenchName: a real translation shows the French name, trimmed', () => {
+  assert.equal(secondaryFrenchName({ fr: 'Karaage', zh: '日式炸鸡块' }, 'zh'), 'Karaage');
+  assert.equal(secondaryFrenchName({ fr: 'Gyozas', it: 'Ravioli giapponesi' }, 'it'), 'Gyozas');
+  assert.equal(
+    secondaryFrenchName({ fr: 'Café gourmand', en: 'Coffee with mini desserts' }, 'en'),
+    'Café gourmand',
+  );
+  assert.equal(secondaryFrenchName({ fr: '  Karaage ', zh: '日式炸鸡块' }, 'zh'), 'Karaage');
+});
+
+test('secondaryFrenchName: a translation that is only part of the French name still shows it', () => {
+  // « Gyoza » does not contain « Gyozas »: the French spelling is what the server reads
+  assert.equal(secondaryFrenchName({ fr: 'Gyozas', en: 'Gyoza' }, 'en'), 'Gyozas');
+});
+
+test('secondaryFrenchName: no name or no French name gives null', () => {
+  assert.equal(secondaryFrenchName(null, 'en'), null);
+  assert.equal(secondaryFrenchName(undefined, 'zh'), null);
+  assert.equal(secondaryFrenchName({ fr: '', en: 'x' }, 'en'), null);
+  assert.equal(secondaryFrenchName({ fr: '   ', en: 'x' }, 'en'), null);
+  assert.equal(secondaryFrenchName({ fr: null, en: 'x' }, 'en'), null);
 });
