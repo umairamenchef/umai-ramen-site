@@ -234,9 +234,9 @@ Plans:
 **Requirements**: MENU-01, MENU-02, MENU-03, MENU-04, MENU-05, MENU-06
 **Success Criteria** (what must be TRUE):
   1. On `umai-ramen.fr/fr/menu` a visitor sees every dish, drink, dessert, kids menu and extra of the 2026 print (food spread and drinks) with the same FR names, descriptions, prices and category order, and nothing that is not on the print; items dropped from the print no longer show (availability off) but still exist in Studio.
-  2. Items with several prices show every variant, correctly labelled, on the live menu (3/6/9 pcs, 25cl/50cl, 1/2 boules, verre/bouteille).
+  2. Items with several prices show every variant, correctly labelled, on the live menu (3/6/9 pcs, 25cl/50cl, 1/2 boules, verre/bouteille — « 1/2 boules » is not on the 2026 print: unit supported, unused).
   3. A print-vs-Sanity discrepancy report (added / removed / changed price / changed text) is produced and kept in the phase folder, and a full export of the Sanity menu documents is taken before any production write (rollback path). _Autonomy grant (EK, 2026-11-23: « Avance en autonome jusqu'à livraison déployé »): the report is applied with Claude's documented defaults and handed to EK for post-hoc review instead of a blocking pre-approval._
-  4. The print's service notes and markers appear on the live menu in French and are stored so they can be translated: « Le midi seulement » (Udon), « Pour les enfants de moins de 10 ans » (Menu enfant), « Notre best-seller » (Tantan Ramen), « Version végétarienne disponible », « Complétez votre bol avec nos extras ».
+  4. The print's service notes and markers appear on the live menu in French and are stored so they can be translated: « Le midi seulement » (Udon), « Pour les enfants de moins de 10 ans » (Menu enfant), « Notre best-seller » (Tantan Ramen), « Version végétarienne disponible » (not on the 2026 print: badge supported, unused), « Complétez votre bol avec nos extras ».
   5. No `??` or `????` is visible anywhere on the live menu — Année Lumière shows « Prix sur demande » (translatable) until EK supplies the 12cl/25cl/50cl prices, Trio dégustation uses the BAT description « Trois sakés sélectionnés par notre équipe. » — and obvious print typos are corrected on the web (« Asashi » → « Asahi »), all listed for EK's post-hoc review.
 **Plans:** 3 plans
 
