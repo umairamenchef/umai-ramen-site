@@ -1,0 +1,825 @@
+{
+  "version": 1,
+  "sources": {
+    "food": ".planning/sources/menu-2026/plats-ouvert-360x250mm-print-2026-11-10.pdf",
+    "drinks": ".planning/sources/menu-2026/boissons-180x250mm-print-2026-11-03.pdf"
+  },
+  "transcribedAt": "2026-11-23",
+  "corrections": [
+    {
+      "where": "Bières > Bouteilles : Asahi Super Dry",
+      "print": "Asashi Super Dry ~ 5°",
+      "web": "Asahi Super Dry ~ 5°",
+      "reason": "Coquille évidente sur la marque Asahi (accord d'autonomie d'EK du 2026-11-23, point c)."
+    },
+    {
+      "where": "Bières > Bouteilles : Coedo IPA",
+      "print": "Coedo IPA ~ 4.5°",
+      "web": "Coedo IPA ~ 4,5°",
+      "reason": "Virgule décimale française, comme les autres degrés de la carte."
+    },
+    {
+      "where": "Sakés japonais : Zaku",
+      "print": "Zaku ~ 15.5°",
+      "web": "Zaku ~ 15,5°",
+      "reason": "Virgule décimale française (les autres sakés sont imprimés « 15,5° »)."
+    },
+    {
+      "where": "Cocktails signature : Natsu et Sakura Blossom",
+      "print": "Natsu 9.00 / Sakura Blossom 8.50",
+      "web": "9,00 € / 8,50 €",
+      "reason": "Format de prix : point décimal sur l'imprimé. Les prix sont stockés en nombres et affichés à la française."
+    },
+    {
+      "where": "Sakés japonais : Trio dégustation 3 × 6cl",
+      "print": "description en points d'interrogation",
+      "web": "Trois sakés sélectionnés par notre équipe.",
+      "reason": "Description absente de l'imprimé : texte du BAT (accord d'autonomie, point b)."
+    },
+    {
+      "where": "Vins > Vins rouges : Année Lumière millésime 2023",
+      "print": "12cl / 25cl / 50cl : prix en points d'interrogation",
+      "web": "Prix sur demande",
+      "reason": "Prix absents de l'imprimé : jamais de points d'interrogation en ligne (accord d'autonomie, point a)."
+    },
+    {
+      "where": "Entrées : Gyozas",
+      "print": "RAVIOLIS GRILLÉS (sous-titre) + « Garniture au choix : poulet, porc ou légumes. » (ligne au-dessus des prix)",
+      "web": "Raviolis grillés. Garniture au choix : poulet, porc ou légumes.",
+      "reason": "Un seul article Gyozas : le sous-titre et la ligne de garniture forment sa description."
+    },
+    {
+      "where": "Menu enfant (note après les deux choix)",
+      "print": "Inclus: un sirop à l’eau et une boule de glace au choix.",
+      "web": "Inclus : un sirop à l'eau et une boule de glace au choix.",
+      "reason": "Typographie française (espace avant les deux-points) et apostrophe droite."
+    },
+    {
+      "where": "Note de page (encadré vert de la page des plats)",
+      "print": "faits maison,du bouillon",
+      "web": "faits maison, du bouillon",
+      "reason": "Espace manquante après la virgule. Cette note vit dans les fichiers de messages (plan 12-01), pas dans ce JSON."
+    },
+    {
+      "where": "Cafés & Thés > Cafés : Japanese Coffee",
+      "print": "Japanese Coffee : 8,90",
+      "web": "nom « Japanese Coffee », prix 8,90 €",
+      "reason": "Le « : » sépare le nom du prix : il ne fait pas partie du nom."
+    },
+    {
+      "where": "Spritz et Highball",
+      "print": "Yuzu Spritz ~ 8,90 (de même pour les 4 spritz et les 2 highballs)",
+      "web": "nom « Yuzu Spritz », prix 8,90 €",
+      "reason": "Le « ~ » entre le nom et le prix est un séparateur. Le « ~ » des degrés (« Asahi ~ 5° ») et de « Riesling Alsace ~ Sperry » fait partie du nom et reste."
+    },
+    {
+      "where": "Titres et sous-titres en capitales (catégories, Karaage, Gyozas, Takoyaki, Edamame, Udon)",
+      "print": "ENTRÉES, KARAAGE, POULET MARINÉ ET FRIT MAISON, RAVIOLIS GRILLÉS, BOULETTES FONDANTES AU POULPE, FÈVES DE SOJA À LA FLEUR DE SEL, LE MIDI SEULEMENT",
+      "web": "Entrées, Karaage, Poulet mariné et frit maison, Raviolis grillés, Boulettes fondantes au poulpe, Fèves de soja à la fleur de sel, Le midi seulement",
+      "reason": "Capitales de mise en page : stockées en casse normale, le site met en capitales par CSS."
+    },
+    {
+      "where": "Apostrophes",
+      "print": "l’eau (apostrophe typographique)",
+      "web": "l'eau",
+      "reason": "Apostrophe droite partout dans les données du menu."
+    }
+  ],
+  "ekToConfirm": [
+    "Année Lumière millésime 2023 (vins rouges) : prix 12cl / 25cl / 50cl à fournir. En attendant, l'article affiche « Prix sur demande ».",
+    "Trio dégustation (sakés) : description provisoire « Trois sakés sélectionnés par notre équipe. » (texte du BAT, l'imprimé n'a pas de texte).",
+    "Coquille de marque corrigée sur la bière bouteille : « Asahi Super Dry » sur le web (orthographe de l'imprimé citée dans les corrections).",
+    "Pas de variante « 1/2 boules » sur l'imprimé du 2026-11-10 : « Boule de glace au choix » = 3,00 €, prix unique (l'unité « boule » est prête si besoin).",
+    "« Version végétarienne disponible » n'apparaît pas sur l'imprimé : le badge existe dans Studio mais n'est posé sur aucun plat (la mention végétarienne du Tantan avait déjà été jugée erronée par Loan en juillet).",
+    "Edamame : les deux pictos de l'imprimé sont lus comme « végétarien » (feuille) et « sans gluten » (épi barré).",
+    "Marqueur végétarien posé sur Yasai Ramen et Miso végétarien seulement (bouillon de légumes), pas sur Tofu Mazesoba : aucun picto sur l'imprimé.",
+    "Sirop à l'eau et Diabolo : 2 articles qui partagent la même liste de parfums.",
+    "Thés verts japonais et Infusions : stockés comme articles avec leur prix (pas de sous-titre en plus, il répéterait le nom).",
+    "Menu enfant : le prix 9,90 € du titre est porté par les deux choix (Little Tokyo, Mini Ramen).",
+    "Lignes producteur ou domaine stockées en description (Chardonnay Naturalys : « Gérard Bertrand » ; Année Lumière : « Domaine Le Clos des Lumières ») ; « Riesling Alsace ~ Sperry » gardé tel qu'imprimé.",
+    "Photos : les 3 photos des cartes « Notre Menu » de l'accueil sont reprises des anciens articles masqués (Gyoza porc → Gyozas, Tantan Ramen → Tantan Ramen, Tokyo Ramen → Tokyo Ramen). Les autres nouveaux plats n'ont pas de photo : EK peut en ajouter dans Studio, une nouvelle synchronisation ne les écrase jamais.",
+    "EN/DE : les nouveaux plats et catégories sont en français seulement jusqu'à la phase 14 (les pages EN/DE affichent le français en attendant).",
+    "7 catégories ont un slug suffixé « -2026 » (unicité des slugs dans Studio) : entrees, mazesoba, udon, menu-enfant, desserts, thes-glaces, softs.",
+    "« oeuf » / « œuf » gardés tels qu'imprimés (Oeuf mariné entier, Oeuf onsen, « demi-oeuf » sur Yasai Ramen et Miso végétarien)."
+  ],
+  "categories": [
+    {
+      "key": "entrees",
+      "section": "food",
+      "name": { "fr": "Entrées" },
+      "nameJp": "前菜",
+      "items": [
+        {
+          "key": "karaage",
+          "name": { "fr": "Karaage" },
+          "nameJp": "唐揚げ",
+          "description": { "fr": "Poulet mariné et frit maison" },
+          "prices": [
+            { "quantity": 3, "unit": "pcs", "price": 5.5 },
+            { "quantity": 6, "unit": "pcs", "price": 9.9 },
+            { "quantity": 9, "unit": "pcs", "price": 13.9 }
+          ],
+          "legacyIds": ["item-e3480247"]
+        },
+        {
+          "key": "gyozas",
+          "name": { "fr": "Gyozas" },
+          "nameJp": "餃子",
+          "description": { "fr": "Raviolis grillés. Garniture au choix : poulet, porc ou légumes." },
+          "prices": [
+            { "quantity": 3, "unit": "pcs", "price": 4.9 },
+            { "quantity": 6, "unit": "pcs", "price": 8.9 },
+            { "quantity": 9, "unit": "pcs", "price": 12.5 }
+          ],
+          "legacyIds": ["item-e3480244", "item-e3480245", "item-e3480246"],
+          "imageFrom": "item-e3480244"
+        },
+        {
+          "key": "takoyaki",
+          "name": { "fr": "Takoyaki" },
+          "nameJp": "たこ焼き",
+          "description": { "fr": "Boulettes fondantes au poulpe" },
+          "prices": [
+            { "quantity": 3, "unit": "pcs", "price": 4.9 },
+            { "quantity": 6, "unit": "pcs", "price": 8.9 },
+            { "quantity": 9, "unit": "pcs", "price": 12.5 }
+          ],
+          "legacyIds": ["item-e3480243"]
+        },
+        {
+          "key": "edamame",
+          "name": { "fr": "Edamame" },
+          "nameJp": "枝豆",
+          "description": { "fr": "Fèves de soja à la fleur de sel" },
+          "price": 4.9,
+          "isVegetarian": true,
+          "isGlutenFree": true,
+          "legacyIds": ["item-e3898281"]
+        }
+      ]
+    },
+    {
+      "key": "tantan-umai",
+      "section": "food",
+      "name": { "fr": "Tantan Umaï" },
+      "nameJp": "担々麺",
+      "description": { "fr": "Nos spécialités à base de sésame blanc." },
+      "items": [
+        {
+          "key": "tantan-ramen",
+          "name": { "fr": "Tantan Ramen" },
+          "description": { "fr": "Bouillon de poulet au sésame, huile de piment, bœuf haché, pousses de soja, pak-choï, daikon et demi-œuf mariné." },
+          "price": 15.9,
+          "badges": ["bestseller"],
+          "legacyIds": ["item-e3480254"],
+          "imageFrom": "item-e3480254"
+        },
+        {
+          "key": "yasai-ramen",
+          "name": { "fr": "Yasai Ramen" },
+          "description": { "fr": "Bouillon de légumes au sésame, huile de piment, tofu teriyaki, pousses de soja, pak-choï, daikon et demi-oeuf mariné." },
+          "price": 15.9,
+          "isVegetarian": true,
+          "legacyIds": ["item-e3480255"]
+        },
+        {
+          "key": "tantan-mazesoba",
+          "name": { "fr": "Tantan Mazesoba" },
+          "description": { "fr": "Nouilles à mélanger sans bouillon, pâte de sésame, huile de piment, bœuf haché, œuf onsen et cébette." },
+          "price": 15.9
+        },
+        {
+          "key": "tantan-tsukemen",
+          "name": { "fr": "Tantan Tsukemen" },
+          "description": { "fr": "Nouilles et garnitures à tremper dans un bouillon au sésame pimenté : œuf mariné, cébette et bambou." },
+          "price": 16.9
+        }
+      ]
+    },
+    {
+      "key": "ramen",
+      "section": "food",
+      "name": { "fr": "Ramen" },
+      "nameJp": "ラーメン",
+      "description": { "fr": "Nouilles en bouillon." },
+      "items": [
+        {
+          "key": "yuzu-ramen",
+          "name": { "fr": "Yuzu Ramen" },
+          "description": { "fr": "Bouillon de poulet clair au jus de yuzu, chashu de poulet, demi-œuf mariné, cébette, bambou et pak-choï." },
+          "price": 14.9,
+          "legacyIds": ["item-e3907822"]
+        },
+        {
+          "key": "tokyo-ramen",
+          "name": { "fr": "Tokyo Ramen" },
+          "description": { "fr": "Bouillon de poulet clair, chashu de porc, demi-œuf mariné, cébette, bambou et pak-choï." },
+          "price": 14.9,
+          "legacyIds": ["item-e3480256"],
+          "imageFrom": "item-e3480256"
+        },
+        {
+          "key": "wantan-ramen",
+          "name": { "fr": "Wantan Ramen" },
+          "description": { "fr": "Bouillon de poulet, chashu de poulet, ravioli de poulet, demi-œuf mariné, cébette, bambou et pak-choï." },
+          "price": 15.9,
+          "legacyIds": ["item-e3480257"]
+        },
+        {
+          "key": "miso-ramen",
+          "name": { "fr": "Miso Ramen" },
+          "description": { "fr": "Bouillon de poulet épais au miso rouge, chashu de porc, demi-œuf mariné, cébette et pousses de soja." },
+          "price": 15.9,
+          "legacyIds": ["item-e3480252"]
+        },
+        {
+          "key": "miso-vegetarien",
+          "name": { "fr": "Miso végétarien" },
+          "description": { "fr": "Bouillon de légumes au miso rouge, tofu teriyaki, pousses de soja, pak-choï, daikon et demi-oeuf mariné." },
+          "price": 15.9,
+          "isVegetarian": true,
+          "legacyIds": ["item-e3480253"]
+        }
+      ]
+    },
+    {
+      "key": "mazesoba",
+      "section": "food",
+      "name": { "fr": "Mazesoba" },
+      "nameJp": "まぜそば",
+      "description": { "fr": "Nouilles à mélanger, sans bouillon." },
+      "items": [
+        {
+          "key": "karaage-mazesoba",
+          "name": { "fr": "Karaage Mazesoba" },
+          "description": { "fr": "Poulet frit, cébette, daikon, nori et œuf onsen." },
+          "price": 15.5,
+          "legacyIds": ["item-e3480260"]
+        },
+        {
+          "key": "chashu-mazesoba",
+          "name": { "fr": "Chashu Mazesoba" },
+          "description": { "fr": "Morceaux de porc teriyaki, cébette, daikon, nori et œuf onsen." },
+          "price": 15.5,
+          "legacyIds": ["item-e3480259"]
+        },
+        {
+          "key": "tofu-mazesoba",
+          "name": { "fr": "Tofu Mazesoba" },
+          "description": { "fr": "Tofu teriyaki, cébette, daikon, nori et œuf onsen." },
+          "price": 14.9,
+          "legacyIds": ["item-e3480261"]
+        }
+      ]
+    },
+    {
+      "key": "udon",
+      "section": "food",
+      "name": { "fr": "Udon" },
+      "nameJp": "うどん",
+      "description": { "fr": "Le midi seulement" },
+      "items": [
+        {
+          "key": "tantan-udon",
+          "name": { "fr": "Tantan Udon" },
+          "description": { "fr": "Udon au sésame, huile de piment, bœuf haché, pousses de soja, pak-choï, daikon et œuf onsen." },
+          "price": 15.9
+        },
+        {
+          "key": "udon-karaage",
+          "name": { "fr": "Udon Karaage" },
+          "description": { "fr": "Bouillon tsuyu, poulet frit, œuf onsen et cébette." },
+          "price": 15.5,
+          "legacyIds": ["item-e4153085"]
+        },
+        {
+          "key": "udon-boeuf-cinq-epices",
+          "name": { "fr": "Udon au bœuf aux cinq épices" },
+          "description": { "fr": "Bouillon tsuyu, bœuf haché aux cinq épices, œuf onsen et cébette." },
+          "price": 15.5,
+          "legacyIds": ["item-e3879608"]
+        }
+      ]
+    },
+    {
+      "key": "menu-enfant",
+      "section": "food",
+      "name": { "fr": "Menu enfant" },
+      "nameJp": "お子様メニュー",
+      "description": { "fr": "Pour les enfants de moins de 10 ans." },
+      "footnote": { "fr": "Inclus : un sirop à l'eau et une boule de glace au choix." },
+      "items": [
+        {
+          "key": "little-tokyo",
+          "name": { "fr": "Little Tokyo" },
+          "subgroup": { "fr": "Au choix" },
+          "description": { "fr": "Nouilles épaisses, deux karaage, edamame et demi-œuf mariné." },
+          "price": 9.9,
+          "legacyIds": ["item-e3480264", "formule-enfant"]
+        },
+        {
+          "key": "mini-ramen",
+          "name": { "fr": "Mini Ramen" },
+          "subgroup": { "fr": "Au choix" },
+          "description": { "fr": "Tokyo ou Miso." },
+          "price": 9.9,
+          "legacyIds": ["item-e3480265"]
+        }
+      ]
+    },
+    {
+      "key": "extras",
+      "section": "food",
+      "name": { "fr": "Extras" },
+      "nameJp": "追加トッピング",
+      "description": { "fr": "Complétez votre bol avec nos extras." },
+      "items": [
+        {
+          "key": "oeuf-marine-entier",
+          "name": { "fr": "Oeuf mariné entier" },
+          "price": 2,
+          "legacyIds": ["item-e3480266", "extra-oeuf"]
+        },
+        {
+          "key": "oeuf-onsen",
+          "name": { "fr": "Oeuf onsen" },
+          "price": 2
+        },
+        {
+          "key": "chashu-porc",
+          "name": { "fr": "Chashu de porc" },
+          "prices": [{ "quantity": 2, "unit": "pcs", "price": 3.9 }],
+          "legacyIds": ["item-e3480267", "extra-chashu"]
+        },
+        {
+          "key": "chashu-poulet",
+          "name": { "fr": "Chashu de poulet" },
+          "prices": [{ "quantity": 3, "unit": "pcs", "price": 3.5 }],
+          "legacyIds": ["item-e3480268"]
+        }
+      ]
+    },
+    {
+      "key": "desserts",
+      "section": "food",
+      "name": { "fr": "Desserts" },
+      "nameJp": "デザート",
+      "items": [
+        {
+          "key": "cafe-the-gourmand",
+          "name": { "fr": "Café ou thé gourmand" },
+          "description": { "fr": "Mini financier matcha, macaron exotique, mochi sésame noir et une boule de glace" },
+          "price": 9.9,
+          "legacyIds": ["item-e3480284", "item-e3480283"]
+        },
+        {
+          "key": "duo-mochis-glaces",
+          "name": { "fr": "Duo de mochis glacés" },
+          "description": { "fr": "Sakura & fruit de la passion." },
+          "price": 6.5,
+          "legacyIds": ["item-e3480282"]
+        },
+        {
+          "key": "tiramisu-matcha",
+          "name": { "fr": "Tiramisu matcha" },
+          "price": 6.9,
+          "legacyIds": ["item-e3480281"]
+        },
+        {
+          "key": "tiramisu-framboise-litchi",
+          "name": { "fr": "Tiramisu framboise & litchi" },
+          "price": 6.9,
+          "legacyIds": ["item-e3480280"]
+        },
+        {
+          "key": "boule-de-glace",
+          "name": { "fr": "Boule de glace au choix" },
+          "description": { "fr": "Matcha, Yuzu, Sésame noir, Mangue, Coco, Vanille, Framboise, Fraise, Pêche, Chocolat au lait." },
+          "price": 3
+        }
+      ]
+    },
+    {
+      "key": "bieres",
+      "section": "drinks",
+      "name": { "fr": "Bières" },
+      "nameJp": "ビール",
+      "items": [
+        {
+          "key": "asahi",
+          "name": { "fr": "Asahi ~ 5°" },
+          "subgroup": { "fr": "Pressions" },
+          "prices": [
+            { "quantity": 25, "unit": "cl", "price": 4.9 },
+            { "quantity": 50, "unit": "cl", "price": 7.5 }
+          ],
+          "legacyIds": ["item-e3480288"]
+        },
+        {
+          "key": "asahi-yuzu",
+          "name": { "fr": "Asahi Yuzu" },
+          "subgroup": { "fr": "Pressions" },
+          "prices": [
+            { "quantity": 25, "unit": "cl", "price": 5.4 },
+            { "quantity": 50, "unit": "cl", "price": 8.4 }
+          ]
+        },
+        {
+          "key": "asahi-sake",
+          "name": { "fr": "Asahi Saké" },
+          "subgroup": { "fr": "Pressions" },
+          "prices": [
+            { "quantity": 25, "unit": "cl", "price": 5.5 },
+            { "quantity": 50, "unit": "cl", "price": 8.5 }
+          ]
+        },
+        {
+          "key": "asahi-super-dry",
+          "name": { "fr": "Asahi Super Dry ~ 5°" },
+          "subgroup": { "fr": "Bouteilles" },
+          "prices": [{ "quantity": 33, "unit": "cl", "price": 5.9 }],
+          "legacyIds": ["item-e3480292"]
+        },
+        {
+          "key": "coedo-ipa",
+          "name": { "fr": "Coedo IPA ~ 4,5°" },
+          "subgroup": { "fr": "Bouteilles" },
+          "prices": [{ "quantity": 33, "unit": "cl", "price": 6.9 }],
+          "legacyIds": ["item-e3480296"]
+        }
+      ]
+    },
+    {
+      "key": "spritz",
+      "section": "drinks",
+      "name": { "fr": "Spritz" },
+      "nameJp": "スプリッツァー",
+      "description": { "fr": "25cl" },
+      "items": [
+        {
+          "key": "yuzu-spritz",
+          "name": { "fr": "Yuzu Spritz" },
+          "price": 8.9
+        },
+        {
+          "key": "umeshu-spritz",
+          "name": { "fr": "Umeshu Spritz" },
+          "price": 8.9,
+          "legacyIds": ["item-e4153375"]
+        },
+        {
+          "key": "peach-passion-spritz",
+          "name": { "fr": "Peach Passion Spritz" },
+          "price": 8.9,
+          "legacyIds": ["item-e4315920"]
+        },
+        {
+          "key": "nana-spritz",
+          "name": { "fr": "Nana Spritz" },
+          "description": { "fr": "Rose, Litchi, Framboise, Prosecco et eau pétillante" },
+          "price": 8.9
+        }
+      ]
+    },
+    {
+      "key": "highball",
+      "section": "drinks",
+      "name": { "fr": "Highball" },
+      "nameJp": "ハイボール",
+      "description": { "fr": "30cl" },
+      "items": [
+        {
+          "key": "highball",
+          "name": { "fr": "Highball" },
+          "description": { "fr": "Whisky japonais allongé au soda." },
+          "price": 8.5,
+          "legacyIds": ["item-e3480358"]
+        },
+        {
+          "key": "ginger-highball",
+          "name": { "fr": "Ginger Highball" },
+          "description": { "fr": "Déclinaison au gingembre." },
+          "price": 9,
+          "legacyIds": ["item-e3886808"]
+        }
+      ]
+    },
+    {
+      "key": "cocktails-signature",
+      "section": "drinks",
+      "name": { "fr": "Cocktails signature" },
+      "nameJp": "カクテル",
+      "description": { "fr": "20cl" },
+      "items": [
+        {
+          "key": "natsu",
+          "name": { "fr": "Natsu" },
+          "description": { "fr": "Saké pétillant, matcha, basilic, concombre et pointe de ginger ale." },
+          "price": 9
+        },
+        {
+          "key": "sakura-blossom",
+          "name": { "fr": "Sakura Blossom" },
+          "description": { "fr": "Litchi, rose et saké pétillant." },
+          "price": 8.5
+        },
+        {
+          "key": "nana",
+          "name": { "fr": "Nana" },
+          "description": { "fr": "Gin, litchi, rose, citron et limonade." },
+          "price": 9,
+          "legacyIds": ["item-e3480361"]
+        }
+      ]
+    },
+    {
+      "key": "cocktails-sans-alcool",
+      "section": "drinks",
+      "name": { "fr": "Cocktails sans alcool" },
+      "nameJp": "ノンアルコールカクテル",
+      "items": [
+        {
+          "key": "hachiko",
+          "name": { "fr": "Hachiko" },
+          "description": { "fr": "Yuzu, pêche et ginger ale." },
+          "prices": [{ "quantity": 30, "unit": "cl", "price": 7.5 }]
+        },
+        {
+          "key": "lovely",
+          "name": { "fr": "Lovely" },
+          "description": { "fr": "Rose, litchi, citron et limonade." },
+          "prices": [{ "quantity": 30, "unit": "cl", "price": 7.5 }],
+          "legacyIds": ["item-e3480300"]
+        }
+      ]
+    },
+    {
+      "key": "thes-glaces",
+      "section": "drinks",
+      "name": { "fr": "Thés glacés" },
+      "nameJp": "アイスティー",
+      "items": [
+        {
+          "key": "yuzu-maison",
+          "name": { "fr": "Yuzu maison" },
+          "description": { "fr": "Frais, légèrement acidulé." },
+          "prices": [{ "quantity": 30, "unit": "cl", "price": 4.2 }],
+          "legacyIds": ["item-e3480341"]
+        },
+        {
+          "key": "the-noir-glace-litchi",
+          "name": { "fr": "Thé noir glacé au litchi" },
+          "prices": [{ "quantity": 33, "unit": "cl", "price": 4.2 }],
+          "legacyIds": ["item-e3480342"]
+        },
+        {
+          "key": "the-glace-peche",
+          "name": { "fr": "Thé glacé pêche" },
+          "prices": [{ "quantity": 30, "unit": "cl", "price": 4.2 }],
+          "legacyIds": ["item-e3480343"]
+        }
+      ]
+    },
+    {
+      "key": "softs",
+      "section": "drinks",
+      "name": { "fr": "Softs" },
+      "nameJp": "ソフトドリンク",
+      "items": [
+        {
+          "key": "ramune",
+          "name": { "fr": "Ramune" },
+          "description": { "fr": "Au choix : yuzu, fraise ou litchi." },
+          "prices": [{ "quantity": 20, "unit": "cl", "price": 5.6 }],
+          "legacyIds": ["item-e3480338"]
+        },
+        {
+          "key": "coca-cola",
+          "name": { "fr": "Coca-Cola / Coca-Cola Zéro" },
+          "prices": [{ "quantity": 33, "unit": "cl", "price": 3.5 }],
+          "legacyIds": ["item-e3480336", "item-e3480337"]
+        },
+        {
+          "key": "sirop-a-leau",
+          "name": { "fr": "Sirop à l'eau" },
+          "description": { "fr": "grenadine, fraise, citron, pêche, litchi, passion ou rose." },
+          "price": 3,
+          "legacyIds": ["item-e3509950"]
+        },
+        {
+          "key": "diabolo",
+          "name": { "fr": "Diabolo" },
+          "description": { "fr": "grenadine, fraise, citron, pêche, litchi, passion ou rose." },
+          "price": 3.5,
+          "legacyIds": ["item-e3509951"]
+        }
+      ]
+    },
+    {
+      "key": "eaux-minerales",
+      "section": "drinks",
+      "name": { "fr": "Eaux minérales" },
+      "nameJp": "ミネラルウォーター",
+      "items": [
+        {
+          "key": "lisbeth",
+          "name": { "fr": "Lisbeth bleu, verte, rouge" },
+          "prices": [{ "quantity": 50, "unit": "cl", "price": 3.5 }],
+          "legacyIds": ["item-e3480303"]
+        }
+      ]
+    },
+    {
+      "key": "sakes-japonais",
+      "section": "drinks",
+      "name": { "fr": "Sakés japonais" },
+      "nameJp": "日本酒",
+      "description": { "fr": "Service de 10cl, sauf trio." },
+      "items": [
+        {
+          "key": "zaku",
+          "name": { "fr": "Zaku ~ 15,5°" },
+          "price": 9.8
+        },
+        {
+          "key": "kinrei",
+          "name": { "fr": "Kinrei ~ 15,5°" },
+          "description": { "fr": "Rond, fruité et soyeux." },
+          "price": 9.8
+        },
+        {
+          "key": "fu",
+          "name": { "fr": "Fu ~ 8°" },
+          "description": { "fr": "Fruité, très léger." },
+          "price": 9.8
+        },
+        {
+          "key": "jidai-okure",
+          "name": { "fr": "Jidai okure ~ 15,5°" },
+          "description": { "fr": "Rond et équilibré." },
+          "price": 9.8,
+          "legacyIds": ["item-e3857685"]
+        },
+        {
+          "key": "junmaishu",
+          "name": { "fr": "Junmaishu ~ 15,5°" },
+          "description": { "fr": "Puissant et riche." },
+          "price": 9.8
+        },
+        {
+          "key": "atelier-du-sake",
+          "name": { "fr": "Atelier du saké ~ 17,5°" },
+          "description": { "fr": "Classique japonais." },
+          "price": 9.8
+        },
+        {
+          "key": "trio-degustation",
+          "name": { "fr": "Trio dégustation" },
+          "description": { "fr": "Trois sakés sélectionnés par notre équipe." },
+          "prices": [{ "label": { "fr": "3 × 6cl" }, "price": 18 }]
+        }
+      ]
+    },
+    {
+      "key": "whiskies-rhums",
+      "section": "drinks",
+      "name": { "fr": "Whiskies & Rhums" },
+      "nameJp": "ウイスキー＆ラム",
+      "description": { "fr": "4cl" },
+      "items": [
+        {
+          "key": "toki",
+          "name": { "fr": "Toki" },
+          "subgroup": { "fr": "Whiskies" },
+          "price": 8.5
+        },
+        {
+          "key": "nikka-from-the-barrel",
+          "name": { "fr": "Nikka from the Barrel" },
+          "subgroup": { "fr": "Whiskies" },
+          "price": 10.5,
+          "legacyIds": ["item-e3480365"]
+        },
+        {
+          "key": "the-chita",
+          "name": { "fr": "The Chita" },
+          "subgroup": { "fr": "Whiskies" },
+          "price": 9,
+          "legacyIds": ["item-e3874891"]
+        },
+        {
+          "key": "hibiki",
+          "name": { "fr": "Hibiki" },
+          "subgroup": { "fr": "Whiskies" },
+          "price": 14
+        },
+        {
+          "key": "yamazaki",
+          "name": { "fr": "Yamazaki" },
+          "subgroup": { "fr": "Whiskies" },
+          "price": 13
+        },
+        {
+          "key": "ryoma",
+          "name": { "fr": "Ryoma, rhum ambré" },
+          "subgroup": { "fr": "Rhums" },
+          "price": 8.5,
+          "legacyIds": ["item-e3778342"]
+        },
+        {
+          "key": "kiyomi",
+          "name": { "fr": "Kiyomi, rhum blanc" },
+          "subgroup": { "fr": "Rhums" },
+          "price": 8.5,
+          "legacyIds": ["item-e3874909"]
+        }
+      ]
+    },
+    {
+      "key": "vins",
+      "section": "drinks",
+      "name": { "fr": "Vins" },
+      "nameJp": "ワイン",
+      "items": [
+        {
+          "key": "riesling-alsace-sperry",
+          "name": { "fr": "Riesling Alsace ~ Sperry" },
+          "subgroup": { "fr": "Vins blancs" },
+          "prices": [
+            { "quantity": 12, "unit": "cl", "price": 5.5 },
+            { "quantity": 75, "unit": "cl", "price": 24 }
+          ]
+        },
+        {
+          "key": "chardonnay-naturalys",
+          "name": { "fr": "Chardonnay Naturalys" },
+          "subgroup": { "fr": "Vins blancs" },
+          "description": { "fr": "Gérard Bertrand" },
+          "prices": [
+            { "quantity": 12, "unit": "cl", "price": 5.5 },
+            { "quantity": 75, "unit": "cl", "price": 24 }
+          ],
+          "legacyIds": ["item-e3480380"]
+        },
+        {
+          "key": "annee-lumiere-2023",
+          "name": { "fr": "Année Lumière millésime 2023" },
+          "subgroup": { "fr": "Vins rouges" },
+          "description": { "fr": "Domaine Le Clos des Lumières" },
+          "priceOnRequest": true
+        }
+      ]
+    },
+    {
+      "key": "cafes-thes",
+      "section": "drinks",
+      "name": { "fr": "Cafés & Thés" },
+      "nameJp": "コーヒー・お茶",
+      "items": [
+        {
+          "key": "cafe-expresso",
+          "name": { "fr": "Café expresso" },
+          "subgroup": { "fr": "Cafés" },
+          "price": 2.4,
+          "legacyIds": ["item-e3480398"]
+        },
+        {
+          "key": "double-expresso",
+          "name": { "fr": "Double expresso" },
+          "subgroup": { "fr": "Cafés" },
+          "price": 3.6,
+          "legacyIds": ["item-e3480403"]
+        },
+        {
+          "key": "cafe-au-lait",
+          "name": { "fr": "Café au lait" },
+          "subgroup": { "fr": "Cafés" },
+          "price": 3.2,
+          "legacyIds": ["item-e3480404"]
+        },
+        {
+          "key": "japanese-coffee",
+          "name": { "fr": "Japanese Coffee" },
+          "subgroup": { "fr": "Cafés" },
+          "description": { "fr": "Expresso, whisky japonais et chantilly." },
+          "price": 8.9,
+          "legacyIds": ["item-e3480287"]
+        },
+        {
+          "key": "thes-verts-japonais",
+          "name": { "fr": "Thés verts japonais" },
+          "description": { "fr": "Au choix : genmaïcha, sencha, Fleur de Geisha, sencha agrumes ou Grand jasmin Chun Feng." },
+          "price": 4.5,
+          "legacyIds": ["item-e3480389", "item-e3480392", "item-e3480391", "item-e3480390", "item-e3480393"]
+        },
+        {
+          "key": "infusions",
+          "name": { "fr": "Infusions" },
+          "description": { "fr": "Sélection selon disponibilités." },
+          "price": 4.5,
+          "legacyIds": ["item-e3480395", "item-e3896125", "item-e3897004", "item-e4112637"]
+        }
+      ]
+    }
+  ]
+}

@@ -155,9 +155,13 @@ function checkGolden(errors, json) {
   const cats = new Map((json.categories ?? []).filter(isObj).map((c) => [c.key, c]));
   const items = new Map();
   for (const c of json.categories ?? []) for (const it of (isObj(c) && Array.isArray(c.items) ? c.items : [])) if (isObj(it)) items.set(it.key, it);
+  const reportedMissing = new Set();
   const item = (k) => {
     const it = items.get(k);
-    if (!it) errors.push(`GOLDEN ${k}: item missing`);
+    if (!it && !reportedMissing.has(k)) {
+      reportedMissing.add(k);
+      errors.push(`GOLDEN ${k}: item missing`);
+    }
     return it;
   };
 
