@@ -18,6 +18,8 @@ import {
   QR_PRINT_TITLE,
   QR_PRINT_FOOTER,
   QR_PDFS,
+  QR_TENT_BLEED_MM,
+  QR_TENT_VARIANTS,
   qrMenuUrl,
   qrDisplayUrl,
   qrLabelLang,
@@ -106,6 +108,23 @@ test('qrAssetPath, QR_PDFS and qrAllAssetPaths: 12 unique public paths under /qr
     '/qr/umai-qr-a4.pdf',
     '/qr/umai-qr-chevalet-a6.pdf',
   ]);
+});
+
+test('A6 card: 3 mm default bleed, Exaprint variants at 1 and 2 mm next to it, outside the 12 main files', () => {
+  assert.equal(QR_TENT_BLEED_MM, 3);
+  assert.deepEqual(
+    QR_TENT_VARIANTS.map((v) => ({ ...v })),
+    [
+      { bleedMm: 1, path: '/qr/umai-qr-chevalet-a6-fp1mm.pdf' },
+      { bleedMm: 2, path: '/qr/umai-qr-chevalet-a6-fp2mm.pdf' },
+    ],
+  );
+  const all = qrAllAssetPaths();
+  for (const v of QR_TENT_VARIANTS) {
+    assert.equal(v.path, `/qr/umai-qr-chevalet-a6-fp${v.bleedMm}mm.pdf`);
+    assert.notEqual(v.bleedMm, QR_TENT_BLEED_MM);
+    assert.equal(all.includes(v.path), false, v.path);
+  }
 });
 
 // ---------------------------------------------------------------------------

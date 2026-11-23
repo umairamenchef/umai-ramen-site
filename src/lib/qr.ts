@@ -61,6 +61,19 @@ export const QR_PDFS = {
   tent: '/qr/umai-qr-chevalet-a6.pdf',
 } as const;
 
+/** Bleed of the default A6 card QR_PDFS.tent, in mm (page 111 × 154 mm, trim 105 × 148). */
+export const QR_TENT_BLEED_MM = 3;
+
+/**
+ * Exaprint variants of the A6 card: same two faces, other bleed. Exaprint wants the file at
+ * the finished size plus the bleed of the product ordered (flyers 1 mm, other products
+ * 2 mm, brochures 3 mm). Not part of qrAllAssetPaths(), which lists the 12 main files.
+ */
+export const QR_TENT_VARIANTS = [
+  { bleedMm: 1, path: '/qr/umai-qr-chevalet-a6-fp1mm.pdf' },
+  { bleedMm: 2, path: '/qr/umai-qr-chevalet-a6-fp2mm.pdf' },
+] as const;
+
 /** URL encoded in the code of `locale`. */
 export function qrMenuUrl(locale: QrLocale): string {
   return `${QR_ORIGIN}/${locale}/menu`;
