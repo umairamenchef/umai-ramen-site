@@ -62,13 +62,21 @@
       "bestseller": "Notre best-seller",
       "vegetarianOption": "Version végétarienne disponible"
     },
+    "diet": {
+      "vegetarian": "V",
+      "vegetarianLabel": "Végétarien",
+      "glutenFree": "SG",
+      "glutenFreeLabel": "Sans gluten"
+    },
     "unit": {
       "pcs": "{count} pcs",
       "scoop": "{count, plural, one {# boule} other {# boules}}"
     },
     "intro": "Dégustez nos ramens artisanaux faits maison, du bouillon aux nouilles de blé (poulet alsacien et farine du moulin de Sarralbe).",
     "allergens": "Une liste des allergènes est disponible sur demande.",
-    "serviceIncluded": "Prix service compris"
+    "serviceIncluded": "Prix service compris",
+    "languageSwitcherLabel": "Langue du menu",
+    "categoriesNavLabel": "Catégories du menu"
   },
   "reservation": {
     "title": "Réserver une table",
@@ -212,7 +220,7 @@
     },
     "menu": {
       "title": "Menu | Umaï Ramen Strasbourg",
-      "description": "Découvrez notre carte : ramens signatures, bouillons, extras et formules. Ingrédients frais et locaux, préparés chaque jour."
+      "description": "Découvrez notre carte : ramens et mazesoba faits maison, du bouillon aux nouilles, entrées, desserts et boissons. Ingrédients frais et locaux, préparés chaque jour."
     },
     "carteEte": {
       "title": "Carte d'été | Umaï Ramen Strasbourg",
@@ -262,5 +270,15 @@
     "takeaway": "À emporter",
     "takeawayDesc": "Commandez & payez en ligne",
     "close": "Fermer"
+  },
+  "footer": {
+    "contact": "Contact",
+    "navigation": "Navigation",
+    "followUs": "Suivez-nous",
+    "legalNotice": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "cookies": "Politique cookies",
+    "terms": "CGV",
+    "rights": "© 2026 UMAI Ramen. Tous droits réservés."
   }
 }

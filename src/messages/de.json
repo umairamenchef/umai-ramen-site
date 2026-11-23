@@ -62,13 +62,21 @@
       "bestseller": "Unser Bestseller",
       "vegetarianOption": "Vegetarische Variante erhältlich"
     },
+    "diet": {
+      "vegetarian": "V",
+      "vegetarianLabel": "Vegetarisch",
+      "glutenFree": "GF",
+      "glutenFreeLabel": "Glutenfrei"
+    },
     "unit": {
       "pcs": "{count} Stk.",
       "scoop": "{count, plural, one {# Kugel} other {# Kugeln}}"
     },
     "intro": "Genießen Sie unsere handgemachten Ramen, hausgemacht von der Brühe bis zu den Weizennudeln (Hähnchen aus dem Elsass und Mehl aus der Mühle von Sarralbe).",
     "allergens": "Eine Liste der Allergene ist auf Anfrage erhältlich.",
-    "serviceIncluded": "Bedienung inbegriffen"
+    "serviceIncluded": "Bedienung inbegriffen",
+    "languageSwitcherLabel": "Sprache der Speisekarte",
+    "categoriesNavLabel": "Kategorien der Speisekarte"
   },
   "reservation": {
     "title": "Tisch reservieren",
@@ -212,7 +220,7 @@
     },
     "menu": {
       "title": "Speisekarte | Umaï Ramen Straßburg",
-      "description": "Entdecken Sie unsere Karte: Signature-Ramen, Brühen, Extras und Menüs. Frische lokale Zutaten, täglich zubereitet."
+      "description": "Entdecken Sie unsere Karte: hausgemachte Ramen und Mazesoba, von der Brühe bis zu den Nudeln, dazu Vorspeisen, Desserts und Getränke. Frische lokale Zutaten, täglich zubereitet."
     },
     "carteEte": {
       "title": "Sommerkarte | Umaï Ramen Straßburg",
@@ -262,5 +270,15 @@
     "takeaway": "Zum Mitnehmen",
     "takeawayDesc": "Online bestellen & bezahlen",
     "close": "Schließen"
+  },
+  "footer": {
+    "contact": "Kontakt",
+    "navigation": "Navigation",
+    "followUs": "Folgen Sie uns",
+    "legalNotice": "Impressum",
+    "privacy": "Datenschutzerklärung",
+    "cookies": "Cookie-Richtlinie",
+    "terms": "AGB",
+    "rights": "© 2026 UMAI Ramen. Alle Rechte vorbehalten."
   }
 }

@@ -1,0 +1,72 @@
+{
+  "common": {
+    "reserve": "Prenota",
+    "order": "Ordina",
+    "siteTitle": "UMAI Ramen"
+  },
+  "nav": {
+    "menu": "Menù",
+    "history": "La nostra storia",
+    "infos": "Info",
+    "gallery": "Galleria"
+  },
+  "menu": {
+    "title": "Il nostro menù",
+    "subtitle": "Piatti preparati con passione, con ingredienti freschi e locali",
+    "extrasTitle": "Extra",
+    "formulesTitle": "I nostri menù fissi",
+    "includes": "Comprende",
+    "sectionFood": "Piatti",
+    "sectionDrinks": "Bevande",
+    "priceOnRequest": "Prezzo su richiesta",
+    "badge": {
+      "bestseller": "Il nostro best seller",
+      "vegetarianOption": "Versione vegetariana disponibile"
+    },
+    "diet": {
+      "vegetarian": "V",
+      "vegetarianLabel": "Vegetariano",
+      "glutenFree": "SG",
+      "glutenFreeLabel": "Senza glutine"
+    },
+    "unit": {
+      "pcs": "{count} pz",
+      "scoop": "{count, plural, one {# pallina} other {# palline}}"
+    },
+    "intro": "Gustate i nostri ramen artigianali fatti in casa, dal brodo ai noodles di grano (pollo alsaziano e farina del mulino di Sarralbe).",
+    "allergens": "L'elenco degli allergeni è disponibile su richiesta.",
+    "serviceIncluded": "Servizio incluso",
+    "languageSwitcherLabel": "Lingua del menù",
+    "categoriesNavLabel": "Categorie del menù"
+  },
+  "consent": {
+    "message": "Questo sito utilizza cookie per la misurazione dell'audience.",
+    "moreInfo": "Informativa sui cookie",
+    "accept": "Accetta",
+    "reject": "Rifiuta"
+  },
+  "orderModal": {
+    "title": "Come desideri ordinare?",
+    "delivery": "Consegna",
+    "deliveryDesc": "A domicilio con Uber Eats",
+    "takeaway": "Da asporto",
+    "takeawayDesc": "Ordina e paga online",
+    "close": "Chiudi"
+  },
+  "footer": {
+    "contact": "Contatti",
+    "navigation": "Navigazione",
+    "followUs": "Seguici",
+    "legalNotice": "Note legali",
+    "privacy": "Informativa sulla privacy",
+    "cookies": "Informativa sui cookie",
+    "terms": "Termini e condizioni",
+    "rights": "© 2026 UMAI Ramen. Tutti i diritti riservati."
+  },
+  "meta": {
+    "menu": {
+      "title": "Menù | Umaï Ramen Strasburgo",
+      "description": "Scopri il nostro menù: ramen e mazesoba fatti in casa, dal brodo ai noodles, antipasti, dessert e bevande. Ingredienti freschi e locali, preparati ogni giorno."
+    }
+  }
+}

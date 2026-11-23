@@ -62,13 +62,21 @@
       "bestseller": "Our best-seller",
       "vegetarianOption": "Vegetarian version available"
     },
+    "diet": {
+      "vegetarian": "V",
+      "vegetarianLabel": "Vegetarian",
+      "glutenFree": "GF",
+      "glutenFreeLabel": "Gluten-free"
+    },
     "unit": {
       "pcs": "{count} pcs",
       "scoop": "{count, plural, one {# scoop} other {# scoops}}"
     },
     "intro": "Enjoy our handcrafted ramen, made in-house from the broth to the wheat noodles (Alsatian chicken and flour from the Sarralbe mill).",
     "allergens": "A list of allergens is available on request.",
-    "serviceIncluded": "Service included"
+    "serviceIncluded": "Service included",
+    "languageSwitcherLabel": "Menu language",
+    "categoriesNavLabel": "Menu categories"
   },
   "reservation": {
     "title": "Reserve a table",
@@ -115,7 +123,7 @@
   },
   "consent": {
     "message": "This site uses cookies for audience measurement.",
-    "moreInfo": "Learn more",
+    "moreInfo": "Cookie policy",
     "accept": "Accept",
     "reject": "Reject"
   },
@@ -212,7 +220,7 @@
     },
     "menu": {
       "title": "Menu | Umaï Ramen Strasbourg",
-      "description": "Explore our menu: signature ramens, broths, extras and set menus. Fresh local ingredients prepared daily."
+      "description": "Explore our menu: homemade ramen and mazesoba, from the broth to the noodles, plus starters, desserts and drinks. Fresh local ingredients prepared daily."
     },
     "carteEte": {
       "title": "Summer Menu | Umaï Ramen Strasbourg",
@@ -262,5 +270,15 @@
     "takeaway": "Takeaway",
     "takeawayDesc": "Order & pay online",
     "close": "Close"
+  },
+  "footer": {
+    "contact": "Contact",
+    "navigation": "Navigation",
+    "followUs": "Follow us",
+    "legalNotice": "Legal Notice",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "terms": "Terms and Conditions",
+    "rights": "© 2026 UMAI Ramen. All rights reserved."
   }
 }

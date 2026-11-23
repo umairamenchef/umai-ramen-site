@@ -1,0 +1,72 @@
+{
+  "common": {
+    "reserve": "预订",
+    "order": "点餐",
+    "siteTitle": "UMAI Ramen"
+  },
+  "nav": {
+    "menu": "菜单",
+    "history": "我们的故事",
+    "infos": "餐厅信息",
+    "gallery": "相册"
+  },
+  "menu": {
+    "title": "菜单",
+    "subtitle": "用心烹制，选用新鲜的本地食材",
+    "extrasTitle": "加料",
+    "formulesTitle": "套餐",
+    "includes": "包含",
+    "sectionFood": "菜品",
+    "sectionDrinks": "饮品",
+    "priceOnRequest": "价格请咨询店员",
+    "badge": {
+      "bestseller": "人气招牌",
+      "vegetarianOption": "可提供素食版本"
+    },
+    "diet": {
+      "vegetarian": "素",
+      "vegetarianLabel": "素食",
+      "glutenFree": "无麸质",
+      "glutenFreeLabel": "无麸质"
+    },
+    "unit": {
+      "pcs": "{count}个",
+      "scoop": "{count}球"
+    },
+    "intro": "品尝我们的手工拉面：从汤底到小麦面条，全部店内自制（选用阿尔萨斯鸡肉和萨拉尔布磨坊的面粉）。",
+    "allergens": "如需过敏原清单，请向店员索取。",
+    "serviceIncluded": "价格已含服务费",
+    "languageSwitcherLabel": "菜单语言",
+    "categoriesNavLabel": "菜单分类"
+  },
+  "consent": {
+    "message": "本网站使用 Cookie 进行访问量统计。",
+    "moreInfo": "Cookie 政策",
+    "accept": "接受",
+    "reject": "拒绝"
+  },
+  "orderModal": {
+    "title": "您想如何点餐？",
+    "delivery": "外送",
+    "deliveryDesc": "通过 Uber Eats 送餐上门",
+    "takeaway": "外带自取",
+    "takeawayDesc": "在线点餐并付款",
+    "close": "关闭"
+  },
+  "footer": {
+    "contact": "联系我们",
+    "navigation": "网站导航",
+    "followUs": "关注我们",
+    "legalNotice": "法律声明",
+    "privacy": "隐私政策",
+    "cookies": "Cookie 政策",
+    "terms": "销售条款",
+    "rights": "© 2026 UMAI Ramen 版权所有。"
+  },
+  "meta": {
+    "menu": {
+      "title": "菜单 | Umaï Ramen 斯特拉斯堡",
+      "description": "浏览 Umaï Ramen 的菜单：从汤底到面条全部自制的拉面和拌面（Mazesoba），以及小吃、甜点和饮品。选用新鲜的本地食材，每日现做。"
+    }
+  }
+}
