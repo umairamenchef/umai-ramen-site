@@ -221,7 +221,7 @@ Plans:
 
 **Phases (v2.2):**
 
-- [ ] **Phase 12: Synchronisation menu print 2026 → Sanity** - The live FR menu mirrors the 2026 print exactly (items, prices, variants, notes), validated by EK before publication
+- [x] **Phase 12: Synchronisation menu print 2026 → Sanity** - The live FR menu mirrors the 2026 print exactly (items, prices, variants, notes), validated by EK before publication (completed 2026-11-23)
 - [ ] **Phase 13: Fondations multilingues & page menu touriste** - IT/ZH menu-only locales, language switcher and a bilingual (translated name + FR name) mobile menu page
 - [ ] **Phase 14: Traductions EN/DE/IT/ZH** - Full menu translated into 4 languages in Sanity, Japanese names kept and explained, review sheet for native speakers
 - [ ] **Phase 15: QR codes & supports imprimables** - One QR per language on an A4 sheet and a table tent ready for Exaprint, plus a `/menu/qr` download page
@@ -238,12 +238,12 @@ Plans:
   3. A print-vs-Sanity discrepancy report (added / removed / changed price / changed text) is produced and kept in the phase folder, and a full export of the Sanity menu documents is taken before any production write (rollback path). _Autonomy grant (EK, 2026-11-23: « Avance en autonome jusqu'à livraison déployé »): the report is applied with Claude's documented defaults and handed to EK for post-hoc review instead of a blocking pre-approval._
   4. The print's service notes and markers appear on the live menu in French and are stored so they can be translated: « Le midi seulement » (Udon), « Pour les enfants de moins de 10 ans » (Menu enfant), « Notre best-seller » (Tantan Ramen), « Version végétarienne disponible » (not on the 2026 print: badge supported, unused), « Complétez votre bol avec nos extras ».
   5. No `??` or `????` is visible anywhere on the live menu — Année Lumière shows « Prix sur demande » (translatable) until EK supplies the 12cl/25cl/50cl prices, Trio dégustation uses the BAT description « Trois sakés sélectionnés par notre équipe. » — and obvious print typos are corrected on the web (« Asashi » → « Asahi »), all listed for EK's post-hoc review.
-**Plans:** 1/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [x] 12-01-PLAN.md — Schema (price variants, prix sur demande, badges, sub-groups, category JP label/section/footnote, formule availability) + FR rendering, page notes, JSON-LD offers, hardened home queries; backward compatible (MENU-01/02/03/05/06) [wave 1]
-- [ ] 12-02-PLAN.md — Visual transcription of the print → scripts/menu-2026/menu-2026.json (validated, price cross-check) + sync-menu.mjs (backup / dry-run / apply / rollback) + discrepancy report, read-only runs (MENU-01..06) [wave 1]
-- [ ] 12-03-PLAN.md — Live tooling (verify-live, signed revalidate), deploy code via SSH and verify legacy still renders, then backup + apply sync to production, refresh cache, verify FR/EN/DE/home live, finalize report (MENU-01..06) [wave 2]
+- [x] 12-02-PLAN.md — Visual transcription of the print → scripts/menu-2026/menu-2026.json (validated, price cross-check) + sync-menu.mjs (backup / dry-run / apply / rollback) + discrepancy report, read-only runs (MENU-01..06) [wave 1]
+- [x] 12-03-PLAN.md — Live tooling (verify-live, signed revalidate), deploy code via SSH and verify legacy still renders, then backup + apply sync to production, refresh cache, verify FR/EN/DE/home live, finalize report (MENU-01..06) [wave 2]
 
 **Notes**:
 - Read the print PDFs visually, not only the `*-print.txt`: the text layer detaches prices from items (e.g. the takoyaki vs gyoza price rows, the sake descriptions), and « Version végétarienne disponible » and the « 1/2 boules » variants are not visible in it.
@@ -317,7 +317,7 @@ Plans:
 | 9. Contenu & visuels production (Sanity) | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
 | 10. Résorption dette & polish | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
 | 11. Cutover domaine & vérifications live | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
-| 12. Synchronisation menu print 2026 → Sanity | v2.2 | 1/3 | In Progress | — |
+| 12. Synchronisation menu print 2026 → Sanity | v2.2 | 3/3 | Complete   | 2026-11-23 |
 | 13. Fondations multilingues & page menu touriste | v2.2 | 0/? | Not started | — |
 | 14. Traductions EN/DE/IT/ZH | v2.2 | 0/? | Not started | — |
 | 15. QR codes & supports imprimables | v2.2 | 0/? | Not started | — |

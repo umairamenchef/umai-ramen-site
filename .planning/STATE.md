@@ -2,14 +2,15 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: Executing Phase 12
-stopped_at: Completed 12-01-PLAN.md
-last_updated: "2026-11-23T19:36:30.320Z"
+status: Ready to execute
+stopped_at: Completed 12-03-PLAN.md
+last_updated: "2026-11-23T20:20:18.016Z"
+last_activity: 2026-11-23
 progress:
   total_phases: 12
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 12
-  completed_plans: 10
+  completed_plans: 12
 ---
 
 # Project State
@@ -23,9 +24,9 @@ See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
 ## Current Position
 
-Phase: 12 (Synchronisation menu print 2026 → Sanity) — EXECUTING
-Plan: 2 of 3
-Last activity: 2026-11-23 — 12-01 complete (schema + FR rendering + tested `src/lib/menu.ts`, commits de19c2f..4f77dfc, not deployed); 12-02 (transcription + sync script) running in parallel; 12-03 (deploy, apply sync, live verify) is wave 2
+Phase: 12 (Synchronisation menu print 2026 → Sanity) — COMPLETE (3/3 plans, live on umai-ramen.fr; phase verification pending)
+Plan: 3 of 3
+Last activity: 2026-11-23 — 12-03 complete: Phase 12 code deployed (VPS 34748ef, rollback 2523057), 2026 print synced to Sanity production (transaction PS4gSiVcUV6cnzSF8ooJME, backup `backup/menu-backup-20261123-201142.json`), live cache refreshed with the signed `scripts/menu-2026/revalidate.mjs`, `verify-live.mjs` OK on /fr, /en, /de menu + homes
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
@@ -131,6 +132,8 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Total execution time: ~98 min
 - Phase breakdown: 01-foundation 65min, 02-content-pages 43min, 03-seo-compliance ~30min
 
+| Phase 12 P03 | 29min | 3 tasks | 4 files |
+
 ## Accumulated Context
 
 ### Key Decisions (v2.2)
@@ -149,6 +152,8 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Phase 12-01 (display rules, in the import-free `src/lib/menu.ts`, 29 node:test cases): `priceOnRequest` wins over any stored price; 2+ priced variants render as a list under the description; exactly one renders as a single price with its quantity before the amount (« 33cl 5,90 € »); variants without a numeric price are ignored.
 - Phase 12-01: categories without visible items are dropped from the menu page, the sticky nav and the JSON-LD alike, all sharing the `groupBySection` order (Plats, Boissons, unsectioned). The home « Notre Menu » cards = first 3 categories by `order` with visible items (no photo = accent block with the category JP label); the signature price = visible « Tantan Ramen » only; formules hide with `available != false`.
 - Phase 12-01: REQUIREMENTS.md MENU-01/02/03/05/06 are left Pending on purpose after 12-01 (capability delivered and render-tested, but the requirements describe the live menu): tick them after 12-03 proves the live outcome.
+- Phase 12-03: publishing menu content = `sync-menu.mjs --apply`, then `node --env-file=.env.local scripts/menu-2026/revalidate.mjs` (signed revalidateTag for menuCategory/menuItem/menuExtra/menuFormule). Tagged Sanity fetches never expire on their own and no Sanity webhook reaches umai-ramen.fr today (waiting 4 min changed nothing). Phase 14 publishes the same way.
+- Phase 12-03: live gate = `scripts/menu-2026/verify-live.mjs` (`--expect legacy` before a content write, `m26` after it; `--home` checks the 3 Sanity card photos + the Tantan price). Rollback points: VPS code `2523057`; Sanity `backup/menu-backup-20261123-201142.json` (`--rollback --dry-run` → restore=174 delete=97). MENU-01..06 ticked after the live proof.
 
 ### Key Decisions (v2.1)
 
@@ -183,7 +188,7 @@ Deployment: Docker standalone on VPS srv1417179 (valid 2027-02-23), multi-site C
 
 ### Pending Todos (owner-side)
 
-- v2.2 (EK): validate the Phase 12 discrepancy report; supply the Année Lumière 12/25/50cl prices and the Trio dégustation description; confirm typos (« Asashi »); pick the table-tent format (A6 vs folded card) before Phase 15; optional native review of the Phase 14 sheet
+- v2.2 (EK): validate the Phase 12 discrepancy report; supply the Année Lumière 12/25/50cl prices and the Trio dégustation description; confirm typos (« Asashi »); pick the table-tent format (A6 vs folded card) before Phase 15; optional native review of the Phase 14 sheet; optional: create a Sanity webhook to https://umai-ramen.fr/api/revalidate so Studio menu edits reach the site without running revalidate.mjs
 - Photo assets from EK: progressively from 2026-07-09 (hero + gallery, from JPEG_72dpi Google Drive)
 - Summer menu ground truth from Loan Nguyen — verify dishes/prices/tags against in-restaurant reality
 - Notre Histoire text validation with Loan Nguyen
@@ -208,9 +213,13 @@ le webhook sur `umai-ramen.fr` (ajouter un bloc `handle /webhook/*` → `deploye
 dans le Caddyfile du VPS + changer l'URL du webhook côté GitHub, scope `admin:repo_hook`
 requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de prod.
 
+**Build flake (constaté 2026-11-23, local + VPS)** : `next build` (Turbopack) échoue parfois avec `next/font/google queries have exactly one entry` quand Google Fonts sert Outfit en URLs `/l/font?kit=…&skey=…`. Relancer la même commande de deploy suffit ; `up -d --build` construit avant de remplacer le conteneur, donc l'ancien continue de servir. Correctif durable possible : passer les 3 polices en `next/font/local`.
+
+**Contenu Sanity → site** : aucun webhook Sanity n'atteint umai-ramen.fr. Après une écriture du menu (sync ou Studio), lancer `node --env-file=.env.local scripts/menu-2026/revalidate.mjs`. Une autre option est de créer un webhook GROQ vers `https://umai-ramen.fr/api/revalidate` (secret = `SANITY_WEBHOOK_SECRET` du VPS, droits admin du projet nécessaires).
+
 ### Blockers/Concerns
 
-- v2.2 / Phase 12: EK gates lifted by the 2026-11-23 autonomy grant — defaults applied (see Key Decisions v2.2); EK post-hoc review of the discrepancy report + Année Lumière prices still wanted.
+- v2.2 / Phase 12: APPLIED and live-verified 2026-11-23 (12-03) with the autonomy-grant defaults (see Key Decisions v2.2); EK post-hoc review of `12-DISCREPANCY-REPORT.md` + Année Lumière prices still wanted.
 - v2.2 / Phase 13: language of the site chrome (header, footer, cookie banner, order modal) on `/it/menu` and `/zh/menu` is undecided: EN fallback vs minimal IT/ZH strings.
 - Tooling: the v2.0 and v2.1 sections of ROADMAP.md are not collapsed in `<details>`, so `gsd-tools roadmap analyze` counts phases 4–15 as the current milestone (`next_phase` resolves to 06, `phase_count` 12). Explicit `/gsd:*-phase 12` commands are unaffected; run `/gsd:complete-milestone` for v2.0/v2.1 to clean this up.
 - RESOLVED: Google Drive auth — photos are already local (no Drive fetch needed for ig-studio)
@@ -225,9 +234,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ## Session Continuity
 
-Last session: 2026-11-23T19:36:30.313Z
-Stopped at: Completed 12-01-PLAN.md
-Resume: Phase 12 wave 1 in progress (12-01 done; 12-02 transcription + sync script running in parallel). Next is wave 2 = 12-03 (deploy the code, apply the sync, live verify): continue with `/gsd:execute-phase 12`.
+Last session: 2026-11-23T20:20:18.010Z
+Stopped at: Completed 12-03-PLAN.md
+Resume: Phase 12 complete and live (12-01 schema/rendering, 12-02 transcription + sync tool, 12-03 deploy + sync + live verify). Next: Phase 12 verification, then Phase 13 (tourist menu page, IT/ZH locales).
 
 ### Key Decisions Added (v2.0 execution)
 

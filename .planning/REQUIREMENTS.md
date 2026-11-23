@@ -16,12 +16,12 @@
 
 > Source: `.planning/sources/menu-2026/` — `plats-ouvert-360x250mm-print-2026-11-10.pdf` + `boissons-180x250mm-print-2026-11-03.pdf` (latest print, real text layer → `*-print.txt`).
 
-- [ ] **MENU-01**: Every dish, drink, dessert, kids menu and extra from the 2026 print exists in Sanity with the exact FR name, FR description, price(s) and category, in the printed order
-- [ ] **MENU-02**: Items with several prices (3/6/9 pcs, 25cl/50cl, 1/2 boules, verre/bouteille) display every price variant correctly on the web menu _(verified 2026-11-23: « 1/2 boules » is not on the 2026 print — the `scoop` unit is supported but unused; listed for EK)_
-- [ ] **MENU-03**: Items that are no longer on the printed menu are hidden from the web menu (availability off), not deleted
-- [ ] **MENU-04**: EK validates a print-vs-Sanity discrepancy report (added / removed / changed price / changed text) before the sync is published _(autonomy grant 2026-11-23: report applied with documented defaults, EK review post-hoc — see STATE Key Decisions v2.2)_
-- [ ] **MENU-05**: Service notes and markers from the print are carried over and translated: « Le midi seulement » (Udon), « Pour les enfants de moins de 10 ans » (Menu enfant), « Notre best-seller » (Tantan Ramen), « Version végétarienne disponible », « Complétez votre bol avec nos extras » _(verified 2026-11-23: « Version végétarienne disponible » is not on the 2026 print — the `vegetarianOption` badge is supported but unused; listed for EK)_
-- [ ] **MENU-06**: Print placeholders are resolved (autonomy grant 2026-11-23: documented defaults, EK review post-hoc) before publishing — no `??` on the web (Année Lumière 12cl/25cl/50cl prices, Trio dégustation description) — and print typos are confirmed/corrected on the web (e.g. « Asashi » → « Asahi »)
+- [x] **MENU-01**: Every dish, drink, dessert, kids menu and extra from the 2026 print exists in Sanity with the exact FR name, FR description, price(s) and category, in the printed order
+- [x] **MENU-02**: Items with several prices (3/6/9 pcs, 25cl/50cl, 1/2 boules, verre/bouteille) display every price variant correctly on the web menu _(verified 2026-11-23: « 1/2 boules » is not on the 2026 print — the `scoop` unit is supported but unused; listed for EK)_
+- [x] **MENU-03**: Items that are no longer on the printed menu are hidden from the web menu (availability off), not deleted
+- [x] **MENU-04**: EK validates a print-vs-Sanity discrepancy report (added / removed / changed price / changed text) before the sync is published _(autonomy grant 2026-11-23: report applied with documented defaults, EK review post-hoc — see STATE Key Decisions v2.2)_
+- [x] **MENU-05**: Service notes and markers from the print are carried over and translated: « Le midi seulement » (Udon), « Pour les enfants de moins de 10 ans » (Menu enfant), « Notre best-seller » (Tantan Ramen), « Version végétarienne disponible », « Complétez votre bol avec nos extras » _(verified 2026-11-23: « Version végétarienne disponible » is not on the 2026 print — the `vegetarianOption` badge is supported but unused; listed for EK)_
+- [x] **MENU-06**: Print placeholders are resolved (autonomy grant 2026-11-23: documented defaults, EK review post-hoc) before publishing — no `??` on the web (Année Lumière 12cl/25cl/50cl prices, Trio dégustation description) — and print typos are confirmed/corrected on the web (e.g. « Asashi » → « Asahi »)
 
 ### Languages & Routing
 
@@ -77,12 +77,12 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MENU-01 | Phase 12 | Pending |
-| MENU-02 | Phase 12 | Pending |
-| MENU-03 | Phase 12 | Pending |
-| MENU-04 | Phase 12 | Pending |
-| MENU-05 | Phase 12 | Pending |
-| MENU-06 | Phase 12 | Pending |
+| MENU-01 | Phase 12 | Complete |
+| MENU-02 | Phase 12 | Complete |
+| MENU-03 | Phase 12 | Complete |
+| MENU-04 | Phase 12 | Complete |
+| MENU-05 | Phase 12 | Complete |
+| MENU-06 | Phase 12 | Complete |
 | I18N-01 | Phase 13 | Pending |
 | I18N-02 | Phase 13 | Pending |
 | I18N-03 | Phase 13 | Pending |
