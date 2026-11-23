@@ -118,6 +118,21 @@ test('menuOnlyRedirectPath leaves the IT/ZH menu and everything else alone', () 
   }
 });
 
+test('menuOnlyRedirectPath sees through percent-encoded locale prefixes (next-intl matches the decoded path)', () => {
+  assert.equal(menuOnlyRedirectPath('/z%68/infos'), '/en/infos');
+  assert.equal(menuOnlyRedirectPath('/%69t'), '/en');
+  assert.equal(menuOnlyRedirectPath('/%7A%68/menu'), null); // decodes to /zh/menu
+  assert.equal(menuOnlyRedirectPath('/zh/%6Denu'), null); // decodes to /zh/menu
+  assert.equal(menuOnlyRedirectPath('/zh/%6Denu/qr'), null);
+});
+
+test('menuOnlyRedirectPath keeps the rest of the path exactly as received and never throws on bad escapes', () => {
+  assert.equal(menuOnlyRedirectPath('/zh/%69nfos'), '/en/%69nfos');
+  assert.equal(menuOnlyRedirectPath('/zh/100%25'), '/en/100%25');
+  assert.equal(menuOnlyRedirectPath('/zh/%E0%A4%A'), '/en/%E0%A4%A');
+  assert.equal(menuOnlyRedirectPath('/%E0%A4%A/infos'), null);
+});
+
 // ---------------------------------------------------------------------------
 // Locale -> attribute mappings
 // ---------------------------------------------------------------------------

@@ -88,17 +88,30 @@ export function ogLocale(locale: string): string {
   }
 }
 
+/** decodeURI that never throws (a malformed escape is left as received). */
+function safeDecode(value: string): string {
+  try {
+    return decodeURI(value);
+  } catch {
+    return value;
+  }
+}
+
 /**
  * The proxy rule. `pathname` is the full request pathname (no query).
  * Returns the path to redirect to when it is a non-menu IT/ZH path
  * ('/it' -> '/en', '/zh/infos' -> '/en/infos'), otherwise null.
  * The caller keeps the query string itself.
+ *
+ * The decision looks at the DECODED segments, because next-intl matches the locale
+ * prefix on the decoded pathname ('/z%68/infos' is '/zh/infos' for it). The returned
+ * path keeps the rest of the pathname exactly as received.
  */
 export function menuOnlyRedirectPath(pathname: string): string | null {
   const match = /^\/([^/]+)(\/.*)?$/.exec(pathname);
-  if (!match || !isMenuOnlyLocale(match[1])) return null;
+  if (!match || !isMenuOnlyLocale(safeDecode(match[1]))) return null;
   const rest = match[2] ?? '';
-  if (isMenuPath(rest)) return null;
+  if (isMenuPath(safeDecode(rest))) return null;
   return '/' + MENU_FALLBACK_LOCALE + (rest === '/' ? '' : rest);
 }
 
