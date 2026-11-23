@@ -54,7 +54,21 @@
     "extrasTitle": "Extras",
     "formulesTitle": "Unsere Menüs",
     "eazeeLinkCta": "Vollständige Karte ansehen",
-    "includes": "Enthält"
+    "includes": "Enthält",
+    "sectionFood": "Speisen",
+    "sectionDrinks": "Getränke",
+    "priceOnRequest": "Preis auf Anfrage",
+    "badge": {
+      "bestseller": "Unser Bestseller",
+      "vegetarianOption": "Vegetarische Variante erhältlich"
+    },
+    "unit": {
+      "pcs": "{count} Stk.",
+      "scoop": "{count, plural, one {# Kugel} other {# Kugeln}}"
+    },
+    "intro": "Genießen Sie unsere handgemachten Ramen, hausgemacht von der Brühe bis zu den Weizennudeln (Hähnchen aus dem Elsass und Mehl aus der Mühle von Sarralbe).",
+    "allergens": "Eine Liste der Allergene ist auf Anfrage erhältlich.",
+    "serviceIncluded": "Bedienung inbegriffen"
   },
   "reservation": {
     "title": "Tisch reservieren",

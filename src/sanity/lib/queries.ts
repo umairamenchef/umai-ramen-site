@@ -12,13 +12,20 @@ export const MENU_CATEGORIES_QUERY = defineQuery(`
     _id,
     name,
     slug,
+    nameJp,
+    section,
     description,
+    footnote,
     "items": *[_type == "menuItem" && references(^._id) && available == true] | order(order asc) {
       _id,
       name,
       nameJp,
       description,
       price,
+      prices[]{ _key, quantity, unit, label, price },
+      priceOnRequest,
+      badges,
+      subgroup,
       image,
       isVegetarian,
       isGlutenFree
@@ -33,7 +40,7 @@ export const MENU_EXTRAS_QUERY = defineQuery(`
 `);
 
 export const MENU_FORMULES_QUERY = defineQuery(`
-  *[_type == "menuFormule"] | order(order asc) {
+  *[_type == "menuFormule" && available != false] | order(order asc) {
     _id, name, price, description, includedItems
   }
 `);
@@ -52,13 +59,13 @@ export const HOMEPAGE_QUERY = defineQuery(`
     "settings": *[_type == "siteSettings"][0]{
       catchphrase, heroImage, reservationUrl, uberEatsUrl, obypayUrl, socialLinks
     },
-    "menuCategories": *[_type == "menuCategory"] | order(order asc) [0...3]{
-      _id, name, slug, "image": *[_type == "menuItem" && references(^._id) && available == true && defined(image)][0].image
+    "menuCategories": *[_type == "menuCategory" && count(*[_type == "menuItem" && references(^._id) && available == true]) > 0] | order(order asc) [0...3]{
+      _id, name, slug, nameJp, "image": *[_type == "menuItem" && references(^._id) && available == true && defined(image)][0].image
     },
     "galleryPreview": *[_type == "gallery"] | order(order asc) [0...6]{
       _id, title, alt, image
     },
-    "signature": *[_type == "menuItem" && name.fr == "Tantan Ramen"][0]{ price }
+    "signature": *[_type == "menuItem" && name.fr == "Tantan Ramen" && available == true][0]{ price }
   }
 `);
 

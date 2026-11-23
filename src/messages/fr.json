@@ -54,7 +54,21 @@
     "extrasTitle": "Extras",
     "formulesTitle": "Nos Formules",
     "eazeeLinkCta": "Consulter la carte complète",
-    "includes": "Comprend"
+    "includes": "Comprend",
+    "sectionFood": "Plats",
+    "sectionDrinks": "Boissons",
+    "priceOnRequest": "Prix sur demande",
+    "badge": {
+      "bestseller": "Notre best-seller",
+      "vegetarianOption": "Version végétarienne disponible"
+    },
+    "unit": {
+      "pcs": "{count} pcs",
+      "scoop": "{count, plural, one {# boule} other {# boules}}"
+    },
+    "intro": "Dégustez nos ramens artisanaux faits maison, du bouillon aux nouilles de blé (poulet alsacien et farine du moulin de Sarralbe).",
+    "allergens": "Une liste des allergènes est disponible sur demande.",
+    "serviceIncluded": "Prix service compris"
   },
   "reservation": {
     "title": "Réserver une table",

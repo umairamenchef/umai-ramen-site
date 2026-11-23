@@ -54,7 +54,21 @@
     "extrasTitle": "Extras",
     "formulesTitle": "Our Set Menus",
     "eazeeLinkCta": "View the full menu",
-    "includes": "Includes"
+    "includes": "Includes",
+    "sectionFood": "Food",
+    "sectionDrinks": "Drinks",
+    "priceOnRequest": "Price on request",
+    "badge": {
+      "bestseller": "Our best-seller",
+      "vegetarianOption": "Vegetarian version available"
+    },
+    "unit": {
+      "pcs": "{count} pcs",
+      "scoop": "{count, plural, one {# scoop} other {# scoops}}"
+    },
+    "intro": "Enjoy our handcrafted ramen, made in-house from the broth to the wheat noodles (Alsatian chicken and flour from the Sarralbe mill).",
+    "allergens": "A list of allergens is available on request.",
+    "serviceIncluded": "Service included"
   },
   "reservation": {
     "title": "Reserve a table",
