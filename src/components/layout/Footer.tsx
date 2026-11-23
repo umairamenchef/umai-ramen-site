@@ -1,5 +1,6 @@
 import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { siteLocaleFor } from '@/i18n/locales';
 import { Logo } from '@/components/ui/Logo';
 import { OrderButton } from '@/components/order/OrderButton';
 import type { OrderUrls } from '@/components/order/OrderModal';
@@ -13,6 +14,11 @@ interface FooterProps {
 export function Footer({ reservationUrl, orderUrls }: FooterProps) {
   const tCommon = useTranslations('common');
   const tNav = useTranslations('nav');
+  const tFooter = useTranslations('footer');
+  // IT/ZH are menu-only: links to non-menu pages go straight to /en (no redirect hop).
+  // The « Menu » link carries no locale prop, so it stays on /it/menu or /zh/menu.
+  const locale = useLocale();
+  const siteLocale = siteLocaleFor(locale);
 
   return (
     <footer className="bg-umai-black text-umai-bg relative overflow-hidden">
@@ -31,6 +37,7 @@ export function Footer({ reservationUrl, orderUrls }: FooterProps) {
           <div>
             <Link
               href="/"
+              locale={siteLocale}
               className="block mb-4 hover:opacity-70 transition-opacity duration-200"
               aria-label={tCommon('siteTitle')}
             >
@@ -43,9 +50,9 @@ export function Footer({ reservationUrl, orderUrls }: FooterProps) {
 
           {/* Column 2: Contact */}
           <div>
-            <h5 className="font-body text-xs uppercase tracking-[0.1em] text-umai-white opacity-60 mb-5">
-              Contact
-            </h5>
+            <h2 className="font-body text-xs uppercase tracking-[0.1em] text-umai-white opacity-60 mb-5">
+              {tFooter('contact')}
+            </h2>
             <ul className="space-y-2.5">
               <li>
                 <a
@@ -77,9 +84,9 @@ export function Footer({ reservationUrl, orderUrls }: FooterProps) {
 
           {/* Column 3: Navigation */}
           <div>
-            <h5 className="font-body text-xs uppercase tracking-[0.1em] text-umai-white opacity-60 mb-5">
-              Navigation
-            </h5>
+            <h2 className="font-body text-xs uppercase tracking-[0.1em] text-umai-white opacity-60 mb-5">
+              {tFooter('navigation')}
+            </h2>
             <ul className="space-y-2.5">
               <li>
                 <Link
@@ -92,6 +99,7 @@ export function Footer({ reservationUrl, orderUrls }: FooterProps) {
               <li>
                 <Link
                   href="/notre-histoire"
+                  locale={siteLocale}
                   className="font-body text-sm text-umai-bg/60 hover:text-umai-accent transition-colors duration-200"
                 >
                   {tNav('history')}
@@ -118,6 +126,7 @@ export function Footer({ reservationUrl, orderUrls }: FooterProps) {
               <li>
                 <Link
                   href="/infos"
+                  locale={siteLocale}
                   className="font-body text-sm text-umai-bg/60 hover:text-umai-accent transition-colors duration-200"
                 >
                   {tNav('infos')}
@@ -126,6 +135,7 @@ export function Footer({ reservationUrl, orderUrls }: FooterProps) {
               <li>
                 <Link
                   href="/galerie"
+                  locale={siteLocale}
                   className="font-body text-sm text-umai-bg/60 hover:text-umai-accent transition-colors duration-200"
                 >
                   {tNav('gallery')}
@@ -136,9 +146,9 @@ export function Footer({ reservationUrl, orderUrls }: FooterProps) {
 
           {/* Column 4: Social + Legal */}
           <div>
-            <h5 className="font-body text-xs uppercase tracking-[0.1em] text-umai-white opacity-60 mb-5">
-              Suivez-nous
-            </h5>
+            <h2 className="font-body text-xs uppercase tracking-[0.1em] text-umai-white opacity-60 mb-5">
+              {tFooter('followUs')}
+            </h2>
             <ul className="space-y-2.5 mb-8">
               <li>
                 <a
@@ -165,33 +175,37 @@ export function Footer({ reservationUrl, orderUrls }: FooterProps) {
               <li>
                 <Link
                   href="/mentions-legales"
+                  locale={siteLocale}
                   className="font-body text-xs text-umai-bg/40 hover:text-umai-accent transition-colors duration-200"
                 >
-                  Mentions légales
+                  {tFooter('legalNotice')}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/politique-confidentialite"
+                  locale={siteLocale}
                   className="font-body text-xs text-umai-bg/40 hover:text-umai-accent transition-colors duration-200"
                 >
-                  Politique de confidentialité
+                  {tFooter('privacy')}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/politique-cookies"
+                  locale={siteLocale}
                   className="font-body text-xs text-umai-bg/40 hover:text-umai-accent transition-colors duration-200"
                 >
-                  Politique cookies
+                  {tFooter('cookies')}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/cgv"
+                  locale={siteLocale}
                   className="font-body text-xs text-umai-bg/40 hover:text-umai-accent transition-colors duration-200"
                 >
-                  CGV
+                  {tFooter('terms')}
                 </Link>
               </li>
             </ul>
@@ -201,7 +215,7 @@ export function Footer({ reservationUrl, orderUrls }: FooterProps) {
         {/* Bottom bar */}
         <div className="border-t border-umai-white/10 pt-6 text-center">
           <p className="font-body text-xs text-umai-bg/40">
-            © 2026 UMAI Ramen. Tous droits réservés.
+            {tFooter('rights')}
           </p>
         </div>
       </div>

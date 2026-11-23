@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { siteLocaleFor } from '@/i18n/locales';
 import { Button, buttonClasses } from '@/components/ui/Button';
 import { OrderButton } from '@/components/order/OrderButton';
 import type { OrderUrls } from '@/components/order/OrderModal';
@@ -19,6 +20,10 @@ export function Header({ reservationUrl, orderUrls }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const tCommon = useTranslations('common');
   const tNav = useTranslations('nav');
+  // IT/ZH are menu-only: links to non-menu pages go straight to /en (no redirect hop).
+  // The « Menu » link carries no locale prop, so it stays on /it/menu or /zh/menu.
+  const locale = useLocale();
+  const siteLocale = siteLocaleFor(locale);
 
   return (
     <>
@@ -34,12 +39,14 @@ export function Header({ reservationUrl, orderUrls }: HeaderProps) {
             </Link>
             <Link
               href="/notre-histoire"
+              locale={siteLocale}
               className="font-body text-sm uppercase tracking-widest font-medium text-umai-text hover:text-umai-accent transition-colors duration-200"
             >
               {tNav('history')}
             </Link>
             <Link
               href="/infos"
+              locale={siteLocale}
               className="font-body text-sm uppercase tracking-widest font-medium text-umai-text hover:text-umai-accent transition-colors duration-200"
             >
               {tNav('infos')}
@@ -50,6 +57,7 @@ export function Header({ reservationUrl, orderUrls }: HeaderProps) {
           <div className="absolute left-1/2 -translate-x-1/2">
             <Link
               href="/"
+              locale={siteLocale}
               className="block hover:opacity-70 transition-opacity duration-200"
               aria-label={tCommon('siteTitle')}
             >

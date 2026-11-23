@@ -1,14 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import { siteLocaleFor } from '@/i18n/locales';
 import { getConsent, setConsent, updateGtagConsent } from '@/lib/consent';
 
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
   const t = useTranslations('consent');
+  // The cookie policy is a site page: from the menu-only IT/ZH locales it lives under /en.
+  const locale = useLocale();
 
   useEffect(() => {
     const existing = getConsent();
@@ -44,6 +47,7 @@ export function CookieBanner() {
           {t('message')}{' '}
           <Link
             href="/politique-cookies"
+            locale={siteLocaleFor(locale)}
             className="underline hover:text-umai-accent transition-colors"
           >
             {t('moreInfo')}

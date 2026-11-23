@@ -3,7 +3,8 @@
 import { useEffect } from 'react';
 import { AnimatePresence, m } from 'motion/react';
 import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { siteLocaleFor } from '@/i18n/locales';
 import { Button, buttonClasses } from '@/components/ui/Button';
 import { OrderButton } from '@/components/order/OrderButton';
 import type { OrderUrls } from '@/components/order/OrderModal';
@@ -20,6 +21,9 @@ interface MobileMenuProps {
 export function MobileMenu({ isOpen, onClose, reservationUrl, orderUrls }: MobileMenuProps) {
   const tCommon = useTranslations('common');
   const tNav = useTranslations('nav');
+  // IT/ZH are menu-only: links to non-menu pages go straight to /en (no redirect hop).
+  const locale = useLocale();
+  const siteLocale = siteLocaleFor(locale);
 
   // Close on Escape key
   useEffect(() => {
@@ -39,11 +43,12 @@ export function MobileMenu({ isOpen, onClose, reservationUrl, orderUrls }: Mobil
     };
   }, [isOpen, onClose]);
 
+  // siteOnly: the page does not exist in IT/ZH (menu-only locales). The menu link stays on the current locale.
   const navLinks = [
-    { label: tNav('menu'), href: '/menu' },
-    { label: tNav('history'), href: '/notre-histoire' },
-    { label: tNav('gallery'), href: '/galerie' },
-    { label: tNav('infos'), href: '/infos' },
+    { label: tNav('menu'), href: '/menu', siteOnly: false },
+    { label: tNav('history'), href: '/notre-histoire', siteOnly: true },
+    { label: tNav('gallery'), href: '/galerie', siteOnly: true },
+    { label: tNav('infos'), href: '/infos', siteOnly: true },
   ];
 
   return (
@@ -78,6 +83,7 @@ export function MobileMenu({ isOpen, onClose, reservationUrl, orderUrls }: Mobil
                 <li key={link.href}>
                   <Link
                     href={link.href}
+                    locale={link.siteOnly ? siteLocale : undefined}
                     className="font-display text-3xl uppercase tracking-[0.08em] text-umai-text hover:text-umai-accent transition-colors duration-200"
                     onClick={onClose}
                   >

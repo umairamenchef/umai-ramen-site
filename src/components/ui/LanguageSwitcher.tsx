@@ -2,18 +2,15 @@
 
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/navigation';
-import { routing } from '@/i18n/routing';
-
-const localeLabels: Record<string, string> = {
-  fr: 'FR',
-  en: 'EN',
-  de: 'DE',
-};
+import { FULL_SITE_LOCALES, LOCALE_LABELS } from '@/i18n/locales';
 
 interface LanguageSwitcherProps {
   className?: string;
 }
 
+// IT/ZH are menu-only: they live in the menu page's MenuLanguageSwitcher, never here
+// (a header link to /it or /zh from any other page would redirect away). On /it/menu and
+// /zh/menu no button is active, and FR / EN / DE go to /{locale}/menu.
 export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
   const locale = useLocale();
   const router = useRouter();
@@ -25,7 +22,7 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
 
   return (
     <div className={`flex items-center gap-2 font-body text-xs font-medium tracking-widest ${className}`}>
-      {routing.locales.map((loc, index) => (
+      {FULL_SITE_LOCALES.map((loc, index) => (
         <span key={loc} className="flex items-center gap-2">
           <button
             type="button"
@@ -35,12 +32,12 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
                 ? 'text-umai-accent border-b border-umai-accent'
                 : 'text-umai-text-muted hover:text-umai-text'
             }`}
-            aria-label={`Switch to ${localeLabels[loc]}`}
+            aria-label={`Switch to ${LOCALE_LABELS[loc]}`}
             aria-current={loc === locale ? 'true' : undefined}
           >
-            {localeLabels[loc]}
+            {LOCALE_LABELS[loc]}
           </button>
-          {index < routing.locales.length - 1 && (
+          {index < FULL_SITE_LOCALES.length - 1 && (
             <span className="text-umai-line" aria-hidden="true">
               |
             </span>
