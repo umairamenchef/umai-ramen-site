@@ -2,14 +2,13 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: Ready to plan
+status: Executing Phase 13
 stopped_at: Completed 12-03-PLAN.md
-last_updated: "2026-11-23T20:38:06.684Z"
-last_activity: 2026-11-23
+last_updated: "2026-11-23T21:10:47.817Z"
 progress:
   total_phases: 12
   completed_phases: 4
-  total_plans: 13
+  total_plans: 15
   completed_plans: 12
 ---
 
@@ -20,13 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
 **Core value (v2.2):** A foreign tourist scans a QR code and reads the 2026 menu in their language (EN/DE/IT/ZH), with the FR dish name always visible for ordering.
-**Current focus:** Phase 12 — Synchronisation menu print 2026 → Sanity
+**Current focus:** Phase 13 — Fondations multilingues & page menu touriste
 
 ## Current Position
 
-Phase: 13
-Plan: Not started
-Last activity: 2026-11-23
+Phase: 13 (Fondations multilingues & page menu touriste) — EXECUTING
+Plan: 1 of 3
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
