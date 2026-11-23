@@ -1,0 +1,77 @@
+{
+  "exportedAt": "2026-11-23T22:26:37.506Z",
+  "projectId": "c7twe801",
+  "dataset": "production",
+  "documents": [
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-karaage",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-entrees",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Poulet mariné et frit maison"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Karaage"
+      },
+      "nameJp": "唐揚げ",
+      "order": 10,
+      "price": 5.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 5.5,
+          "quantity": 3,
+          "unit": "pcs"
+        },
+        {
+          "_key": "v1",
+          "_type": "priceVariant",
+          "price": 9.9,
+          "quantity": 6,
+          "unit": "pcs"
+        },
+        {
+          "_key": "v2",
+          "_type": "priceVariant",
+          "price": 13.9,
+          "quantity": 9,
+          "unit": "pcs"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "karaage"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-entrees",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "name": {
+        "_type": "localeString",
+        "fr": "Entrées"
+      },
+      "nameJp": "前菜",
+      "order": 10,
+      "section": "food",
+      "slug": {
+        "_type": "slug",
+        "current": "entrees-2026"
+      }
+    }
+  ]
+}
