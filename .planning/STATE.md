@@ -2,16 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: planning
-stopped_at: Roadmap v2.2 written (Phases 12–15, 22/22 requirements mapped) — ready to plan Phase 12
-last_updated: "2026-11-23T00:00:00.000Z"
-last_activity: 2026-11-23 — Roadmap v2.2 created (4 phases, 22/22 requirements mapped)
+status: Executing Phase 12
+stopped_at: Completed 12-01-PLAN.md
+last_updated: "2026-11-23T19:36:30.320Z"
 progress:
-  total_phases: 4
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  total_phases: 12
+  completed_phases: 3
+  total_plans: 12
+  completed_plans: 10
 ---
 
 # Project State
@@ -21,19 +19,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
 **Core value (v2.2):** A foreign tourist scans a QR code and reads the 2026 menu in their language (EN/DE/IT/ZH), with the FR dish name always visible for ordering.
-**Current focus:** v2.2 — Phase 12: Synchronisation menu print 2026 → Sanity (ready to plan)
+**Current focus:** Phase 12 — Synchronisation menu print 2026 → Sanity
 
 ## Current Position
 
-Phase: 12 — Synchronisation menu print 2026 → Sanity (1 of 4 in v2.2) — not started (ready to plan)
-Plan: —
-Status: Ready to plan
-Last activity: 2026-11-23 — Roadmap v2.2 created: Phases 12–15, 22/22 requirements mapped
-Next action: `/gsd:discuss-phase 12` (settle the price-variant model, the notes/markers model and the fallback for the `??` placeholders) or `/gsd:plan-phase 12`
-
-Progress: [░░░░░░░░░░] 0% (v2.2: 0/4 phases)
+Phase: 12 (Synchronisation menu print 2026 → Sanity) — EXECUTING
+Plan: 2 of 3
+Last activity: 2026-11-23 — 12-01 complete (schema + FR rendering + tested `src/lib/menu.ts`, commits de19c2f..4f77dfc, not deployed); 12-02 (transcription + sync script) running in parallel; 12-03 (deploy, apply sync, live verify) is wave 2
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
+
 - EN/DE i18n leaks fixed (reservation microcopy + Infos FAQ ×3) ✓
 - og-image.jpg 1200×630 on-brand created — 404→200 ✓ (fallback; EK may replace with a photo)
 - DEBT-02 bundle-analyzer wired (ANALYZE=true) ✓ COMPLETE
@@ -43,31 +38,37 @@ Progress: [░░░░░░░░░░] 0% (v2.2: 0/4 phases)
 - Decisions from EK: canonical = apex umai-ramen.fr (www→apex 301); catchphrase localized EN/DE; og fallback approved
 
 ### Legal pages FILLED (commit 7a34316, verified live)
+
 - Registry-verified MOKORITA SAS data (SIREN 892 691 619, capital 20 000 €, RCS Strasbourg, APE 5610A) via annuaire-entreprises.data.gouv.fr; directeur de publication Christopher Keopraseuth (DG & co-fondateur, per EK); hébergeur Hostinger; contact@umai-ramen.fr. FR/EN/DE. → CONTENT-04 COMPLETE.
 - OPEN (minor confirms, non-blocking): EK-SARL treatment (affiliation vs distinct éditeur entity needing its own SIREN); confirm contact@umai-ramen.fr mailbox exists.
 
 ### Content populated autonomously 2026-07-14 (Sanity production, via write token)
+
 - **Gallery**: was NOT empty (9 `gallery` docs — earlier "0" was a wrong-type query on `galleryImage`). Renders live ✓.
 - **Notre Histoire**: 4 sections had no images → uploaded 4 Nis&For photos (umai_009 passion, umai_001 fait-maison, umai_013 intérieur, umai_011 équipe) + patched `page-notre-histoire`. (Page schema has NO heroImage field — the "missing hero" finding was a false positive.)
 - **Menu photos**: 13→**14/17**. Attached umai_064 (crémeux matcha) to `item-panna-cotta`. Remaining 3 without photos (Edamame, Mochi glacé, Tiramisu Framboise-Litchi) — no accurate Nis&For match; left empty rather than mismatched. EK to supply if wanted.
 - **EK SARL** added to directeur-de-publication line (commit 11a86ea).
 
 ### Menu FULLY REBUILT from eazee-link (2026-07-14, CONTENT-02 done, verified live)
+
 - Source of truth = eazee-link current menu (sticker GIK39GHKQZ, API api-menu.vazeetap.com). Cross-checked vs summer-2026 PDF + relecture PDF.
 - Old 17-item menu was heavily outdated (phantom dishes Tori Paitan/Shoyu/Shio Ramen/Panna Cotta; wrong prices ~everywhere; ~25 dishes missing).
 - Rebuilt: **167 menuItems + 26 menuCategories** (food + desserts + menus + extras + full drinks), correct FR names/prices/descriptions, categories FR/EN/DE. Item names en/de = fr; item descriptions FR-only (localized() fallback) → EN/DE translations are the "edit later" part. Tags (veg/GF) heuristic — refine in Studio.
 - Old items + cat-soba deleted. Panna-cotta photo asset now orphaned (harmless).
 
 ### Order popup shipped 2026-07-14 (commit 957e4d3, verified live)
+
 - "Commander" opens a 3-choice modal: Livraison (Uber Eats) / À emporter (obypay) / Click & Collect (Flipdish). Components `src/components/order/{OrderModal,OrderButton}.tsx`; wired Header/MobileBar/Footer/MobileMenu; URLs from Sanity siteSettings (added `obypayUrl` field+value); i18n `orderModal` FR/EN/DE.
 - **Hero CTA → modal DONE** (commit d85b741, verified live): HOME query fetches obypayUrl+clickCollectUrl; Hero takes `orderUrls` + renders `OrderButton` (outline-white). 0 direct uber-anchors on `/fr`. ✓
 
 ### Carte d'été corrigée depuis le texte de Loan — 2026-07-17 (commit 25468c7, live)
+
 - `src/data/summerMenu2026.ts` corrigé d'après le retour de Loan (source de vérité) : **Ramen** « Shoyu Ramen »→**Tokyo** (+ intro huile de niboshi, Yuzu redécrit) ; **Tantan** descriptions complètes (lait soja, daikon, cacahuètes, 🌶️) + **mention végé RETIRÉE** du Tantan Ramen (erronée) + note piment ; **Mazesoba** intro + descs ; **Tsukemen** « Gyokai »→**Noukou Gyokai**, Miso/Curry corrigés, note Ⓥ perso. Modèle enrichi : `Dish.note` + `Section.footnote`. Prix inchangés (tous corrects). i18n `carteEte.vegOption` désormais inutilisé (inoffensif, dans le blob next-intl, non rendu).
 - **PDF récap produit** pour Loan/maquettiste (charte Umaï, 1 page A4) — fichier éphémère dans scratchpad `UMAI_carte-ete_corrections_Loan.pdf`, régénérable via `scratchpad/correctif.html` + Chrome `--print-to-pdf`.
 - ⚠️ **OUVERT** : (1) le **PDF imprimable** `public/carte-ete-umai-2026.pdf` a ENCORE l'ancien texte (Shoyu/Gyokai/descs courtes/végé) → à **re-exporter** côté maquette puis swap sur le site ; (2) EK à décider : **retirer le bouton « Télécharger le PDF »** de `/carte-ete` en attendant ? (non tranché) ; (3) descriptions carte été = FR only (EN/DE fallback).
 
 ### 🚀 GO-LIVE DONE — 2026-07-16: umai-ramen.fr cut over to the VPS (new site LIVE)
+
 - **DNS (Gandi LiveDNS, EK executed)**: apex `@` + `www` A → `76.13.61.239` (TTL 300). Removed the 4 GitHub Pages A records + the www→github.io CNAME. **MX/SPF/SRV/webmail untouched** (email intact). NS unchanged (Gandi LiveDNS). Google/Cloudflare already resolve to the VPS within minutes.
 - **VPS (me)**: base URL flipped `NEXT_PUBLIC_BASE_URL=https://umai-ramen.fr` in docker-compose.yml build-arg + .env.local, web rebuilt (canonical/sitemap/robots/OG now umai-ramen.fr). Caddy: added `umai-ramen.fr` (→web:3000) + `www.umai-ramen.fr` (301→apex) blocks, validated + reloaded; auto TLS (Let's Encrypt) obtained in ~8s. Host backups: `docker-compose.yml.bak-cutover`, `.env.local.bak-cutover`, `Caddyfile.bak-cutover`.
 - **Verified live on umai-ramen.fr**: FR/EN/DE pages 200, www→apex 301, `/`→`/fr` 307, valid TLS, canonical/sitemap/robots = umai-ramen.fr, JSON-LD present, Commander/Réserver present, `/ig-studio` gated (307→login). CUTOVER-01..06 ✅.
@@ -95,9 +96,11 @@ Progress: [░░░░░░░░░░] 0% (v2.2: 0/4 phases)
 - Signature query uses exact `==` (not full-text `match`) for build determinism. Note: React renders price as `14,90<!-- --> €` (comment splits number/€) — grep `"NN,NN €"` will miss it; grep the number alone.
 
 ### ▶ HANDOFF: full resume instructions in `.planning/RESUME-PROMPT.md`
+
 Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, Tantan signature highlight, summer-menu promo), (3) DEBT-01/03/04, (4) menu EN/DE translations + tags + photos (edit-later), (5) CUTOVER on "go cutover".
 
 ### Still needs EK (validation/refinement only — non-blocking)
+
 - Confirm contact@umai-ramen.fr mailbox active.
 - EN/DE menu translations (names+descriptions) — currently FR fallback.
 - Veg/gluten-free tags per item (set heuristically).
@@ -111,7 +114,11 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 
 ## Performance Metrics
 
-**v2.2 velocity:** Not yet measured.
+**v2.2 velocity:**
+
+| Plan | Duration | Tasks | Files |
+|------|----------|-------|-------|
+| 12-01 | 13min | 3 | 16 |
 
 **v2.1 velocity:** Not yet measured.
 
@@ -139,6 +146,9 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - **AUTONOMY GRANT (EK, 2026-11-23): « Avance en autonome jusqu'à livraison déployé »** — Claude drives Phases 12→15 through production deploy without blocking on EK. EK gates are replaced by documented defaults + post-hoc review: (a) Année Lumière → « Prix sur demande » (translatable) until EK gives 12cl/25cl/50cl prices; (b) Trio dégustation description → BAT text « Trois sakés sélectionnés par notre équipe. »; (c) obvious typos fixed on web (« Asashi » → « Asahi »); (d) discrepancy report applied, kept in the phase folder and handed to EK; (e) full JSON export of Sanity menu documents BEFORE any production write (rollback); hide (available=false), never delete.
 - Phase 13 site-chrome default (decided under the autonomy grant): on `/it/menu` and `/zh/menu`, header/footer/cookie banner/order modal use minimal IT/ZH strings where they exist in the message files, EN fallback otherwise (to be finalized in Phase 13 context).
 - Phase 15 default: table tent = A6 (105×148 mm) flat card, recto/verso, PDF with 3 mm bleed (EK can switch to folded later).
+- Phase 12-01 (display rules, in the import-free `src/lib/menu.ts`, 29 node:test cases): `priceOnRequest` wins over any stored price; 2+ priced variants render as a list under the description; exactly one renders as a single price with its quantity before the amount (« 33cl 5,90 € »); variants without a numeric price are ignored.
+- Phase 12-01: categories without visible items are dropped from the menu page, the sticky nav and the JSON-LD alike, all sharing the `groupBySection` order (Plats, Boissons, unsectioned). The home « Notre Menu » cards = first 3 categories by `order` with visible items (no photo = accent block with the category JP label); the signature price = visible « Tantan Ramen » only; formules hide with `available != false`.
+- Phase 12-01: REQUIREMENTS.md MENU-01/02/03/05/06 are left Pending on purpose after 12-01 (capability delivered and render-tested, but the requirements describe the live menu): tick them after 12-03 proves the live outcome.
 
 ### Key Decisions (v2.1)
 
@@ -188,6 +198,7 @@ plus rien**. Dernier deploy automatique réussi : 2026-07-16T16:37Z. Le VPS éta
 2 commits en arrière (25468c7) jusqu'au 2026-09-02.
 
 **Deploy manuel en attendant** :
+
 ```
 ssh umai-app 'cd /home/ek/apps/umai && git fetch origin v2-2026 && git reset --hard origin/v2-2026 && docker compose -p umai up -d --build web'
 ```
@@ -214,9 +225,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ## Session Continuity
 
-Last session: 2026-11-23
-Stopped at: Roadmap v2.2 written (Phases 12–15). REQUIREMENTS.md traceability filled (22/22). STATE.md updated.
-Resume: Run `/gsd:discuss-phase 12` (or `/gsd:plan-phase 12`) for Phase 12 (Synchronisation menu print 2026 → Sanity).
+Last session: 2026-11-23T19:36:30.313Z
+Stopped at: Completed 12-01-PLAN.md
+Resume: Phase 12 wave 1 in progress (12-01 done; 12-02 transcription + sync script running in parallel). Next is wave 2 = 12-03 (deploy the code, apply the sync, live verify): continue with `/gsd:execute-phase 12`.
 
 ### Key Decisions Added (v2.0 execution)
 
