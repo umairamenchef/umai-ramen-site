@@ -1,0 +1,42 @@
+{
+  "license": "SIL OFL 1.1 (see OFL-*.txt)",
+  "fonts": [
+    {
+      "family": "Outfit",
+      "weight": 400,
+      "file": "Outfit-400.ttf",
+      "bytes": 47844,
+      "sha256": "6a8c9be856a6b9e09c66615634904616152c9de5e44db343a3ced240479c586a",
+      "source": "https://fonts.googleapis.com/css2?family=Outfit:wght@400",
+      "url": "https://fonts.gstatic.com/s/outfit/v15/QGYyz_MVcBeNP4NjuGObqx1XmO1I4TC1C4E.ttf"
+    },
+    {
+      "family": "Outfit",
+      "weight": 600,
+      "file": "Outfit-600.ttf",
+      "bytes": 48456,
+      "sha256": "8900df5726b5a6f23e723594f11d5ea27e695bd85c884f18d88ed080544fe205",
+      "source": "https://fonts.googleapis.com/css2?family=Outfit:wght@600",
+      "url": "https://fonts.gstatic.com/s/outfit/v15/QGYyz_MVcBeNP4NjuGObqx1XmO1I4e6yC4E.ttf"
+    },
+    {
+      "family": "DM Serif Display",
+      "weight": 400,
+      "file": "DMSerifDisplay-400.ttf",
+      "bytes": 70348,
+      "sha256": "c03775f8cc3db88cfea259b231abe13f94e6a3d3cb01c09477a2e42a1f5919e1",
+      "source": "https://fonts.googleapis.com/css2?family=DM+Serif+Display",
+      "url": "https://fonts.gstatic.com/s/dmserifdisplay/v17/-nFnOHM81r4j6k0gjAW3mujVU2B2K_c.ttf"
+    },
+    {
+      "family": "Noto Sans SC",
+      "weight": 600,
+      "file": "NotoSansSC-600-subset.ttf",
+      "bytes": 3740,
+      "sha256": "49950c5fa56c69023c56d37fc1c8c68a707a1418d3a6e14e536a8c5864dd6e64",
+      "source": "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@600&text=%E4%B8%AD%E5%8D%95%E6%89%8B%E6%89%AB%E6%96%87%E6%9C%BA%E7%94%A8%E7%9B%B8%E7%A0%81%E8%8F%9C",
+      "url": "https://fonts.gstatic.com/l/font?kit=k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGwHCnYxVdhBrUZXEZdHlpKxj_yLHp4mJALukf4iJt0Ap2HDPRw&skey=cf0bb10b5602fdc3&v=v41",
+      "text": "中单手扫文机用相码菜"
+    }
+  ]
+}
