@@ -1,0 +1,581 @@
+{
+  "version": 1,
+  "section": "food",
+  "categories": {
+    "entrees": {
+      "name": {
+        "fr": "Entrées",
+        "en": "Starters",
+        "de": "Vorspeisen",
+        "it": "Antipasti",
+        "zh": "小吃"
+      }
+    },
+    "tantan-umai": {
+      "name": {
+        "fr": "Tantan Umaï",
+        "en": "Tantan Umaï",
+        "de": "Tantan Umaï",
+        "it": "Tantan Umaï",
+        "zh": "Tantan Umaï（担担面）"
+      },
+      "description": {
+        "fr": "Nos spécialités à base de sésame blanc.",
+        "en": "Our specialities made with white sesame.",
+        "de": "Unsere Spezialitäten mit weißem Sesam.",
+        "it": "Le nostre specialità a base di sesamo bianco.",
+        "zh": "本店以白芝麻为基础的招牌料理。"
+      }
+    },
+    "ramen": {
+      "name": {
+        "fr": "Ramen",
+        "en": "Ramen",
+        "de": "Ramen",
+        "it": "Ramen",
+        "zh": "Ramen（拉面）"
+      },
+      "description": {
+        "fr": "Nouilles en bouillon.",
+        "en": "Noodles in broth.",
+        "de": "Nudeln in Brühe.",
+        "it": "Noodles in brodo.",
+        "zh": "带汤的面条。"
+      }
+    },
+    "mazesoba": {
+      "name": {
+        "fr": "Mazesoba",
+        "en": "Mazesoba",
+        "de": "Mazesoba",
+        "it": "Mazesoba",
+        "zh": "Mazesoba（日式拌面）"
+      },
+      "description": {
+        "fr": "Nouilles à mélanger, sans bouillon.",
+        "en": "Noodles to mix, without broth.",
+        "de": "Nudeln zum Mischen, ohne Brühe.",
+        "it": "Noodles da mescolare, senza brodo.",
+        "zh": "无汤拌面，拌匀后享用。"
+      }
+    },
+    "udon": {
+      "name": {
+        "fr": "Udon",
+        "en": "Udon",
+        "de": "Udon",
+        "it": "Udon",
+        "zh": "Udon（乌冬面）"
+      },
+      "description": {
+        "fr": "Le midi seulement",
+        "en": "Lunchtime only",
+        "de": "Nur mittags",
+        "it": "Solo a pranzo",
+        "zh": "仅限午餐"
+      }
+    },
+    "menu-enfant": {
+      "name": {
+        "fr": "Menu enfant",
+        "en": "Kids' menu",
+        "de": "Kindermenü",
+        "it": "Menù bambini",
+        "zh": "儿童餐"
+      },
+      "description": {
+        "fr": "Pour les enfants de moins de 10 ans.",
+        "en": "For children under 10.",
+        "de": "Für Kinder unter 10 Jahren.",
+        "it": "Per bambini sotto i 10 anni.",
+        "zh": "适合10岁以下儿童。"
+      },
+      "footnote": {
+        "fr": "Inclus : un sirop à l'eau et une boule de glace au choix.",
+        "en": "Includes a syrup with water and a scoop of ice cream of your choice.",
+        "de": "Inklusive: ein Sirup mit Wasser und eine Eiskugel nach Wahl.",
+        "it": "Incluso: uno sciroppo con acqua e una pallina di gelato a scelta.",
+        "zh": "含一杯果味糖浆水和一个自选口味冰淇淋球。"
+      }
+    },
+    "extras": {
+      "name": {
+        "fr": "Extras",
+        "en": "Extras",
+        "de": "Extras",
+        "it": "Extra",
+        "zh": "加料"
+      },
+      "description": {
+        "fr": "Complétez votre bol avec nos extras.",
+        "en": "Top up your bowl with our extras.",
+        "de": "Ergänzen Sie Ihre Schüssel mit unseren Extras.",
+        "it": "Completa la tua ciotola con i nostri extra.",
+        "zh": "可为您的面碗加料。"
+      }
+    },
+    "desserts": {
+      "name": {
+        "fr": "Desserts",
+        "en": "Desserts",
+        "de": "Desserts",
+        "it": "Dessert",
+        "zh": "甜点"
+      }
+    }
+  },
+  "items": {
+    "karaage": {
+      "name": {
+        "fr": "Karaage",
+        "en": "Karaage",
+        "de": "Karaage",
+        "it": "Karaage",
+        "zh": "Karaage（日式炸鸡）"
+      },
+      "description": {
+        "fr": "Poulet mariné et frit maison",
+        "en": "Homemade marinated fried chicken",
+        "de": "Mariniertes und frittiertes Hähnchen, hausgemacht",
+        "it": "Pollo marinato e fritto, fatto in casa",
+        "zh": "自家腌制炸鸡"
+      }
+    },
+    "gyozas": {
+      "name": {
+        "fr": "Gyozas",
+        "en": "Gyozas",
+        "de": "Gyozas",
+        "it": "Gyozas",
+        "zh": "Gyozas（煎饺）"
+      },
+      "description": {
+        "fr": "Raviolis grillés. Garniture au choix : poulet, porc ou légumes.",
+        "en": "Pan-fried dumplings. Filling of your choice: chicken, pork or vegetables.",
+        "de": "Gebratene Teigtaschen. Füllung nach Wahl: Huhn, Schwein oder Gemüse.",
+        "it": "Ravioli alla piastra. Ripieno a scelta: pollo, maiale o verdure.",
+        "zh": "日式煎饺。馅料任选：鸡肉、猪肉或蔬菜。"
+      }
+    },
+    "takoyaki": {
+      "name": {
+        "fr": "Takoyaki",
+        "en": "Takoyaki",
+        "de": "Takoyaki",
+        "it": "Takoyaki",
+        "zh": "Takoyaki（章鱼小丸子）"
+      },
+      "description": {
+        "fr": "Boulettes fondantes au poulpe",
+        "en": "Melt-in-the-mouth octopus balls",
+        "de": "Zart schmelzende Bällchen mit Oktopus",
+        "it": "Polpettine morbide al polpo",
+        "zh": "软嫩的章鱼小丸子"
+      }
+    },
+    "edamame": {
+      "name": {
+        "fr": "Edamame",
+        "en": "Edamame",
+        "de": "Edamame",
+        "it": "Edamame",
+        "zh": "Edamame（盐水毛豆）"
+      },
+      "description": {
+        "fr": "Fèves de soja à la fleur de sel",
+        "en": "Soybeans with fleur de sel",
+        "de": "Sojabohnen mit Fleur de Sel",
+        "it": "Fagioli di soia al fior di sale",
+        "zh": "撒上盐之花的毛豆"
+      }
+    },
+    "tantan-ramen": {
+      "name": {
+        "fr": "Tantan Ramen",
+        "en": "Tantan Ramen",
+        "de": "Tantan Ramen",
+        "it": "Tantan Ramen",
+        "zh": "Tantan Ramen（担担拉面）"
+      },
+      "description": {
+        "fr": "Bouillon de poulet au sésame, huile de piment, bœuf haché, pousses de soja, pak-choï, daikon et demi-œuf mariné.",
+        "en": "Sesame chicken broth, chili oil, minced beef, bean sprouts, bok choy, daikon (radish) and half a marinated egg.",
+        "de": "Hühnerbrühe mit Sesam, Chiliöl, Rinderhack, Sojasprossen, Pak Choi, Rettich (Daikon) und ein halbes mariniertes Ei.",
+        "it": "Brodo di pollo al sesamo, olio al peperoncino, manzo macinato, germogli di soia, pak choi, daikon e mezzo uovo marinato.",
+        "zh": "芝麻鸡汤底，配辣油、牛肉末、豆芽、小白菜、白萝卜和半颗溏心蛋。"
+      }
+    },
+    "yasai-ramen": {
+      "name": {
+        "fr": "Yasai Ramen",
+        "en": "Yasai Ramen",
+        "de": "Yasai Ramen",
+        "it": "Yasai Ramen",
+        "zh": "Yasai Ramen（素食担担拉面）"
+      },
+      "description": {
+        "fr": "Bouillon de légumes au sésame, huile de piment, tofu teriyaki, pousses de soja, pak-choï, daikon et demi-oeuf mariné.",
+        "en": "Sesame vegetable broth, chili oil, teriyaki tofu, bean sprouts, bok choy, daikon (radish) and half a marinated egg.",
+        "de": "Gemüsebrühe mit Sesam, Chiliöl, Teriyaki-Tofu, Sojasprossen, Pak Choi, Rettich (Daikon) und ein halbes mariniertes Ei.",
+        "it": "Brodo vegetale al sesamo, olio al peperoncino, tofu teriyaki, germogli di soia, pak choi, daikon e mezzo uovo marinato.",
+        "zh": "芝麻蔬菜汤底，配辣油、照烧豆腐、豆芽、小白菜、白萝卜和半颗溏心蛋。"
+      }
+    },
+    "tantan-mazesoba": {
+      "name": {
+        "fr": "Tantan Mazesoba",
+        "en": "Tantan Mazesoba",
+        "de": "Tantan Mazesoba",
+        "it": "Tantan Mazesoba",
+        "zh": "Tantan Mazesoba（担担拌面）"
+      },
+      "description": {
+        "fr": "Nouilles à mélanger sans bouillon, pâte de sésame, huile de piment, bœuf haché, œuf onsen et cébette.",
+        "en": "Noodles to mix without broth, sesame paste, chili oil, minced beef, onsen egg (slow-cooked) and spring onion.",
+        "de": "Nudeln zum Mischen ohne Brühe, Sesampaste, Chiliöl, Rinderhack, Onsen-Ei und Frühlingszwiebel.",
+        "it": "Noodles da mescolare senza brodo, pasta di sesamo, olio al peperoncino, manzo macinato, uovo onsen e cipollotto.",
+        "zh": "无汤拌面，配芝麻酱、辣油、牛肉末、温泉蛋和葱花。"
+      }
+    },
+    "tantan-tsukemen": {
+      "name": {
+        "fr": "Tantan Tsukemen",
+        "en": "Tantan Tsukemen",
+        "de": "Tantan Tsukemen",
+        "it": "Tantan Tsukemen",
+        "zh": "Tantan Tsukemen（担担蘸面）"
+      },
+      "description": {
+        "fr": "Nouilles et garnitures à tremper dans un bouillon au sésame pimenté : œuf mariné, cébette et bambou.",
+        "en": "Noodles and toppings to dip in a spicy sesame broth: marinated egg, spring onion and bamboo shoots.",
+        "de": "Nudeln und Toppings zum Eintauchen in eine scharfe Sesambrühe: mariniertes Ei, Frühlingszwiebel und Bambussprossen.",
+        "it": "Noodles e condimenti da intingere in un brodo al sesamo piccante: uovo marinato, cipollotto e germogli di bambù.",
+        "zh": "面条和配料蘸香辣芝麻汤享用：溏心蛋、葱花和笋干。"
+      }
+    },
+    "yuzu-ramen": {
+      "name": {
+        "fr": "Yuzu Ramen",
+        "en": "Yuzu Ramen",
+        "de": "Yuzu Ramen",
+        "it": "Yuzu Ramen",
+        "zh": "Yuzu Ramen（柚子拉面）"
+      },
+      "description": {
+        "fr": "Bouillon de poulet clair au jus de yuzu, chashu de poulet, demi-œuf mariné, cébette, bambou et pak-choï.",
+        "en": "Clear chicken broth with yuzu juice, chashu (braised chicken), half a marinated egg, spring onion, bamboo shoots and bok choy.",
+        "de": "Klare Hühnerbrühe mit Yuzusaft, Hähnchen-Chashu, ein halbes mariniertes Ei, Frühlingszwiebel, Bambussprossen und Pak Choi.",
+        "it": "Brodo di pollo chiaro al succo di yuzu, chashu di pollo, mezzo uovo marinato, cipollotto, germogli di bambù e pak choi.",
+        "zh": "清鸡汤底加柚子汁，配鸡肉叉烧、半颗溏心蛋、葱花、笋干和小白菜。"
+      }
+    },
+    "tokyo-ramen": {
+      "name": {
+        "fr": "Tokyo Ramen",
+        "en": "Tokyo Ramen",
+        "de": "Tokyo Ramen",
+        "it": "Tokyo Ramen",
+        "zh": "Tokyo Ramen（东京拉面）"
+      },
+      "description": {
+        "fr": "Bouillon de poulet clair, chashu de porc, demi-œuf mariné, cébette, bambou et pak-choï.",
+        "en": "Clear chicken broth, chashu (braised pork), half a marinated egg, spring onion, bamboo shoots and bok choy.",
+        "de": "Klare Hühnerbrühe, Schweine-Chashu, ein halbes mariniertes Ei, Frühlingszwiebel, Bambussprossen und Pak Choi.",
+        "it": "Brodo di pollo chiaro, chashu di maiale, mezzo uovo marinato, cipollotto, germogli di bambù e pak choi.",
+        "zh": "清鸡汤底，配猪肉叉烧、半颗溏心蛋、葱花、笋干和小白菜。"
+      }
+    },
+    "wantan-ramen": {
+      "name": {
+        "fr": "Wantan Ramen",
+        "en": "Wantan Ramen",
+        "de": "Wantan Ramen",
+        "it": "Wantan Ramen",
+        "zh": "Wantan Ramen（云吞拉面）"
+      },
+      "description": {
+        "fr": "Bouillon de poulet, chashu de poulet, ravioli de poulet, demi-œuf mariné, cébette, bambou et pak-choï.",
+        "en": "Chicken broth, chashu (braised chicken), chicken wontons, half a marinated egg, spring onion, bamboo shoots and bok choy.",
+        "de": "Hühnerbrühe, Hähnchen-Chashu, Hähnchen-Wan-Tans, ein halbes mariniertes Ei, Frühlingszwiebel, Bambussprossen und Pak Choi.",
+        "it": "Brodo di pollo, chashu di pollo, ravioli di pollo, mezzo uovo marinato, cipollotto, germogli di bambù e pak choi.",
+        "zh": "鸡汤底，配鸡肉叉烧、鸡肉云吞、半颗溏心蛋、葱花、笋干和小白菜。"
+      }
+    },
+    "miso-ramen": {
+      "name": {
+        "fr": "Miso Ramen",
+        "en": "Miso Ramen",
+        "de": "Miso Ramen",
+        "it": "Miso Ramen",
+        "zh": "Miso Ramen（味噌拉面）"
+      },
+      "description": {
+        "fr": "Bouillon de poulet épais au miso rouge, chashu de porc, demi-œuf mariné, cébette et pousses de soja.",
+        "en": "Rich chicken broth with red miso, chashu (braised pork), half a marinated egg, spring onion and bean sprouts.",
+        "de": "Kräftige Hühnerbrühe mit rotem Miso, Schweine-Chashu, ein halbes mariniertes Ei, Frühlingszwiebel und Sojasprossen.",
+        "it": "Brodo di pollo denso al miso rosso, chashu di maiale, mezzo uovo marinato, cipollotto e germogli di soia.",
+        "zh": "红味噌浓鸡汤底，配猪肉叉烧、半颗溏心蛋、葱花和豆芽。"
+      }
+    },
+    "miso-vegetarien": {
+      "name": {
+        "fr": "Miso végétarien",
+        "en": "Vegetarian Miso",
+        "de": "Miso vegetarisch",
+        "it": "Miso vegetariano",
+        "zh": "素食味噌拉面"
+      },
+      "description": {
+        "fr": "Bouillon de légumes au miso rouge, tofu teriyaki, pousses de soja, pak-choï, daikon et demi-oeuf mariné.",
+        "en": "Vegetable broth with red miso, teriyaki tofu, bean sprouts, bok choy, daikon (radish) and half a marinated egg.",
+        "de": "Gemüsebrühe mit rotem Miso, Teriyaki-Tofu, Sojasprossen, Pak Choi, Rettich (Daikon) und ein halbes mariniertes Ei.",
+        "it": "Brodo vegetale al miso rosso, tofu teriyaki, germogli di soia, pak choi, daikon e mezzo uovo marinato.",
+        "zh": "红味噌蔬菜汤底，配照烧豆腐、豆芽、小白菜、白萝卜和半颗溏心蛋。"
+      }
+    },
+    "karaage-mazesoba": {
+      "name": {
+        "fr": "Karaage Mazesoba",
+        "en": "Karaage Mazesoba",
+        "de": "Karaage Mazesoba",
+        "it": "Karaage Mazesoba",
+        "zh": "Karaage Mazesoba（炸鸡拌面）"
+      },
+      "description": {
+        "fr": "Poulet frit, cébette, daikon, nori et œuf onsen.",
+        "en": "Fried chicken, spring onion, daikon (radish), nori and onsen egg (slow-cooked).",
+        "de": "Frittiertes Hähnchen, Frühlingszwiebel, Rettich (Daikon), Nori und Onsen-Ei.",
+        "it": "Pollo fritto, cipollotto, daikon, alga nori e uovo onsen.",
+        "zh": "炸鸡、葱花、白萝卜、海苔和温泉蛋。"
+      }
+    },
+    "chashu-mazesoba": {
+      "name": {
+        "fr": "Chashu Mazesoba",
+        "en": "Chashu Mazesoba",
+        "de": "Chashu Mazesoba",
+        "it": "Chashu Mazesoba",
+        "zh": "Chashu Mazesoba（叉烧拌面）"
+      },
+      "description": {
+        "fr": "Morceaux de porc teriyaki, cébette, daikon, nori et œuf onsen.",
+        "en": "Teriyaki pork pieces, spring onion, daikon (radish), nori and onsen egg (slow-cooked).",
+        "de": "Teriyaki-Schweinefleisch in Stücken, Frühlingszwiebel, Rettich (Daikon), Nori und Onsen-Ei.",
+        "it": "Bocconcini di maiale teriyaki, cipollotto, daikon, alga nori e uovo onsen.",
+        "zh": "照烧猪肉块、葱花、白萝卜、海苔和温泉蛋。"
+      }
+    },
+    "tofu-mazesoba": {
+      "name": {
+        "fr": "Tofu Mazesoba",
+        "en": "Tofu Mazesoba",
+        "de": "Tofu Mazesoba",
+        "it": "Tofu Mazesoba",
+        "zh": "Tofu Mazesoba（豆腐拌面）"
+      },
+      "description": {
+        "fr": "Tofu teriyaki, cébette, daikon, nori et œuf onsen.",
+        "en": "Teriyaki tofu, spring onion, daikon (radish), nori and onsen egg (slow-cooked).",
+        "de": "Teriyaki-Tofu, Frühlingszwiebel, Rettich (Daikon), Nori und Onsen-Ei.",
+        "it": "Tofu teriyaki, cipollotto, daikon, alga nori e uovo onsen.",
+        "zh": "照烧豆腐、葱花、白萝卜、海苔和温泉蛋。"
+      }
+    },
+    "tantan-udon": {
+      "name": {
+        "fr": "Tantan Udon",
+        "en": "Tantan Udon",
+        "de": "Tantan Udon",
+        "it": "Tantan Udon",
+        "zh": "Tantan Udon（担担乌冬面）"
+      },
+      "description": {
+        "fr": "Udon au sésame, huile de piment, bœuf haché, pousses de soja, pak-choï, daikon et œuf onsen.",
+        "en": "Udon (thick wheat noodles) with sesame, chili oil, minced beef, bean sprouts, bok choy, daikon (radish) and onsen egg (slow-cooked).",
+        "de": "Udon (dicke Weizennudeln) mit Sesam, Chiliöl, Rinderhack, Sojasprossen, Pak Choi, Rettich (Daikon) und Onsen-Ei.",
+        "it": "Udon (noodles di grano spessi) al sesamo, olio al peperoncino, manzo macinato, germogli di soia, pak choi, daikon e uovo onsen.",
+        "zh": "芝麻乌冬面，配辣油、牛肉末、豆芽、小白菜、白萝卜和温泉蛋。"
+      }
+    },
+    "udon-karaage": {
+      "name": {
+        "fr": "Udon Karaage",
+        "en": "Udon Karaage",
+        "de": "Udon Karaage",
+        "it": "Udon Karaage",
+        "zh": "Udon Karaage（炸鸡乌冬面）"
+      },
+      "description": {
+        "fr": "Bouillon tsuyu, poulet frit, œuf onsen et cébette.",
+        "en": "Tsuyu broth, fried chicken, onsen egg (slow-cooked) and spring onion.",
+        "de": "Tsuyu-Brühe, frittiertes Hähnchen, Onsen-Ei und Frühlingszwiebel.",
+        "it": "Brodo tsuyu, pollo fritto, uovo onsen e cipollotto.",
+        "zh": "日式酱油汤底，配炸鸡、温泉蛋和葱花。"
+      }
+    },
+    "udon-boeuf-cinq-epices": {
+      "name": {
+        "fr": "Udon au bœuf aux cinq épices",
+        "en": "Five-spice beef udon",
+        "de": "Udon mit Fünf-Gewürze-Rind",
+        "it": "Udon al manzo alle cinque spezie",
+        "zh": "五香牛肉乌冬面"
+      },
+      "description": {
+        "fr": "Bouillon tsuyu, bœuf haché aux cinq épices, œuf onsen et cébette.",
+        "en": "Tsuyu broth, five-spice minced beef, onsen egg (slow-cooked) and spring onion.",
+        "de": "Tsuyu-Brühe, Rinderhackfleisch mit Fünf-Gewürze-Mischung, Onsen-Ei und Frühlingszwiebel.",
+        "it": "Brodo tsuyu, manzo macinato alle cinque spezie, uovo onsen e cipollotto.",
+        "zh": "日式酱油汤底，配五香牛肉末、温泉蛋和葱花。"
+      }
+    },
+    "little-tokyo": {
+      "name": {
+        "fr": "Little Tokyo",
+        "en": "Little Tokyo",
+        "de": "Little Tokyo",
+        "it": "Little Tokyo",
+        "zh": "Little Tokyo"
+      },
+      "description": {
+        "fr": "Nouilles épaisses, deux karaage, edamame et demi-œuf mariné.",
+        "en": "Thick noodles, two karaage (fried chicken), edamame and half a marinated egg.",
+        "de": "Dicke Nudeln, zwei Karaage (frittiertes Hähnchen), Edamame und ein halbes mariniertes Ei.",
+        "it": "Noodles spessi, due karaage (pollo fritto), edamame e mezzo uovo marinato.",
+        "zh": "粗面、两块日式炸鸡、毛豆和半颗溏心蛋。"
+      },
+      "subgroup": {
+        "fr": "Au choix",
+        "en": "Your choice",
+        "de": "Zur Auswahl",
+        "it": "A scelta",
+        "zh": "任选其一"
+      }
+    },
+    "mini-ramen": {
+      "name": {
+        "fr": "Mini Ramen",
+        "en": "Mini Ramen",
+        "de": "Mini Ramen",
+        "it": "Mini Ramen",
+        "zh": "Mini Ramen（迷你拉面）"
+      },
+      "description": {
+        "fr": "Tokyo ou Miso.",
+        "en": "Tokyo or Miso.",
+        "de": "Tokyo oder Miso.",
+        "it": "Tokyo o Miso.",
+        "zh": "东京拉面或味噌拉面。"
+      },
+      "subgroup": {
+        "fr": "Au choix",
+        "en": "Your choice",
+        "de": "Zur Auswahl",
+        "it": "A scelta",
+        "zh": "任选其一"
+      }
+    },
+    "oeuf-marine-entier": {
+      "name": {
+        "fr": "Oeuf mariné entier",
+        "en": "Whole marinated egg",
+        "de": "Ganzes mariniertes Ei",
+        "it": "Uovo marinato intero",
+        "zh": "整颗溏心蛋"
+      }
+    },
+    "oeuf-onsen": {
+      "name": {
+        "fr": "Oeuf onsen",
+        "en": "Onsen egg (slow-cooked)",
+        "de": "Onsen-Ei (langsam gegart)",
+        "it": "Uovo onsen (cotto a bassa temperatura)",
+        "zh": "温泉蛋"
+      }
+    },
+    "chashu-porc": {
+      "name": {
+        "fr": "Chashu de porc",
+        "en": "Pork chashu",
+        "de": "Schweine-Chashu",
+        "it": "Chashu di maiale",
+        "zh": "猪肉叉烧"
+      }
+    },
+    "chashu-poulet": {
+      "name": {
+        "fr": "Chashu de poulet",
+        "en": "Chicken chashu",
+        "de": "Hähnchen-Chashu",
+        "it": "Chashu di pollo",
+        "zh": "鸡肉叉烧"
+      }
+    },
+    "cafe-the-gourmand": {
+      "name": {
+        "fr": "Café ou thé gourmand",
+        "en": "Coffee or tea with mini desserts",
+        "de": "Kaffee oder Tee mit Mini-Desserts",
+        "it": "Caffè o tè con mini dessert",
+        "zh": "咖啡或茶配迷你甜点"
+      },
+      "description": {
+        "fr": "Mini financier matcha, macaron exotique, mochi sésame noir et une boule de glace",
+        "en": "Mini matcha financier, exotic macaron, black sesame mochi and a scoop of ice cream",
+        "de": "Mini-Financier mit Matcha, exotisches Macaron, Mochi mit schwarzem Sesam und eine Eiskugel",
+        "it": "Mini financier al matcha, macaron esotico, mochi al sesamo nero e una pallina di gelato",
+        "zh": "迷你抹茶费南雪、异国风味马卡龙、黑芝麻麻糬和一个冰淇淋球"
+      }
+    },
+    "duo-mochis-glaces": {
+      "name": {
+        "fr": "Duo de mochis glacés",
+        "en": "Duo of mochi ice cream",
+        "de": "Mochi-Eis-Duo",
+        "it": "Duo di mochi gelato",
+        "zh": "冰淇淋麻糬双拼"
+      },
+      "description": {
+        "fr": "Sakura & fruit de la passion.",
+        "en": "Sakura & passion fruit.",
+        "de": "Sakura & Passionsfrucht.",
+        "it": "Sakura & frutto della passione.",
+        "zh": "樱花味与百香果味。"
+      }
+    },
+    "tiramisu-matcha": {
+      "name": {
+        "fr": "Tiramisu matcha",
+        "en": "Matcha tiramisu",
+        "de": "Matcha-Tiramisu",
+        "it": "Tiramisù al matcha",
+        "zh": "抹茶提拉米苏"
+      }
+    },
+    "tiramisu-framboise-litchi": {
+      "name": {
+        "fr": "Tiramisu framboise & litchi",
+        "en": "Raspberry & lychee tiramisu",
+        "de": "Himbeer-Litschi-Tiramisu",
+        "it": "Tiramisù lampone e litchi",
+        "zh": "覆盆子荔枝提拉米苏"
+      }
+    },
+    "boule-de-glace": {
+      "name": {
+        "fr": "Boule de glace au choix",
+        "en": "Scoop of ice cream of your choice",
+        "de": "Eiskugel nach Wahl",
+        "it": "Pallina di gelato a scelta",
+        "zh": "自选口味冰淇淋球"
+      },
+      "description": {
+        "fr": "Matcha, Yuzu, Sésame noir, Mangue, Coco, Vanille, Framboise, Fraise, Pêche, Chocolat au lait.",
+        "en": "Matcha, Yuzu, Black sesame, Mango, Coconut, Vanilla, Raspberry, Strawberry, Peach, Milk chocolate.",
+        "de": "Matcha, Yuzu, Schwarzer Sesam, Mango, Kokos, Vanille, Himbeere, Erdbeere, Pfirsich, Milchschokolade.",
+        "it": "Matcha, Yuzu, Sesamo nero, Mango, Cocco, Vaniglia, Lampone, Fragola, Pesca, Cioccolato al latte.",
+        "zh": "抹茶、柚子、黑芝麻、芒果、椰子、香草、覆盆子、草莓、蜜桃、牛奶巧克力。"
+      }
+    }
+  }
+}
