@@ -120,7 +120,7 @@ Make the live FR web menu (`umai-ramen.fr/fr/menu`, Sanity production dataset) a
 ## Deferred Ideas
 
 - Retiring/updating the eazee-link digital menu (outdated prices) — EK decision, out of v2.2 scope.
-- Photos for new items — not on the print; existing images on hidden items are not migrated.
+- Only the 3 photos used by the home page cards are migrated (decided 2026-11-23); other legacy photos stay on hidden items.
 
 </deferred>
 
