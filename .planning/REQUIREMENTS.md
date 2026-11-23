@@ -33,9 +33,9 @@
 
 ### Translations
 
-- [ ] **TRANS-01**: Every menu item name, description and category is translated into EN, DE, IT and ZH
-- [ ] **TRANS-02**: Japanese dish names (Tantan, Karaage, Gyoza, Mazesoba, Tsukemen, Takoyaki…) are kept as-is in every language, with a short explanation in the translated description
-- [ ] **TRANS-03**: A review sheet (FR | EN | DE | IT | ZH per item) is exported for optional native-speaker review; ZH is flagged "to review"
+- [x] **TRANS-01**: Every menu item name, description and category is translated into EN, DE, IT and ZH
+- [x] **TRANS-02**: Japanese dish names (Tantan, Karaage, Gyoza, Mazesoba, Tsukemen, Takoyaki…) are kept as-is in every language, with a short explanation in the translated description
+- [x] **TRANS-03**: A review sheet (FR | EN | DE | IT | ZH per item) is exported for optional native-speaker review; ZH is flagged "to review"
 
 ### Tourist Menu Page
 
@@ -88,9 +88,9 @@
 | I18N-03 | Phase 13 | Complete |
 | I18N-04 | Phase 13 | Complete |
 | I18N-05 | Phase 13 | Complete |
-| TRANS-01 | Phase 14 | Pending |
-| TRANS-02 | Phase 14 | Pending |
-| TRANS-03 | Phase 14 | Pending |
+| TRANS-01 | Phase 14 | Complete |
+| TRANS-02 | Phase 14 | Complete |
+| TRANS-03 | Phase 14 | Complete |
 | UI-01 | Phase 13 | Complete |
 | UI-02 | Phase 13 | Complete |
 | UI-03 | Phase 13 | Complete |

@@ -223,7 +223,7 @@ Plans:
 
 - [x] **Phase 12: Synchronisation menu print 2026 → Sanity** - The live FR menu mirrors the 2026 print exactly (items, prices, variants, notes), validated by EK before publication (completed 2026-11-23)
 - [x] **Phase 13: Fondations multilingues & page menu touriste** - IT/ZH menu-only locales, language switcher and a bilingual (translated name + FR name) mobile menu page (completed 2026-11-23)
-- [ ] **Phase 14: Traductions EN/DE/IT/ZH** - Full menu translated into 4 languages in Sanity, Japanese names kept and explained, review sheet for native speakers
+- [x] **Phase 14: Traductions EN/DE/IT/ZH** - Full menu translated into 4 languages in Sanity, Japanese names kept and explained, review sheet for native speakers (completed 2026-11-23)
 - [ ] **Phase 15: QR codes & supports imprimables** - One QR per language on an A4 sheet and a table tent ready for Exaprint, plus a `/menu/qr` download page
 
 **Coverage:** 22/22 v2.2 requirements mapped, each to exactly one phase (MENU-01..06 → 12 · I18N-01..05 + UI-01..04 → 13 · TRANS-01..03 → 14 · QR-01..04 → 15).
@@ -284,12 +284,12 @@ Plans:
   1. On `/en/menu`, `/de/menu`, `/it/menu` and `/zh/menu`, every available item name, description and category heading — and the service notes and markers from Phase 12 — appears in that language, with no French text except the intentional secondary FR name.
   2. Japanese dish names (Tantan, Karaage, Gyoza, Mazesoba, Tsukemen, Takoyaki…) appear unchanged in every language, and each translated description explains the dish in a few words.
   3. EK has a review sheet listing FR | EN | DE | IT | ZH for every item, ready to hand to native speakers, with the ZH column visibly flagged "to review".
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
 - [x] 14-01-PLAN.md — Translation rules (TDD) + EN/DE/IT/ZH translations of all 178 menu fields as staging overlays; menu-2026.json untouched while Phase 13 runs (TRANS-01, TRANS-02) [wave 1] (completed 2026-11-23)
-- [ ] 14-02-PLAN.md — Offline/read-only tools: apply-translations.mjs (field-level set, backup, dry-run, rollback), verify-translations.mjs, export-review-sheet.mjs (TRANS-01, TRANS-03) [wave 2]
-- [ ] 14-03-PLAN.md — GATED on Phase 13 live: merge into menu-2026.json, backup + apply + revalidate, live verification on 5 locales + 375 px/glyphs, review sheet from Sanity, FR hand-off (TRANS-01..03) [wave 3]
+- [x] 14-02-PLAN.md — Offline/read-only tools: apply-translations.mjs (field-level set, backup, dry-run, rollback), verify-translations.mjs, export-review-sheet.mjs (TRANS-01, TRANS-03) [wave 2]
+- [x] 14-03-PLAN.md — GATED on Phase 13 live: merge into menu-2026.json, backup + apply + revalidate, live verification on 5 locales + 375 px/glyphs, review sheet from Sanity, FR hand-off (TRANS-01..03) [wave 3]
 **Notes**:
 - Claude produces the translations (locked by EK); they are static Sanity content, with no runtime machine translation. Native review is optional and comes later.
 - Back criterion 1 with a completeness check (no empty en/de/it/zh on an available item); the review sheet must be regenerable from Sanity after native-speaker corrections are applied.
@@ -329,5 +329,5 @@ Plans:
 | 11. Cutover domaine & vérifications live | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
 | 12. Synchronisation menu print 2026 → Sanity | v2.2 | 3/3 | Complete    | 2026-11-23 |
 | 13. Fondations multilingues & page menu touriste | v2.2 | 3/3 | Complete    | 2026-11-23 |
-| 14. Traductions EN/DE/IT/ZH | v2.2 | 0/? | Not started | — |
+| 14. Traductions EN/DE/IT/ZH | v2.2 | 3/3 | Complete   | 2026-11-23 |
 | 15. QR codes & supports imprimables | v2.2 | 0/? | Not started | — |

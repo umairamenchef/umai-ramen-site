@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
 status: Ready to plan
-stopped_at: Completed 13-03-PLAN.md
-last_updated: "2026-11-23T23:16:50.043Z"
+stopped_at: Completed 14-03-PLAN.md
+last_updated: "2026-11-23T23:33:17.860Z"
 progress:
   total_phases: 12
-  completed_phases: 5
-  total_plans: 18
-  completed_plans: 17
+  completed_phases: 6
+  total_plans: 22
+  completed_plans: 18
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
 **Core value (v2.2):** A foreign tourist scans a QR code and reads the 2026 menu in their language (EN/DE/IT/ZH), with the FR dish name always visible for ordering.
-**Current focus:** Phase 13 — Fondations multilingues & page menu touriste
+**Current focus:** Phase 14 complete (EN/DE/IT/ZH menu translations live 2026-11-24); next: Phase 15, QR codes & supports imprimables
 
 ## Current Position
 
-Phase: 14
-Plan: Not started
+Phase: 14 (Traductions EN/DE/IT/ZH): complete, 3/3 plans
+Plan: 14-03 done (merge into menu-2026.json, Sanity field-level apply, live proof on 5 locales, review sheet, FR hand-off in 14-03-SUMMARY.md); next: Phase 15
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
@@ -101,7 +101,7 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 ### Still needs EK (validation/refinement only — non-blocking)
 
 - Confirm contact@umai-ramen.fr mailbox active.
-- EN/DE menu translations (names+descriptions) — currently FR fallback.
+- Menu translations: DONE in Phase 14 (EN/DE/IT/ZH live 2026-11-24). Optional native review of `.planning/phases/14-traductions-en-de-it-zh/14-REVIEW-SHEET.csv`, ZH column first.
 - Veg/gluten-free tags per item (set heuristically).
 - Optional: dish photos (most items have none), photo-based og-image, EK-SARL entity treatment.
 
@@ -134,6 +134,7 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 | Phase 13 P01 | 17min | 3 tasks | 15 files |
 | Phase 13 P02 | 19min | 3 tasks | 16 files |
 | Phase 13 P03 | 51min | 3 tasks | 8 files |
+| Phase 14 P03 | 19min | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -167,6 +168,9 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Phase 13-03: Phase 13 is live (deployed `86068ab`, VPS rollback point `34748ef`). Live proof: `ROUTING OK checks=84`, `VERIFY OK checks=309` on the 5 menu locales + fr home, HTML contracts (pills, one `aria-current`, 0 `data-fr-name`, 0 `eazee-link.com`, og:locale, translated footers), `MOBILE OK` at 375 px, zh glyphs reviewed, `PROBE OK` (Studio it/zh values for Karaage / Entrées shown on /it|zh/menu with « FR Karaage », then reverted and checked). I18N-01..05 and UI-01..03 ticked. UI-04 stays pending: /fr/menu Lighthouse performance median 87 (88/87/86) from site-wide costs (react-dom hydration long task, render-blocking font CSS); en 96, de 95, it 91, zh 93; accessibility 96, best practices 100, SEO 100 everywhere.
 - Phase 13-03: publishing Sanity content = write, then wait about 2 min for the Sanity API CDN (measured 111 s after a write, 86 s after the revert), then `revalidate.mjs`, then `verify-live.mjs` (re-run `revalidate.mjs` while a page is stale). Revalidating within a minute of the write re-caches the OLD menu in the tagged data cache (`revalidate: false`) until the next revalidation. Durable fix suggested: `useCdn: false` for the tagged fetches (Phase 13 `deferred-items.md` #3); a future Sanity webhook would otherwise race the CDN the same way.
 - Phase 13-03: quick-nav starts on the first category (non-intersecting observer entries ignored, first tab above the first section, no nav auto-scroll at load) and zh dietary pills are 12 px (`:lang(zh-Hans)` variant). Brand-green contrast (2.87:1 on ivory, 3.26:1 white on green) handed to EK as a design decision (#567058 would pass AA both ways). Deploy gate compares the VPS HEAD and `origin/v2-2026` with the sha captured just before the push, because concurrent plans move the local HEAD.
+- Phase 14-03: the 712 EN/DE/IT/ZH translations are live. Sanity transaction `lWwPwzVj4paFn3vV2NnUyI` set them field by field on the 97 m26 documents after the committed backup `.planning/phases/14-traductions-en-de-it-zh/backup/translations-backup-20261123-232132.json` (rollback dry-run `set=0 unset=712`). `scripts/menu-2026/menu-2026.json` is the single FR + EN/DE/IT/ZH source (the two overlays are deleted). From now on Studio wins over the JSON: `apply-translations.mjs` reports a Studio-edited translation as CONFLICT, and `sync-menu.mjs --apply` must never be re-run (it would createOrReplace the m26 documents).
+- Phase 14-03: publish gate = poll the site's exact `MENU_CATEGORIES_QUERY` + `HOMEPAGE_QUERY` (read from `src/sanity/lib/queries.ts`) through the API CDN with the site's client options until they serve the new content, then `revalidate.mjs`. Measured: the site's queries were fresh 105 s after the write, while a simple GROQ query (`*[_id=="m26-item-karaage"][0].name.zh`) was fresh about 60 s earlier, so a simpler query is not a safe proxy. With that gate every live check passed on attempt 1.
+- Phase 14-03: TRANS-01..03 proven live and ticked: `VERIFY OK checks=309` on fr/en/de/it/zh (+ home fr/en/de), `VERIFY TRANSLATIONS OK locales=5` (FR secondary lines fr 0, en 25, de 26, it 26, zh 26), `ROUTING OK checks=84`, `MOBILE OK` + zh glyph screenshots (no tofu). `14-REVIEW-SHEET.csv` was regenerated from Sanity (178 rows, empty=0, `SHEET == JSON`). Pushed `86068ab..f125909` (no `src/` change, no deploy). Cosmetic notes for later: DE cookie link `consent.moreInfo` « Mehr erfahren » vs « Cookie policy »; zh heading « TANTAN UMAÏ（担担面） » wraps before the full-width parenthesis at 375 px.
 
 ### Key Decisions (v2.1)
 
@@ -228,7 +232,7 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 **Build flake (constaté 2026-11-23, local + VPS)** : `next build` (Turbopack) échoue parfois avec `next/font/google queries have exactly one entry` quand Google Fonts sert Outfit en URLs `/l/font?kit=…&skey=…`. Relancer la même commande de deploy suffit ; `up -d --build` construit avant de remplacer le conteneur, donc l'ancien continue de servir. Correctif durable possible : passer les 3 polices en `next/font/local`.
 
-**Contenu Sanity → site** : aucun webhook Sanity n'atteint umai-ramen.fr. Après une écriture du menu (sync ou Studio), **attendre environ 2 minutes** (le CDN API de Sanity sert l'ancien menu pendant 86 à 111 s, mesuré en 13-03), puis lancer `node --env-file=.env.local scripts/menu-2026/revalidate.mjs` ; relancer si `verify-live.mjs` voit encore l'ancien contenu. Une autre option est de créer un webhook GROQ vers `https://umai-ramen.fr/api/revalidate` (secret = `SANITY_WEBHOOK_SECRET` du VPS, droits admin du projet nécessaires).
+**Contenu Sanity → site** : aucun webhook Sanity n'atteint umai-ramen.fr. Après une écriture du menu (sync ou Studio), **attendre environ 2 minutes** (le CDN API de Sanity sert l'ancien menu pendant 86 à 111 s, mesuré en 13-03), puis lancer `node --env-file=.env.local scripts/menu-2026/revalidate.mjs` ; relancer si `verify-live.mjs` voit encore l'ancien contenu. Mesuré en 14-03 : 105 s ; pour un script, interroger sur l'API CDN la requête exacte du site (`MENU_CATEGORIES_QUERY`, `HOMEPAGE_QUERY`), une requête plus simple est fraîche environ 60 s plus tôt et ne prouve rien. Une autre option est de créer un webhook GROQ vers `https://umai-ramen.fr/api/revalidate` (secret = `SANITY_WEBHOOK_SECRET` du VPS, droits admin du projet nécessaires).
 
 ### Blockers/Concerns
 
@@ -236,7 +240,8 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 - RESOLVED (13-01, wired in 13-02): language of the site chrome on `/it/menu` and `/zh/menu`: minimal IT/ZH strings where `it.json` / `zh.json` define them (nav, common, consent, order modal, footer, menu labels), English for everything else through the EN deep merge in `request.ts`; header, drawer, footer and cookie-banner links to non-menu pages go straight to `/en`.
 - RESOLVED (13-03, live): the quick-nav no longer starts on an arbitrary category at scroll 0, and the zh dietary pills are 12 px (`deferred-items.md` #1 and #2).
 - OPEN (13-03, UI-04 gap): /fr/menu Lighthouse mobile performance median 87 < 90 (88/87/86 at load 2.5 to 2.9; an interleaved diagnostic gave fr 91 / en 90). Site-wide causes: react-dom hydration long task, render-blocking font CSS, unused JS/CSS. Needs a gap-closure plan (self-hosted fonts via `next/font/local`, lighter hydration) or a quiet-host remeasure; UI-04 stays Pending until then.
-- OPEN (13-03, Phase 14 publish): after `sync-menu.mjs --apply`, wait about 2 min for the Sanity API CDN before `revalidate.mjs`, or re-run `revalidate.mjs` until `verify-live.mjs` passes (`deferred-items.md` #3; `scripts/i18n/probe-translation.mjs` shows the CDN-wait pattern).
+- RESOLVED (14-03, live 2026-11-24): the Phase 14 publish waited for the Sanity API CDN to serve the site's exact queries (105 s after the write), then ran `revalidate.mjs`; every live check passed on attempt 1. The durable fix (`useCdn: false` for tagged fetches, or a Sanity webhook that waits for the CDN) is still open in `deferred-items.md` #3; until then Studio edits need « wait about 2 min, then revalidate.mjs ».
+- Watch (13-VERIFICATION human item 2): re-measure Lighthouse on the five menu locales now that translated content adds a « FR » line per French-named item (UI-04 variance).
 - Tooling: the v2.0 and v2.1 sections of ROADMAP.md are not collapsed in `<details>`, so `gsd-tools roadmap analyze` counts phases 4–15 as the current milestone (`next_phase` resolves to 06, `phase_count` 12). Explicit `/gsd:*-phase 12` commands are unaffected; run `/gsd:complete-milestone` for v2.0/v2.1 to clean this up.
 - RESOLVED: Google Drive auth — photos are already local (no Drive fetch needed for ig-studio)
 - PENDING: umai_037.jpg classified as ambiance — appears to be an udon dish (not on summer ramen menu). Owner should review during pilot sign-off.
@@ -250,9 +255,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ## Session Continuity
 
-Last session: 2026-11-23T22:46:26.371Z
-Stopped at: Completed 13-03-PLAN.md
-Resume: Phase 12 complete and live. Phase 13 plans 13-01 and 13-02 done, local only, nothing deployed (13-01: locale rules module, IT/ZH menu-only routing + messages, hreflang/sitemap, routing + message verifiers; 13-02: Studio it/zh inputs, FR-secondary-name rule, 5-language pill switcher, bilingual rows, dietary labels, zh font stack, eazee CTA removed, it/zh prerendered, IT/ZH-aware chrome). Next: 13-03 (deploy + live proof, Lighthouse, ticks I18N/UI requirements); decide there whether to fix the quick-nav initial-tab bug from `deferred-items.md`.
+Last session: 2026-11-23T23:33:17.853Z
+Stopped at: Completed 14-03-PLAN.md
+Resume: Phases 12, 13 and 14 complete and live. Phase 14: EN/DE/IT/ZH menu content published to Sanity (field-level, backup + rollback ready), proven live on /{fr,en,de,it,zh}/menu, review sheet `14-REVIEW-SHEET.csv` + FR hand-off in `14-03-SUMMARY.md`; TRANS-01..03 ticked; pushed `f125909` (no code change, no deploy). Next: Phase 15 (QR codes & supports imprimables); its real-phone scan test and the Exaprint order can now proceed.
 
 ### Key Decisions Added (v2.0 execution)
 
