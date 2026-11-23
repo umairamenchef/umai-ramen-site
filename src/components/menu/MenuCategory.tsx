@@ -1,25 +1,11 @@
+import { Fragment } from 'react';
 import { localized } from '@/lib/localized';
+import { withSubgroupHeadings, type MenuCategoryData } from '@/lib/menu';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { MenuItem } from './MenuItem';
 
-interface MenuCategoryItem {
-  _id: string;
-  name: { fr: string; en?: string; de?: string };
-  nameJp?: string;
-  description?: { fr: string; en?: string; de?: string } | null;
-  price: number;
-  isVegetarian: boolean;
-  isGlutenFree: boolean;
-}
-
 interface MenuCategoryProps {
-  category: {
-    _id: string;
-    name: { fr: string; en?: string; de?: string };
-    slug: { current: string };
-    description?: { fr: string; en?: string; de?: string } | null;
-    items: MenuCategoryItem[];
-  };
+  category: MenuCategoryData;
   locale: string;
 }
 
@@ -28,6 +14,8 @@ export function MenuCategory({ category, locale }: MenuCategoryProps) {
     return null;
   }
 
+  const footnote = category.footnote ? localized(category.footnote, locale) : '';
+
   return (
     <section
       id={`category-${category.slug.current}`}
@@ -35,25 +23,29 @@ export function MenuCategory({ category, locale }: MenuCategoryProps) {
     >
       <SectionHeader
         title={localized(category.name, locale)}
+        jpLabel={category.nameJp ?? undefined}
         subtitle={
           category.description ? localized(category.description, locale) : undefined
         }
         centered={false}
       />
       <div>
-        {category.items.map((item) => (
-          <MenuItem
-            key={item._id}
-            name={item.name}
-            nameJp={item.nameJp}
-            price={item.price}
-            description={item.description}
-            isVegetarian={item.isVegetarian}
-            isGlutenFree={item.isGlutenFree}
-            locale={locale}
-          />
+        {withSubgroupHeadings(category.items, locale).map(({ heading, item }) => (
+          <Fragment key={item._id}>
+            {heading && (
+              <p className="font-body text-xs uppercase tracking-widest text-umai-accent pt-6 pb-1">
+                {heading}
+              </p>
+            )}
+            <MenuItem item={item} locale={locale} />
+          </Fragment>
         ))}
       </div>
+      {footnote && (
+        <p className="font-body text-sm italic text-umai-text-muted mt-4">
+          {footnote}
+        </p>
+      )}
     </section>
   );
 }

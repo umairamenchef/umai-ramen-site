@@ -9,6 +9,7 @@ interface MenuCategory {
   _id: string;
   name: { fr: string; en?: string; de?: string } | string;
   slug: { current: string };
+  nameJp?: string | null;
   image?: SanityImageSource;
 }
 
@@ -51,7 +52,16 @@ export function MenuPreview({ categories, locale, title, ctaLabel }: MenuPreview
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 ) : (
-                  <div className="absolute inset-0 bg-umai-bg-alt" />
+                  <div className="absolute inset-0 bg-umai-accent flex items-center justify-center">
+                    {category.nameJp && (
+                      <span
+                        aria-hidden="true"
+                        className="font-jp text-6xl text-umai-white/30 select-none"
+                      >
+                        {category.nameJp}
+                      </span>
+                    )}
+                  </div>
                 )}
 
                 {/* Dark overlay */}

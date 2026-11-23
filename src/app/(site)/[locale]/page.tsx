@@ -69,6 +69,7 @@ export default async function HomePage({ params }: Props) {
       _id: string;
       name: { fr: string; en?: string; de?: string } | string;
       slug: { current: string };
+      nameJp?: string | null;
       image?: SanityImageSource;
     }>;
     galleryPreview: Array<{
