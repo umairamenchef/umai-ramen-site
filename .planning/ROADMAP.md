@@ -222,7 +222,7 @@ Plans:
 **Phases (v2.2):**
 
 - [x] **Phase 12: Synchronisation menu print 2026 → Sanity** - The live FR menu mirrors the 2026 print exactly (items, prices, variants, notes), validated by EK before publication (completed 2026-11-23)
-- [ ] **Phase 13: Fondations multilingues & page menu touriste** - IT/ZH menu-only locales, language switcher and a bilingual (translated name + FR name) mobile menu page
+- [x] **Phase 13: Fondations multilingues & page menu touriste** - IT/ZH menu-only locales, language switcher and a bilingual (translated name + FR name) mobile menu page (completed 2026-11-23)
 - [ ] **Phase 14: Traductions EN/DE/IT/ZH** - Full menu translated into 4 languages in Sanity, Japanese names kept and explained, review sheet for native speakers
 - [ ] **Phase 15: QR codes & supports imprimables** - One QR per language on an A4 sheet and a table tent ready for Exaprint, plus a `/menu/qr` download page
 
@@ -262,12 +262,12 @@ Plans:
   3. A language switcher at the top of the menu page (FR · EN · DE · IT · 中文) changes the language while keeping the visitor on the menu; section headings, badges, price units and the « allergen list available on request » and « service included » notes all appear in the selected language.
   4. On the `/en`, `/de`, `/it` and `/zh` menu pages every item shows the translated name as primary text and the French name as clearly legible secondary text next to the price (shown once when identical, e.g. Japanese names), while `/fr/menu` stays French-only with no duplicate name; Chinese text renders in simplified glyphs with no missing characters under a simplified-Chinese `lang`.
   5. On a 375px-wide phone the menu offers a category quick-nav with no horizontal scroll, and Lighthouse stays above 90 on every menu locale, including `/zh/menu`.
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [x] 13-01-PLAN.md — Locale rules module (`src/i18n/locales.ts`), message checker, it.json/zh.json (EN-merged base), proxy redirect non-menu /it|/zh → /en, `<html lang>` (zh-Hans), hreflang + sitemap (menu only), routing verifier (I18N-02/03/05, UI-04) [wave 1]
 - [x] 13-02-PLAN.md — Studio it/zh fields + FR-secondary-name rule (TDD), menu-page language pills, bilingual item row, zh system font stack, eazee CTA removed, lighter quick-nav, it/zh prerender, chrome strings, translated dietary pills, meta description without formules (I18N-01/04/05, UI-01..04) [wave 2]
-- [ ] 13-03-PLAN.md — Local production gate, SSH deploy, live checks (routing matrix, 5-locale menu verify, 375px browser check), Lighthouse 3 runs × 5 locales, reversible Studio→it/zh probe (all 9) [wave 3]
+- [x] 13-03-PLAN.md — Local production gate, SSH deploy, live checks (routing matrix, 5-locale menu verify, 375px browser check), Lighthouse 3 runs × 5 locales, reversible Studio→it/zh probe (all 9) [wave 3]
 **UI hint**: yes
 **Notes**:
 - Menu-only gating touches `src/i18n/routing.ts` (fr/en/de today), `src/proxy.ts` (redirect rule), per-page `generateStaticParams`, `buildAlternates` in `src/lib/seo.ts` (hreflang hardcoded to fr/en/de), `src/app/sitemap.ts`, the OG `locale` mapping on the menu page and `<html lang>` (zh → simplified Chinese).
@@ -328,6 +328,6 @@ Plans:
 | 10. Résorption dette & polish | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
 | 11. Cutover domaine & vérifications live | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
 | 12. Synchronisation menu print 2026 → Sanity | v2.2 | 3/3 | Complete    | 2026-11-23 |
-| 13. Fondations multilingues & page menu touriste | v2.2 | 2/3 | In Progress|  |
+| 13. Fondations multilingues & page menu touriste | v2.2 | 3/3 | Complete   | 2026-11-23 |
 | 14. Traductions EN/DE/IT/ZH | v2.2 | 0/? | Not started | — |
 | 15. QR codes & supports imprimables | v2.2 | 0/? | Not started | — |

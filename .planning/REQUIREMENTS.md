@@ -25,11 +25,11 @@
 
 ### Languages & Routing
 
-- [ ] **I18N-01**: Sanity `localeString` / `localeText` carry `it` and `zh` fields, editable in Studio alongside fr/en/de
-- [ ] **I18N-02**: A tourist can open `umai-ramen.fr/it/menu` and `umai-ramen.fr/zh/menu`; any other `/it/*` or `/zh/*` URL redirects to the `/en/*` equivalent (IT/ZH are menu-only)
-- [ ] **I18N-03**: All menu UI labels (section headings, badges, price units, notes) are translated in FR/EN/DE/IT/ZH
-- [ ] **I18N-04**: A language switcher at the top of the menu page lets the tourist change between FR · EN · DE · IT · 中文 without rescanning, staying on the menu
-- [ ] **I18N-05**: Chinese text renders with proper simplified-Chinese glyphs (no tofu/missing characters) and the page declares the right `lang`; hreflang + sitemap include the IT/ZH menu URLs
+- [x] **I18N-01**: Sanity `localeString` / `localeText` carry `it` and `zh` fields, editable in Studio alongside fr/en/de
+- [x] **I18N-02**: A tourist can open `umai-ramen.fr/it/menu` and `umai-ramen.fr/zh/menu`; any other `/it/*` or `/zh/*` URL redirects to the `/en/*` equivalent (IT/ZH are menu-only)
+- [x] **I18N-03**: All menu UI labels (section headings, badges, price units, notes) are translated in FR/EN/DE/IT/ZH
+- [x] **I18N-04**: A language switcher at the top of the menu page lets the tourist change between FR · EN · DE · IT · 中文 without rescanning, staying on the menu
+- [x] **I18N-05**: Chinese text renders with proper simplified-Chinese glyphs (no tofu/missing characters) and the page declares the right `lang`; hreflang + sitemap include the IT/ZH menu URLs
 
 ### Translations
 
@@ -39,9 +39,9 @@
 
 ### Tourist Menu Page
 
-- [ ] **UI-01**: On `/{en,de,it,zh}/menu`, each item shows the translated name as primary text and the FR name as clearly legible secondary text, next to the price
-- [ ] **UI-02**: `/fr/menu` is unchanged for French visitors (FR only, no duplicate name)
-- [ ] **UI-03**: The "allergen list available on request" and "service included" notes appear translated in each language
+- [x] **UI-01**: On `/{en,de,it,zh}/menu`, each item shows the translated name as primary text and the FR name as clearly legible secondary text, next to the price
+- [x] **UI-02**: `/fr/menu` is unchanged for French visitors (FR only, no duplicate name)
+- [x] **UI-03**: The "allergen list available on request" and "service included" notes appear translated in each language
 - [ ] **UI-04**: The menu page is comfortable on a 375px-wide phone (category quick-nav, no horizontal scroll) and keeps Lighthouse > 90
 
 ### QR Codes
@@ -83,17 +83,17 @@
 | MENU-04 | Phase 12 | Complete |
 | MENU-05 | Phase 12 | Complete |
 | MENU-06 | Phase 12 | Complete |
-| I18N-01 | Phase 13 | Pending |
-| I18N-02 | Phase 13 | Pending |
-| I18N-03 | Phase 13 | Pending |
-| I18N-04 | Phase 13 | Pending |
-| I18N-05 | Phase 13 | Pending |
+| I18N-01 | Phase 13 | Complete |
+| I18N-02 | Phase 13 | Complete |
+| I18N-03 | Phase 13 | Complete |
+| I18N-04 | Phase 13 | Complete |
+| I18N-05 | Phase 13 | Complete |
 | TRANS-01 | Phase 14 | Pending |
 | TRANS-02 | Phase 14 | Pending |
 | TRANS-03 | Phase 14 | Pending |
-| UI-01 | Phase 13 | Pending |
-| UI-02 | Phase 13 | Pending |
-| UI-03 | Phase 13 | Pending |
+| UI-01 | Phase 13 | Complete |
+| UI-02 | Phase 13 | Complete |
+| UI-03 | Phase 13 | Complete |
 | UI-04 | Phase 13 | Pending |
 | QR-01 | Phase 15 | Pending |
 | QR-02 | Phase 15 | Pending |
