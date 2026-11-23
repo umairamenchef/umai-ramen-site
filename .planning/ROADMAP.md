@@ -284,7 +284,12 @@ Plans:
   1. On `/en/menu`, `/de/menu`, `/it/menu` and `/zh/menu`, every available item name, description and category heading — and the service notes and markers from Phase 12 — appears in that language, with no French text except the intentional secondary FR name.
   2. Japanese dish names (Tantan, Karaage, Gyoza, Mazesoba, Tsukemen, Takoyaki…) appear unchanged in every language, and each translated description explains the dish in a few words.
   3. EK has a review sheet listing FR | EN | DE | IT | ZH for every item, ready to hand to native speakers, with the ZH column visibly flagged "to review".
-**Plans:** TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 14-01-PLAN.md — Translation rules (TDD) + EN/DE/IT/ZH translations of all 178 menu fields as staging overlays; menu-2026.json untouched while Phase 13 runs (TRANS-01, TRANS-02) [wave 1]
+- [ ] 14-02-PLAN.md — Offline/read-only tools: apply-translations.mjs (field-level set, backup, dry-run, rollback), verify-translations.mjs, export-review-sheet.mjs (TRANS-01, TRANS-03) [wave 2]
+- [ ] 14-03-PLAN.md — GATED on Phase 13 live: merge into menu-2026.json, backup + apply + revalidate, live verification on 5 locales + 375 px/glyphs, review sheet from Sanity, FR hand-off (TRANS-01..03) [wave 3]
 **Notes**:
 - Claude produces the translations (locked by EK); they are static Sanity content, with no runtime machine translation. Native review is optional and comes later.
 - Back criterion 1 with a completeness check (no empty en/de/it/zh on an available item); the review sheet must be regenerable from Sanity after native-speaker corrections are applied.
