@@ -42,7 +42,7 @@
 - [x] **UI-01**: On `/{en,de,it,zh}/menu`, each item shows the translated name as primary text and the FR name as clearly legible secondary text, next to the price
 - [x] **UI-02**: `/fr/menu` is unchanged for French visitors (FR only, no duplicate name)
 - [x] **UI-03**: The "allergen list available on request" and "service included" notes appear translated in each language
-- [ ] **UI-04**: The menu page is comfortable on a 375px-wide phone (category quick-nav, no horizontal scroll) and keeps Lighthouse > 90
+- [x] **UI-04**: The menu page is comfortable on a 375px-wide phone (category quick-nav, no horizontal scroll) and keeps Lighthouse > 90
 
 ### QR Codes
 
@@ -94,7 +94,7 @@
 | UI-01 | Phase 13 | Complete |
 | UI-02 | Phase 13 | Complete |
 | UI-03 | Phase 13 | Complete |
-| UI-04 | Phase 13 | Pending |
+| UI-04 | Phase 13 | Complete |
 | QR-01 | Phase 15 | Pending |
 | QR-02 | Phase 15 | Pending |
 | QR-03 | Phase 15 | Pending |

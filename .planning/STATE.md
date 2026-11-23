@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: Phase complete — ready for verification
+status: Ready to plan
 stopped_at: Completed 13-03-PLAN.md
-last_updated: "2026-11-23T22:46:26.378Z"
+last_updated: "2026-11-23T23:16:50.043Z"
 progress:
   total_phases: 12
   completed_phases: 5
   total_plans: 18
-  completed_plans: 16
+  completed_plans: 17
 ---
 
 # Project State
@@ -23,8 +23,8 @@ See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
 ## Current Position
 
-Phase: 13 (Fondations multilingues & page menu touriste) — ALL PLANS COMPLETE, ready for verification (live on umai-ramen.fr since deploy 86068ab; UI-04 Lighthouse gap open)
-Plan: 3 of 3 (13-03 done 2026-11-23)
+Phase: 14
+Plan: Not started
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 

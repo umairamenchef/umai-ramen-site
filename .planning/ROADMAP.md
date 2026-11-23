@@ -287,7 +287,7 @@ Plans:
 **Plans:** 3 plans
 
 Plans:
-- [ ] 14-01-PLAN.md — Translation rules (TDD) + EN/DE/IT/ZH translations of all 178 menu fields as staging overlays; menu-2026.json untouched while Phase 13 runs (TRANS-01, TRANS-02) [wave 1]
+- [x] 14-01-PLAN.md — Translation rules (TDD) + EN/DE/IT/ZH translations of all 178 menu fields as staging overlays; menu-2026.json untouched while Phase 13 runs (TRANS-01, TRANS-02) [wave 1] (completed 2026-11-23)
 - [ ] 14-02-PLAN.md — Offline/read-only tools: apply-translations.mjs (field-level set, backup, dry-run, rollback), verify-translations.mjs, export-review-sheet.mjs (TRANS-01, TRANS-03) [wave 2]
 - [ ] 14-03-PLAN.md — GATED on Phase 13 live: merge into menu-2026.json, backup + apply + revalidate, live verification on 5 locales + 375 px/glyphs, review sheet from Sanity, FR hand-off (TRANS-01..03) [wave 3]
 **Notes**:
@@ -328,6 +328,6 @@ Plans:
 | 10. Résorption dette & polish | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
 | 11. Cutover domaine & vérifications live | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
 | 12. Synchronisation menu print 2026 → Sanity | v2.2 | 3/3 | Complete    | 2026-11-23 |
-| 13. Fondations multilingues & page menu touriste | v2.2 | 3/3 | Complete   | 2026-11-23 |
+| 13. Fondations multilingues & page menu touriste | v2.2 | 3/3 | Complete    | 2026-11-23 |
 | 14. Traductions EN/DE/IT/ZH | v2.2 | 0/? | Not started | — |
 | 15. QR codes & supports imprimables | v2.2 | 0/? | Not started | — |
