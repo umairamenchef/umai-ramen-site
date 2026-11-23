@@ -1,4 +1,5 @@
 import type { DayOfWeek } from 'schema-dts';
+import { htmlLang, localesForPath } from '@/i18n/locales';
 
 // Keep in sync with Sanity siteSettings document
 // NAP constants are the SEO/fallback source; Sanity siteSettings is the editorial source.
@@ -16,8 +17,8 @@ export const NAP = {
 export const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL ?? 'https://umai-ramen.fr';
 
-export const LOCALES = ['fr', 'en', 'de'] as const;
-export const DEFAULT_LOCALE = 'fr';
+// The locale lists moved to src/i18n/locales.ts (single source of truth).
+export { DEFAULT_LOCALE } from '@/i18n/locales';
 
 export const OG_IMAGE = {
   url: '/og-image.jpg',
@@ -26,15 +27,17 @@ export const OG_IMAGE = {
   alt: 'Umaï Ramen Strasbourg',
 };
 
+// hreflang: IT/ZH only for the menu (I18N-05), x-default stays the French page.
+// `path` is the page path without its locale prefix ('', '/menu', '/infos', …).
 export function buildAlternates(locale: string, path: string) {
+  const languages: Record<string, string> = {};
+  for (const l of localesForPath(path)) {
+    languages[htmlLang(l)] = `/${l}${path}`;
+  }
+  languages['x-default'] = `/fr${path}`;
   return {
     canonical: `/${locale}${path}`,
-    languages: {
-      fr: `/fr${path}`,
-      en: `/en${path}`,
-      de: `/de${path}`,
-      'x-default': `/fr${path}`,
-    },
+    languages,
   };
 }
 

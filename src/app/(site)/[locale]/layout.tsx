@@ -4,6 +4,7 @@ import { setRequestLocale, getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { routing } from '@/i18n/routing';
+import { FULL_SITE_LOCALES, htmlLang } from '@/i18n/locales';
 import { DM_Serif_Display, Outfit, Noto_Sans_JP } from 'next/font/google';
 import { MotionProvider } from '@/components/layout/MotionProvider';
 import { Header } from '@/components/layout/Header';
@@ -15,10 +16,12 @@ import { SITE_SETTINGS_QUERY } from '@/sanity/lib/queries';
 
 export const revalidate = 60; // FOUND-04: ISR 60s baseline
 
+// UI-04 perf headroom: only the font files that are actually rendered are requested.
+// Every `italic` class sits on font-body (Outfit, synthesized), so no DM Serif italic.
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ['latin'],
   weight: '400',
-  style: ['normal', 'italic'],
+  style: ['normal'],
   variable: '--font-dm-serif-display',
   display: 'swap',
   preload: true,
@@ -32,16 +35,22 @@ const outfit = Outfit({
   preload: true,
 });
 
+// Weight 300 trimmed (UI-04): nothing in src/** uses font-light, so it was never rendered
+// but cost ~124 unicode-range @font-face rules in the render-blocking CSS.
 const notoSansJP = Noto_Sans_JP({
   subsets: ['latin'],
-  weight: ['300', '400'],
+  weight: ['400'],
   variable: '--font-noto-sans-jp',
   display: 'swap',
   preload: false, // decorative only — lazy load to protect LCP
 });
 
+// IT/ZH are menu-only (I18N-02): non-menu pages are NOT prerendered for it/zh. They are
+// unreachable anyway (src/proxy.ts redirects every non-menu /it/* and /zh/* to /en/*).
+// The menu page adds it/zh to its own static params (Plan 13-02); until then /it/menu and
+// /zh/menu render on demand (dynamicParams default) and are cached.
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return FULL_SITE_LOCALES.map((locale) => ({ locale }));
 }
 
 type Props = {
@@ -70,7 +79,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html
-      lang={locale}
+      lang={htmlLang(locale)}
       className={`${dmSerifDisplay.variable} ${outfit.variable} ${notoSansJP.variable}`}
     >
       <head>

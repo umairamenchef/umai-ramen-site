@@ -1,6 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextResponse, type NextRequest } from 'next/server';
 import { routing } from './i18n/routing';
+import { menuOnlyRedirectPath } from './i18n/locales';
 import { COOKIE_NAME, isValidStudioCookie } from './lib/ig-studio/auth';
 
 const intl = createMiddleware(routing);
@@ -24,8 +25,31 @@ export async function proxy(req: NextRequest) {
     return NextResponse.next(); // authenticated — serve the admin tool as-is
   }
 
-  // Everything else flows through next-intl (locale routing, /fr, /en, /de, …).
-  return intl(req);
+  // IT/ZH are menu-only (I18N-02): /it, /zh/infos, … → same path under /en (query kept).
+  // 307, not 308: it stays reversible while « IT/ZH for the rest of the site » is a
+  // deferred idea (browsers cache a 308 forever); next-intl's own redirects are 307 too.
+  const menuOnlyTarget = menuOnlyRedirectPath(pathname);
+  if (menuOnlyTarget) {
+    const url = req.nextUrl.clone();
+    url.pathname = menuOnlyTarget;
+    return NextResponse.redirect(url, 307);
+  }
+
+  // Everything else flows through next-intl (locale routing, /fr, /en, /de, /{it,zh}/menu).
+  const response = intl(req);
+
+  // Locale detection on unprefixed URLs (NEXT_LOCALE cookie or Accept-Language = it/zh)
+  // must never land on a non-menu IT/ZH page: retarget next-intl's redirect to /en.
+  const location = response.headers.get('location');
+  if (location) {
+    const target = new URL(location, req.url);
+    const fixed = menuOnlyRedirectPath(target.pathname);
+    if (fixed) {
+      target.pathname = fixed;
+      response.headers.set('location', target.toString());
+    }
+  }
+  return response;
 }
 
 // Keep the existing matcher UNCHANGED.
