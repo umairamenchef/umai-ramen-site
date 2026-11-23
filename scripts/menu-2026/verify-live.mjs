@@ -3,7 +3,7 @@
 // 2026 print transcription (scripts/menu-2026/menu-2026.json) and the `menu.*`
 // message files (src/messages/<locale>.json).
 //
-//   node scripts/menu-2026/verify-live.mjs [--target <url|file>] [--locale fr|en|de]
+//   node scripts/menu-2026/verify-live.mjs [--target <url|file>] [--locale fr|en|de|it|zh]
 //        [--expect m26|legacy] [--home] [--retries N] [--interval S]
 //
 // Defaults: --locale fr, --expect m26, --retries 0, --interval 30, target
@@ -24,7 +24,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const LOCALES = ['fr', 'en', 'de'];
+const LOCALES = ['fr', 'en', 'de', 'it', 'zh'];
 const EXPECTS = ['m26', 'legacy'];
 const BASE_URL = 'https://umai-ramen.fr';
 const MAX_FAIL_LINES = 60;
@@ -70,7 +70,7 @@ class UsageError extends Error {}
 function usage(message) {
   if (message) console.error(`ERROR ${message}`);
   console.error(
-    'usage: node scripts/menu-2026/verify-live.mjs [--target <url|file>] [--locale fr|en|de] ' +
+    'usage: node scripts/menu-2026/verify-live.mjs [--target <url|file>] [--locale fr|en|de|it|zh] ' +
       '[--expect m26|legacy] [--home] [--retries N] [--interval S]',
   );
   process.exit(2);
@@ -100,6 +100,7 @@ function parseArgs(argv) {
   if (!EXPECTS.includes(opts.expect)) usage(`--expect must be one of ${EXPECTS.join('|')}`);
   if (!Number.isInteger(opts.retries) || opts.retries < 0) usage('--retries must be an integer >= 0');
   if (!Number.isFinite(opts.interval) || opts.interval < 0) usage('--interval must be a number >= 0');
+  if (['it', 'zh'].includes(opts.locale) && (opts.home || opts.expect === 'legacy')) usage('--locale it|zh: menu page with --expect m26 only (IT/ZH are menu-only)');
   if (!opts.target) {
     opts.target = opts.home ? `${BASE_URL}/${opts.locale}` : `${BASE_URL}/${opts.locale}/menu`;
   }
