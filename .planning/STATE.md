@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: Ready to plan
+status: Executing Phase 15
 stopped_at: Completed 14-03-PLAN.md
-last_updated: "2026-11-23T23:35:57.672Z"
+last_updated: "2026-11-23T23:38:45.725Z"
 progress:
   total_phases: 12
   completed_phases: 6
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
 **Core value (v2.2):** A foreign tourist scans a QR code and reads the 2026 menu in their language (EN/DE/IT/ZH), with the FR dish name always visible for ordering.
-**Current focus:** Phase 14 complete (EN/DE/IT/ZH menu translations live 2026-11-24); next: Phase 15, QR codes & supports imprimables
+**Current focus:** Phase 15 — QR codes & supports imprimables
 
 ## Current Position
 
-Phase: 15
-Plan: Not started
+Phase: 15 (QR codes & supports imprimables) — EXECUTING
+Plan: 1 of 4
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
