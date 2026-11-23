@@ -1,8 +1,11 @@
+import { pickLocale, type LocaleField } from './menu';
+
+/** Content fallback: requested locale, then French (the server-readable name), then `fallback`. */
 export function localized(
-  field: { fr: string; en?: string; de?: string } | null | undefined,
+  field: LocaleField | null | undefined,
   locale: string,
-  fallback = ''
+  fallback = '',
 ): string {
-  if (!field) return fallback;
-  return field[locale as keyof typeof field] ?? field.fr ?? fallback;
+  const value = pickLocale(field, locale);
+  return value !== '' ? value : fallback;
 }

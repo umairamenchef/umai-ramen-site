@@ -29,5 +29,18 @@ export const localeText = defineType({
       type: 'text',
       fieldset: 'translations',
     }),
+    defineField({
+      name: 'it',
+      title: 'Italien',
+      type: 'text',
+      fieldset: 'translations',
+    }),
+    defineField({
+      name: 'zh',
+      title: 'Chinois (simplifié)',
+      type: 'text',
+      fieldset: 'translations',
+      description: 'Caractères simplifiés (简体)',
+    }),
   ],
 });

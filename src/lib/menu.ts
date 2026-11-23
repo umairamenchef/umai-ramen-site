@@ -6,7 +6,7 @@
 // stripping. The Sanity sync script (phase 12, plan 02) writes documents in the
 // shape described by these types.
 
-export type LocaleField = { fr: string; en?: string; de?: string };
+export type LocaleField = { fr: string; en?: string; de?: string; it?: string; zh?: string };
 
 export type PriceUnit = 'pcs' | 'cl' | 'l' | 'scoop';
 export type MenuBadge = 'bestseller' | 'vegetarianOption';
@@ -63,10 +63,36 @@ export type MenuOffer = {
 
 type PricedItem = Pick<MenuItemData, 'price' | 'prices' | 'priceOnRequest'>;
 
-/** Same semantics as `localized()`: requested locale, then French, then ''. */
+/**
+ * Same semantics as `localized()` (which delegates here): requested locale, then
+ * French, then ''. Empty or blank translations count as missing, so a Studio field
+ * that was opened and cleared never hides the French text.
+ */
 export function pickLocale(field: LocaleField | null | undefined, locale: string): string {
   if (!field) return '';
-  return (field as Record<string, string | undefined>)[locale] ?? field.fr ?? '';
+  const value = (field as Record<string, unknown>)[locale];
+  if (typeof value === 'string' && value.trim() !== '') return value;
+  return typeof field.fr === 'string' ? field.fr : '';
+}
+
+const comparable = (text: string): string =>
+  text.normalize('NFC').toLowerCase().replace(/\s+/g, ' ').trim();
+
+/**
+ * UI-01: the French name shown under the translated name on the EN/DE/IT/ZH menus
+ * (what the guest says or shows to the server). null on /fr, when the translation is
+ * missing (the French name already is the primary text), or when the primary text
+ * already contains the French name (Japanese names identical in every language).
+ */
+export function secondaryFrenchName(
+  name: LocaleField | null | undefined,
+  locale: string,
+): string | null {
+  if (!name || locale === 'fr') return null;
+  const fr = typeof name.fr === 'string' ? name.fr.trim() : '';
+  if (fr === '') return null;
+  const primary = pickLocale(name, locale);
+  return comparable(primary).includes(comparable(fr)) ? null : fr;
 }
 
 /** « 5,50 € », with a non-breaking space so the euro sign never wraps alone on mobile. */
