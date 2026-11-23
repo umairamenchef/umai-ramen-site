@@ -3,8 +3,9 @@
 ## Milestones
 
 - ✅ **v1.0 MVP Launch** — Phases 1–3, 11 plans (shipped 2026-02-23) → [archive](.planning/milestones/v1.0-ROADMAP.md)
-- 🚧 **v2.0 IG Content Studio** — Phases 4–7, in progress (opened 2026-06-29)
-- 🚧 **v2.1 Mise en ligne production & bascule umai-ramen.fr** — Phases 8–11, in progress (opened 2026-07-08)
+- ✅ **v2.0 IG Content Studio** — Phases 4–7, de facto delivered & deployed (umai.turfu.in/ig-studio); formal archive pending
+- ✅ **v2.1 Mise en ligne production & bascule umai-ramen.fr** — Phases 8–11, delivered 2026-07-16 (umai-ramen.fr live), all 24 REQs checked; formal archive pending
+- 🚧 **v2.2 Menu multilingue & QR codes touristes** — Phases 12–15, in progress (opened 2026-11-22)
 
 ## Phases
 
@@ -207,6 +208,94 @@ Plans:
 
 ---
 
+## v2.2 — Menu multilingue & QR codes touristes
+
+**Core value:** A foreign tourist scans a QR code and reads the 2026 menu in their language (EN/DE/IT/ZH) on their phone, with each dish's French name always visible so the server can take the order.
+
+**Key context:**
+- Source of truth = the latest Exaprint print, stored in `.planning/sources/menu-2026/` (`plats-ouvert-360x250mm-print-2026-11-10.pdf`, `boissons-180x250mm-print-2026-11-03.pdf` + extracted `*-print.txt`). The print still contains placeholders (`??` Année Lumière prices, `????` Trio dégustation description) and typos (`Asashi`) that EK must settle before anything is published.
+- Locked by EK (2026-11-22): IT/ZH are menu-only (+ QR page); simplified Chinese only; Claude translates (native review optional later); mobile web page, no per-language PDF.
+- Starting point: Next.js 16 + next-intl v4 (locales fr/en/de in `src/i18n/routing.ts`), Sanity v5 field-level `localeString`/`localeText` (fr required, en/de optional), menu page `src/app/(site)/[locale]/menu/page.tsx`, live on https://umai-ramen.fr. Sanity content (`c7twe801` / `production`) is edited directly in production.
+
+**Execution order:** 12 → 13 → 14 → 15. Phase 13 can overlap Phase 12's wait on EK's validation; Phase 15 can be built as soon as Phase 13 lands, but its real-phone scan test and the Exaprint order wait for Phase 14's content.
+
+**Phases (v2.2):**
+
+- [ ] **Phase 12: Synchronisation menu print 2026 → Sanity** - The live FR menu mirrors the 2026 print exactly (items, prices, variants, notes), validated by EK before publication
+- [ ] **Phase 13: Fondations multilingues & page menu touriste** - IT/ZH menu-only locales, language switcher and a bilingual (translated name + FR name) mobile menu page
+- [ ] **Phase 14: Traductions EN/DE/IT/ZH** - Full menu translated into 4 languages in Sanity, Japanese names kept and explained, review sheet for native speakers
+- [ ] **Phase 15: QR codes & supports imprimables** - One QR per language on an A4 sheet and a table tent ready for Exaprint, plus a `/menu/qr` download page
+
+**Coverage:** 22/22 v2.2 requirements mapped, each to exactly one phase (MENU-01..06 → 12 · I18N-01..05 + UI-01..04 → 13 · TRANS-01..03 → 14 · QR-01..04 → 15).
+
+### Phase 12: Synchronisation menu print 2026 → Sanity
+**Goal**: The live FR menu is a faithful, EK-validated mirror of the 2026 printed menu — every dish, drink, dessert, kids menu and extra with the exact names, descriptions, prices and order — and no placeholder or typo from the print reaches production.
+**Depends on**: Nothing (builds on the live v2.1 site; the current Sanity menu, rebuilt from eazee-link in July, is the starting point)
+**Requirements**: MENU-01, MENU-02, MENU-03, MENU-04, MENU-05, MENU-06
+**Success Criteria** (what must be TRUE):
+  1. On `umai-ramen.fr/fr/menu` a visitor sees every dish, drink, dessert, kids menu and extra of the 2026 print (food spread and drinks) with the same FR names, descriptions, prices and category order, and nothing that is not on the print; items dropped from the print no longer show (availability off) but still exist in Studio.
+  2. Items with several prices show every variant, correctly labelled, on the live menu (3/6/9 pcs, 25cl/50cl, 1/2 boules, verre/bouteille).
+  3. A print-vs-Sanity discrepancy report (added / removed / changed price / changed text) is produced and kept in the phase folder, and a full export of the Sanity menu documents is taken before any production write (rollback path). _Autonomy grant (EK, 2026-11-23: « Avance en autonome jusqu'à livraison déployé »): the report is applied with Claude's documented defaults and handed to EK for post-hoc review instead of a blocking pre-approval._
+  4. The print's service notes and markers appear on the live menu in French and are stored so they can be translated: « Le midi seulement » (Udon), « Pour les enfants de moins de 10 ans » (Menu enfant), « Notre best-seller » (Tantan Ramen), « Version végétarienne disponible », « Complétez votre bol avec nos extras ».
+  5. No `??` or `????` is visible anywhere on the live menu — Année Lumière shows « Prix sur demande » (translatable) until EK supplies the 12cl/25cl/50cl prices, Trio dégustation uses the BAT description « Trois sakés sélectionnés par notre équipe. » — and obvious print typos are corrected on the web (« Asashi » → « Asahi »), all listed for EK's post-hoc review.
+**Plans:** TBD
+**Notes**:
+- Read the print PDFs visually, not only the `*-print.txt`: the text layer detaches prices from items (e.g. the takoyaki vs gyoza price rows, the sake descriptions), and « Version végétarienne disponible » and the « 1/2 boules » variants are not visible in it.
+- Schema gap: `menuItem.price` is a single required number, so MENU-02 needs a price-variant model — keep quantity and unit structured so Phase 13 can translate units through message files — plus matching JSON-LD offers; the MENU-05 markers need fields too.
+- Scale: ≈80 print entries vs ≈167 `menuItem` / 26 `menuCategory` in Sanity (state of 2026-07-14), so expect a large hide set. Export the dataset before applying, hide rather than delete, and reset stale en/de copies whenever an item's FR text changes.
+- EK-gated inputs: Année Lumière prices, Trio dégustation description, typo and format confirmations (« Asashi », `9.00` / `8.50` / `15.5°` decimal styles). If a value cannot be supplied, EK chooses the fallback (hide the item or omit the variant); `??` is never published.
+- MENU-05 is mapped here for the French carry-over; its EN/DE/IT/ZH versions arrive through the Phase 13 labels (I18N-03) and the Phase 14 content (TRANS-01).
+
+### Phase 13: Fondations multilingues & page menu touriste
+**Goal**: A tourist can open the menu in English, German, Italian or Chinese on a phone, switch language without rescanning, and read each dish with the translated name first and the French name always visible; IT and ZH exist for the menu only.
+**Depends on**: Phase 12 (shared menu schema and components: price variants and notes); can overlap Phase 12's wait on EK's validation
+**Requirements**: I18N-01, I18N-02, I18N-03, I18N-04, I18N-05, UI-01, UI-02, UI-03, UI-04
+**Success Criteria** (what must be TRUE):
+  1. In Sanity Studio every translatable menu text (item names and descriptions, categories, notes) offers Italian and Chinese inputs next to FR/EN/DE, and a value typed there appears on `/it/menu` or `/zh/menu`.
+  2. `umai-ramen.fr/it/menu` and `/zh/menu` load, while any other `/it/*` or `/zh/*` URL (e.g. `/it/infos`, `/zh`) redirects to its `/en/*` equivalent; `/fr`, `/en` and `/de` are unchanged; hreflang alternates and `sitemap.xml` list the IT and ZH menu URLs (and only those).
+  3. A language switcher at the top of the menu page (FR · EN · DE · IT · 中文) changes the language while keeping the visitor on the menu; section headings, badges, price units and the « allergen list available on request » and « service included » notes all appear in the selected language.
+  4. On the `/en`, `/de`, `/it` and `/zh` menu pages every item shows the translated name as primary text and the French name as clearly legible secondary text next to the price (shown once when identical, e.g. Japanese names), while `/fr/menu` stays French-only with no duplicate name; Chinese text renders in simplified glyphs with no missing characters under a simplified-Chinese `lang`.
+  5. On a 375px-wide phone the menu offers a category quick-nav with no horizontal scroll, and Lighthouse stays above 90 on every menu locale, including `/zh/menu`.
+**Plans:** TBD
+**UI hint**: yes
+**Notes**:
+- Menu-only gating touches `src/i18n/routing.ts` (fr/en/de today), `src/proxy.ts` (redirect rule), per-page `generateStaticParams`, `buildAlternates` in `src/lib/seo.ts` (hreflang hardcoded to fr/en/de), `src/app/sitemap.ts`, the OG `locale` mapping on the menu page and `<html lang>` (zh → simplified Chinese).
+- Header, footer, cookie banner and order modal also render around `/it/menu` and `/zh/menu`: decide in discuss-phase whether they fall back to EN or get minimal IT/ZH strings (I18N-03 only mandates the menu UI labels).
+- `Noto Sans JP` (300/400, decorative, `preload: false`) will not cover simplified-only glyphs: scope a Simplified-Chinese font to the zh menu route and watch the Lighthouse budget (research flag).
+- Shared `localeString` / `localeText` also serve non-menu documents (pages, settings): IT/ZH inputs will appear there unused. Accept (collapsed fieldset) or scope to menu documents.
+- The item row (translated name, FR secondary name, price variants from Phase 12, badges) is designed once here; consider `/gsd:ui-phase 13` before planning.
+
+### Phase 14: Traductions EN/DE/IT/ZH
+**Goal**: Every text of the menu (items, descriptions, categories, notes) exists in English, German, Italian and simplified Chinese in Sanity, with Japanese dish names preserved and explained, and EK holds a review sheet to have the translations checked by native speakers.
+**Depends on**: Phase 12 (final validated FR content), Phase 13 (IT/ZH fields and UI labels in place)
+**Requirements**: TRANS-01, TRANS-02, TRANS-03
+**Success Criteria** (what must be TRUE):
+  1. On `/en/menu`, `/de/menu`, `/it/menu` and `/zh/menu`, every available item name, description and category heading — and the service notes and markers from Phase 12 — appears in that language, with no French text except the intentional secondary FR name.
+  2. Japanese dish names (Tantan, Karaage, Gyoza, Mazesoba, Tsukemen, Takoyaki…) appear unchanged in every language, and each translated description explains the dish in a few words.
+  3. EK has a review sheet listing FR | EN | DE | IT | ZH for every item, ready to hand to native speakers, with the ZH column visibly flagged "to review".
+**Plans:** TBD
+**Notes**:
+- Claude produces the translations (locked by EK); they are static Sanity content, with no runtime machine translation. Native review is optional and comes later.
+- Back criterion 1 with a completeness check (no empty en/de/it/zh on an available item); the review sheet must be regenerable from Sanity after native-speaker corrections are applied.
+
+### Phase 15: QR codes & supports imprimables
+**Goal**: EK can print and place QR codes — one per language — that open the right tourist menu on any phone, using on-brand A4 and table-tent files ready for Exaprint, and can download them again at any time.
+**Depends on**: Phase 13 (menu routes live), Phase 14 (translated content live before the real-phone scan test and the print order)
+**Requirements**: QR-01, QR-02, QR-03, QR-04
+**Success Criteria** (what must be TRUE):
+  1. Scanning each of the 5 QR codes with a real phone camera opens `https://umai-ramen.fr/{fr,en,de,it,zh}/menu` in the matching language, showing the translated menu.
+  2. A printable A4 sheet (vector PDF) shows the 5 QR codes, each labelled in its own language and script ("Menu in English", "中文菜单", …), in the Umaï brand look.
+  3. A print-ready table tent (A6 or folded card, PDF with bleed, Exaprint-compatible) carries the 5 QR codes, and EK can send it to Exaprint without rework.
+  4. EK or Loan can open `/menu/qr` at any time, see the 5 QR codes, and download each as SVG or PNG plus the A4 and table-tent PDFs.
+**Plans:** TBD
+**UI hint**: yes
+**Notes**:
+- Research flag: Exaprint requirements for the chosen format (bleed, colour profile, embedded fonts including a CJK font for the 中文 label) and QR minimum size and quiet zone. EK picks A6 vs folded card in discuss-phase.
+- `/menu/qr` sits under the locale prefix (`/fr/menu/qr`): keep it `noindex` and out of the sitemap, and decide whether to gate it (e.g. reuse the ig-studio password). The I18N-02 redirect rule applies to its `/it` and `/zh` variants.
+- QR codes encode plain `https://umai-ramen.fr/{locale}/menu` URLs (per-language scan tracking is deferred).
+
+---
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -219,6 +308,10 @@ Plans:
 | 6. Captions & Full Assembly | v2.0 | 0/? | Deferred (subsumed by Phase 07) | — |
 | 7. IG Studio Editor (web UI) | v2.0 | 4/5 | In Progress | — |
 | 8. Audit go-live & gap analysis | v2.1 | 1/1 | Complete | 2026-07-09 |
-| 9. Contenu & visuels production (Sanity) | v2.1 | 0/? | Not started | — |
-| 10. Résorption dette & polish | v2.1 | 0/? | Not started | — |
-| 11. Cutover domaine & vérifications live | v2.1 | 0/? | Not started | — |
+| 9. Contenu & visuels production (Sanity) | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
+| 10. Résorption dette & polish | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
+| 11. Cutover domaine & vérifications live | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
+| 12. Synchronisation menu print 2026 → Sanity | v2.2 | 0/? | Not started | — |
+| 13. Fondations multilingues & page menu touriste | v2.2 | 0/? | Not started | — |
+| 14. Traductions EN/DE/IT/ZH | v2.2 | 0/? | Not started | — |
+| 15. QR codes & supports imprimables | v2.2 | 0/? | Not started | — |

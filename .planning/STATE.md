@@ -2,15 +2,16 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: defining_requirements
-stopped_at: Milestone v2.2 opened — defining requirements
-last_updated: "2026-11-22T00:00:00.000Z"
-last_activity: 2026-11-22 — Milestone v2.2 started
+status: planning
+stopped_at: Roadmap v2.2 written (Phases 12–15, 22/22 requirements mapped) — ready to plan Phase 12
+last_updated: "2026-11-23T00:00:00.000Z"
+last_activity: 2026-11-23 — Roadmap v2.2 created (4 phases, 22/22 requirements mapped)
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
+  percent: 0
 ---
 
 # Project State
@@ -20,14 +21,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
 **Core value (v2.2):** A foreign tourist scans a QR code and reads the 2026 menu in their language (EN/DE/IT/ZH), with the FR dish name always visible for ordering.
-**Current focus:** v2.2 — requirements → roadmap.
+**Current focus:** v2.2 — Phase 12: Synchronisation menu print 2026 → Sanity (ready to plan)
 
 ## Current Position
 
-Phase: Not started (defining requirements)
+Phase: 12 — Synchronisation menu print 2026 → Sanity (1 of 4 in v2.2) — not started (ready to plan)
 Plan: —
-Status: Defining requirements
-Last activity: 2026-11-22 — Milestone v2.2 started (menu multilingue EN/DE/IT/ZH + QR codes touristes)
+Status: Ready to plan
+Last activity: 2026-11-23 — Roadmap v2.2 created: Phases 12–15, 22/22 requirements mapped
+Next action: `/gsd:discuss-phase 12` (settle the price-variant model, the notes/markers model and the fallback for the `??` placeholders) or `/gsd:plan-phase 12`
+
+Progress: [░░░░░░░░░░] 0% (v2.2: 0/4 phases)
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 - EN/DE i18n leaks fixed (reservation microcopy + Infos FAQ ×3) ✓
@@ -107,6 +111,8 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 
 ## Performance Metrics
 
+**v2.2 velocity:** Not yet measured.
+
 **v2.1 velocity:** Not yet measured.
 
 **v2.0 (IG Content Studio):** built + deployed on umai.turfu.in/ig-studio; not formally archived.
@@ -119,6 +125,20 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Phase breakdown: 01-foundation 65min, 02-content-pages 43min, 03-seo-compliance ~30min
 
 ## Accumulated Context
+
+### Key Decisions (v2.2)
+
+- LOCKED by EK (2026-11-22): IT/ZH are menu-only (+ QR page), every other `/it/*` and `/zh/*` redirects to `/en/*`; simplified Chinese only; Claude translates (native review optional later); mobile web page, no per-language PDF.
+- Source of truth for the menu = latest Exaprint print in `.planning/sources/menu-2026/` (food 2026-11-10, drinks 2026-11-03).
+- Roadmap = 4 phases, 22/22 requirements mapped: 12 Sync (MENU-01..06) → 13 Foundations & tourist page (I18N-01..05, UI-01..04) → 14 Translations (TRANS-01..03) → 15 QR & print supports (QR-01..04).
+- Phase 13 may overlap Phase 12's wait on EK validation, but both touch `src/components/menu/{MenuItem,MenuCategory}.tsx` and the menu page: land Phase 12's schema/component changes first.
+- Price-variant model (MENU-02) keeps quantity/unit structured so units can be translated through message files (I18N-03).
+- Phase 15's real-phone scan test and the Exaprint order wait for Phase 14's translated content to be live.
+- MENU-05 is mapped to Phase 12 (French carry-over); its translations land via the Phase 13 labels (I18N-03) and the Phase 14 content (TRANS-01).
+- Deploys stay manual until the webhook is repaired (see "Webhook de deploy CASSÉ" below).
+- **AUTONOMY GRANT (EK, 2026-11-23): « Avance en autonome jusqu'à livraison déployé »** — Claude drives Phases 12→15 through production deploy without blocking on EK. EK gates are replaced by documented defaults + post-hoc review: (a) Année Lumière → « Prix sur demande » (translatable) until EK gives 12cl/25cl/50cl prices; (b) Trio dégustation description → BAT text « Trois sakés sélectionnés par notre équipe. »; (c) obvious typos fixed on web (« Asashi » → « Asahi »); (d) discrepancy report applied, kept in the phase folder and handed to EK; (e) full JSON export of Sanity menu documents BEFORE any production write (rollback); hide (available=false), never delete.
+- Phase 13 site-chrome default (decided under the autonomy grant): on `/it/menu` and `/zh/menu`, header/footer/cookie banner/order modal use minimal IT/ZH strings where they exist in the message files, EN fallback otherwise (to be finalized in Phase 13 context).
+- Phase 15 default: table tent = A6 (105×148 mm) flat card, recto/verso, PDF with 3 mm bleed (EK can switch to folded later).
 
 ### Key Decisions (v2.1)
 
@@ -153,6 +173,7 @@ Deployment: Docker standalone on VPS srv1417179 (valid 2027-02-23), multi-site C
 
 ### Pending Todos (owner-side)
 
+- v2.2 (EK): validate the Phase 12 discrepancy report; supply the Année Lumière 12/25/50cl prices and the Trio dégustation description; confirm typos (« Asashi »); pick the table-tent format (A6 vs folded card) before Phase 15; optional native review of the Phase 14 sheet
 - Photo assets from EK: progressively from 2026-07-09 (hero + gallery, from JPEG_72dpi Google Drive)
 - Summer menu ground truth from Loan Nguyen — verify dishes/prices/tags against in-restaurant reality
 - Notre Histoire text validation with Loan Nguyen
@@ -178,6 +199,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ### Blockers/Concerns
 
+- v2.2 / Phase 12: EK gates lifted by the 2026-11-23 autonomy grant — defaults applied (see Key Decisions v2.2); EK post-hoc review of the discrepancy report + Année Lumière prices still wanted.
+- v2.2 / Phase 13: language of the site chrome (header, footer, cookie banner, order modal) on `/it/menu` and `/zh/menu` is undecided: EN fallback vs minimal IT/ZH strings.
+- Tooling: the v2.0 and v2.1 sections of ROADMAP.md are not collapsed in `<details>`, so `gsd-tools roadmap analyze` counts phases 4–15 as the current milestone (`next_phase` resolves to 06, `phase_count` 12). Explicit `/gsd:*-phase 12` commands are unaffected; run `/gsd:complete-milestone` for v2.0/v2.1 to clean this up.
 - RESOLVED: Google Drive auth — photos are already local (no Drive fetch needed for ig-studio)
 - PENDING: umai_037.jpg classified as ambiance — appears to be an udon dish (not on summer ramen menu). Owner should review during pilot sign-off.
 - PENDING: Pilot sign-off — owner must review contact-sheet.html and run `npm run signoff` to unblock --all
@@ -190,9 +214,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ## Session Continuity
 
-Last session: 2026-07-08
-Stopped at: Roadmap v2.1 written (phases 08–11). REQUIREMENTS.md traceability updated. STATE.md updated.
-Resume: Run `/gsd:plan-phase 8` to create the execution plan for Phase 08 (Audit go-live & gap analysis).
+Last session: 2026-11-23
+Stopped at: Roadmap v2.2 written (Phases 12–15). REQUIREMENTS.md traceability filled (22/22). STATE.md updated.
+Resume: Run `/gsd:discuss-phase 12` (or `/gsd:plan-phase 12`) for Phase 12 (Synchronisation menu print 2026 → Sanity).
 
 ### Key Decisions Added (v2.0 execution)
 

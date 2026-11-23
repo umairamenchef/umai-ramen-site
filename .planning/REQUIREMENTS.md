@@ -77,8 +77,33 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
+| MENU-01 | Phase 12 | Pending |
+| MENU-02 | Phase 12 | Pending |
+| MENU-03 | Phase 12 | Pending |
+| MENU-04 | Phase 12 | Pending |
+| MENU-05 | Phase 12 | Pending |
+| MENU-06 | Phase 12 | Pending |
+| I18N-01 | Phase 13 | Pending |
+| I18N-02 | Phase 13 | Pending |
+| I18N-03 | Phase 13 | Pending |
+| I18N-04 | Phase 13 | Pending |
+| I18N-05 | Phase 13 | Pending |
+| TRANS-01 | Phase 14 | Pending |
+| TRANS-02 | Phase 14 | Pending |
+| TRANS-03 | Phase 14 | Pending |
+| UI-01 | Phase 13 | Pending |
+| UI-02 | Phase 13 | Pending |
+| UI-03 | Phase 13 | Pending |
+| UI-04 | Phase 13 | Pending |
+| QR-01 | Phase 15 | Pending |
+| QR-02 | Phase 15 | Pending |
+| QR-03 | Phase 15 | Pending |
+| QR-04 | Phase 15 | Pending |
 
-**Coverage:** 0/22 mapped (filled by roadmap)
+**Coverage:** 22/22 mapped ✓ — every requirement assigned to exactly one phase (MENU 6 → Phase 12 · I18N 5 + UI 4 → Phase 13 · TRANS 3 → Phase 14 · QR 4 → Phase 15)
+
+> MENU-05 is mapped to Phase 12 for the French carry-over of the print notes and markers; their EN/DE/IT/ZH versions are produced under I18N-03 (Phase 13 UI labels) and TRANS-01 (Phase 14 content).
 
 ---
 *Requirements defined: 2026-11-22 (v2.2 milestone opening)*
+*Traceability filled: 2026-11-23 (roadmap v2.2, Phases 12–15)*
