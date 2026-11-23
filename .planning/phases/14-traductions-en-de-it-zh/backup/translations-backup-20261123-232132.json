@@ -1,0 +1,2837 @@
+{
+  "exportedAt": "2026-11-23T23:21:32.365Z",
+  "projectId": "c7twe801",
+  "dataset": "production",
+  "perspective": "raw",
+  "counts": {
+    "menuCategory": 20,
+    "menuItem": 77,
+    "drafts": 0
+  },
+  "documents": [
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-bieres",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "name": {
+        "_type": "localeString",
+        "fr": "Bières"
+      },
+      "nameJp": "ビール",
+      "order": 90,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "bieres"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-cafes-thes",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "name": {
+        "_type": "localeString",
+        "fr": "Cafés & Thés"
+      },
+      "nameJp": "コーヒー・お茶",
+      "order": 200,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "cafes-thes"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-cocktails-sans-alcool",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "name": {
+        "_type": "localeString",
+        "fr": "Cocktails sans alcool"
+      },
+      "nameJp": "ノンアルコールカクテル",
+      "order": 130,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "cocktails-sans-alcool"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-cocktails-signature",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "20cl"
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Cocktails signature"
+      },
+      "nameJp": "カクテル",
+      "order": 120,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "cocktails-signature"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-desserts",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "name": {
+        "_type": "localeString",
+        "fr": "Desserts"
+      },
+      "nameJp": "デザート",
+      "order": 80,
+      "section": "food",
+      "slug": {
+        "_type": "slug",
+        "current": "desserts-2026"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-eaux-minerales",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "name": {
+        "_type": "localeString",
+        "fr": "Eaux minérales"
+      },
+      "nameJp": "ミネラルウォーター",
+      "order": 160,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "eaux-minerales"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-entrees",
+      "_rev": "lWwPwzVj4paFn3vV2NTyra",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T22:39:44Z",
+      "name": {
+        "_type": "localeString",
+        "fr": "Entrées"
+      },
+      "nameJp": "前菜",
+      "order": 10,
+      "section": "food",
+      "slug": {
+        "_type": "slug",
+        "current": "entrees-2026"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-extras",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "Complétez votre bol avec nos extras."
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Extras"
+      },
+      "nameJp": "追加トッピング",
+      "order": 70,
+      "section": "food",
+      "slug": {
+        "_type": "slug",
+        "current": "extras"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-highball",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "30cl"
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Highball"
+      },
+      "nameJp": "ハイボール",
+      "order": 110,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "highball"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-mazesoba",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "Nouilles à mélanger, sans bouillon."
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Mazesoba"
+      },
+      "nameJp": "まぜそば",
+      "order": 40,
+      "section": "food",
+      "slug": {
+        "_type": "slug",
+        "current": "mazesoba-2026"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-menu-enfant",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "Pour les enfants de moins de 10 ans."
+      },
+      "footnote": {
+        "_type": "localeText",
+        "fr": "Inclus : un sirop à l'eau et une boule de glace au choix."
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Menu enfant"
+      },
+      "nameJp": "お子様メニュー",
+      "order": 60,
+      "section": "food",
+      "slug": {
+        "_type": "slug",
+        "current": "menu-enfant-2026"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-ramen",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "Nouilles en bouillon."
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Ramen"
+      },
+      "nameJp": "ラーメン",
+      "order": 30,
+      "section": "food",
+      "slug": {
+        "_type": "slug",
+        "current": "ramen"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-sakes-japonais",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "Service de 10cl, sauf trio."
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Sakés japonais"
+      },
+      "nameJp": "日本酒",
+      "order": 170,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "sakes-japonais"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-softs",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "name": {
+        "_type": "localeString",
+        "fr": "Softs"
+      },
+      "nameJp": "ソフトドリンク",
+      "order": 150,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "softs-2026"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-spritz",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "25cl"
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Spritz"
+      },
+      "nameJp": "スプリッツァー",
+      "order": 100,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "spritz"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-tantan-umai",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "Nos spécialités à base de sésame blanc."
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Tantan Umaï"
+      },
+      "nameJp": "担々麺",
+      "order": 20,
+      "section": "food",
+      "slug": {
+        "_type": "slug",
+        "current": "tantan-umai"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-thes-glaces",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "name": {
+        "_type": "localeString",
+        "fr": "Thés glacés"
+      },
+      "nameJp": "アイスティー",
+      "order": 140,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "thes-glaces-2026"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-udon",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "Le midi seulement"
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Udon"
+      },
+      "nameJp": "うどん",
+      "order": 50,
+      "section": "food",
+      "slug": {
+        "_type": "slug",
+        "current": "udon-2026"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-vins",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "name": {
+        "_type": "localeString",
+        "fr": "Vins"
+      },
+      "nameJp": "ワイン",
+      "order": 190,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "vins"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-cat-whiskies-rhums",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuCategory",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "description": {
+        "_type": "localeText",
+        "fr": "4cl"
+      },
+      "name": {
+        "_type": "localeString",
+        "fr": "Whiskies & Rhums"
+      },
+      "nameJp": "ウイスキー＆ラム",
+      "order": 180,
+      "section": "drinks",
+      "slug": {
+        "_type": "slug",
+        "current": "whiskies-rhums"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-annee-lumiere-2023",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-vins",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Domaine Le Clos des Lumières"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Année Lumière millésime 2023"
+      },
+      "order": 30,
+      "priceOnRequest": true,
+      "slug": {
+        "_type": "slug",
+        "current": "annee-lumiere-2023"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Vins rouges"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-asahi",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-bieres",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Asahi ~ 5°"
+      },
+      "order": 10,
+      "price": 4.9,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 4.9,
+          "quantity": 25,
+          "unit": "cl"
+        },
+        {
+          "_key": "v1",
+          "_type": "priceVariant",
+          "price": 7.5,
+          "quantity": 50,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "asahi"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Pressions"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-asahi-sake",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-bieres",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Asahi Saké"
+      },
+      "order": 30,
+      "price": 5.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 5.5,
+          "quantity": 25,
+          "unit": "cl"
+        },
+        {
+          "_key": "v1",
+          "_type": "priceVariant",
+          "price": 8.5,
+          "quantity": 50,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "asahi-sake"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Pressions"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-asahi-super-dry",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-bieres",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Asahi Super Dry ~ 5°"
+      },
+      "order": 40,
+      "price": 5.9,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 5.9,
+          "quantity": 33,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "asahi-super-dry"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Bouteilles"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-asahi-yuzu",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-bieres",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Asahi Yuzu"
+      },
+      "order": 20,
+      "price": 5.4,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 5.4,
+          "quantity": 25,
+          "unit": "cl"
+        },
+        {
+          "_key": "v1",
+          "_type": "priceVariant",
+          "price": 8.4,
+          "quantity": 50,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "asahi-yuzu"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Pressions"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-atelier-du-sake",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-sakes-japonais",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Classique japonais."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Atelier du saké ~ 17,5°"
+      },
+      "order": 60,
+      "price": 9.8,
+      "slug": {
+        "_type": "slug",
+        "current": "atelier-du-sake"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-boule-de-glace",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-desserts",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Matcha, Yuzu, Sésame noir, Mangue, Coco, Vanille, Framboise, Fraise, Pêche, Chocolat au lait."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Boule de glace au choix"
+      },
+      "order": 50,
+      "price": 3,
+      "slug": {
+        "_type": "slug",
+        "current": "boule-de-glace"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-cafe-au-lait",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cafes-thes",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Café au lait"
+      },
+      "order": 30,
+      "price": 3.2,
+      "slug": {
+        "_type": "slug",
+        "current": "cafe-au-lait"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Cafés"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-cafe-expresso",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cafes-thes",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Café expresso"
+      },
+      "order": 10,
+      "price": 2.4,
+      "slug": {
+        "_type": "slug",
+        "current": "cafe-expresso"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Cafés"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-cafe-the-gourmand",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-desserts",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Mini financier matcha, macaron exotique, mochi sésame noir et une boule de glace"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Café ou thé gourmand"
+      },
+      "order": 10,
+      "price": 9.9,
+      "slug": {
+        "_type": "slug",
+        "current": "cafe-the-gourmand"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-chardonnay-naturalys",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-vins",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Gérard Bertrand"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Chardonnay Naturalys"
+      },
+      "order": 20,
+      "price": 5.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 5.5,
+          "quantity": 12,
+          "unit": "cl"
+        },
+        {
+          "_key": "v1",
+          "_type": "priceVariant",
+          "price": 24,
+          "quantity": 75,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "chardonnay-naturalys"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Vins blancs"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-chashu-mazesoba",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-mazesoba",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Morceaux de porc teriyaki, cébette, daikon, nori et œuf onsen."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Chashu Mazesoba"
+      },
+      "order": 20,
+      "price": 15.5,
+      "slug": {
+        "_type": "slug",
+        "current": "chashu-mazesoba"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-chashu-porc",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-extras",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Chashu de porc"
+      },
+      "order": 30,
+      "price": 3.9,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 3.9,
+          "quantity": 2,
+          "unit": "pcs"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "chashu-porc"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-chashu-poulet",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-extras",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Chashu de poulet"
+      },
+      "order": 40,
+      "price": 3.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 3.5,
+          "quantity": 3,
+          "unit": "pcs"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "chashu-poulet"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-coca-cola",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-softs",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Coca-Cola / Coca-Cola Zéro"
+      },
+      "order": 20,
+      "price": 3.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 3.5,
+          "quantity": 33,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "coca-cola"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-coedo-ipa",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-bieres",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Coedo IPA ~ 4,5°"
+      },
+      "order": 50,
+      "price": 6.9,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 6.9,
+          "quantity": 33,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "coedo-ipa"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Bouteilles"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-diabolo",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-softs",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "grenadine, fraise, citron, pêche, litchi, passion ou rose."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Diabolo"
+      },
+      "order": 40,
+      "price": 3.5,
+      "slug": {
+        "_type": "slug",
+        "current": "diabolo"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-double-expresso",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cafes-thes",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Double expresso"
+      },
+      "order": 20,
+      "price": 3.6,
+      "slug": {
+        "_type": "slug",
+        "current": "double-expresso"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Cafés"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-duo-mochis-glaces",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-desserts",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Sakura & fruit de la passion."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Duo de mochis glacés"
+      },
+      "order": 20,
+      "price": 6.5,
+      "slug": {
+        "_type": "slug",
+        "current": "duo-mochis-glaces"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-edamame",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-entrees",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Fèves de soja à la fleur de sel"
+      },
+      "isGlutenFree": true,
+      "isVegetarian": true,
+      "name": {
+        "_type": "localeString",
+        "fr": "Edamame"
+      },
+      "nameJp": "枝豆",
+      "order": 40,
+      "price": 4.9,
+      "slug": {
+        "_type": "slug",
+        "current": "edamame"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-fu",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-sakes-japonais",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Fruité, très léger."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Fu ~ 8°"
+      },
+      "order": 30,
+      "price": 9.8,
+      "slug": {
+        "_type": "slug",
+        "current": "fu"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-ginger-highball",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-highball",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Déclinaison au gingembre."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Ginger Highball"
+      },
+      "order": 20,
+      "price": 9,
+      "slug": {
+        "_type": "slug",
+        "current": "ginger-highball"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-gyozas",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-entrees",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Raviolis grillés. Garniture au choix : poulet, porc ou légumes."
+      },
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-2eebf1e0022bd00cab0bfffe9e74413f8bef1710-2500x2101-jpg",
+          "_type": "reference"
+        }
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Gyozas"
+      },
+      "nameJp": "餃子",
+      "order": 20,
+      "price": 4.9,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 4.9,
+          "quantity": 3,
+          "unit": "pcs"
+        },
+        {
+          "_key": "v1",
+          "_type": "priceVariant",
+          "price": 8.9,
+          "quantity": 6,
+          "unit": "pcs"
+        },
+        {
+          "_key": "v2",
+          "_type": "priceVariant",
+          "price": 12.5,
+          "quantity": 9,
+          "unit": "pcs"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "gyozas"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-hachiko",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cocktails-sans-alcool",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Yuzu, pêche et ginger ale."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Hachiko"
+      },
+      "order": 10,
+      "price": 7.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 7.5,
+          "quantity": 30,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "hachiko"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-hibiki",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-whiskies-rhums",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Hibiki"
+      },
+      "order": 40,
+      "price": 14,
+      "slug": {
+        "_type": "slug",
+        "current": "hibiki"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Whiskies"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-highball",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-highball",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Whisky japonais allongé au soda."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Highball"
+      },
+      "order": 10,
+      "price": 8.5,
+      "slug": {
+        "_type": "slug",
+        "current": "highball"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-infusions",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cafes-thes",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Sélection selon disponibilités."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Infusions"
+      },
+      "order": 60,
+      "price": 4.5,
+      "slug": {
+        "_type": "slug",
+        "current": "infusions"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-japanese-coffee",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cafes-thes",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Expresso, whisky japonais et chantilly."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Japanese Coffee"
+      },
+      "order": 40,
+      "price": 8.9,
+      "slug": {
+        "_type": "slug",
+        "current": "japanese-coffee"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Cafés"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-jidai-okure",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-sakes-japonais",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Rond et équilibré."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Jidai okure ~ 15,5°"
+      },
+      "order": 40,
+      "price": 9.8,
+      "slug": {
+        "_type": "slug",
+        "current": "jidai-okure"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-junmaishu",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-sakes-japonais",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Puissant et riche."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Junmaishu ~ 15,5°"
+      },
+      "order": 50,
+      "price": 9.8,
+      "slug": {
+        "_type": "slug",
+        "current": "junmaishu"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-karaage",
+      "_rev": "lWwPwzVj4paFn3vV2NTyra",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T22:39:44Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-entrees",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Poulet mariné et frit maison"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Karaage"
+      },
+      "nameJp": "唐揚げ",
+      "order": 10,
+      "price": 5.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 5.5,
+          "quantity": 3,
+          "unit": "pcs"
+        },
+        {
+          "_key": "v1",
+          "_type": "priceVariant",
+          "price": 9.9,
+          "quantity": 6,
+          "unit": "pcs"
+        },
+        {
+          "_key": "v2",
+          "_type": "priceVariant",
+          "price": 13.9,
+          "quantity": 9,
+          "unit": "pcs"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "karaage"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-karaage-mazesoba",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-mazesoba",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Poulet frit, cébette, daikon, nori et œuf onsen."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Karaage Mazesoba"
+      },
+      "order": 10,
+      "price": 15.5,
+      "slug": {
+        "_type": "slug",
+        "current": "karaage-mazesoba"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-kinrei",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-sakes-japonais",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Rond, fruité et soyeux."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Kinrei ~ 15,5°"
+      },
+      "order": 20,
+      "price": 9.8,
+      "slug": {
+        "_type": "slug",
+        "current": "kinrei"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-kiyomi",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-whiskies-rhums",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Kiyomi, rhum blanc"
+      },
+      "order": 70,
+      "price": 8.5,
+      "slug": {
+        "_type": "slug",
+        "current": "kiyomi"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Rhums"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-lisbeth",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-eaux-minerales",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Lisbeth bleu, verte, rouge"
+      },
+      "order": 10,
+      "price": 3.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 3.5,
+          "quantity": 50,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "lisbeth"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-little-tokyo",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-menu-enfant",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Nouilles épaisses, deux karaage, edamame et demi-œuf mariné."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Little Tokyo"
+      },
+      "order": 10,
+      "price": 9.9,
+      "slug": {
+        "_type": "slug",
+        "current": "little-tokyo"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Au choix"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-lovely",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cocktails-sans-alcool",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Rose, litchi, citron et limonade."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Lovely"
+      },
+      "order": 20,
+      "price": 7.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 7.5,
+          "quantity": 30,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "lovely"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-mini-ramen",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-menu-enfant",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Tokyo ou Miso."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Mini Ramen"
+      },
+      "order": 20,
+      "price": 9.9,
+      "slug": {
+        "_type": "slug",
+        "current": "mini-ramen"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Au choix"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-miso-ramen",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-ramen",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Bouillon de poulet épais au miso rouge, chashu de porc, demi-œuf mariné, cébette et pousses de soja."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Miso Ramen"
+      },
+      "order": 40,
+      "price": 15.9,
+      "slug": {
+        "_type": "slug",
+        "current": "miso-ramen"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-miso-vegetarien",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-ramen",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Bouillon de légumes au miso rouge, tofu teriyaki, pousses de soja, pak-choï, daikon et demi-oeuf mariné."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": true,
+      "name": {
+        "_type": "localeString",
+        "fr": "Miso végétarien"
+      },
+      "order": 50,
+      "price": 15.9,
+      "slug": {
+        "_type": "slug",
+        "current": "miso-vegetarien"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-nana",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cocktails-signature",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Gin, litchi, rose, citron et limonade."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Nana"
+      },
+      "order": 30,
+      "price": 9,
+      "slug": {
+        "_type": "slug",
+        "current": "nana"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-nana-spritz",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-spritz",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Rose, Litchi, Framboise, Prosecco et eau pétillante"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Nana Spritz"
+      },
+      "order": 40,
+      "price": 8.9,
+      "slug": {
+        "_type": "slug",
+        "current": "nana-spritz"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-natsu",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cocktails-signature",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Saké pétillant, matcha, basilic, concombre et pointe de ginger ale."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Natsu"
+      },
+      "order": 10,
+      "price": 9,
+      "slug": {
+        "_type": "slug",
+        "current": "natsu"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-nikka-from-the-barrel",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-whiskies-rhums",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Nikka from the Barrel"
+      },
+      "order": 20,
+      "price": 10.5,
+      "slug": {
+        "_type": "slug",
+        "current": "nikka-from-the-barrel"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Whiskies"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-oeuf-marine-entier",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-extras",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Oeuf mariné entier"
+      },
+      "order": 10,
+      "price": 2,
+      "slug": {
+        "_type": "slug",
+        "current": "oeuf-marine-entier"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-oeuf-onsen",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-extras",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Oeuf onsen"
+      },
+      "order": 20,
+      "price": 2,
+      "slug": {
+        "_type": "slug",
+        "current": "oeuf-onsen"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-peach-passion-spritz",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-spritz",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Peach Passion Spritz"
+      },
+      "order": 30,
+      "price": 8.9,
+      "slug": {
+        "_type": "slug",
+        "current": "peach-passion-spritz"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-ramune",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-softs",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Au choix : yuzu, fraise ou litchi."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Ramune"
+      },
+      "order": 10,
+      "price": 5.6,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 5.6,
+          "quantity": 20,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "ramune"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-riesling-alsace-sperry",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-vins",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Riesling Alsace ~ Sperry"
+      },
+      "order": 10,
+      "price": 5.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 5.5,
+          "quantity": 12,
+          "unit": "cl"
+        },
+        {
+          "_key": "v1",
+          "_type": "priceVariant",
+          "price": 24,
+          "quantity": 75,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "riesling-alsace-sperry"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Vins blancs"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-ryoma",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-whiskies-rhums",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Ryoma, rhum ambré"
+      },
+      "order": 60,
+      "price": 8.5,
+      "slug": {
+        "_type": "slug",
+        "current": "ryoma"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Rhums"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-sakura-blossom",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cocktails-signature",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Litchi, rose et saké pétillant."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Sakura Blossom"
+      },
+      "order": 20,
+      "price": 8.5,
+      "slug": {
+        "_type": "slug",
+        "current": "sakura-blossom"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-sirop-a-leau",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-softs",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "grenadine, fraise, citron, pêche, litchi, passion ou rose."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Sirop à l'eau"
+      },
+      "order": 30,
+      "price": 3,
+      "slug": {
+        "_type": "slug",
+        "current": "sirop-a-leau"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-takoyaki",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-entrees",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Boulettes fondantes au poulpe"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Takoyaki"
+      },
+      "nameJp": "たこ焼き",
+      "order": 30,
+      "price": 4.9,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 4.9,
+          "quantity": 3,
+          "unit": "pcs"
+        },
+        {
+          "_key": "v1",
+          "_type": "priceVariant",
+          "price": 8.9,
+          "quantity": 6,
+          "unit": "pcs"
+        },
+        {
+          "_key": "v2",
+          "_type": "priceVariant",
+          "price": 12.5,
+          "quantity": 9,
+          "unit": "pcs"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "takoyaki"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-tantan-mazesoba",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-tantan-umai",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Nouilles à mélanger sans bouillon, pâte de sésame, huile de piment, bœuf haché, œuf onsen et cébette."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Tantan Mazesoba"
+      },
+      "order": 30,
+      "price": 15.9,
+      "slug": {
+        "_type": "slug",
+        "current": "tantan-mazesoba"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-tantan-ramen",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "badges": [
+        "bestseller"
+      ],
+      "category": {
+        "_ref": "m26-cat-tantan-umai",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Bouillon de poulet au sésame, huile de piment, bœuf haché, pousses de soja, pak-choï, daikon et demi-œuf mariné."
+      },
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-8edb72dc28b31ed77c6dadb4722da6c2e68b3e7e-2500x2130-jpg",
+          "_type": "reference"
+        }
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Tantan Ramen"
+      },
+      "order": 10,
+      "price": 15.9,
+      "slug": {
+        "_type": "slug",
+        "current": "tantan-ramen"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-tantan-tsukemen",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-tantan-umai",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Nouilles et garnitures à tremper dans un bouillon au sésame pimenté : œuf mariné, cébette et bambou."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Tantan Tsukemen"
+      },
+      "order": 40,
+      "price": 16.9,
+      "slug": {
+        "_type": "slug",
+        "current": "tantan-tsukemen"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-tantan-udon",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-udon",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Udon au sésame, huile de piment, bœuf haché, pousses de soja, pak-choï, daikon et œuf onsen."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Tantan Udon"
+      },
+      "order": 10,
+      "price": 15.9,
+      "slug": {
+        "_type": "slug",
+        "current": "tantan-udon"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-the-chita",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-whiskies-rhums",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "The Chita"
+      },
+      "order": 30,
+      "price": 9,
+      "slug": {
+        "_type": "slug",
+        "current": "the-chita"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Whiskies"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-the-glace-peche",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-thes-glaces",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Thé glacé pêche"
+      },
+      "order": 30,
+      "price": 4.2,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 4.2,
+          "quantity": 30,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "the-glace-peche"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-the-noir-glace-litchi",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-thes-glaces",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Thé noir glacé au litchi"
+      },
+      "order": 20,
+      "price": 4.2,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 4.2,
+          "quantity": 33,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "the-noir-glace-litchi"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-thes-verts-japonais",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-cafes-thes",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Au choix : genmaïcha, sencha, Fleur de Geisha, sencha agrumes ou Grand jasmin Chun Feng."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Thés verts japonais"
+      },
+      "order": 50,
+      "price": 4.5,
+      "slug": {
+        "_type": "slug",
+        "current": "thes-verts-japonais"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-tiramisu-framboise-litchi",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-desserts",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Tiramisu framboise & litchi"
+      },
+      "order": 40,
+      "price": 6.9,
+      "slug": {
+        "_type": "slug",
+        "current": "tiramisu-framboise-litchi"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-tiramisu-matcha",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-desserts",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Tiramisu matcha"
+      },
+      "order": 30,
+      "price": 6.9,
+      "slug": {
+        "_type": "slug",
+        "current": "tiramisu-matcha"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-tofu-mazesoba",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-mazesoba",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Tofu teriyaki, cébette, daikon, nori et œuf onsen."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Tofu Mazesoba"
+      },
+      "order": 30,
+      "price": 14.9,
+      "slug": {
+        "_type": "slug",
+        "current": "tofu-mazesoba"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-toki",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-whiskies-rhums",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Toki"
+      },
+      "order": 10,
+      "price": 8.5,
+      "slug": {
+        "_type": "slug",
+        "current": "toki"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Whiskies"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-tokyo-ramen",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-ramen",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Bouillon de poulet clair, chashu de porc, demi-œuf mariné, cébette, bambou et pak-choï."
+      },
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6d0c99f112e1516eddc14be7cbf877c977baa0b0-2500x2130-jpg",
+          "_type": "reference"
+        }
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Tokyo Ramen"
+      },
+      "order": 20,
+      "price": 14.9,
+      "slug": {
+        "_type": "slug",
+        "current": "tokyo-ramen"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-trio-degustation",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-sakes-japonais",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Trois sakés sélectionnés par notre équipe."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Trio dégustation"
+      },
+      "order": 70,
+      "price": 18,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "label": {
+            "_type": "localeString",
+            "fr": "3 × 6cl"
+          },
+          "price": 18
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "trio-degustation"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-udon-boeuf-cinq-epices",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-udon",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Bouillon tsuyu, bœuf haché aux cinq épices, œuf onsen et cébette."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Udon au bœuf aux cinq épices"
+      },
+      "order": 30,
+      "price": 15.5,
+      "slug": {
+        "_type": "slug",
+        "current": "udon-boeuf-cinq-epices"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-udon-karaage",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-udon",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Bouillon tsuyu, poulet frit, œuf onsen et cébette."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Udon Karaage"
+      },
+      "order": 20,
+      "price": 15.5,
+      "slug": {
+        "_type": "slug",
+        "current": "udon-karaage"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-umeshu-spritz",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-spritz",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Umeshu Spritz"
+      },
+      "order": 20,
+      "price": 8.9,
+      "slug": {
+        "_type": "slug",
+        "current": "umeshu-spritz"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-wantan-ramen",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-ramen",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Bouillon de poulet, chashu de poulet, ravioli de poulet, demi-œuf mariné, cébette, bambou et pak-choï."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Wantan Ramen"
+      },
+      "order": 30,
+      "price": 15.9,
+      "slug": {
+        "_type": "slug",
+        "current": "wantan-ramen"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-yamazaki",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-whiskies-rhums",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Yamazaki"
+      },
+      "order": 50,
+      "price": 13,
+      "slug": {
+        "_type": "slug",
+        "current": "yamazaki"
+      },
+      "subgroup": {
+        "_type": "localeString",
+        "fr": "Whiskies"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-yasai-ramen",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-tantan-umai",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Bouillon de légumes au sésame, huile de piment, tofu teriyaki, pousses de soja, pak-choï, daikon et demi-oeuf mariné."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": true,
+      "name": {
+        "_type": "localeString",
+        "fr": "Yasai Ramen"
+      },
+      "order": 20,
+      "price": 15.9,
+      "slug": {
+        "_type": "slug",
+        "current": "yasai-ramen"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-yuzu-maison",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-thes-glaces",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Frais, légèrement acidulé."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Yuzu maison"
+      },
+      "order": 10,
+      "price": 4.2,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 4.2,
+          "quantity": 30,
+          "unit": "cl"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "yuzu-maison"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-yuzu-ramen",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-ramen",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "fr": "Bouillon de poulet clair au jus de yuzu, chashu de poulet, demi-œuf mariné, cébette, bambou et pak-choï."
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Yuzu Ramen"
+      },
+      "order": 10,
+      "price": 14.9,
+      "slug": {
+        "_type": "slug",
+        "current": "yuzu-ramen"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-yuzu-spritz",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-spritz",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Yuzu Spritz"
+      },
+      "order": 10,
+      "price": 8.9,
+      "slug": {
+        "_type": "slug",
+        "current": "yuzu-spritz"
+      }
+    },
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-zaku",
+      "_rev": "PS4gSiVcUV6cnzSF8ooJME",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T20:11:42Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-sakes-japonais",
+        "_type": "reference"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "fr": "Zaku ~ 15,5°"
+      },
+      "order": 10,
+      "price": 9.8,
+      "slug": {
+        "_type": "slug",
+        "current": "zaku"
+      }
+    }
+  ]
+}
