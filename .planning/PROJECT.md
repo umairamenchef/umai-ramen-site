@@ -51,6 +51,8 @@ The VPS (valid until 2027-02-23) is a multi-site host intended for umai-ramen.fr
 
 ### Active (v2.2 — Menu multilingue & QR codes touristes)
 
+- ✓ **MENU-01..06** — 2026 printed menu (latest Exaprint print) mirrored live on umai-ramen.fr/fr/menu: 20 categories / 77 items in print order, price variants, « Prix sur demande », badges, sub-groups, JP labels, page notes; 174 legacy docs hidden (not deleted), backup + rollback script; discrepancy report handed to EK — Validated in Phase 12: Synchronisation menu print 2026 → Sanity (2026-11-23)
+
 > **v2.2 milestone opened 2026-11-22.** Detailed REQ-IDs in REQUIREMENTS.md.
 
 ### Delivered (v2.1 — Production go-live & umai-ramen.fr cutover, all REQs checked; live on umai-ramen.fr since 2026-07-16)
@@ -164,4 +166,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-11-22 after v2.2 milestone opening*
+*Last updated: 2026-11-23 after Phase 12 (menu print 2026 live)*

@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: Ready to execute
+status: Ready to plan
 stopped_at: Completed 12-03-PLAN.md
-last_updated: "2026-11-23T20:20:18.016Z"
+last_updated: "2026-11-23T20:38:06.684Z"
 last_activity: 2026-11-23
 progress:
   total_phases: 12
   completed_phases: 4
-  total_plans: 12
+  total_plans: 13
   completed_plans: 12
 ---
 
@@ -24,9 +24,9 @@ See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
 ## Current Position
 
-Phase: 12 (Synchronisation menu print 2026 → Sanity) — COMPLETE (3/3 plans, live on umai-ramen.fr; phase verification pending)
-Plan: 3 of 3
-Last activity: 2026-11-23 — 12-03 complete: Phase 12 code deployed (VPS 34748ef, rollback 2523057), 2026 print synced to Sanity production (transaction PS4gSiVcUV6cnzSF8ooJME, backup `backup/menu-backup-20261123-201142.json`), live cache refreshed with the signed `scripts/menu-2026/revalidate.mjs`, `verify-live.mjs` OK on /fr, /en, /de menu + homes
+Phase: 13
+Plan: Not started
+Last activity: 2026-11-23
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
