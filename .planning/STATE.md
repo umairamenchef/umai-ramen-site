@@ -4,7 +4,7 @@ milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
 status: Ready to plan
 stopped_at: Completed 14-03-PLAN.md
-last_updated: "2026-11-23T23:33:17.860Z"
+last_updated: "2026-11-23T23:35:57.672Z"
 progress:
   total_phases: 12
   completed_phases: 6
@@ -23,8 +23,8 @@ See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
 ## Current Position
 
-Phase: 14 (Traductions EN/DE/IT/ZH): complete, 3/3 plans
-Plan: 14-03 done (merge into menu-2026.json, Sanity field-level apply, live proof on 5 locales, review sheet, FR hand-off in 14-03-SUMMARY.md); next: Phase 15
+Phase: 15
+Plan: Not started
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 

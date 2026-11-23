@@ -329,5 +329,5 @@ Plans:
 | 11. Cutover domaine & vérifications live | v2.1 | — | Complete (done inline, no plans; see STATE) | 2026-07-16 |
 | 12. Synchronisation menu print 2026 → Sanity | v2.2 | 3/3 | Complete    | 2026-11-23 |
 | 13. Fondations multilingues & page menu touriste | v2.2 | 3/3 | Complete    | 2026-11-23 |
-| 14. Traductions EN/DE/IT/ZH | v2.2 | 3/3 | Complete   | 2026-11-23 |
+| 14. Traductions EN/DE/IT/ZH | v2.2 | 3/3 | Complete    | 2026-11-23 |
 | 15. QR codes & supports imprimables | v2.2 | 0/? | Not started | — |
