@@ -241,7 +241,7 @@ test('htmlLang reads the lang attribute of the html tag', () => {
 });
 
 test('norm and decodeEntities behave as in verify-live.mjs', () => {
-  assert.equal(norm('  a b c\n d  '), 'a b c d');
+  assert.equal(norm('  a\u00A0b\u202Fc\n d  '), 'a b c d');
   assert.equal(
     norm(decodeEntities('Sirop à l&#x27;eau &amp; &lt;b&gt; &quot;x&quot; &#39;y&#39; &apos;z&apos; &#233; &#xE9; &nbsp;')),
     `Sirop à l'eau & <b> "x" 'y' 'z' é é`,
@@ -342,11 +342,11 @@ test('buildReviewRows on the real menu reshaped to the GROQ shape: 178 data rows
 
 test('toCsv: BOM, semicolons, CRLF line ends (final one included), quoting', () => {
   const csv = toCsv([['a', 'b;c', 'd"e', 'f\ng', ' h', 'i ', 'plain', '']]);
-  assert.equal(csv, '﻿a;"b;c";"d""e";"f\ng";" h";"i ";plain;\r\n');
-  assert.equal(toCsv([['x\ry']]), '﻿"x\ry"\r\n');
-  assert.equal(toCsv([['1', '2'], ['3', '4']]), '﻿1;2\r\n3;4\r\n');
-  assert.equal(toCsv(buildReviewRows([])), '﻿Catégorie;Champ;FR;EN;DE;IT;ZH (à relire)\r\n');
-  assert.equal(toCsv([]), '﻿');
+  assert.equal(csv, '\uFEFFa;"b;c";"d""e";"f\ng";" h";"i ";plain;\r\n');
+  assert.equal(toCsv([['x\ry']]), '\uFEFF"x\ry"\r\n');
+  assert.equal(toCsv([['1', '2'], ['3', '4']]), '\uFEFF1;2\r\n3;4\r\n');
+  assert.equal(toCsv(buildReviewRows([])), '\uFEFFCatégorie;Champ;FR;EN;DE;IT;ZH (à relire)\r\n');
+  assert.equal(toCsv([]), '\uFEFF');
   const big = toCsv(buildReviewRows(toGroqShape(realMenu())));
   assert.equal(big.split('\r\n').length, 180, '179 lines + the empty tail');
   assert.ok(!big.replace(/\r\n/g, '').includes('\r'), 'no bare CR left');
@@ -540,7 +540,7 @@ test('export-review-sheet: reads the published menu read-only and writes the CSV
   assert.deepEqual([...bytes.subarray(0, 3)], [0xef, 0xbb, 0xbf]);
   const text = bytes.toString('utf8');
   assert.equal(text, toCsv(buildReviewRows(data)));
-  assert.equal(text.split('\r\n')[0], '﻿Catégorie;Champ;FR;EN;DE;IT;ZH (à relire)');
+  assert.equal(text.split('\r\n')[0], '\uFEFFCatégorie;Champ;FR;EN;DE;IT;ZH (à relire)');
   assert.equal(text.split('\r\n').length - 1, 179);
   assert.ok(text.includes('Tantan Ramen（担担拉面）'));
   const config = r.sanity.state.configs[0];
