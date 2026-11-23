@@ -18,15 +18,19 @@ interface MenuStickyNavProps {
 }
 
 export function MenuStickyNav({ categories, locale, label }: MenuStickyNavProps) {
-  const [activeSlug, setActiveSlug] = useState<string>(
-    categories[0]?.slug?.current ?? ''
-  );
+  const firstSlug = categories[0]?.slug?.current ?? '';
+  const [activeSlug, setActiveSlug] = useState<string>(firstSlug);
   const navRef = useRef<HTMLElement>(null);
   const btnRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  // Tab the nav was last centred on. It starts on the first tab, so the initial render
+  // never scrolls the nav: only a change of the active tab (reader scrolling) does.
+  const centredSlug = useRef(firstSlug);
 
   // Keep the active tab in view: horizontally center it in the (scrollable) nav
   // as the reader scrolls through the menu sections.
   useEffect(() => {
+    if (centredSlug.current === activeSlug) return;
+    centredSlug.current = activeSlug;
     const nav = navRef.current;
     const btn = btnRefs.current[activeSlug];
     if (!nav || !btn) return;
@@ -40,7 +44,9 @@ export function MenuStickyNav({ categories, locale, label }: MenuStickyNavProps)
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
+    // Sections currently crossing the observer band, with their visible ratio.
     const sectionMap = new Map<string, number>();
+    const first = categories[0]?.slug.current;
 
     categories.forEach((cat) => {
       const slug = cat.slug.current;
@@ -49,7 +55,21 @@ export function MenuStickyNav({ categories, locale, label }: MenuStickyNavProps)
 
       const observer = new IntersectionObserver(
         ([entry]) => {
-          sectionMap.set(slug, entry.intersectionRatio);
+          // Only sections inside the band count. The initial callbacks report every
+          // section (ratio 0 for those outside) in no guaranteed order, so keeping
+          // them used to activate an arbitrary later tab on a fresh load at scroll 0.
+          if (entry.isIntersecting) sectionMap.set(slug, entry.intersectionRatio);
+          else sectionMap.delete(slug);
+          if (sectionMap.size === 0) {
+            // Nothing in the band. Above the first section (page top) the first tab is
+            // active; in a gap between sections or below the last one the tab stays.
+            const firstTop = first
+              ? document.getElementById(`category-${first}`)?.getBoundingClientRect().top
+              : undefined;
+            const bandBottom = entry.rootBounds?.bottom ?? window.innerHeight * 0.4;
+            if (first && firstTop !== undefined && firstTop >= bandBottom) setActiveSlug(first);
+            return;
+          }
           // Set active to the section with highest visibility
           const best = [...sectionMap.entries()].reduce((a, b) =>
             a[1] > b[1] ? a : b
