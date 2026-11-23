@@ -138,13 +138,13 @@ The VPS (valid until 2027-02-23) is a multi-site host intended for umai-ramen.fr
 **Goal:** A foreign tourist scans a QR code and reads the 2026 menu in their language on their phone, with each dish's French name always visible so the server can take the order.
 
 **Target features:**
-- Web menu (Sanity) synced to the 2026 printed menu (Exaprint BAT = source of truth): dishes, prices, descriptions, categories, drinks
+- Web menu (Sanity) synced to the 2026 printed menu (latest Exaprint print = source of truth): dishes, prices, descriptions, categories, drinks
 - New menu-only locales IT + ZH (simplified Chinese): Sanity `localeString`/`localeText` extended fr/en/de → +it/zh; next-intl locales scoped to the menu (EN/DE stay site-wide)
 - Full menu translation EN/DE/IT/ZH by Claude (names, descriptions, categories, UI labels); Japanese dish names kept with a short explanation; ZH flagged "to review"
 - Mobile-first menu page: translation primary, FR dish name secondary but legible, price + dietary badges
 - Printable QR-code sheet: one QR per language (FR/EN/DE/IT/中文) → umai-ramen.fr/{locale}/menu
 
-**Key context:** Locked by EK 2026-11-22 — IT/ZH = menu only (+ QR page); simplified Chinese only; Claude translates, native review optional later; mobile web page, no per-language PDF for now. BAT files: `180x2505mm_Menu_UMAI_RAMEN_2026_BAT.pdf` + `360x2505mm_Ouvert_Menu_UMAI_RAMEN_2026_BAT.pdf` (vector, outlined text — content must be transcribed, not text-extracted).
+**Key context:** Locked by EK 2026-11-22 — IT/ZH = menu only (+ QR page); simplified Chinese only; Claude translates, native review optional later; mobile web page, no per-language PDF for now. Source of truth = latest print (EK, 2026-11-22), stored in `.planning/sources/menu-2026/`: `plats-ouvert-360x250mm-print-2026-11-10.pdf` (food spread) + `boissons-180x250mm-print-2026-11-03.pdf` (drinks recto/verso), with extracted text (`*-print.txt`, real text layer). The print still contains placeholders (`??` wine prices for Année Lumière, `????` Trio dégustation description) and typos (`Asashi`) — EK to supply/confirm before publishing.
 
 ## Evolution
 
