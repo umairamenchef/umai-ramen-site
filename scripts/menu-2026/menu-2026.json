@@ -98,7 +98,7 @@
     "Menu enfant : le prix 9,90 € du titre est porté par les deux choix (Little Tokyo, Mini Ramen).",
     "Lignes producteur ou domaine stockées en description (Chardonnay Naturalys : « Gérard Bertrand » ; Année Lumière : « Domaine Le Clos des Lumières ») ; « Riesling Alsace ~ Sperry » gardé tel qu'imprimé.",
     "Photos : les 3 photos des cartes « Notre Menu » de l'accueil sont reprises des anciens articles masqués (Gyoza porc → Gyozas, Tantan Ramen → Tantan Ramen, Tokyo Ramen → Tokyo Ramen). Les autres nouveaux plats n'ont pas de photo : EK peut en ajouter dans Studio, une nouvelle synchronisation ne les écrase jamais.",
-    "EN/DE : les nouveaux plats et catégories sont en français seulement jusqu'à la phase 14 (les pages EN/DE affichent le français en attendant).",
+    "EN/DE/IT/ZH traduits par Claude (phase 14), relecture native conseillée, ZH à relire en priorité.",
     "7 catégories ont un slug suffixé « -2026 » (unicité des slugs dans Studio) : entrees, mazesoba, udon, menu-enfant, desserts, thes-glaces, softs.",
     "« oeuf » / « œuf » gardés tels qu'imprimés (Oeuf mariné entier, Oeuf onsen, « demi-oeuf » sur Yasai Ramen et Miso végétarien)."
   ],
@@ -106,14 +106,26 @@
     {
       "key": "entrees",
       "section": "food",
-      "name": { "fr": "Entrées" },
+      "name": { "fr": "Entrées", "en": "Starters", "de": "Vorspeisen", "it": "Antipasti", "zh": "小吃" },
       "nameJp": "前菜",
       "items": [
         {
           "key": "karaage",
-          "name": { "fr": "Karaage" },
+          "name": {
+            "fr": "Karaage",
+            "en": "Karaage",
+            "de": "Karaage",
+            "it": "Karaage",
+            "zh": "Karaage（日式炸鸡）"
+          },
           "nameJp": "唐揚げ",
-          "description": { "fr": "Poulet mariné et frit maison" },
+          "description": {
+            "fr": "Poulet mariné et frit maison",
+            "en": "Homemade marinated fried chicken",
+            "de": "Mariniertes und frittiertes Hähnchen, hausgemacht",
+            "it": "Pollo marinato e fritto, fatto in casa",
+            "zh": "自家腌制炸鸡"
+          },
           "prices": [
             { "quantity": 3, "unit": "pcs", "price": 5.5 },
             { "quantity": 6, "unit": "pcs", "price": 9.9 },
@@ -123,9 +135,15 @@
         },
         {
           "key": "gyozas",
-          "name": { "fr": "Gyozas" },
+          "name": { "fr": "Gyozas", "en": "Gyozas", "de": "Gyozas", "it": "Gyozas", "zh": "Gyozas（煎饺）" },
           "nameJp": "餃子",
-          "description": { "fr": "Raviolis grillés. Garniture au choix : poulet, porc ou légumes." },
+          "description": {
+            "fr": "Raviolis grillés. Garniture au choix : poulet, porc ou légumes.",
+            "en": "Pan-fried dumplings. Filling of your choice: chicken, pork or vegetables.",
+            "de": "Gebratene Teigtaschen. Füllung nach Wahl: Huhn, Schwein oder Gemüse.",
+            "it": "Ravioli alla piastra. Ripieno a scelta: pollo, maiale o verdure.",
+            "zh": "日式煎饺。馅料任选：鸡肉、猪肉或蔬菜。"
+          },
           "prices": [
             { "quantity": 3, "unit": "pcs", "price": 4.9 },
             { "quantity": 6, "unit": "pcs", "price": 8.9 },
@@ -136,9 +154,21 @@
         },
         {
           "key": "takoyaki",
-          "name": { "fr": "Takoyaki" },
+          "name": {
+            "fr": "Takoyaki",
+            "en": "Takoyaki",
+            "de": "Takoyaki",
+            "it": "Takoyaki",
+            "zh": "Takoyaki（章鱼小丸子）"
+          },
           "nameJp": "たこ焼き",
-          "description": { "fr": "Boulettes fondantes au poulpe" },
+          "description": {
+            "fr": "Boulettes fondantes au poulpe",
+            "en": "Melt-in-the-mouth octopus balls",
+            "de": "Zart schmelzende Bällchen mit Oktopus",
+            "it": "Polpettine morbide al polpo",
+            "zh": "软嫩的章鱼小丸子"
+          },
           "prices": [
             { "quantity": 3, "unit": "pcs", "price": 4.9 },
             { "quantity": 6, "unit": "pcs", "price": 8.9 },
@@ -148,9 +178,21 @@
         },
         {
           "key": "edamame",
-          "name": { "fr": "Edamame" },
+          "name": {
+            "fr": "Edamame",
+            "en": "Edamame",
+            "de": "Edamame",
+            "it": "Edamame",
+            "zh": "Edamame（盐水毛豆）"
+          },
           "nameJp": "枝豆",
-          "description": { "fr": "Fèves de soja à la fleur de sel" },
+          "description": {
+            "fr": "Fèves de soja à la fleur de sel",
+            "en": "Soybeans with fleur de sel",
+            "de": "Sojabohnen mit Fleur de Sel",
+            "it": "Fagioli di soia al fior di sale",
+            "zh": "撒上盐之花的毛豆"
+          },
           "price": 4.9,
           "isVegetarian": true,
           "isGlutenFree": true,
@@ -161,14 +203,38 @@
     {
       "key": "tantan-umai",
       "section": "food",
-      "name": { "fr": "Tantan Umaï" },
+      "name": {
+        "fr": "Tantan Umaï",
+        "en": "Tantan Umaï",
+        "de": "Tantan Umaï",
+        "it": "Tantan Umaï",
+        "zh": "Tantan Umaï（担担面）"
+      },
       "nameJp": "担々麺",
-      "description": { "fr": "Nos spécialités à base de sésame blanc." },
+      "description": {
+        "fr": "Nos spécialités à base de sésame blanc.",
+        "en": "Our specialities made with white sesame.",
+        "de": "Unsere Spezialitäten mit weißem Sesam.",
+        "it": "Le nostre specialità a base di sesamo bianco.",
+        "zh": "本店以白芝麻为基础的招牌料理。"
+      },
       "items": [
         {
           "key": "tantan-ramen",
-          "name": { "fr": "Tantan Ramen" },
-          "description": { "fr": "Bouillon de poulet au sésame, huile de piment, bœuf haché, pousses de soja, pak-choï, daikon et demi-œuf mariné." },
+          "name": {
+            "fr": "Tantan Ramen",
+            "en": "Tantan Ramen",
+            "de": "Tantan Ramen",
+            "it": "Tantan Ramen",
+            "zh": "Tantan Ramen（担担拉面）"
+          },
+          "description": {
+            "fr": "Bouillon de poulet au sésame, huile de piment, bœuf haché, pousses de soja, pak-choï, daikon et demi-œuf mariné.",
+            "en": "Sesame chicken broth, chili oil, minced beef, bean sprouts, bok choy, daikon (radish) and half a marinated egg.",
+            "de": "Hühnerbrühe mit Sesam, Chiliöl, Rinderhack, Sojasprossen, Pak Choi, Rettich (Daikon) und ein halbes mariniertes Ei.",
+            "it": "Brodo di pollo al sesamo, olio al peperoncino, manzo macinato, germogli di soia, pak choi, daikon e mezzo uovo marinato.",
+            "zh": "芝麻鸡汤底，配辣油、牛肉末、豆芽、小白菜、白萝卜和半颗溏心蛋。"
+          },
           "price": 15.9,
           "badges": ["bestseller"],
           "legacyIds": ["item-e3480254"],
@@ -176,22 +242,58 @@
         },
         {
           "key": "yasai-ramen",
-          "name": { "fr": "Yasai Ramen" },
-          "description": { "fr": "Bouillon de légumes au sésame, huile de piment, tofu teriyaki, pousses de soja, pak-choï, daikon et demi-oeuf mariné." },
+          "name": {
+            "fr": "Yasai Ramen",
+            "en": "Yasai Ramen",
+            "de": "Yasai Ramen",
+            "it": "Yasai Ramen",
+            "zh": "Yasai Ramen（素食担担拉面）"
+          },
+          "description": {
+            "fr": "Bouillon de légumes au sésame, huile de piment, tofu teriyaki, pousses de soja, pak-choï, daikon et demi-oeuf mariné.",
+            "en": "Sesame vegetable broth, chili oil, teriyaki tofu, bean sprouts, bok choy, daikon (radish) and half a marinated egg.",
+            "de": "Gemüsebrühe mit Sesam, Chiliöl, Teriyaki-Tofu, Sojasprossen, Pak Choi, Rettich (Daikon) und ein halbes mariniertes Ei.",
+            "it": "Brodo vegetale al sesamo, olio al peperoncino, tofu teriyaki, germogli di soia, pak choi, daikon e mezzo uovo marinato.",
+            "zh": "芝麻蔬菜汤底，配辣油、照烧豆腐、豆芽、小白菜、白萝卜和半颗溏心蛋。"
+          },
           "price": 15.9,
           "isVegetarian": true,
           "legacyIds": ["item-e3480255"]
         },
         {
           "key": "tantan-mazesoba",
-          "name": { "fr": "Tantan Mazesoba" },
-          "description": { "fr": "Nouilles à mélanger sans bouillon, pâte de sésame, huile de piment, bœuf haché, œuf onsen et cébette." },
+          "name": {
+            "fr": "Tantan Mazesoba",
+            "en": "Tantan Mazesoba",
+            "de": "Tantan Mazesoba",
+            "it": "Tantan Mazesoba",
+            "zh": "Tantan Mazesoba（担担拌面）"
+          },
+          "description": {
+            "fr": "Nouilles à mélanger sans bouillon, pâte de sésame, huile de piment, bœuf haché, œuf onsen et cébette.",
+            "en": "Noodles to mix without broth, sesame paste, chili oil, minced beef, onsen egg (slow-cooked) and spring onion.",
+            "de": "Nudeln zum Mischen ohne Brühe, Sesampaste, Chiliöl, Rinderhack, Onsen-Ei und Frühlingszwiebel.",
+            "it": "Noodles da mescolare senza brodo, pasta di sesamo, olio al peperoncino, manzo macinato, uovo onsen e cipollotto.",
+            "zh": "无汤拌面，配芝麻酱、辣油、牛肉末、温泉蛋和葱花。"
+          },
           "price": 15.9
         },
         {
           "key": "tantan-tsukemen",
-          "name": { "fr": "Tantan Tsukemen" },
-          "description": { "fr": "Nouilles et garnitures à tremper dans un bouillon au sésame pimenté : œuf mariné, cébette et bambou." },
+          "name": {
+            "fr": "Tantan Tsukemen",
+            "en": "Tantan Tsukemen",
+            "de": "Tantan Tsukemen",
+            "it": "Tantan Tsukemen",
+            "zh": "Tantan Tsukemen（担担蘸面）"
+          },
+          "description": {
+            "fr": "Nouilles et garnitures à tremper dans un bouillon au sésame pimenté : œuf mariné, cébette et bambou.",
+            "en": "Noodles and toppings to dip in a spicy sesame broth: marinated egg, spring onion and bamboo shoots.",
+            "de": "Nudeln und Toppings zum Eintauchen in eine scharfe Sesambrühe: mariniertes Ei, Frühlingszwiebel und Bambussprossen.",
+            "it": "Noodles e condimenti da intingere in un brodo al sesamo piccante: uovo marinato, cipollotto e germogli di bambù.",
+            "zh": "面条和配料蘸香辣芝麻汤享用：溏心蛋、葱花和笋干。"
+          },
           "price": 16.9
         }
       ]
@@ -199,43 +301,109 @@
     {
       "key": "ramen",
       "section": "food",
-      "name": { "fr": "Ramen" },
+      "name": { "fr": "Ramen", "en": "Ramen", "de": "Ramen", "it": "Ramen", "zh": "Ramen（拉面）" },
       "nameJp": "ラーメン",
-      "description": { "fr": "Nouilles en bouillon." },
+      "description": {
+        "fr": "Nouilles en bouillon.",
+        "en": "Noodles in broth.",
+        "de": "Nudeln in Brühe.",
+        "it": "Noodles in brodo.",
+        "zh": "带汤的面条。"
+      },
       "items": [
         {
           "key": "yuzu-ramen",
-          "name": { "fr": "Yuzu Ramen" },
-          "description": { "fr": "Bouillon de poulet clair au jus de yuzu, chashu de poulet, demi-œuf mariné, cébette, bambou et pak-choï." },
+          "name": {
+            "fr": "Yuzu Ramen",
+            "en": "Yuzu Ramen",
+            "de": "Yuzu Ramen",
+            "it": "Yuzu Ramen",
+            "zh": "Yuzu Ramen（柚子拉面）"
+          },
+          "description": {
+            "fr": "Bouillon de poulet clair au jus de yuzu, chashu de poulet, demi-œuf mariné, cébette, bambou et pak-choï.",
+            "en": "Clear chicken broth with yuzu juice, chashu (braised chicken), half a marinated egg, spring onion, bamboo shoots and bok choy.",
+            "de": "Klare Hühnerbrühe mit Yuzusaft, Hähnchen-Chashu, ein halbes mariniertes Ei, Frühlingszwiebel, Bambussprossen und Pak Choi.",
+            "it": "Brodo di pollo chiaro al succo di yuzu, chashu di pollo, mezzo uovo marinato, cipollotto, germogli di bambù e pak choi.",
+            "zh": "清鸡汤底加柚子汁，配鸡肉叉烧、半颗溏心蛋、葱花、笋干和小白菜。"
+          },
           "price": 14.9,
           "legacyIds": ["item-e3907822"]
         },
         {
           "key": "tokyo-ramen",
-          "name": { "fr": "Tokyo Ramen" },
-          "description": { "fr": "Bouillon de poulet clair, chashu de porc, demi-œuf mariné, cébette, bambou et pak-choï." },
+          "name": {
+            "fr": "Tokyo Ramen",
+            "en": "Tokyo Ramen",
+            "de": "Tokyo Ramen",
+            "it": "Tokyo Ramen",
+            "zh": "Tokyo Ramen（东京拉面）"
+          },
+          "description": {
+            "fr": "Bouillon de poulet clair, chashu de porc, demi-œuf mariné, cébette, bambou et pak-choï.",
+            "en": "Clear chicken broth, chashu (braised pork), half a marinated egg, spring onion, bamboo shoots and bok choy.",
+            "de": "Klare Hühnerbrühe, Schweine-Chashu, ein halbes mariniertes Ei, Frühlingszwiebel, Bambussprossen und Pak Choi.",
+            "it": "Brodo di pollo chiaro, chashu di maiale, mezzo uovo marinato, cipollotto, germogli di bambù e pak choi.",
+            "zh": "清鸡汤底，配猪肉叉烧、半颗溏心蛋、葱花、笋干和小白菜。"
+          },
           "price": 14.9,
           "legacyIds": ["item-e3480256"],
           "imageFrom": "item-e3480256"
         },
         {
           "key": "wantan-ramen",
-          "name": { "fr": "Wantan Ramen" },
-          "description": { "fr": "Bouillon de poulet, chashu de poulet, ravioli de poulet, demi-œuf mariné, cébette, bambou et pak-choï." },
+          "name": {
+            "fr": "Wantan Ramen",
+            "en": "Wantan Ramen",
+            "de": "Wantan Ramen",
+            "it": "Wantan Ramen",
+            "zh": "Wantan Ramen（云吞拉面）"
+          },
+          "description": {
+            "fr": "Bouillon de poulet, chashu de poulet, ravioli de poulet, demi-œuf mariné, cébette, bambou et pak-choï.",
+            "en": "Chicken broth, chashu (braised chicken), chicken wontons, half a marinated egg, spring onion, bamboo shoots and bok choy.",
+            "de": "Hühnerbrühe, Hähnchen-Chashu, Hähnchen-Wan-Tans, ein halbes mariniertes Ei, Frühlingszwiebel, Bambussprossen und Pak Choi.",
+            "it": "Brodo di pollo, chashu di pollo, ravioli di pollo, mezzo uovo marinato, cipollotto, germogli di bambù e pak choi.",
+            "zh": "鸡汤底，配鸡肉叉烧、鸡肉云吞、半颗溏心蛋、葱花、笋干和小白菜。"
+          },
           "price": 15.9,
           "legacyIds": ["item-e3480257"]
         },
         {
           "key": "miso-ramen",
-          "name": { "fr": "Miso Ramen" },
-          "description": { "fr": "Bouillon de poulet épais au miso rouge, chashu de porc, demi-œuf mariné, cébette et pousses de soja." },
+          "name": {
+            "fr": "Miso Ramen",
+            "en": "Miso Ramen",
+            "de": "Miso Ramen",
+            "it": "Miso Ramen",
+            "zh": "Miso Ramen（味噌拉面）"
+          },
+          "description": {
+            "fr": "Bouillon de poulet épais au miso rouge, chashu de porc, demi-œuf mariné, cébette et pousses de soja.",
+            "en": "Rich chicken broth with red miso, chashu (braised pork), half a marinated egg, spring onion and bean sprouts.",
+            "de": "Kräftige Hühnerbrühe mit rotem Miso, Schweine-Chashu, ein halbes mariniertes Ei, Frühlingszwiebel und Sojasprossen.",
+            "it": "Brodo di pollo denso al miso rosso, chashu di maiale, mezzo uovo marinato, cipollotto e germogli di soia.",
+            "zh": "红味噌浓鸡汤底，配猪肉叉烧、半颗溏心蛋、葱花和豆芽。"
+          },
           "price": 15.9,
           "legacyIds": ["item-e3480252"]
         },
         {
           "key": "miso-vegetarien",
-          "name": { "fr": "Miso végétarien" },
-          "description": { "fr": "Bouillon de légumes au miso rouge, tofu teriyaki, pousses de soja, pak-choï, daikon et demi-oeuf mariné." },
+          "name": {
+            "fr": "Miso végétarien",
+            "en": "Vegetarian Miso",
+            "de": "Miso vegetarisch",
+            "it": "Miso vegetariano",
+            "zh": "素食味噌拉面"
+          },
+          "description": {
+            "fr": "Bouillon de légumes au miso rouge, tofu teriyaki, pousses de soja, pak-choï, daikon et demi-oeuf mariné.",
+            "en": "Vegetable broth with red miso, teriyaki tofu, bean sprouts, bok choy, daikon (radish) and half a marinated egg.",
+            "de": "Gemüsebrühe mit rotem Miso, Teriyaki-Tofu, Sojasprossen, Pak Choi, Rettich (Daikon) und ein halbes mariniertes Ei.",
+            "it": "Brodo vegetale al miso rosso, tofu teriyaki, germogli di soia, pak choi, daikon e mezzo uovo marinato.",
+            "zh": "红味噌蔬菜汤底，配照烧豆腐、豆芽、小白菜、白萝卜和半颗溏心蛋。"
+          },
           "price": 15.9,
           "isVegetarian": true,
           "legacyIds": ["item-e3480253"]
@@ -245,28 +413,76 @@
     {
       "key": "mazesoba",
       "section": "food",
-      "name": { "fr": "Mazesoba" },
+      "name": {
+        "fr": "Mazesoba",
+        "en": "Mazesoba",
+        "de": "Mazesoba",
+        "it": "Mazesoba",
+        "zh": "Mazesoba（日式拌面）"
+      },
       "nameJp": "まぜそば",
-      "description": { "fr": "Nouilles à mélanger, sans bouillon." },
+      "description": {
+        "fr": "Nouilles à mélanger, sans bouillon.",
+        "en": "Noodles to mix, without broth.",
+        "de": "Nudeln zum Mischen, ohne Brühe.",
+        "it": "Noodles da mescolare, senza brodo.",
+        "zh": "无汤拌面，拌匀后享用。"
+      },
       "items": [
         {
           "key": "karaage-mazesoba",
-          "name": { "fr": "Karaage Mazesoba" },
-          "description": { "fr": "Poulet frit, cébette, daikon, nori et œuf onsen." },
+          "name": {
+            "fr": "Karaage Mazesoba",
+            "en": "Karaage Mazesoba",
+            "de": "Karaage Mazesoba",
+            "it": "Karaage Mazesoba",
+            "zh": "Karaage Mazesoba（炸鸡拌面）"
+          },
+          "description": {
+            "fr": "Poulet frit, cébette, daikon, nori et œuf onsen.",
+            "en": "Fried chicken, spring onion, daikon (radish), nori and onsen egg (slow-cooked).",
+            "de": "Frittiertes Hähnchen, Frühlingszwiebel, Rettich (Daikon), Nori und Onsen-Ei.",
+            "it": "Pollo fritto, cipollotto, daikon, alga nori e uovo onsen.",
+            "zh": "炸鸡、葱花、白萝卜、海苔和温泉蛋。"
+          },
           "price": 15.5,
           "legacyIds": ["item-e3480260"]
         },
         {
           "key": "chashu-mazesoba",
-          "name": { "fr": "Chashu Mazesoba" },
-          "description": { "fr": "Morceaux de porc teriyaki, cébette, daikon, nori et œuf onsen." },
+          "name": {
+            "fr": "Chashu Mazesoba",
+            "en": "Chashu Mazesoba",
+            "de": "Chashu Mazesoba",
+            "it": "Chashu Mazesoba",
+            "zh": "Chashu Mazesoba（叉烧拌面）"
+          },
+          "description": {
+            "fr": "Morceaux de porc teriyaki, cébette, daikon, nori et œuf onsen.",
+            "en": "Teriyaki pork pieces, spring onion, daikon (radish), nori and onsen egg (slow-cooked).",
+            "de": "Teriyaki-Schweinefleisch in Stücken, Frühlingszwiebel, Rettich (Daikon), Nori und Onsen-Ei.",
+            "it": "Bocconcini di maiale teriyaki, cipollotto, daikon, alga nori e uovo onsen.",
+            "zh": "照烧猪肉块、葱花、白萝卜、海苔和温泉蛋。"
+          },
           "price": 15.5,
           "legacyIds": ["item-e3480259"]
         },
         {
           "key": "tofu-mazesoba",
-          "name": { "fr": "Tofu Mazesoba" },
-          "description": { "fr": "Tofu teriyaki, cébette, daikon, nori et œuf onsen." },
+          "name": {
+            "fr": "Tofu Mazesoba",
+            "en": "Tofu Mazesoba",
+            "de": "Tofu Mazesoba",
+            "it": "Tofu Mazesoba",
+            "zh": "Tofu Mazesoba（豆腐拌面）"
+          },
+          "description": {
+            "fr": "Tofu teriyaki, cébette, daikon, nori et œuf onsen.",
+            "en": "Teriyaki tofu, spring onion, daikon (radish), nori and onsen egg (slow-cooked).",
+            "de": "Teriyaki-Tofu, Frühlingszwiebel, Rettich (Daikon), Nori und Onsen-Ei.",
+            "it": "Tofu teriyaki, cipollotto, daikon, alga nori e uovo onsen.",
+            "zh": "照烧豆腐、葱花、白萝卜、海苔和温泉蛋。"
+          },
           "price": 14.9,
           "legacyIds": ["item-e3480261"]
         }
@@ -275,27 +491,69 @@
     {
       "key": "udon",
       "section": "food",
-      "name": { "fr": "Udon" },
+      "name": { "fr": "Udon", "en": "Udon", "de": "Udon", "it": "Udon", "zh": "Udon（乌冬面）" },
       "nameJp": "うどん",
-      "description": { "fr": "Le midi seulement" },
+      "description": {
+        "fr": "Le midi seulement",
+        "en": "Lunchtime only",
+        "de": "Nur mittags",
+        "it": "Solo a pranzo",
+        "zh": "仅限午餐"
+      },
       "items": [
         {
           "key": "tantan-udon",
-          "name": { "fr": "Tantan Udon" },
-          "description": { "fr": "Udon au sésame, huile de piment, bœuf haché, pousses de soja, pak-choï, daikon et œuf onsen." },
+          "name": {
+            "fr": "Tantan Udon",
+            "en": "Tantan Udon",
+            "de": "Tantan Udon",
+            "it": "Tantan Udon",
+            "zh": "Tantan Udon（担担乌冬面）"
+          },
+          "description": {
+            "fr": "Udon au sésame, huile de piment, bœuf haché, pousses de soja, pak-choï, daikon et œuf onsen.",
+            "en": "Udon (thick wheat noodles) with sesame, chili oil, minced beef, bean sprouts, bok choy, daikon (radish) and onsen egg (slow-cooked).",
+            "de": "Udon (dicke Weizennudeln) mit Sesam, Chiliöl, Rinderhack, Sojasprossen, Pak Choi, Rettich (Daikon) und Onsen-Ei.",
+            "it": "Udon (noodles di grano spessi) al sesamo, olio al peperoncino, manzo macinato, germogli di soia, pak choi, daikon e uovo onsen.",
+            "zh": "芝麻乌冬面，配辣油、牛肉末、豆芽、小白菜、白萝卜和温泉蛋。"
+          },
           "price": 15.9
         },
         {
           "key": "udon-karaage",
-          "name": { "fr": "Udon Karaage" },
-          "description": { "fr": "Bouillon tsuyu, poulet frit, œuf onsen et cébette." },
+          "name": {
+            "fr": "Udon Karaage",
+            "en": "Udon Karaage",
+            "de": "Udon Karaage",
+            "it": "Udon Karaage",
+            "zh": "Udon Karaage（炸鸡乌冬面）"
+          },
+          "description": {
+            "fr": "Bouillon tsuyu, poulet frit, œuf onsen et cébette.",
+            "en": "Tsuyu broth, fried chicken, onsen egg (slow-cooked) and spring onion.",
+            "de": "Tsuyu-Brühe, frittiertes Hähnchen, Onsen-Ei und Frühlingszwiebel.",
+            "it": "Brodo tsuyu, pollo fritto, uovo onsen e cipollotto.",
+            "zh": "日式酱油汤底，配炸鸡、温泉蛋和葱花。"
+          },
           "price": 15.5,
           "legacyIds": ["item-e4153085"]
         },
         {
           "key": "udon-boeuf-cinq-epices",
-          "name": { "fr": "Udon au bœuf aux cinq épices" },
-          "description": { "fr": "Bouillon tsuyu, bœuf haché aux cinq épices, œuf onsen et cébette." },
+          "name": {
+            "fr": "Udon au bœuf aux cinq épices",
+            "en": "Five-spice beef udon",
+            "de": "Udon mit Fünf-Gewürze-Rind",
+            "it": "Udon al manzo alle cinque spezie",
+            "zh": "五香牛肉乌冬面"
+          },
+          "description": {
+            "fr": "Bouillon tsuyu, bœuf haché aux cinq épices, œuf onsen et cébette.",
+            "en": "Tsuyu broth, five-spice minced beef, onsen egg (slow-cooked) and spring onion.",
+            "de": "Tsuyu-Brühe, Rinderhackfleisch mit Fünf-Gewürze-Mischung, Onsen-Ei und Frühlingszwiebel.",
+            "it": "Brodo tsuyu, manzo macinato alle cinque spezie, uovo onsen e cipollotto.",
+            "zh": "日式酱油汤底，配五香牛肉末、温泉蛋和葱花。"
+          },
           "price": 15.5,
           "legacyIds": ["item-e3879608"]
         }
@@ -304,24 +562,78 @@
     {
       "key": "menu-enfant",
       "section": "food",
-      "name": { "fr": "Menu enfant" },
+      "name": {
+        "fr": "Menu enfant",
+        "en": "Kids' menu",
+        "de": "Kindermenü",
+        "it": "Menù bambini",
+        "zh": "儿童餐"
+      },
       "nameJp": "お子様メニュー",
-      "description": { "fr": "Pour les enfants de moins de 10 ans." },
-      "footnote": { "fr": "Inclus : un sirop à l'eau et une boule de glace au choix." },
+      "description": {
+        "fr": "Pour les enfants de moins de 10 ans.",
+        "en": "For children under 10.",
+        "de": "Für Kinder unter 10 Jahren.",
+        "it": "Per bambini sotto i 10 anni.",
+        "zh": "适合10岁以下儿童。"
+      },
+      "footnote": {
+        "fr": "Inclus : un sirop à l'eau et une boule de glace au choix.",
+        "en": "Includes a syrup with water and a scoop of ice cream of your choice.",
+        "de": "Inklusive: ein Sirup mit Wasser und eine Eiskugel nach Wahl.",
+        "it": "Incluso: uno sciroppo con acqua e una pallina di gelato a scelta.",
+        "zh": "含一杯果味糖浆水和一个自选口味冰淇淋球。"
+      },
       "items": [
         {
           "key": "little-tokyo",
-          "name": { "fr": "Little Tokyo" },
-          "subgroup": { "fr": "Au choix" },
-          "description": { "fr": "Nouilles épaisses, deux karaage, edamame et demi-œuf mariné." },
+          "name": {
+            "fr": "Little Tokyo",
+            "en": "Little Tokyo",
+            "de": "Little Tokyo",
+            "it": "Little Tokyo",
+            "zh": "Little Tokyo"
+          },
+          "subgroup": {
+            "fr": "Au choix",
+            "en": "Your choice",
+            "de": "Zur Auswahl",
+            "it": "A scelta",
+            "zh": "任选其一"
+          },
+          "description": {
+            "fr": "Nouilles épaisses, deux karaage, edamame et demi-œuf mariné.",
+            "en": "Thick noodles, two karaage (fried chicken), edamame and half a marinated egg.",
+            "de": "Dicke Nudeln, zwei Karaage (frittiertes Hähnchen), Edamame und ein halbes mariniertes Ei.",
+            "it": "Noodles spessi, due karaage (pollo fritto), edamame e mezzo uovo marinato.",
+            "zh": "粗面、两块日式炸鸡、毛豆和半颗溏心蛋。"
+          },
           "price": 9.9,
           "legacyIds": ["item-e3480264", "formule-enfant"]
         },
         {
           "key": "mini-ramen",
-          "name": { "fr": "Mini Ramen" },
-          "subgroup": { "fr": "Au choix" },
-          "description": { "fr": "Tokyo ou Miso." },
+          "name": {
+            "fr": "Mini Ramen",
+            "en": "Mini Ramen",
+            "de": "Mini Ramen",
+            "it": "Mini Ramen",
+            "zh": "Mini Ramen（迷你拉面）"
+          },
+          "subgroup": {
+            "fr": "Au choix",
+            "en": "Your choice",
+            "de": "Zur Auswahl",
+            "it": "A scelta",
+            "zh": "任选其一"
+          },
+          "description": {
+            "fr": "Tokyo ou Miso.",
+            "en": "Tokyo or Miso.",
+            "de": "Tokyo oder Miso.",
+            "it": "Tokyo o Miso.",
+            "zh": "东京拉面或味噌拉面。"
+          },
           "price": 9.9,
           "legacyIds": ["item-e3480265"]
         }
@@ -330,30 +642,60 @@
     {
       "key": "extras",
       "section": "food",
-      "name": { "fr": "Extras" },
+      "name": { "fr": "Extras", "en": "Extras", "de": "Extras", "it": "Extra", "zh": "加料" },
       "nameJp": "追加トッピング",
-      "description": { "fr": "Complétez votre bol avec nos extras." },
+      "description": {
+        "fr": "Complétez votre bol avec nos extras.",
+        "en": "Top up your bowl with our extras.",
+        "de": "Ergänzen Sie Ihre Schüssel mit unseren Extras.",
+        "it": "Completa la tua ciotola con i nostri extra.",
+        "zh": "可为您的面碗加料。"
+      },
       "items": [
         {
           "key": "oeuf-marine-entier",
-          "name": { "fr": "Oeuf mariné entier" },
+          "name": {
+            "fr": "Oeuf mariné entier",
+            "en": "Whole marinated egg",
+            "de": "Ganzes mariniertes Ei",
+            "it": "Uovo marinato intero",
+            "zh": "整颗溏心蛋"
+          },
           "price": 2,
           "legacyIds": ["item-e3480266", "extra-oeuf"]
         },
         {
           "key": "oeuf-onsen",
-          "name": { "fr": "Oeuf onsen" },
+          "name": {
+            "fr": "Oeuf onsen",
+            "en": "Onsen egg (slow-cooked)",
+            "de": "Onsen-Ei (langsam gegart)",
+            "it": "Uovo onsen (cotto a bassa temperatura)",
+            "zh": "温泉蛋"
+          },
           "price": 2
         },
         {
           "key": "chashu-porc",
-          "name": { "fr": "Chashu de porc" },
+          "name": {
+            "fr": "Chashu de porc",
+            "en": "Pork chashu",
+            "de": "Schweine-Chashu",
+            "it": "Chashu di maiale",
+            "zh": "猪肉叉烧"
+          },
           "prices": [{ "quantity": 2, "unit": "pcs", "price": 3.9 }],
           "legacyIds": ["item-e3480267", "extra-chashu"]
         },
         {
           "key": "chashu-poulet",
-          "name": { "fr": "Chashu de poulet" },
+          "name": {
+            "fr": "Chashu de poulet",
+            "en": "Chicken chashu",
+            "de": "Hähnchen-Chashu",
+            "it": "Chashu di pollo",
+            "zh": "鸡肉叉烧"
+          },
           "prices": [{ "quantity": 3, "unit": "pcs", "price": 3.5 }],
           "legacyIds": ["item-e3480268"]
         }
@@ -362,39 +704,87 @@
     {
       "key": "desserts",
       "section": "food",
-      "name": { "fr": "Desserts" },
+      "name": { "fr": "Desserts", "en": "Desserts", "de": "Desserts", "it": "Dessert", "zh": "甜点" },
       "nameJp": "デザート",
       "items": [
         {
           "key": "cafe-the-gourmand",
-          "name": { "fr": "Café ou thé gourmand" },
-          "description": { "fr": "Mini financier matcha, macaron exotique, mochi sésame noir et une boule de glace" },
+          "name": {
+            "fr": "Café ou thé gourmand",
+            "en": "Coffee or tea with mini desserts",
+            "de": "Kaffee oder Tee mit Mini-Desserts",
+            "it": "Caffè o tè con mini dessert",
+            "zh": "咖啡或茶配迷你甜点"
+          },
+          "description": {
+            "fr": "Mini financier matcha, macaron exotique, mochi sésame noir et une boule de glace",
+            "en": "Mini matcha financier, exotic macaron, black sesame mochi and a scoop of ice cream",
+            "de": "Mini-Financier mit Matcha, exotisches Macaron, Mochi mit schwarzem Sesam und eine Eiskugel",
+            "it": "Mini financier al matcha, macaron esotico, mochi al sesamo nero e una pallina di gelato",
+            "zh": "迷你抹茶费南雪、异国风味马卡龙、黑芝麻麻糬和一个冰淇淋球"
+          },
           "price": 9.9,
           "legacyIds": ["item-e3480284", "item-e3480283"]
         },
         {
           "key": "duo-mochis-glaces",
-          "name": { "fr": "Duo de mochis glacés" },
-          "description": { "fr": "Sakura & fruit de la passion." },
+          "name": {
+            "fr": "Duo de mochis glacés",
+            "en": "Duo of mochi ice cream",
+            "de": "Mochi-Eis-Duo",
+            "it": "Duo di mochi gelato",
+            "zh": "冰淇淋麻糬双拼"
+          },
+          "description": {
+            "fr": "Sakura & fruit de la passion.",
+            "en": "Sakura & passion fruit.",
+            "de": "Sakura & Passionsfrucht.",
+            "it": "Sakura & frutto della passione.",
+            "zh": "樱花味与百香果味。"
+          },
           "price": 6.5,
           "legacyIds": ["item-e3480282"]
         },
         {
           "key": "tiramisu-matcha",
-          "name": { "fr": "Tiramisu matcha" },
+          "name": {
+            "fr": "Tiramisu matcha",
+            "en": "Matcha tiramisu",
+            "de": "Matcha-Tiramisu",
+            "it": "Tiramisù al matcha",
+            "zh": "抹茶提拉米苏"
+          },
           "price": 6.9,
           "legacyIds": ["item-e3480281"]
         },
         {
           "key": "tiramisu-framboise-litchi",
-          "name": { "fr": "Tiramisu framboise & litchi" },
+          "name": {
+            "fr": "Tiramisu framboise & litchi",
+            "en": "Raspberry & lychee tiramisu",
+            "de": "Himbeer-Litschi-Tiramisu",
+            "it": "Tiramisù lampone e litchi",
+            "zh": "覆盆子荔枝提拉米苏"
+          },
           "price": 6.9,
           "legacyIds": ["item-e3480280"]
         },
         {
           "key": "boule-de-glace",
-          "name": { "fr": "Boule de glace au choix" },
-          "description": { "fr": "Matcha, Yuzu, Sésame noir, Mangue, Coco, Vanille, Framboise, Fraise, Pêche, Chocolat au lait." },
+          "name": {
+            "fr": "Boule de glace au choix",
+            "en": "Scoop of ice cream of your choice",
+            "de": "Eiskugel nach Wahl",
+            "it": "Pallina di gelato a scelta",
+            "zh": "自选口味冰淇淋球"
+          },
+          "description": {
+            "fr": "Matcha, Yuzu, Sésame noir, Mangue, Coco, Vanille, Framboise, Fraise, Pêche, Chocolat au lait.",
+            "en": "Matcha, Yuzu, Black sesame, Mango, Coconut, Vanilla, Raspberry, Strawberry, Peach, Milk chocolate.",
+            "de": "Matcha, Yuzu, Schwarzer Sesam, Mango, Kokos, Vanille, Himbeere, Erdbeere, Pfirsich, Milchschokolade.",
+            "it": "Matcha, Yuzu, Sesamo nero, Mango, Cocco, Vaniglia, Lampone, Fragola, Pesca, Cioccolato al latte.",
+            "zh": "抹茶、柚子、黑芝麻、芒果、椰子、香草、覆盆子、草莓、蜜桃、牛奶巧克力。"
+          },
           "price": 3
         }
       ]
@@ -402,13 +792,19 @@
     {
       "key": "bieres",
       "section": "drinks",
-      "name": { "fr": "Bières" },
+      "name": { "fr": "Bières", "en": "Beers", "de": "Biere", "it": "Birre", "zh": "啤酒" },
       "nameJp": "ビール",
       "items": [
         {
           "key": "asahi",
-          "name": { "fr": "Asahi ~ 5°" },
-          "subgroup": { "fr": "Pressions" },
+          "name": {
+            "fr": "Asahi ~ 5°",
+            "en": "Asahi ~ 5°",
+            "de": "Asahi ~ 5°",
+            "it": "Asahi ~ 5°",
+            "zh": "Asahi ~ 5°"
+          },
+          "subgroup": { "fr": "Pressions", "en": "Draught", "de": "Vom Fass", "it": "Alla spina", "zh": "生啤" },
           "prices": [
             { "quantity": 25, "unit": "cl", "price": 4.9 },
             { "quantity": 50, "unit": "cl", "price": 7.5 }
@@ -417,8 +813,14 @@
         },
         {
           "key": "asahi-yuzu",
-          "name": { "fr": "Asahi Yuzu" },
-          "subgroup": { "fr": "Pressions" },
+          "name": {
+            "fr": "Asahi Yuzu",
+            "en": "Asahi Yuzu",
+            "de": "Asahi Yuzu",
+            "it": "Asahi Yuzu",
+            "zh": "Asahi Yuzu"
+          },
+          "subgroup": { "fr": "Pressions", "en": "Draught", "de": "Vom Fass", "it": "Alla spina", "zh": "生啤" },
           "prices": [
             { "quantity": 25, "unit": "cl", "price": 5.4 },
             { "quantity": 50, "unit": "cl", "price": 8.4 }
@@ -426,8 +828,14 @@
         },
         {
           "key": "asahi-sake",
-          "name": { "fr": "Asahi Saké" },
-          "subgroup": { "fr": "Pressions" },
+          "name": {
+            "fr": "Asahi Saké",
+            "en": "Asahi Saké",
+            "de": "Asahi Saké",
+            "it": "Asahi Saké",
+            "zh": "Asahi Saké"
+          },
+          "subgroup": { "fr": "Pressions", "en": "Draught", "de": "Vom Fass", "it": "Alla spina", "zh": "生啤" },
           "prices": [
             { "quantity": 25, "unit": "cl", "price": 5.5 },
             { "quantity": 50, "unit": "cl", "price": 8.5 }
@@ -435,15 +843,39 @@
         },
         {
           "key": "asahi-super-dry",
-          "name": { "fr": "Asahi Super Dry ~ 5°" },
-          "subgroup": { "fr": "Bouteilles" },
+          "name": {
+            "fr": "Asahi Super Dry ~ 5°",
+            "en": "Asahi Super Dry ~ 5°",
+            "de": "Asahi Super Dry ~ 5°",
+            "it": "Asahi Super Dry ~ 5°",
+            "zh": "Asahi Super Dry ~ 5°"
+          },
+          "subgroup": {
+            "fr": "Bouteilles",
+            "en": "Bottles",
+            "de": "Flaschen",
+            "it": "In bottiglia",
+            "zh": "瓶装"
+          },
           "prices": [{ "quantity": 33, "unit": "cl", "price": 5.9 }],
           "legacyIds": ["item-e3480292"]
         },
         {
           "key": "coedo-ipa",
-          "name": { "fr": "Coedo IPA ~ 4,5°" },
-          "subgroup": { "fr": "Bouteilles" },
+          "name": {
+            "fr": "Coedo IPA ~ 4,5°",
+            "en": "Coedo IPA ~ 4,5°",
+            "de": "Coedo IPA ~ 4,5°",
+            "it": "Coedo IPA ~ 4,5°",
+            "zh": "Coedo IPA ~ 4,5°"
+          },
+          "subgroup": {
+            "fr": "Bouteilles",
+            "en": "Bottles",
+            "de": "Flaschen",
+            "it": "In bottiglia",
+            "zh": "瓶装"
+          },
           "prices": [{ "quantity": 33, "unit": "cl", "price": 6.9 }],
           "legacyIds": ["item-e3480296"]
         }
@@ -452,31 +884,61 @@
     {
       "key": "spritz",
       "section": "drinks",
-      "name": { "fr": "Spritz" },
+      "name": { "fr": "Spritz", "en": "Spritz", "de": "Spritz", "it": "Spritz", "zh": "Spritz（气泡鸡尾酒）" },
       "nameJp": "スプリッツァー",
-      "description": { "fr": "25cl" },
+      "description": { "fr": "25cl", "en": "25cl", "de": "25cl", "it": "25cl", "zh": "25cl" },
       "items": [
         {
           "key": "yuzu-spritz",
-          "name": { "fr": "Yuzu Spritz" },
+          "name": {
+            "fr": "Yuzu Spritz",
+            "en": "Yuzu Spritz",
+            "de": "Yuzu Spritz",
+            "it": "Yuzu Spritz",
+            "zh": "Yuzu Spritz（柚子气泡鸡尾酒）"
+          },
           "price": 8.9
         },
         {
           "key": "umeshu-spritz",
-          "name": { "fr": "Umeshu Spritz" },
+          "name": {
+            "fr": "Umeshu Spritz",
+            "en": "Umeshu Spritz",
+            "de": "Umeshu Spritz",
+            "it": "Umeshu Spritz",
+            "zh": "Umeshu Spritz（梅酒气泡鸡尾酒）"
+          },
           "price": 8.9,
           "legacyIds": ["item-e4153375"]
         },
         {
           "key": "peach-passion-spritz",
-          "name": { "fr": "Peach Passion Spritz" },
+          "name": {
+            "fr": "Peach Passion Spritz",
+            "en": "Peach Passion Spritz",
+            "de": "Peach Passion Spritz",
+            "it": "Peach Passion Spritz",
+            "zh": "Peach Passion Spritz（蜜桃百香果气泡鸡尾酒）"
+          },
           "price": 8.9,
           "legacyIds": ["item-e4315920"]
         },
         {
           "key": "nana-spritz",
-          "name": { "fr": "Nana Spritz" },
-          "description": { "fr": "Rose, Litchi, Framboise, Prosecco et eau pétillante" },
+          "name": {
+            "fr": "Nana Spritz",
+            "en": "Nana Spritz",
+            "de": "Nana Spritz",
+            "it": "Nana Spritz",
+            "zh": "Nana Spritz"
+          },
+          "description": {
+            "fr": "Rose, Litchi, Framboise, Prosecco et eau pétillante",
+            "en": "Rose, Lychee, Raspberry, Prosecco and sparkling water",
+            "de": "Rose, Litschi, Himbeere, Prosecco und Sprudelwasser",
+            "it": "Rosa, Litchi, Lampone, Prosecco e acqua frizzante",
+            "zh": "玫瑰、荔枝、覆盆子、普罗塞克起泡酒和气泡水"
+          },
           "price": 8.9
         }
       ]
@@ -484,21 +946,45 @@
     {
       "key": "highball",
       "section": "drinks",
-      "name": { "fr": "Highball" },
+      "name": { "fr": "Highball", "en": "Highball", "de": "Highball", "it": "Highball", "zh": "Highball（嗨棒）" },
       "nameJp": "ハイボール",
-      "description": { "fr": "30cl" },
+      "description": { "fr": "30cl", "en": "30cl", "de": "30cl", "it": "30cl", "zh": "30cl" },
       "items": [
         {
           "key": "highball",
-          "name": { "fr": "Highball" },
-          "description": { "fr": "Whisky japonais allongé au soda." },
+          "name": {
+            "fr": "Highball",
+            "en": "Highball",
+            "de": "Highball",
+            "it": "Highball",
+            "zh": "Highball（嗨棒）"
+          },
+          "description": {
+            "fr": "Whisky japonais allongé au soda.",
+            "en": "Japanese whisky topped up with soda.",
+            "de": "Japanischer Whisky, mit Soda aufgefüllt.",
+            "it": "Whisky giapponese allungato con soda.",
+            "zh": "日本威士忌兑苏打水。"
+          },
           "price": 8.5,
           "legacyIds": ["item-e3480358"]
         },
         {
           "key": "ginger-highball",
-          "name": { "fr": "Ginger Highball" },
-          "description": { "fr": "Déclinaison au gingembre." },
+          "name": {
+            "fr": "Ginger Highball",
+            "en": "Ginger Highball",
+            "de": "Ginger Highball",
+            "it": "Ginger Highball",
+            "zh": "Ginger Highball（姜汁嗨棒）"
+          },
+          "description": {
+            "fr": "Déclinaison au gingembre.",
+            "en": "The ginger version.",
+            "de": "Die Variante mit Ingwer.",
+            "it": "La variante allo zenzero.",
+            "zh": "生姜风味版本。"
+          },
           "price": 9,
           "legacyIds": ["item-e3886808"]
         }
@@ -507,26 +993,56 @@
     {
       "key": "cocktails-signature",
       "section": "drinks",
-      "name": { "fr": "Cocktails signature" },
+      "name": {
+        "fr": "Cocktails signature",
+        "en": "Signature cocktails",
+        "de": "Signature-Cocktails",
+        "it": "Cocktail signature",
+        "zh": "招牌鸡尾酒"
+      },
       "nameJp": "カクテル",
-      "description": { "fr": "20cl" },
+      "description": { "fr": "20cl", "en": "20cl", "de": "20cl", "it": "20cl", "zh": "20cl" },
       "items": [
         {
           "key": "natsu",
-          "name": { "fr": "Natsu" },
-          "description": { "fr": "Saké pétillant, matcha, basilic, concombre et pointe de ginger ale." },
+          "name": { "fr": "Natsu", "en": "Natsu", "de": "Natsu", "it": "Natsu", "zh": "Natsu" },
+          "description": {
+            "fr": "Saké pétillant, matcha, basilic, concombre et pointe de ginger ale.",
+            "en": "Sparkling sake, matcha, basil, cucumber and a dash of ginger ale.",
+            "de": "Prickelnder Sake, Matcha, Basilikum, Gurke und ein Schuss Ginger Ale.",
+            "it": "Sakè frizzante, matcha, basilico, cetriolo e un tocco di ginger ale.",
+            "zh": "起泡清酒、抹茶、罗勒、黄瓜，加少许姜汁汽水。"
+          },
           "price": 9
         },
         {
           "key": "sakura-blossom",
-          "name": { "fr": "Sakura Blossom" },
-          "description": { "fr": "Litchi, rose et saké pétillant." },
+          "name": {
+            "fr": "Sakura Blossom",
+            "en": "Sakura Blossom",
+            "de": "Sakura Blossom",
+            "it": "Sakura Blossom",
+            "zh": "Sakura Blossom"
+          },
+          "description": {
+            "fr": "Litchi, rose et saké pétillant.",
+            "en": "Lychee, rose and sparkling sake.",
+            "de": "Litschi, Rose und prickelnder Sake.",
+            "it": "Litchi, rosa e sakè frizzante.",
+            "zh": "荔枝、玫瑰和起泡清酒。"
+          },
           "price": 8.5
         },
         {
           "key": "nana",
-          "name": { "fr": "Nana" },
-          "description": { "fr": "Gin, litchi, rose, citron et limonade." },
+          "name": { "fr": "Nana", "en": "Nana", "de": "Nana", "it": "Nana", "zh": "Nana" },
+          "description": {
+            "fr": "Gin, litchi, rose, citron et limonade.",
+            "en": "Gin, lychee, rose, lemon and lemonade.",
+            "de": "Gin, Litschi, Rose, Zitrone und Limonade.",
+            "it": "Gin, litchi, rosa, limone e limonata.",
+            "zh": "金酒、荔枝、玫瑰、柠檬和柠檬汽水。"
+          },
           "price": 9,
           "legacyIds": ["item-e3480361"]
         }
@@ -535,19 +1051,37 @@
     {
       "key": "cocktails-sans-alcool",
       "section": "drinks",
-      "name": { "fr": "Cocktails sans alcool" },
+      "name": {
+        "fr": "Cocktails sans alcool",
+        "en": "Alcohol-free cocktails",
+        "de": "Alkoholfreie Cocktails",
+        "it": "Cocktail analcolici",
+        "zh": "无酒精鸡尾酒"
+      },
       "nameJp": "ノンアルコールカクテル",
       "items": [
         {
           "key": "hachiko",
-          "name": { "fr": "Hachiko" },
-          "description": { "fr": "Yuzu, pêche et ginger ale." },
+          "name": { "fr": "Hachiko", "en": "Hachiko", "de": "Hachiko", "it": "Hachiko", "zh": "Hachiko" },
+          "description": {
+            "fr": "Yuzu, pêche et ginger ale.",
+            "en": "Yuzu, peach and ginger ale.",
+            "de": "Yuzu, Pfirsich und Ginger Ale.",
+            "it": "Yuzu, pesca e ginger ale.",
+            "zh": "柚子、蜜桃和姜汁汽水。"
+          },
           "prices": [{ "quantity": 30, "unit": "cl", "price": 7.5 }]
         },
         {
           "key": "lovely",
-          "name": { "fr": "Lovely" },
-          "description": { "fr": "Rose, litchi, citron et limonade." },
+          "name": { "fr": "Lovely", "en": "Lovely", "de": "Lovely", "it": "Lovely", "zh": "Lovely" },
+          "description": {
+            "fr": "Rose, litchi, citron et limonade.",
+            "en": "Rose, lychee, lemon and lemonade.",
+            "de": "Rose, Litschi, Zitrone und Limonade.",
+            "it": "Rosa, litchi, limone e limonata.",
+            "zh": "玫瑰、荔枝、柠檬和柠檬汽水。"
+          },
           "prices": [{ "quantity": 30, "unit": "cl", "price": 7.5 }],
           "legacyIds": ["item-e3480300"]
         }
@@ -556,25 +1090,49 @@
     {
       "key": "thes-glaces",
       "section": "drinks",
-      "name": { "fr": "Thés glacés" },
+      "name": { "fr": "Thés glacés", "en": "Iced teas", "de": "Eistees", "it": "Tè freddi", "zh": "冰茶" },
       "nameJp": "アイスティー",
       "items": [
         {
           "key": "yuzu-maison",
-          "name": { "fr": "Yuzu maison" },
-          "description": { "fr": "Frais, légèrement acidulé." },
+          "name": {
+            "fr": "Yuzu maison",
+            "en": "Homemade yuzu",
+            "de": "Yuzu hausgemacht",
+            "it": "Yuzu fatto in casa",
+            "zh": "自制柚子冰茶"
+          },
+          "description": {
+            "fr": "Frais, légèrement acidulé.",
+            "en": "Fresh, slightly tangy.",
+            "de": "Frisch, leicht säuerlich.",
+            "it": "Fresco, leggermente acidulo.",
+            "zh": "清爽，微酸。"
+          },
           "prices": [{ "quantity": 30, "unit": "cl", "price": 4.2 }],
           "legacyIds": ["item-e3480341"]
         },
         {
           "key": "the-noir-glace-litchi",
-          "name": { "fr": "Thé noir glacé au litchi" },
+          "name": {
+            "fr": "Thé noir glacé au litchi",
+            "en": "Lychee iced black tea",
+            "de": "Schwarzer Eistee mit Litschi",
+            "it": "Tè nero freddo al litchi",
+            "zh": "荔枝冰红茶"
+          },
           "prices": [{ "quantity": 33, "unit": "cl", "price": 4.2 }],
           "legacyIds": ["item-e3480342"]
         },
         {
           "key": "the-glace-peche",
-          "name": { "fr": "Thé glacé pêche" },
+          "name": {
+            "fr": "Thé glacé pêche",
+            "en": "Peach iced tea",
+            "de": "Pfirsich-Eistee",
+            "it": "Tè freddo alla pesca",
+            "zh": "蜜桃冰茶"
+          },
           "prices": [{ "quantity": 30, "unit": "cl", "price": 4.2 }],
           "legacyIds": ["item-e3480343"]
         }
@@ -583,33 +1141,69 @@
     {
       "key": "softs",
       "section": "drinks",
-      "name": { "fr": "Softs" },
+      "name": { "fr": "Softs", "en": "Soft drinks", "de": "Softdrinks", "it": "Bibite", "zh": "软饮" },
       "nameJp": "ソフトドリンク",
       "items": [
         {
           "key": "ramune",
-          "name": { "fr": "Ramune" },
-          "description": { "fr": "Au choix : yuzu, fraise ou litchi." },
+          "name": { "fr": "Ramune", "en": "Ramune", "de": "Ramune", "it": "Ramune", "zh": "Ramune（波子汽水）" },
+          "description": {
+            "fr": "Au choix : yuzu, fraise ou litchi.",
+            "en": "Japanese soda, choice of yuzu, strawberry or lychee.",
+            "de": "Japanische Limonade, nach Wahl: Yuzu, Erdbeere oder Litschi.",
+            "it": "Bibita giapponese, a scelta: yuzu, fragola o litchi.",
+            "zh": "日本汽水，口味可选：柚子、草莓或荔枝。"
+          },
           "prices": [{ "quantity": 20, "unit": "cl", "price": 5.6 }],
           "legacyIds": ["item-e3480338"]
         },
         {
           "key": "coca-cola",
-          "name": { "fr": "Coca-Cola / Coca-Cola Zéro" },
+          "name": {
+            "fr": "Coca-Cola / Coca-Cola Zéro",
+            "en": "Coca-Cola / Coca-Cola Zéro",
+            "de": "Coca-Cola / Coca-Cola Zéro",
+            "it": "Coca-Cola / Coca-Cola Zéro",
+            "zh": "Coca-Cola / Coca-Cola Zéro"
+          },
           "prices": [{ "quantity": 33, "unit": "cl", "price": 3.5 }],
           "legacyIds": ["item-e3480336", "item-e3480337"]
         },
         {
           "key": "sirop-a-leau",
-          "name": { "fr": "Sirop à l'eau" },
-          "description": { "fr": "grenadine, fraise, citron, pêche, litchi, passion ou rose." },
+          "name": {
+            "fr": "Sirop à l'eau",
+            "en": "Syrup with water",
+            "de": "Sirup mit Wasser",
+            "it": "Sciroppo con acqua",
+            "zh": "果味糖浆水"
+          },
+          "description": {
+            "fr": "grenadine, fraise, citron, pêche, litchi, passion ou rose.",
+            "en": "grenadine, strawberry, lemon, peach, lychee, passion fruit or rose.",
+            "de": "Grenadine, Erdbeere, Zitrone, Pfirsich, Litschi, Passionsfrucht oder Rose.",
+            "it": "granatina, fragola, limone, pesca, litchi, frutto della passione o rosa.",
+            "zh": "红石榴、草莓、柠檬、蜜桃、荔枝、百香果或玫瑰。"
+          },
           "price": 3,
           "legacyIds": ["item-e3509950"]
         },
         {
           "key": "diabolo",
-          "name": { "fr": "Diabolo" },
-          "description": { "fr": "grenadine, fraise, citron, pêche, litchi, passion ou rose." },
+          "name": {
+            "fr": "Diabolo",
+            "en": "Diabolo",
+            "de": "Diabolo",
+            "it": "Diabolo",
+            "zh": "Diabolo（果味汽水）"
+          },
+          "description": {
+            "fr": "grenadine, fraise, citron, pêche, litchi, passion ou rose.",
+            "en": "Lemonade with syrup: grenadine, strawberry, lemon, peach, lychee, passion fruit or rose.",
+            "de": "Limonade mit Sirup: Grenadine, Erdbeere, Zitrone, Pfirsich, Litschi, Passionsfrucht oder Rose.",
+            "it": "Limonata con sciroppo: granatina, fragola, limone, pesca, litchi, frutto della passione o rosa.",
+            "zh": "柠檬汽水加糖浆：红石榴、草莓、柠檬、蜜桃、荔枝、百香果或玫瑰。"
+          },
           "price": 3.5,
           "legacyIds": ["item-e3509951"]
         }
@@ -618,12 +1212,24 @@
     {
       "key": "eaux-minerales",
       "section": "drinks",
-      "name": { "fr": "Eaux minérales" },
+      "name": {
+        "fr": "Eaux minérales",
+        "en": "Mineral water",
+        "de": "Mineralwasser",
+        "it": "Acque minerali",
+        "zh": "矿泉水"
+      },
       "nameJp": "ミネラルウォーター",
       "items": [
         {
           "key": "lisbeth",
-          "name": { "fr": "Lisbeth bleu, verte, rouge" },
+          "name": {
+            "fr": "Lisbeth bleu, verte, rouge",
+            "en": "Lisbeth blue, green, red",
+            "de": "Lisbeth blau, grün, rot",
+            "it": "Lisbeth blu, verde, rossa",
+            "zh": "Lisbeth（蓝标、绿标、红标）"
+          },
           "prices": [{ "quantity": 50, "unit": "cl", "price": 3.5 }],
           "legacyIds": ["item-e3480303"]
         }
@@ -632,104 +1238,223 @@
     {
       "key": "sakes-japonais",
       "section": "drinks",
-      "name": { "fr": "Sakés japonais" },
+      "name": {
+        "fr": "Sakés japonais",
+        "en": "Japanese sake",
+        "de": "Japanischer Sake",
+        "it": "Sakè giapponesi",
+        "zh": "日本清酒"
+      },
       "nameJp": "日本酒",
-      "description": { "fr": "Service de 10cl, sauf trio." },
+      "description": {
+        "fr": "Service de 10cl, sauf trio.",
+        "en": "Served in 10cl glasses, except the tasting trio.",
+        "de": "Ausschank zu 10cl, außer Verkostungs-Trio.",
+        "it": "Servito da 10cl, tranne il trio degustazione.",
+        "zh": "每杯10cl（品鉴三杯除外）。"
+      },
       "items": [
         {
           "key": "zaku",
-          "name": { "fr": "Zaku ~ 15,5°" },
+          "name": {
+            "fr": "Zaku ~ 15,5°",
+            "en": "Zaku ~ 15,5°",
+            "de": "Zaku ~ 15,5°",
+            "it": "Zaku ~ 15,5°",
+            "zh": "Zaku ~ 15,5°"
+          },
           "price": 9.8
         },
         {
           "key": "kinrei",
-          "name": { "fr": "Kinrei ~ 15,5°" },
-          "description": { "fr": "Rond, fruité et soyeux." },
+          "name": {
+            "fr": "Kinrei ~ 15,5°",
+            "en": "Kinrei ~ 15,5°",
+            "de": "Kinrei ~ 15,5°",
+            "it": "Kinrei ~ 15,5°",
+            "zh": "Kinrei ~ 15,5°"
+          },
+          "description": {
+            "fr": "Rond, fruité et soyeux.",
+            "en": "Round, fruity and silky.",
+            "de": "Rund, fruchtig und seidig.",
+            "it": "Rotondo, fruttato e setoso.",
+            "zh": "圆润、果香、丝滑。"
+          },
           "price": 9.8
         },
         {
           "key": "fu",
-          "name": { "fr": "Fu ~ 8°" },
-          "description": { "fr": "Fruité, très léger." },
+          "name": { "fr": "Fu ~ 8°", "en": "Fu ~ 8°", "de": "Fu ~ 8°", "it": "Fu ~ 8°", "zh": "Fu ~ 8°" },
+          "description": {
+            "fr": "Fruité, très léger.",
+            "en": "Fruity, very light.",
+            "de": "Fruchtig, sehr leicht.",
+            "it": "Fruttato, molto leggero.",
+            "zh": "果香，十分轻盈。"
+          },
           "price": 9.8
         },
         {
           "key": "jidai-okure",
-          "name": { "fr": "Jidai okure ~ 15,5°" },
-          "description": { "fr": "Rond et équilibré." },
+          "name": {
+            "fr": "Jidai okure ~ 15,5°",
+            "en": "Jidai okure ~ 15,5°",
+            "de": "Jidai okure ~ 15,5°",
+            "it": "Jidai okure ~ 15,5°",
+            "zh": "Jidai okure ~ 15,5°"
+          },
+          "description": {
+            "fr": "Rond et équilibré.",
+            "en": "Round and balanced.",
+            "de": "Rund und ausgewogen.",
+            "it": "Rotondo ed equilibrato.",
+            "zh": "圆润而平衡。"
+          },
           "price": 9.8,
           "legacyIds": ["item-e3857685"]
         },
         {
           "key": "junmaishu",
-          "name": { "fr": "Junmaishu ~ 15,5°" },
-          "description": { "fr": "Puissant et riche." },
+          "name": {
+            "fr": "Junmaishu ~ 15,5°",
+            "en": "Junmaishu ~ 15,5°",
+            "de": "Junmaishu ~ 15,5°",
+            "it": "Junmaishu ~ 15,5°",
+            "zh": "Junmaishu ~ 15,5°"
+          },
+          "description": {
+            "fr": "Puissant et riche.",
+            "en": "Powerful and rich.",
+            "de": "Kräftig und vollmundig.",
+            "it": "Potente e ricco.",
+            "zh": "强劲而醇厚。"
+          },
           "price": 9.8
         },
         {
           "key": "atelier-du-sake",
-          "name": { "fr": "Atelier du saké ~ 17,5°" },
-          "description": { "fr": "Classique japonais." },
+          "name": {
+            "fr": "Atelier du saké ~ 17,5°",
+            "en": "Atelier du saké ~ 17,5°",
+            "de": "Atelier du saké ~ 17,5°",
+            "it": "Atelier du saké ~ 17,5°",
+            "zh": "Atelier du saké ~ 17,5°"
+          },
+          "description": {
+            "fr": "Classique japonais.",
+            "en": "A Japanese classic.",
+            "de": "Ein japanischer Klassiker.",
+            "it": "Un classico giapponese.",
+            "zh": "经典日本清酒。"
+          },
           "price": 9.8
         },
         {
           "key": "trio-degustation",
-          "name": { "fr": "Trio dégustation" },
-          "description": { "fr": "Trois sakés sélectionnés par notre équipe." },
-          "prices": [{ "label": { "fr": "3 × 6cl" }, "price": 18 }]
+          "name": {
+            "fr": "Trio dégustation",
+            "en": "Tasting trio",
+            "de": "Verkostungs-Trio",
+            "it": "Trio degustazione",
+            "zh": "清酒品鉴三杯"
+          },
+          "description": {
+            "fr": "Trois sakés sélectionnés par notre équipe.",
+            "en": "Three sakes selected by our team.",
+            "de": "Drei von unserem Team ausgewählte Sakes.",
+            "it": "Tre sakè selezionati dal nostro team.",
+            "zh": "由本店团队精选的三款清酒。"
+          },
+          "prices": [
+            {
+              "label": { "fr": "3 × 6cl", "en": "3 × 6cl", "de": "3 × 6cl", "it": "3 × 6cl", "zh": "3 × 6cl" },
+              "price": 18
+            }
+          ]
         }
       ]
     },
     {
       "key": "whiskies-rhums",
       "section": "drinks",
-      "name": { "fr": "Whiskies & Rhums" },
+      "name": {
+        "fr": "Whiskies & Rhums",
+        "en": "Whiskies & Rums",
+        "de": "Whiskys & Rum",
+        "it": "Whisky e rum",
+        "zh": "威士忌与朗姆酒"
+      },
       "nameJp": "ウイスキー＆ラム",
-      "description": { "fr": "4cl" },
+      "description": { "fr": "4cl", "en": "4cl", "de": "4cl", "it": "4cl", "zh": "4cl" },
       "items": [
         {
           "key": "toki",
-          "name": { "fr": "Toki" },
-          "subgroup": { "fr": "Whiskies" },
+          "name": { "fr": "Toki", "en": "Toki", "de": "Toki", "it": "Toki", "zh": "Toki" },
+          "subgroup": { "fr": "Whiskies", "en": "Whiskies", "de": "Whiskys", "it": "Whisky", "zh": "威士忌" },
           "price": 8.5
         },
         {
           "key": "nikka-from-the-barrel",
-          "name": { "fr": "Nikka from the Barrel" },
-          "subgroup": { "fr": "Whiskies" },
+          "name": {
+            "fr": "Nikka from the Barrel",
+            "en": "Nikka from the Barrel",
+            "de": "Nikka from the Barrel",
+            "it": "Nikka from the Barrel",
+            "zh": "Nikka from the Barrel"
+          },
+          "subgroup": { "fr": "Whiskies", "en": "Whiskies", "de": "Whiskys", "it": "Whisky", "zh": "威士忌" },
           "price": 10.5,
           "legacyIds": ["item-e3480365"]
         },
         {
           "key": "the-chita",
-          "name": { "fr": "The Chita" },
-          "subgroup": { "fr": "Whiskies" },
+          "name": {
+            "fr": "The Chita",
+            "en": "The Chita",
+            "de": "The Chita",
+            "it": "The Chita",
+            "zh": "The Chita"
+          },
+          "subgroup": { "fr": "Whiskies", "en": "Whiskies", "de": "Whiskys", "it": "Whisky", "zh": "威士忌" },
           "price": 9,
           "legacyIds": ["item-e3874891"]
         },
         {
           "key": "hibiki",
-          "name": { "fr": "Hibiki" },
-          "subgroup": { "fr": "Whiskies" },
+          "name": { "fr": "Hibiki", "en": "Hibiki", "de": "Hibiki", "it": "Hibiki", "zh": "Hibiki" },
+          "subgroup": { "fr": "Whiskies", "en": "Whiskies", "de": "Whiskys", "it": "Whisky", "zh": "威士忌" },
           "price": 14
         },
         {
           "key": "yamazaki",
-          "name": { "fr": "Yamazaki" },
-          "subgroup": { "fr": "Whiskies" },
+          "name": { "fr": "Yamazaki", "en": "Yamazaki", "de": "Yamazaki", "it": "Yamazaki", "zh": "Yamazaki" },
+          "subgroup": { "fr": "Whiskies", "en": "Whiskies", "de": "Whiskys", "it": "Whisky", "zh": "威士忌" },
           "price": 13
         },
         {
           "key": "ryoma",
-          "name": { "fr": "Ryoma, rhum ambré" },
-          "subgroup": { "fr": "Rhums" },
+          "name": {
+            "fr": "Ryoma, rhum ambré",
+            "en": "Ryoma, amber rum",
+            "de": "Ryoma, brauner Rum",
+            "it": "Ryoma, rum ambrato",
+            "zh": "Ryoma，琥珀朗姆酒"
+          },
+          "subgroup": { "fr": "Rhums", "en": "Rums", "de": "Rum", "it": "Rum", "zh": "朗姆酒" },
           "price": 8.5,
           "legacyIds": ["item-e3778342"]
         },
         {
           "key": "kiyomi",
-          "name": { "fr": "Kiyomi, rhum blanc" },
-          "subgroup": { "fr": "Rhums" },
+          "name": {
+            "fr": "Kiyomi, rhum blanc",
+            "en": "Kiyomi, white rum",
+            "de": "Kiyomi, weißer Rum",
+            "it": "Kiyomi, rum bianco",
+            "zh": "Kiyomi，白朗姆酒"
+          },
+          "subgroup": { "fr": "Rhums", "en": "Rums", "de": "Rum", "it": "Rum", "zh": "朗姆酒" },
           "price": 8.5,
           "legacyIds": ["item-e3874909"]
         }
@@ -738,13 +1463,25 @@
     {
       "key": "vins",
       "section": "drinks",
-      "name": { "fr": "Vins" },
+      "name": { "fr": "Vins", "en": "Wines", "de": "Weine", "it": "Vini", "zh": "葡萄酒" },
       "nameJp": "ワイン",
       "items": [
         {
           "key": "riesling-alsace-sperry",
-          "name": { "fr": "Riesling Alsace ~ Sperry" },
-          "subgroup": { "fr": "Vins blancs" },
+          "name": {
+            "fr": "Riesling Alsace ~ Sperry",
+            "en": "Riesling Alsace ~ Sperry",
+            "de": "Riesling Alsace ~ Sperry",
+            "it": "Riesling Alsace ~ Sperry",
+            "zh": "Riesling Alsace ~ Sperry（阿尔萨斯雷司令）"
+          },
+          "subgroup": {
+            "fr": "Vins blancs",
+            "en": "White wines",
+            "de": "Weißweine",
+            "it": "Vini bianchi",
+            "zh": "白葡萄酒"
+          },
           "prices": [
             { "quantity": 12, "unit": "cl", "price": 5.5 },
             { "quantity": 75, "unit": "cl", "price": 24 }
@@ -752,9 +1489,27 @@
         },
         {
           "key": "chardonnay-naturalys",
-          "name": { "fr": "Chardonnay Naturalys" },
-          "subgroup": { "fr": "Vins blancs" },
-          "description": { "fr": "Gérard Bertrand" },
+          "name": {
+            "fr": "Chardonnay Naturalys",
+            "en": "Chardonnay Naturalys",
+            "de": "Chardonnay Naturalys",
+            "it": "Chardonnay Naturalys",
+            "zh": "Chardonnay Naturalys（霞多丽）"
+          },
+          "subgroup": {
+            "fr": "Vins blancs",
+            "en": "White wines",
+            "de": "Weißweine",
+            "it": "Vini bianchi",
+            "zh": "白葡萄酒"
+          },
+          "description": {
+            "fr": "Gérard Bertrand",
+            "en": "Gérard Bertrand",
+            "de": "Gérard Bertrand",
+            "it": "Gérard Bertrand",
+            "zh": "Gérard Bertrand"
+          },
           "prices": [
             { "quantity": 12, "unit": "cl", "price": 5.5 },
             { "quantity": 75, "unit": "cl", "price": 24 }
@@ -763,9 +1518,27 @@
         },
         {
           "key": "annee-lumiere-2023",
-          "name": { "fr": "Année Lumière millésime 2023" },
-          "subgroup": { "fr": "Vins rouges" },
-          "description": { "fr": "Domaine Le Clos des Lumières" },
+          "name": {
+            "fr": "Année Lumière millésime 2023",
+            "en": "Année Lumière vintage 2023",
+            "de": "Année Lumière Jahrgang 2023",
+            "it": "Année Lumière annata 2023",
+            "zh": "Année Lumière 2023年份"
+          },
+          "subgroup": {
+            "fr": "Vins rouges",
+            "en": "Red wines",
+            "de": "Rotweine",
+            "it": "Vini rossi",
+            "zh": "红葡萄酒"
+          },
+          "description": {
+            "fr": "Domaine Le Clos des Lumières",
+            "en": "Domaine Le Clos des Lumières",
+            "de": "Domaine Le Clos des Lumières",
+            "it": "Domaine Le Clos des Lumières",
+            "zh": "Domaine Le Clos des Lumières"
+          },
           "priceOnRequest": true
         }
       ]
@@ -773,49 +1546,103 @@
     {
       "key": "cafes-thes",
       "section": "drinks",
-      "name": { "fr": "Cafés & Thés" },
+      "name": {
+        "fr": "Cafés & Thés",
+        "en": "Coffee & Tea",
+        "de": "Kaffee & Tee",
+        "it": "Caffè e tè",
+        "zh": "咖啡与茶"
+      },
       "nameJp": "コーヒー・お茶",
       "items": [
         {
           "key": "cafe-expresso",
-          "name": { "fr": "Café expresso" },
-          "subgroup": { "fr": "Cafés" },
+          "name": {
+            "fr": "Café expresso",
+            "en": "Espresso",
+            "de": "Espresso",
+            "it": "Caffè espresso",
+            "zh": "意式浓缩咖啡"
+          },
+          "subgroup": { "fr": "Cafés", "en": "Coffees", "de": "Kaffee", "it": "Caffè", "zh": "咖啡" },
           "price": 2.4,
           "legacyIds": ["item-e3480398"]
         },
         {
           "key": "double-expresso",
-          "name": { "fr": "Double expresso" },
-          "subgroup": { "fr": "Cafés" },
+          "name": {
+            "fr": "Double expresso",
+            "en": "Double espresso",
+            "de": "Doppelter Espresso",
+            "it": "Doppio espresso",
+            "zh": "双份意式浓缩咖啡"
+          },
+          "subgroup": { "fr": "Cafés", "en": "Coffees", "de": "Kaffee", "it": "Caffè", "zh": "咖啡" },
           "price": 3.6,
           "legacyIds": ["item-e3480403"]
         },
         {
           "key": "cafe-au-lait",
-          "name": { "fr": "Café au lait" },
-          "subgroup": { "fr": "Cafés" },
+          "name": {
+            "fr": "Café au lait",
+            "en": "Coffee with milk",
+            "de": "Milchkaffee",
+            "it": "Caffè latte",
+            "zh": "牛奶咖啡"
+          },
+          "subgroup": { "fr": "Cafés", "en": "Coffees", "de": "Kaffee", "it": "Caffè", "zh": "咖啡" },
           "price": 3.2,
           "legacyIds": ["item-e3480404"]
         },
         {
           "key": "japanese-coffee",
-          "name": { "fr": "Japanese Coffee" },
-          "subgroup": { "fr": "Cafés" },
-          "description": { "fr": "Expresso, whisky japonais et chantilly." },
+          "name": {
+            "fr": "Japanese Coffee",
+            "en": "Japanese Coffee",
+            "de": "Japanischer Kaffee",
+            "it": "Caffè giapponese",
+            "zh": "日式咖啡"
+          },
+          "subgroup": { "fr": "Cafés", "en": "Coffees", "de": "Kaffee", "it": "Caffè", "zh": "咖啡" },
+          "description": {
+            "fr": "Expresso, whisky japonais et chantilly.",
+            "en": "Espresso, Japanese whisky and whipped cream.",
+            "de": "Espresso, japanischer Whisky und Schlagsahne.",
+            "it": "Espresso, whisky giapponese e panna montata.",
+            "zh": "意式浓缩咖啡、日本威士忌和鲜奶油。"
+          },
           "price": 8.9,
           "legacyIds": ["item-e3480287"]
         },
         {
           "key": "thes-verts-japonais",
-          "name": { "fr": "Thés verts japonais" },
-          "description": { "fr": "Au choix : genmaïcha, sencha, Fleur de Geisha, sencha agrumes ou Grand jasmin Chun Feng." },
+          "name": {
+            "fr": "Thés verts japonais",
+            "en": "Japanese green teas",
+            "de": "Japanische Grüntees",
+            "it": "Tè verdi giapponesi",
+            "zh": "日本绿茶"
+          },
+          "description": {
+            "fr": "Au choix : genmaïcha, sencha, Fleur de Geisha, sencha agrumes ou Grand jasmin Chun Feng.",
+            "en": "Choice of genmaicha, sencha, Fleur de Geisha, citrus sencha or Grand jasmin Chun Feng.",
+            "de": "Nach Wahl: Genmaicha, Sencha, Fleur de Geisha, Zitrus-Sencha oder Grand jasmin Chun Feng.",
+            "it": "A scelta: genmaicha, sencha, Fleur de Geisha, sencha agli agrumi o Grand jasmin Chun Feng.",
+            "zh": "可选：玄米茶、煎茶、Fleur de Geisha、柑橘煎茶或 Grand jasmin Chun Feng。"
+          },
           "price": 4.5,
           "legacyIds": ["item-e3480389", "item-e3480392", "item-e3480391", "item-e3480390", "item-e3480393"]
         },
         {
           "key": "infusions",
-          "name": { "fr": "Infusions" },
-          "description": { "fr": "Sélection selon disponibilités." },
+          "name": { "fr": "Infusions", "en": "Herbal teas", "de": "Kräutertees", "it": "Infusi", "zh": "花草茶" },
+          "description": {
+            "fr": "Sélection selon disponibilités.",
+            "en": "Selection depending on availability.",
+            "de": "Auswahl je nach Verfügbarkeit.",
+            "it": "Selezione secondo disponibilità.",
+            "zh": "品种视供应情况而定。"
+          },
           "price": 4.5,
           "legacyIds": ["item-e3480395", "item-e3896125", "item-e3897004", "item-e4112637"]
         }
