@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
 status: Ready to execute
-stopped_at: Completed 13-01-PLAN.md
-last_updated: "2026-11-23T21:28:45.523Z"
+stopped_at: Completed 13-02-PLAN.md
+last_updated: "2026-11-23T21:49:51.426Z"
 progress:
   total_phases: 12
   completed_phases: 4
-  total_plans: 17
-  completed_plans: 13
+  total_plans: 18
+  completed_plans: 14
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 ## Current Position
 
 Phase: 13 (Fondations multilingues & page menu touriste) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
@@ -132,6 +132,7 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 
 | Phase 12 P03 | 29min | 3 tasks | 4 files |
 | Phase 13 P01 | 17min | 3 tasks | 15 files |
+| Phase 13 P02 | 19min | 3 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -158,6 +159,10 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Phase 13-01: IT/ZH message files hold only what they translate (common, nav, menu, consent, orderModal, footer, meta.menu); `request.ts` deep-merges `en.json` underneath, so a missing key falls back to English, never to a raw key. FR/EN/DE loading is unchanged. `scripts/i18n/check-messages.mjs` is the 5-locale contract (parity, ICU, no em-dash, golden units, FR-leak guard); `menu.eazeeLinkCta` is a documented dead key until 13-02 removes the CTA.
 - Phase 13-01: layout `generateStaticParams` = fr/en/de (non-menu it/zh pages are not prerendered); `/it/menu` and `/zh/menu` render on demand until 13-02 adds them to the menu page's own static params. `alternateLinks` is off in routing: hreflang comes only from `buildAlternates` (IT/ZH for `/menu` only, x-default `/fr`), sitemap = 38 URLs. `scripts/i18n/verify-routing.mjs --base <url>` proves it on any host (local `ROUTING OK checks=84`; the live site still fails 33 checks until the 13-03 deploy).
 - Phase 13-01: UI-04 headroom: Noto Sans JP weight 300 and DM Serif italic dropped (nothing renders them). Noto CSS chunk 188 KB / 249 `@font-face` to 94 KB / 125, font preloads 3 to 2, no visual change; `verify-live.mjs` still `VERIFY OK` on fr/en/de.
+- Phase 13-02: the header and drawer `LanguageSwitcher` stay FR/EN/DE on every page, menu included; the menu page's own pill bar (`MenuLanguageSwitcher`: FR EN DE IT 中文, plain `<a>` links to `/{locale}/menu`, 44 px, `hrefLang`/`lang`, `aria-current="page"`) carries IT/中文, so no link ever redirects away. The `#category` hash is not preserved (the quick-nav never writes it to the URL).
+- Phase 13-02: UI-01 rule = `secondaryFrenchName` in the import-free `src/lib/menu.ts` (40 node:test cases in the file): the French name sits on a 14 px « FR » line (`data-fr-name`) under the translated name, hidden on /fr, for untranslated items and when the translation already contains the French name; no French line for category headings or descriptions. `pickLocale` treats empty, blank and non-string translations as missing and `localized()` delegates to it (one fallback implementation). Studio `localeString` / `localeText` have « Italien » and « Chinois (simplifié) » inputs.
+- Phase 13-02: the eazee-link CTA is gone from the menu page (`siteSettings.eazeeLinkUrl` untouched in Sanity); `menu.eazeeLinkCta` is now a dead message key (kept in fr/en/de, excluded by `DEAD_KEYS`). The quick-nav gets slug / name / section only (fr menu HTML 259,830 to 234,945 B). zh = `html:lang(zh-Hans)` font-variable override in `@layer base` (no CJK webfont). `DietaryBadge` reads `menu.diet.*` (aria-hidden short marker + sr-only full name).
+- Phase 13-02: `/it/menu` and `/zh/menu` are prerendered by the build (the menu page's `generateStaticParams`; Next 16.1.6 calls the child once per parent param set, so it/zh come from the `fr` branch). On IT/ZH menus the chrome sends non-menu links straight to `/en` (`siteLocaleFor`, no redirect hop), « Menu » links keep the locale, the footer speaks the page language and its headings are `h2`. Selectors for the live proof: `[data-menu-locale-switcher] a`, `[data-fr-name]`, `nav.sticky`; React renders `hrefLang` camel-cased in static HTML.
 
 ### Key Decisions (v2.1)
 
@@ -224,7 +229,8 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 ### Blockers/Concerns
 
 - v2.2 / Phase 12: APPLIED and live-verified 2026-11-23 (12-03) with the autonomy-grant defaults (see Key Decisions v2.2); EK post-hoc review of `12-DISCREPANCY-REPORT.md` + Année Lumière prices still wanted.
-- RESOLVED (13-01): language of the site chrome on `/it/menu` and `/zh/menu`: minimal IT/ZH strings where `it.json` / `zh.json` define them (nav, common, consent, order modal, footer, menu labels), English for everything else through the EN deep merge in `request.ts`. Plan 13-02 wires the header, footer and cookie banner links.
+- RESOLVED (13-01, wired in 13-02): language of the site chrome on `/it/menu` and `/zh/menu`: minimal IT/ZH strings where `it.json` / `zh.json` define them (nav, common, consent, order modal, footer, menu labels), English for everything else through the EN deep merge in `request.ts`; header, drawer, footer and cookie-banner links to non-menu pages go straight to `/en`.
+- OPEN (found in 13-02, pre-existing, not fixed): the menu quick-nav (`MenuStickyNav`) highlights and scrolls to an arbitrary category on first load at scroll 0 (live Phase 12 code too: « Desserts », « Vins », « Bières » on 3 fresh loads). About 6-line fix suggested in `.planning/phases/13-fondations-multilingues-page-menu-touriste/deferred-items.md`, which also lists the 10 px zh dietary pill text; weigh both in 13-03.
 - Tooling: the v2.0 and v2.1 sections of ROADMAP.md are not collapsed in `<details>`, so `gsd-tools roadmap analyze` counts phases 4–15 as the current milestone (`next_phase` resolves to 06, `phase_count` 12). Explicit `/gsd:*-phase 12` commands are unaffected; run `/gsd:complete-milestone` for v2.0/v2.1 to clean this up.
 - RESOLVED: Google Drive auth — photos are already local (no Drive fetch needed for ig-studio)
 - PENDING: umai_037.jpg classified as ambiance — appears to be an udon dish (not on summer ramen menu). Owner should review during pilot sign-off.
@@ -238,9 +244,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ## Session Continuity
 
-Last session: 2026-11-23T21:28:45.517Z
-Stopped at: Completed 13-01-PLAN.md
-Resume: Phase 12 complete and live. Phase 13 plan 13-01 done (locale rules module, IT/ZH menu-only routing + messages, hreflang/sitemap, routing + message verifiers; local only, nothing deployed). Next: 13-02 (tourist menu page: pill switcher, bilingual rows, zh font stack, Studio it/zh fields, chrome strings), then 13-03 (deploy + live proof, ticks I18N/UI requirements).
+Last session: 2026-11-23T21:49:51.420Z
+Stopped at: Completed 13-02-PLAN.md
+Resume: Phase 12 complete and live. Phase 13 plans 13-01 and 13-02 done, local only, nothing deployed (13-01: locale rules module, IT/ZH menu-only routing + messages, hreflang/sitemap, routing + message verifiers; 13-02: Studio it/zh inputs, FR-secondary-name rule, 5-language pill switcher, bilingual rows, dietary labels, zh font stack, eazee CTA removed, it/zh prerendered, IT/ZH-aware chrome). Next: 13-03 (deploy + live proof, Lighthouse, ticks I18N/UI requirements); decide there whether to fix the quick-nav initial-tab bug from `deferred-items.md`.
 
 ### Key Decisions Added (v2.0 execution)
 
