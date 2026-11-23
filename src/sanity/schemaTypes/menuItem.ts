@@ -38,10 +38,47 @@ export const menuItem = defineType({
       group: 'general',
     }),
     defineField({
+      name: 'subgroup',
+      title: 'Sous-groupe',
+      type: 'localeString',
+      description:
+        'Petit intertitre dans la catégorie (ex : Pressions / Bouteilles). Laisser vide sinon.',
+      group: 'general',
+    }),
+    defineField({
       name: 'price',
       title: 'Prix (€)',
       type: 'number',
-      validation: (Rule) => Rule.required().positive(),
+      description:
+        'Prix unique. Avec des variantes, indiquer le prix le plus bas (utilisé pour le référencement).',
+      validation: (Rule) =>
+        Rule.positive().custom((value, context) => {
+          const doc = context.document as
+            | { prices?: unknown[]; priceOnRequest?: boolean }
+            | undefined;
+          const hasVariants = Array.isArray(doc?.prices) && doc.prices.length > 0;
+          if (value == null && !hasVariants && doc?.priceOnRequest !== true) {
+            return 'Indiquez un prix, des variantes de prix ou cochez « Prix sur demande ».';
+          }
+          return true;
+        }),
+      group: 'general',
+    }),
+    defineField({
+      name: 'prices',
+      title: 'Variantes de prix',
+      type: 'array',
+      of: [{ type: 'priceVariant' }],
+      description:
+        'Ex : 3 pcs / 6 pcs / 9 pcs, 25cl / 50cl, verre / bouteille. Le site affiche toutes les variantes.',
+      group: 'general',
+    }),
+    defineField({
+      name: 'priceOnRequest',
+      title: 'Prix sur demande',
+      type: 'boolean',
+      initialValue: false,
+      description: "Affiche « Prix sur demande » au lieu d'un prix.",
       group: 'general',
     }),
     defineField({
@@ -74,6 +111,20 @@ export const menuItem = defineType({
       group: 'options',
     }),
     defineField({
+      name: 'badges',
+      title: 'Mentions',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Notre best-seller', value: 'bestseller' },
+          { title: 'Version végétarienne disponible', value: 'vegetarianOption' },
+        ],
+        layout: 'grid',
+      },
+      group: 'options',
+    }),
+    defineField({
       name: 'available',
       title: 'Disponible',
       type: 'boolean',
@@ -101,12 +152,24 @@ export const menuItem = defineType({
       title: 'name.fr',
       media: 'image',
       price: 'price',
+      priceOnRequest: 'priceOnRequest',
+      variants: 'prices',
       available: 'available',
     },
-    prepare({ title, media, price, available }) {
+    prepare({ title, media, price, priceOnRequest, variants, available }) {
+      const priceText = priceOnRequest
+        ? 'Prix sur demande'
+        : Array.isArray(variants) && variants.length > 0
+          ? variants
+              .map((v: { price?: number }) => v?.price)
+              .filter((p: number | undefined) => p != null)
+              .join(' / ') + ' €'
+          : price != null
+            ? `${price} €`
+            : '—';
       return {
         title: title ?? 'Sans titre',
-        subtitle: `${price != null ? `${price} €` : '—'} ${available === false ? '⛔ Masqué' : ''}`,
+        subtitle: `${priceText} ${available === false ? '⛔ Masqué' : ''}`,
         media,
       };
     },

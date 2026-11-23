@@ -16,12 +16,22 @@ export const menuFormule = defineType({
       description: 'Ce qui est inclus (ex: "1 Gyoza + 1 Ramen")',
     }),
     defineField({ name: 'order', title: 'Ordre d\'affichage', type: 'number' }),
+    defineField({
+      name: 'available',
+      title: 'Disponible',
+      type: 'boolean',
+      initialValue: true,
+      description: 'Désactivez pour masquer cette formule sans la supprimer',
+    }),
   ],
   orderings: [{ title: 'Ordre', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] }],
   preview: {
-    select: { title: 'name.fr', price: 'price' },
-    prepare({ title, price }: { title?: string; price?: number }) {
-      return { title: title ?? 'Sans titre', subtitle: price != null ? `${price} €` : '—' };
+    select: { title: 'name.fr', price: 'price', available: 'available' },
+    prepare({ title, price, available }: { title?: string; price?: number; available?: boolean }) {
+      return {
+        title: title ?? 'Sans titre',
+        subtitle: `${price != null ? `${price} €` : '—'} ${available === false ? '⛔ Masqué' : ''}`,
+      };
     },
   },
 });

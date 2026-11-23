@@ -12,6 +12,26 @@ export const menuCategory = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'nameJp',
+      title: 'Libellé japonais (décoratif)',
+      type: 'string',
+      description: 'Ex : 前菜, ラーメン, ドリンク',
+    }),
+    defineField({
+      name: 'section',
+      title: 'Section',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Plats', value: 'food' },
+          { title: 'Boissons', value: 'drinks' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+      description: 'Regroupe la catégorie sous « Plats » ou « Boissons » sur la page menu.',
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -29,6 +49,13 @@ export const menuCategory = defineType({
       name: 'description',
       title: 'Description',
       type: 'localeText',
+    }),
+    defineField({
+      name: 'footnote',
+      title: 'Note de bas de catégorie',
+      type: 'localeText',
+      description:
+        "Texte affiché après les plats (ex : « Inclus : un sirop à l'eau et une boule de glace au choix. »)",
     }),
   ],
   orderings: [

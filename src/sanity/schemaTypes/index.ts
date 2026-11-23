@@ -1,5 +1,6 @@
 import { localeString } from './localeString';
 import { localeText } from './localeText';
+import { priceVariant } from './priceVariant';
 import { siteSettings } from './siteSettings';
 import { menuCategory } from './menuCategory';
 import { menuItem } from './menuItem';
@@ -11,6 +12,7 @@ import { page } from './page';
 export const schemaTypes = [
   localeString,
   localeText,
+  priceVariant,
   siteSettings,
   menuCategory,
   menuItem,
