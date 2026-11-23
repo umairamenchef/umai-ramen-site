@@ -1,8 +1,8 @@
 # Phase 12 : rapport d'écarts imprimé 2026 / Sanity
 
-Statut : SIMULATION (dry-run), aucune écriture dans Sanity
+Statut : APPLIQUÉ le 2026-11-23T20:11:47.871Z (transaction PS4gSiVcUV6cnzSF8ooJME, sauvegarde .planning/phases/12-synchronisation-menu-print-2026-sanity/backup/menu-backup-20261123-201142.json)
 
-Sources : imprimé plats du 2026-11-10 (`.planning/sources/menu-2026/plats-ouvert-360x250mm-print-2026-11-10.pdf`) et boissons du 2026-11-03 (`.planning/sources/menu-2026/boissons-180x250mm-print-2026-11-03.pdf`), transcrits dans `scripts/menu-2026/menu-2026.json` le 2026-11-23 ; Sanity `c7twe801/production` lu le 2026-11-23T19:46:12.914Z.
+Sources : imprimé plats du 2026-11-10 (`.planning/sources/menu-2026/plats-ouvert-360x250mm-print-2026-11-10.pdf`) et boissons du 2026-11-03 (`.planning/sources/menu-2026/boissons-180x250mm-print-2026-11-03.pdf`), transcrits dans `scripts/menu-2026/menu-2026.json` le 2026-11-23 ; Sanity `c7twe801/production` lu le 2026-11-23T20:11:42.494Z.
 
 Note : selon l'accord d'autonomie d'EK du 2026-11-23, ce rapport est appliqué sans blocage (plan 12-03) puis remis à EK pour une revue a posteriori (MENU-04).
 
@@ -12,8 +12,8 @@ Note : selon l'accord d'autonomie d'EK du 2026-11-23, ce rapport est appliqué s
 - Sanity avant : 167 menuItem (167 visibles), 26 menuCategory, 5 menuExtra (5 visibles), 2 menuFormule (2 visibles) ; 0 brouillon(s) ; 0 document(s) m26.
 - Sanity après : 20 catégories et 77 articles `m26-*` visibles ; 174 anciens documents masqués (`available=false`), aucun supprimé ; les anciennes catégories restent, vides, donc invisibles sur le site.
 - Écritures (une transaction) : 97 `createOrReplace` (20 catégories + 77 articles), 174 patchs `available=false` (dont 0 orphelin(s) m26), 0 suppression ; 7 slugs suffixés « -2026 » ; 3 photo(s) reprise(s), 0 conservée(s).
-- Garde « code Phase 12 en ligne » (https://umai-ramen.fr/fr/menu) : `LIVE GUARD: blocked (Phase 12 code not deployed yet)`.
-- Ligne de contrôle : `SYNC SUMMARY mode=dry-run categories=20 items=77 hideLegacy=174 hideOrphanM26=0 slugSuffixed=7 drafts=0 imagesFromLegacy=3 imagesKept=0`
+- Garde « code Phase 12 en ligne » (https://umai-ramen.fr/fr/menu) : `LIVE GUARD: ok`.
+- Ligne de contrôle : `SYNC SUMMARY mode=apply categories=20 items=77 hideLegacy=174 hideOrphanM26=0 slugSuffixed=7 drafts=0 imagesFromLegacy=3 imagesKept=0`
 
 ## Ajoutés (nouveaux sur l'imprimé)
 
@@ -610,7 +610,42 @@ La photo (référence d'asset, avec hotspot/crop s'il y en a) est copiée de l'a
 Commande exacte :
 
 ```
-node --env-file=.env.local scripts/menu-2026/sync-menu.mjs --rollback --backup .planning/phases/12-synchronisation-menu-print-2026-sanity/backup/menu-backup-20261123-194217.json
+node --env-file=.env.local scripts/menu-2026/sync-menu.mjs --rollback --backup .planning/phases/12-synchronisation-menu-print-2026-sanity/backup/menu-backup-20261123-201142.json
 ```
 
 Ce qu'elle fait : écrit d'abord une sauvegarde de sécurité (`-pre-rollback`), remet pour chaque ancien document (menuItem, menuExtra, menuFormule) la valeur `available` de la sauvegarde (ou retire le champ s'il n'existait pas), puis supprime tous les documents `m26-*` (articles puis catégories), en une transaction. Ajouter `--dry-run` pour voir le plan (`ROLLBACK PLAN ... restore=<n> delete=<n>`) sans rien écrire.
+
+## Vérification en ligne
+
+> Section ajoutée à la main après `--apply` (plan 12-03). Un nouveau `sync-menu.mjs --dry-run` ou `--apply` régénère ce rapport et la supprime : la recopier si besoin (phase 14).
+
+- **Date** : 2026-11-23. Synchronisation appliquée à 20:11:47 UTC, site en ligne à jour à 20:15:57 UTC.
+- **Code en ligne** : commit `34748ef` sur le VPS (code Phase 12, déployé par SSH avant toute écriture). Le code a d'abord été vérifié avec l'ancien menu (`--expect legacy` OK en FR/EN/DE et sur l'accueil). Point de retour du code : `2523057`.
+- **Sauvegarde avant écriture** : `.planning/phases/12-synchronisation-menu-print-2026-sanity/backup/menu-backup-20261123-201142.json` (200 documents : 167 menuItem, 26 menuCategory, 5 menuExtra, 2 menuFormule).
+- **Transaction** : `PS4gSiVcUV6cnzSF8ooJME`, `POST-APPLY CHECK OK`.
+- **Rafraîchissement du cache** : échelon **b**, `node --env-file=.env.local scripts/menu-2026/revalidate.mjs` (POST signé sur `/api/revalidate` pour menuCategory, menuItem, menuExtra et menuFormule, 4 × HTTP 200). L'échelon a (attente d'un webhook Sanity) n'a rien donné en 4 minutes : aucun webhook Sanity ne rafraîchit umai-ramen.fr aujourd'hui. Pour publier un changement de menu (phase 14 comprise) : `sync-menu.mjs --apply`, puis `revalidate.mjs`.
+- **Contrôles en ligne** (`scripts/menu-2026/verify-live.mjs`, attendu `m26` : ordre de l'imprimé, chaque prix lié à son article, descriptions, libellés japonais, notes, badge, rien de l'ancien menu, aucune formule, aucun `??` ni « Asashi ») :
+
+```
+VERIFY OK target=https://umai-ramen.fr/fr/menu locale=fr expect=m26 checks=309
+VERIFY OK target=https://umai-ramen.fr/en/menu locale=en expect=m26 checks=309
+VERIFY OK target=https://umai-ramen.fr/de/menu locale=de expect=m26 checks=309
+VERIFY OK target=https://umai-ramen.fr/fr locale=fr expect=m26 home checks=8
+VERIFY OK target=https://umai-ramen.fr/en locale=en expect=m26 home checks=10
+VERIFY OK target=https://umai-ramen.fr/de locale=de expect=m26 home checks=10
+```
+
+- **Accueil** : les 3 cartes « Notre Menu » (Entrées, Tantan Umaï, Ramen) affichent leurs 3 photos servies par cdn.sanity.io ; la signature Tantan affiche 15,90 €. La page menu n'affiche aucune image Sanity, comme avant.
+- **JSON-LD en ligne** : 20 sections, 77 articles, une offre par variante (Karaage 3, Asahi 2, Riesling 2, Trio « 3 × 6cl » 1) et aucune offre pour Année Lumière (« Prix sur demande »).
+- **Sanity (lecture seule, après écriture)** : 77 articles `m26-` visibles, dont 3 avec photo ; 20 catégories `m26-` ; 174 anciens documents masqués (`available=false`), 0 ancien article ou extra visible, 0 formule visible ; 26 anciennes catégories et les 200 documents de la sauvegarde toujours présents (rien supprimé) ; les 3 anciens articles sources gardent leur photo (copie, pas déplacement) ; 0 brouillon ; un seul « Tantan Ramen » visible.
+- **Retour arrière testé à blanc** : `--rollback --dry-run` → `ROLLBACK PLAN backup=…/menu-backup-20261123-201142.json restore=174 delete=97`, aucune écriture.
+
+Retour arrière complet si besoin :
+
+```
+node --env-file=.env.local scripts/menu-2026/sync-menu.mjs --rollback --backup .planning/phases/12-synchronisation-menu-print-2026-sanity/backup/menu-backup-20261123-201142.json
+node --env-file=.env.local scripts/menu-2026/revalidate.mjs
+node scripts/menu-2026/verify-live.mjs --locale fr --expect legacy --retries 6 --interval 20
+```
+
+Si `revalidate.mjs` répond 401, relancer avec le secret du VPS : `SANITY_WEBHOOK_SECRET="$(ssh umai-app "grep '^SANITY_WEBHOOK_SECRET=' /home/ek/apps/umai/.env.local | cut -d= -f2-")" node scripts/menu-2026/revalidate.mjs`. Si la page reste ancienne, redémarrer le conteneur web, qui repart avec un cache vide : `ssh umai-app 'cd /home/ek/apps/umai && docker compose -p umai up -d --force-recreate --no-deps web'`. Vérifier ensuite avec `verify-live.mjs --expect legacy --retries 10 --interval 30`.
