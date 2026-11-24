@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
 status: Ready to execute
-stopped_at: Completed 15-01-PLAN.md
-last_updated: "2026-11-23T23:46:27.026Z"
+stopped_at: Completed 15-02-PLAN.md
+last_updated: "2026-11-24T00:05:43.814Z"
 progress:
   total_phases: 12
   completed_phases: 6
   total_plans: 22
-  completed_plans: 19
+  completed_plans: 20
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 ## Current Position
 
 Phase: 15 (QR codes & supports imprimables) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
@@ -136,6 +136,7 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 | Phase 13 P03 | 51min | 3 tasks | 8 files |
 | Phase 14 P03 | 19min | 3 tasks | 5 files |
 | Phase 15 P01 | 6min | 2 tasks | 16 files |
+| Phase 15 P02 | 17min | 3 tasks | 21 files |
 
 ## Accumulated Context
 
@@ -175,6 +176,9 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Phase 15-01: QR codes = version 3, error correction Q (not M: every menu URL is 29 bytes and fits version 3 at Q as at M, 29 x 29 modules, so the stronger level costs nothing), quiet zone 4, black on white, no logo. Files `public/qr/umai-menu-{fr,en,de,it,zh}.svg` (vector, 37 mm, 1 module = 1 mm) + `.png` (1036 px, 28 px per module), deterministic (`node scripts/qr/generate.mjs`).
 - Phase 15-01: `src/lib/qr.ts` (import-free, 12 node:test cases) is the single source of the QR URLs (literal `https://umai-ramen.fr`, never `NEXT_PUBLIC_BASE_URL`, which bakes umai.turfu.in into local builds), the native-script labels, the file names and the SVG renderer; Plans 02/03 and every `scripts/qr/*` import it.
 - Phase 15-01: phone-scan proxy = `node scripts/qr/verify.mjs --urls` (byte-identical SVG regeneration, mutool + jsQR decode of the 10 files, live 200 with `redirect: 'manual'` + `<html lang>` + menu switcher): `QR VERIFY OK assets=10 urls=5 checks=55`. devDependencies `qrcode` 1.5.4 + `jsqr` 1.4.0 (20 dev-only lock entries, existing versions unchanged, `npm ci --dry-run` OK). QR-01 stays unticked until the 15-04 live proof.
+- Phase 15-02: print files = HTML with mm-positioned boxes (scripts/qr/layout.mjs), inline SVG codes + the vector logo re-drawn from the 2026 Exaprint print (`scripts/qr/assets/umai-logo.svg`), committed OFL fonts (Outfit 400/600, DM Serif Display, Noto Sans SC 600 subset; `fetch-fonts.mjs --check`) -> headless Chromium -> `pdftool.py boxes` (exact MediaBox/TrimBox/BleedBox). Deterministic: `node scripts/qr/print.mjs` re-runs are byte-identical. A4 white (office printing, symbol 43.5 mm); A6 ivory to the bleed edge, both faces carry the 5 codes (symbol 25.52 mm, safety 5 mm).
+- Phase 15-02: A6 card default bleed 3 mm (`public/qr/umai-qr-chevalet-a6.pdf`, 111 x 154, trim 105 x 148) + Exaprint variants committed next to it: `umai-qr-chevalet-a6-fp1mm.pdf` (1 mm, flyers) and `-fp2mm.pdf` (2 mm, other products), single-sourced by `QR_TENT_BLEED_MM` / `QR_TENT_VARIANTS` in `src/lib/qr.ts` (`QR_PDFS` and `qrAllAssetPaths()` unchanged, 12 files). 15-03's /menu/qr page should list the 3 A6 files from `QR_TENT_VARIANTS`. `print.mjs`: default run writes all 4 PDFs; `--bleed` needs `--out`.
+- Phase 15-02: gates = `python3 scripts/qr/pdftool.py check <pdf> --kind a4|a6 [--bleed-mm B]` (boxes, 0 images, embedded OFL fonts only, Type3/system fonts rejected, labels, safe area) and `node scripts/qr/verify.mjs --urls` → `QR VERIFY OK assets=10 pdfFiles=2 pdfCodes=15 urls=5 variants=2 variantCodes=20 checks=352` (35 printed codes decoded at 300 dpi; symbol measured on pixels, A4 43.52 mm, A6 25.48-25.57 mm; quiet zone 100 % white). RGB PDFs: Exaprint converts to CMYK (no Ghostscript here). QR-02/QR-03 stay unticked until 15-04.
 
 ### Key Decisions (v2.1)
 
@@ -259,9 +263,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ## Session Continuity
 
-Last session: 2026-11-23T23:46:27.019Z
-Stopped at: Completed 15-01-PLAN.md
-Resume: Phases 12, 13 and 14 complete and live. Phase 14: EN/DE/IT/ZH menu content published to Sanity (field-level, backup + rollback ready), proven live on /{fr,en,de,it,zh}/menu, review sheet `14-REVIEW-SHEET.csv` + FR hand-off in `14-03-SUMMARY.md`; TRANS-01..03 ticked; pushed `f125909` (no code change, no deploy). Phase 15 in progress: 15-01 done (QR contract `src/lib/qr.ts`, 10 codes in `public/qr/`, `verify.mjs --urls` OK; not pushed, not deployed). Next: 15-02 (print PDFs), then 15-03 (/menu/qr page), 15-04 (deploy + live proof, ticks QR-01..04).
+Last session: 2026-11-24T00:05:43.807Z
+Stopped at: Completed 15-02-PLAN.md
+Resume: Phases 12, 13 and 14 complete and live. Phase 14: EN/DE/IT/ZH menu content published to Sanity (field-level, backup + rollback ready), proven live on /{fr,en,de,it,zh}/menu, review sheet `14-REVIEW-SHEET.csv` + FR hand-off in `14-03-SUMMARY.md`; TRANS-01..03 ticked; pushed `f125909` (no code change, no deploy). Phase 15 in progress: 15-01 done (QR contract `src/lib/qr.ts`, 10 codes in `public/qr/`) and 15-02 done (A4 + A6 recto/verso PDFs, 3 mm default + 1/2 mm Exaprint variants, `pdftool.py check` + `verify.mjs --urls` OK); not pushed, not deployed. Next: 15-03 (/menu/qr page: list the A4, the A6 3 mm card and its `QR_TENT_VARIANTS`), then 15-04 (deploy + live proof, ticks QR-01..04, Exaprint hand-off).
 
 ### Key Decisions Added (v2.0 execution)
 
