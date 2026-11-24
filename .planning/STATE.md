@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: Ready to execute
-stopped_at: Completed 15-03-PLAN.md
-last_updated: "2026-11-24T00:26:52.749Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 15-04-PLAN.md
+last_updated: "2026-11-24T00:38:10.004Z"
 progress:
   total_phases: 12
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 22
-  completed_plans: 21
+  completed_plans: 22
 ---
 
 # Project State
@@ -101,6 +101,7 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 ### Still needs EK (validation/refinement only — non-blocking)
 
 - Confirm contact@umai-ramen.fr mailbox active.
+- QR codes (Phase 15, live 2026-11-24): real-phone scan of the 5 codes + Exaprint order of the A6 card, see « Remise à EK (FR) » in `.planning/phases/15-qr-codes-supports-imprimables/15-04-SUMMARY.md` (page https://umai-ramen.fr/fr/menu/qr).
 - Menu translations: DONE in Phase 14 (EN/DE/IT/ZH live 2026-11-24). Optional native review of `.planning/phases/14-traductions-en-de-it-zh/14-REVIEW-SHEET.csv`, ZH column first.
 - Veg/gluten-free tags per item (set heuristically).
 - Optional: dish photos (most items have none), photo-based og-image, EK-SARL entity treatment.
@@ -138,6 +139,7 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 | Phase 15 P01 | 6min | 2 tasks | 16 files |
 | Phase 15 P02 | 17min | 3 tasks | 21 files |
 | Phase 15 P03 | 18min | 3 tasks | 9 files |
+| Phase 15 P04 | 10min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -183,6 +185,9 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Phase 15-03: `/{fr,en,de,it,zh}/menu/qr` (`src/app/(site)/[locale]/menu/qr/page.tsx`, server component, prerendered in the 5 locales like the menu page) shows the 5 labelled codes (SVG + PNG downloads), the A4, the 3 mm A6 card and the 1 mm / 2 mm Exaprint variants from `QR_TENT_VARIANTS` (14 downloads, file names derived from the paths, nothing hard-coded). `noindex, nofollow`, no hreflang, not in the sitemap (38 URLs), not linked from the menu; `X-Robots-Tag: noindex, nofollow` on `/qr/:path*` (next.config.ts headers). Strings `qrPage` / `meta.qrPage` in fr/en/de only (it/zh render English through the merge, page body `lang="en"`). Selectors: `[data-qr-card]`, `[data-qr-pdf]`, `[data-qr-pdf-variant]`, `a[download]`. `scripts/qr/verify-site.mjs --base <url> [--retries N --interval S]` → `QR SITE OK` (local checks=248).
 - Phase 15-03: `src/sanity/lib/client.ts` now uses `useCdn: false` (Phase 13 deferred item 3): all 10 site fetches are tagged and cached by Next until `revalidateTag`, so the origin API is queried only at build, on a cold cache or right after a revalidation (negligible quota). Live once 15-04 deploys it; `scripts/i18n/probe-freshness.mjs` (reversible marker on Karaage `name.it`, immediate revalidation, API CDN control, exact restore with `ifRevisionId`) proves it live.
 - Phase 15-03: `check-messages.mjs` rule (d) formats every ICU message with a sample value per argument (it threw on `{url}` / `{label}`), rule (h) guards the fr/en/de-only `qrPage` namespace (presence, same placeholders as fr, FR leak): `MESSAGES OK checks=1818`.
+- Phase 15-04: Phase 15 is live (deployed `475c880`, VPS rollback point `86068ab`; push `f125909..475c880` after a 0-hit secret scan of the 18 outgoing commits; deploy first try, no font flake). Live proof: `QR VERIFY OK assets=10 pdfFiles=2 pdfCodes=15 urls=5 variants=2 variantCodes=20`, `QR SITE OK base=https://umai-ramen.fr checks=248` (5 pages, 14 files byte-identical with content type + `X-Robots-Tag` noindex, sitemap 38), `ROUTING OK checks=84`, `VERIFY OK` x5 menus + fr home, `VERIFY TRANSLATIONS OK locales=5`, `QR MOBILE OK` at 375 px. QR-01..04 ticked (QR-01 on the automated decode + live 200; EK's real-phone scan is the post-hoc check of the 15-04 hand-off).
+- Phase 15-04: the Sanity freshness fix is live and proven: `probe-freshness.mjs` gave `FRESHNESS OK check-on-attempt=1 control-cdn-stale=true` (marker on Karaage `name.it` visible on /it/menu at the first request after an immediate revalidation, `x-nextjs-cache MISS`, while the API CDN still served the old value 7 s after the write; restored, final read = backup `backup/freshness-backup-20261124-003415.json`). Publishing Sanity content is now: write (Studio or script), then `node --env-file=.env.local scripts/menu-2026/revalidate.mjs` at once, no CDN wait. Phase 13 deferred item 3 RESOLVED.
+- Phase 15-04: Exaprint A6 file = the one whose bleed matches the product page: `umai-qr-chevalet-a6.pdf` (3 mm, default), `-fp1mm.pdf` (1 mm, flyers), `-fp2mm.pdf` (2 mm, other products); RGB, Exaprint converts to CMYK. French hand-off (links, scan checklist, A4 printing, Exaprint order, regeneration, Studio publishing, rollback) in `15-04-SUMMARY.md` « Remise à EK (FR) ».
 
 ### Key Decisions (v2.1)
 
@@ -217,6 +222,7 @@ Deployment: Docker standalone on VPS srv1417179 (valid 2027-02-23), multi-site C
 
 ### Pending Todos (owner-side)
 
+- v2.2 (EK, Phase 15): 5-minute real-phone scan of the 5 QR codes (checklist in `15-04-SUMMARY.md`), print the A4 at 100 %, order the A6 card at Exaprint with the file whose bleed matches the product (3 mm default / 1 mm flyers / 2 mm other products); report any code that opens the wrong page.
 - v2.2 (EK): validate the Phase 12 discrepancy report; supply the Année Lumière 12/25/50cl prices and the Trio dégustation description; confirm typos (« Asashi »); pick the table-tent format (A6 vs folded card) before Phase 15; optional native review of the Phase 14 sheet; optional: create a Sanity webhook to https://umai-ramen.fr/api/revalidate so Studio menu edits reach the site without running revalidate.mjs
 - Photo assets from EK: progressively from 2026-07-09 (hero + gallery, from JPEG_72dpi Google Drive)
 - Summer menu ground truth from Loan Nguyen — verify dishes/prices/tags against in-restaurant reality
@@ -244,7 +250,7 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 **Build flake (constaté 2026-11-23, local + VPS)** : `next build` (Turbopack) échoue parfois avec `next/font/google queries have exactly one entry` quand Google Fonts sert Outfit en URLs `/l/font?kit=…&skey=…`. Relancer la même commande de deploy suffit ; `up -d --build` construit avant de remplacer le conteneur, donc l'ancien continue de servir. Correctif durable possible : passer les 3 polices en `next/font/local`.
 
-**Contenu Sanity → site** : aucun webhook Sanity n'atteint umai-ramen.fr. Après une écriture du menu (sync ou Studio), **attendre environ 2 minutes** (le CDN API de Sanity sert l'ancien menu pendant 86 à 111 s, mesuré en 13-03), puis lancer `node --env-file=.env.local scripts/menu-2026/revalidate.mjs` ; relancer si `verify-live.mjs` voit encore l'ancien contenu. Mesuré en 14-03 : 105 s ; pour un script, interroger sur l'API CDN la requête exacte du site (`MENU_CATEGORIES_QUERY`, `HOMEPAGE_QUERY`), une requête plus simple est fraîche environ 60 s plus tôt et ne prouve rien. Une autre option est de créer un webhook GROQ vers `https://umai-ramen.fr/api/revalidate` (secret = `SANITY_WEBHOOK_SECRET` du VPS, droits admin du projet nécessaires).
+**Contenu Sanity → site (mis à jour 15-04)** : depuis le déploiement `475c880`, le site lit l'API d'origine de Sanity (`useCdn: false`) : après une écriture (Studio ou script), lancer **tout de suite** `node --env-file=.env.local scripts/menu-2026/revalidate.mjs`, la page est fraîche à la requête suivante (prouvé en 15-04 : `FRESHNESS OK check-on-attempt=1 control-cdn-stale=true`). Toujours aucun webhook Sanity vers umai-ramen.fr, donc la commande reste nécessaire. Historique (avant 15-04, site via le CDN API) : après une écriture du menu (sync ou Studio), **attendre environ 2 minutes** (le CDN API de Sanity sert l'ancien menu pendant 86 à 111 s, mesuré en 13-03), puis lancer `node --env-file=.env.local scripts/menu-2026/revalidate.mjs` ; relancer si `verify-live.mjs` voit encore l'ancien contenu. Mesuré en 14-03 : 105 s ; pour un script, interroger sur l'API CDN la requête exacte du site (`MENU_CATEGORIES_QUERY`, `HOMEPAGE_QUERY`), une requête plus simple est fraîche environ 60 s plus tôt et ne prouve rien. Une autre option est de créer un webhook GROQ vers `https://umai-ramen.fr/api/revalidate` (secret = `SANITY_WEBHOOK_SECRET` du VPS, droits admin du projet nécessaires).
 
 ### Blockers/Concerns
 
@@ -253,6 +259,7 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 - RESOLVED (13-03, live): the quick-nav no longer starts on an arbitrary category at scroll 0, and the zh dietary pills are 12 px (`deferred-items.md` #1 and #2).
 - OPEN (13-03, UI-04 gap): /fr/menu Lighthouse mobile performance median 87 < 90 (88/87/86 at load 2.5 to 2.9; an interleaved diagnostic gave fr 91 / en 90). Site-wide causes: react-dom hydration long task, render-blocking font CSS, unused JS/CSS. Needs a gap-closure plan (self-hosted fonts via `next/font/local`, lighter hydration) or a quiet-host remeasure; UI-04 stays Pending until then.
 - RESOLVED (14-03, live 2026-11-24): the Phase 14 publish waited for the Sanity API CDN to serve the site's exact queries (105 s after the write), then ran `revalidate.mjs`; every live check passed on attempt 1. The durable fix (`useCdn: false` for tagged fetches, or a Sanity webhook that waits for the CDN) is still open in `deferred-items.md` #3; until then Studio edits need « wait about 2 min, then revalidate.mjs ».
+- RESOLVED (15-03 / 15-04, live 2026-11-24): `useCdn: false` deployed in `475c880` and proven live (`FRESHNESS OK check-on-attempt=1 control-cdn-stale=true`); `deferred-items.md` #3 marked RESOLVED. Studio edits: publish, then `revalidate.mjs` at once (no 2-minute wait).
 - Watch (13-VERIFICATION human item 2): re-measure Lighthouse on the five menu locales now that translated content adds a « FR » line per French-named item (UI-04 variance).
 - Tooling: the v2.0 and v2.1 sections of ROADMAP.md are not collapsed in `<details>`, so `gsd-tools roadmap analyze` counts phases 4–15 as the current milestone (`next_phase` resolves to 06, `phase_count` 12). Explicit `/gsd:*-phase 12` commands are unaffected; run `/gsd:complete-milestone` for v2.0/v2.1 to clean this up.
 - RESOLVED: Google Drive auth — photos are already local (no Drive fetch needed for ig-studio)
@@ -267,9 +274,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ## Session Continuity
 
-Last session: 2026-11-24T00:26:52.742Z
-Stopped at: Completed 15-03-PLAN.md
-Resume: Phases 12, 13 and 14 complete and live. Phase 14: EN/DE/IT/ZH menu content published to Sanity (field-level, backup + rollback ready), proven live on /{fr,en,de,it,zh}/menu, review sheet `14-REVIEW-SHEET.csv` + FR hand-off in `14-03-SUMMARY.md`; TRANS-01..03 ticked; pushed `f125909` (no code change, no deploy). Phase 15 in progress: 15-01 done (QR contract `src/lib/qr.ts`, 10 codes in `public/qr/`) and 15-02 done (A4 + A6 recto/verso PDFs, 3 mm default + 1/2 mm Exaprint variants, `pdftool.py check` + `verify.mjs --urls` OK) and 15-03 done (/menu/qr page with 14 downloads incl. the Exaprint variants, `useCdn: false`, `probe-freshness.mjs`, `verify-site.mjs`; local gate QR SITE OK / ROUTING OK 84 / VERIFY OK x5 / QR MOBILE OK; last code commit `76c2d99`); not pushed, not deployed. Next: 15-04 (push + manual SSH deploy, live proof incl. the freshness probe, ticks QR-01..04, Exaprint hand-off).
+Last session: 2026-11-24T00:38:09.996Z
+Stopped at: Completed 15-04-PLAN.md
+Resume: Phases 12, 13, 14 and 15 complete and live (milestone v2.2: 22/22 plans, QR-01..04 ticked). Phase 15 deployed `475c880` (rollback `86068ab`): QR codes in `public/qr/` (10 files + A4 + A6 3 mm card + 1/2 mm Exaprint variants), `/{locale}/menu/qr` download page (noindex), `useCdn: false` proven live by `probe-freshness.mjs`. Local commits after the deploy (`554cc98` + the 15-04 metadata commit) are docs only and ride with the next push. Next: phase verification of 15, then `/gsd:complete-milestone` for v2.2; EK: real-phone scan + Exaprint order (15-04 hand-off). Still open: deploy webhook broken (manual SSH deploy).
 
 ### Key Decisions Added (v2.0 execution)
 

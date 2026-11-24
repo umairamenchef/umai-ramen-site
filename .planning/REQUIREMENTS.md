@@ -46,10 +46,10 @@
 
 ### QR Codes
 
-- [ ] **QR-01**: Each language has a QR code encoding `https://umai-ramen.fr/{locale}/menu`, verified by scanning on a real phone
-- [ ] **QR-02**: A printable A4 sheet (PDF, vector QR) shows the 5 QR codes, each labelled in its own language/script (e.g. "Menu in English", "中文菜单"), on-brand
-- [ ] **QR-03**: A print-ready table tent (A6 or folded card, PDF with bleed, Exaprint-compatible) carries the 5 QR codes
-- [ ] **QR-04**: A web page (`/menu/qr`) displays the 5 QR codes and lets EK/Loan download each one (SVG/PNG) plus the A4 and table-tent PDFs at any time
+- [x] **QR-01**: Each language has a QR code encoding `https://umai-ramen.fr/{locale}/menu`, verified by scanning on a real phone _(2026-11-24, autonomy grant: proven by decoding the 10 files and the 35 printed codes and by a live 200 with no redirect and the right `<html lang>` on each URL; the real-phone scan is EK's post-hoc check, checklist in 15-04-SUMMARY)_
+- [x] **QR-02**: A printable A4 sheet (PDF, vector QR) shows the 5 QR codes, each labelled in its own language/script (e.g. "Menu in English", "中文菜单"), on-brand
+- [x] **QR-03**: A print-ready table tent (A6 or folded card, PDF with bleed, Exaprint-compatible) carries the 5 QR codes _(A6 flat card, recto/verso, 3 mm bleed by default plus 1 mm / 2 mm Exaprint variants; the Exaprint order itself is EK's)_
+- [x] **QR-04**: A web page (`/menu/qr`) displays the 5 QR codes and lets EK/Loan download each one (SVG/PNG) plus the A4 and table-tent PDFs at any time
 
 ## Future Requirements (deferred)
 
@@ -95,10 +95,10 @@
 | UI-02 | Phase 13 | Complete |
 | UI-03 | Phase 13 | Complete |
 | UI-04 | Phase 13 | Complete |
-| QR-01 | Phase 15 | Pending |
-| QR-02 | Phase 15 | Pending |
-| QR-03 | Phase 15 | Pending |
-| QR-04 | Phase 15 | Pending |
+| QR-01 | Phase 15 | Complete |
+| QR-02 | Phase 15 | Complete |
+| QR-03 | Phase 15 | Complete |
+| QR-04 | Phase 15 | Complete |
 
 **Coverage:** 22/22 mapped ✓ — every requirement assigned to exactly one phase (MENU 6 → Phase 12 · I18N 5 + UI 4 → Phase 13 · TRANS 3 → Phase 14 · QR 4 → Phase 15)
 
