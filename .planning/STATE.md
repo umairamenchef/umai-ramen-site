@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
 status: Ready to execute
-stopped_at: Completed 15-02-PLAN.md
-last_updated: "2026-11-24T00:05:43.814Z"
+stopped_at: Completed 15-03-PLAN.md
+last_updated: "2026-11-24T00:26:52.749Z"
 progress:
   total_phases: 12
   completed_phases: 6
   total_plans: 22
-  completed_plans: 20
+  completed_plans: 21
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 ## Current Position
 
 Phase: 15 (QR codes & supports imprimables) — EXECUTING
-Plan: 3 of 4
+Plan: 4 of 4
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
@@ -137,6 +137,7 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 | Phase 14 P03 | 19min | 3 tasks | 5 files |
 | Phase 15 P01 | 6min | 2 tasks | 16 files |
 | Phase 15 P02 | 17min | 3 tasks | 21 files |
+| Phase 15 P03 | 18min | 3 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -179,6 +180,9 @@ Pending after /clear: (1) Hero→popup, (2) EK's 3 content points (story text, T
 - Phase 15-02: print files = HTML with mm-positioned boxes (scripts/qr/layout.mjs), inline SVG codes + the vector logo re-drawn from the 2026 Exaprint print (`scripts/qr/assets/umai-logo.svg`), committed OFL fonts (Outfit 400/600, DM Serif Display, Noto Sans SC 600 subset; `fetch-fonts.mjs --check`) -> headless Chromium -> `pdftool.py boxes` (exact MediaBox/TrimBox/BleedBox). Deterministic: `node scripts/qr/print.mjs` re-runs are byte-identical. A4 white (office printing, symbol 43.5 mm); A6 ivory to the bleed edge, both faces carry the 5 codes (symbol 25.52 mm, safety 5 mm).
 - Phase 15-02: A6 card default bleed 3 mm (`public/qr/umai-qr-chevalet-a6.pdf`, 111 x 154, trim 105 x 148) + Exaprint variants committed next to it: `umai-qr-chevalet-a6-fp1mm.pdf` (1 mm, flyers) and `-fp2mm.pdf` (2 mm, other products), single-sourced by `QR_TENT_BLEED_MM` / `QR_TENT_VARIANTS` in `src/lib/qr.ts` (`QR_PDFS` and `qrAllAssetPaths()` unchanged, 12 files). 15-03's /menu/qr page should list the 3 A6 files from `QR_TENT_VARIANTS`. `print.mjs`: default run writes all 4 PDFs; `--bleed` needs `--out`.
 - Phase 15-02: gates = `python3 scripts/qr/pdftool.py check <pdf> --kind a4|a6 [--bleed-mm B]` (boxes, 0 images, embedded OFL fonts only, Type3/system fonts rejected, labels, safe area) and `node scripts/qr/verify.mjs --urls` → `QR VERIFY OK assets=10 pdfFiles=2 pdfCodes=15 urls=5 variants=2 variantCodes=20 checks=352` (35 printed codes decoded at 300 dpi; symbol measured on pixels, A4 43.52 mm, A6 25.48-25.57 mm; quiet zone 100 % white). RGB PDFs: Exaprint converts to CMYK (no Ghostscript here). QR-02/QR-03 stay unticked until 15-04.
+- Phase 15-03: `/{fr,en,de,it,zh}/menu/qr` (`src/app/(site)/[locale]/menu/qr/page.tsx`, server component, prerendered in the 5 locales like the menu page) shows the 5 labelled codes (SVG + PNG downloads), the A4, the 3 mm A6 card and the 1 mm / 2 mm Exaprint variants from `QR_TENT_VARIANTS` (14 downloads, file names derived from the paths, nothing hard-coded). `noindex, nofollow`, no hreflang, not in the sitemap (38 URLs), not linked from the menu; `X-Robots-Tag: noindex, nofollow` on `/qr/:path*` (next.config.ts headers). Strings `qrPage` / `meta.qrPage` in fr/en/de only (it/zh render English through the merge, page body `lang="en"`). Selectors: `[data-qr-card]`, `[data-qr-pdf]`, `[data-qr-pdf-variant]`, `a[download]`. `scripts/qr/verify-site.mjs --base <url> [--retries N --interval S]` → `QR SITE OK` (local checks=248).
+- Phase 15-03: `src/sanity/lib/client.ts` now uses `useCdn: false` (Phase 13 deferred item 3): all 10 site fetches are tagged and cached by Next until `revalidateTag`, so the origin API is queried only at build, on a cold cache or right after a revalidation (negligible quota). Live once 15-04 deploys it; `scripts/i18n/probe-freshness.mjs` (reversible marker on Karaage `name.it`, immediate revalidation, API CDN control, exact restore with `ifRevisionId`) proves it live.
+- Phase 15-03: `check-messages.mjs` rule (d) formats every ICU message with a sample value per argument (it threw on `{url}` / `{label}`), rule (h) guards the fr/en/de-only `qrPage` namespace (presence, same placeholders as fr, FR leak): `MESSAGES OK checks=1818`.
 
 ### Key Decisions (v2.1)
 
@@ -263,9 +267,9 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 
 ## Session Continuity
 
-Last session: 2026-11-24T00:05:43.807Z
-Stopped at: Completed 15-02-PLAN.md
-Resume: Phases 12, 13 and 14 complete and live. Phase 14: EN/DE/IT/ZH menu content published to Sanity (field-level, backup + rollback ready), proven live on /{fr,en,de,it,zh}/menu, review sheet `14-REVIEW-SHEET.csv` + FR hand-off in `14-03-SUMMARY.md`; TRANS-01..03 ticked; pushed `f125909` (no code change, no deploy). Phase 15 in progress: 15-01 done (QR contract `src/lib/qr.ts`, 10 codes in `public/qr/`) and 15-02 done (A4 + A6 recto/verso PDFs, 3 mm default + 1/2 mm Exaprint variants, `pdftool.py check` + `verify.mjs --urls` OK); not pushed, not deployed. Next: 15-03 (/menu/qr page: list the A4, the A6 3 mm card and its `QR_TENT_VARIANTS`), then 15-04 (deploy + live proof, ticks QR-01..04, Exaprint hand-off).
+Last session: 2026-11-24T00:26:52.742Z
+Stopped at: Completed 15-03-PLAN.md
+Resume: Phases 12, 13 and 14 complete and live. Phase 14: EN/DE/IT/ZH menu content published to Sanity (field-level, backup + rollback ready), proven live on /{fr,en,de,it,zh}/menu, review sheet `14-REVIEW-SHEET.csv` + FR hand-off in `14-03-SUMMARY.md`; TRANS-01..03 ticked; pushed `f125909` (no code change, no deploy). Phase 15 in progress: 15-01 done (QR contract `src/lib/qr.ts`, 10 codes in `public/qr/`) and 15-02 done (A4 + A6 recto/verso PDFs, 3 mm default + 1/2 mm Exaprint variants, `pdftool.py check` + `verify.mjs --urls` OK) and 15-03 done (/menu/qr page with 14 downloads incl. the Exaprint variants, `useCdn: false`, `probe-freshness.mjs`, `verify-site.mjs`; local gate QR SITE OK / ROUTING OK 84 / VERIFY OK x5 / QR MOBILE OK; last code commit `76c2d99`); not pushed, not deployed. Next: 15-04 (push + manual SSH deploy, live proof incl. the freshness probe, ticks QR-01..04, Exaprint hand-off).
 
 ### Key Decisions Added (v2.0 execution)
 
