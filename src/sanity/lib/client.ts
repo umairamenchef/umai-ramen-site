@@ -5,7 +5,11 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  // Origin API, not the API CDN (Phase 15, Phase 13 deferred item 3). Every site fetch is
+  // tagged and kept by Next until revalidateTag, so Sanity is only queried at build, on a
+  // cold cache or right after a revalidation. Through the API CDN, a revalidation in the
+  // 86–111 s after a write re-cached the OLD content (measured live in 13-03).
+  useCdn: false,
 });
 
 export async function sanityFetch<const Q extends string>({
