@@ -1,0 +1,67 @@
+{
+  "exportedAt": "2026-11-24T00:34:15.028Z",
+  "projectId": "c7twe801",
+  "dataset": "production",
+  "documents": [
+    {
+      "_createdAt": "2026-11-23T20:11:42Z",
+      "_id": "m26-item-karaage",
+      "_rev": "lWwPwzVj4paFn3vV2NnUyI",
+      "_type": "menuItem",
+      "_updatedAt": "2026-11-23T23:21:32Z",
+      "available": true,
+      "category": {
+        "_ref": "m26-cat-entrees",
+        "_type": "reference"
+      },
+      "description": {
+        "_type": "localeText",
+        "de": "Mariniertes und frittiertes Hähnchen, hausgemacht",
+        "en": "Homemade marinated fried chicken",
+        "fr": "Poulet mariné et frit maison",
+        "it": "Pollo marinato e fritto, fatto in casa",
+        "zh": "自家腌制炸鸡"
+      },
+      "isGlutenFree": false,
+      "isVegetarian": false,
+      "name": {
+        "_type": "localeString",
+        "de": "Karaage",
+        "en": "Karaage",
+        "fr": "Karaage",
+        "it": "Karaage",
+        "zh": "Karaage（日式炸鸡）"
+      },
+      "nameJp": "唐揚げ",
+      "order": 10,
+      "price": 5.5,
+      "prices": [
+        {
+          "_key": "v0",
+          "_type": "priceVariant",
+          "price": 5.5,
+          "quantity": 3,
+          "unit": "pcs"
+        },
+        {
+          "_key": "v1",
+          "_type": "priceVariant",
+          "price": 9.9,
+          "quantity": 6,
+          "unit": "pcs"
+        },
+        {
+          "_key": "v2",
+          "_type": "priceVariant",
+          "price": 13.9,
+          "quantity": 9,
+          "unit": "pcs"
+        }
+      ],
+      "slug": {
+        "_type": "slug",
+        "current": "karaage"
+      }
+    }
+  ]
+}

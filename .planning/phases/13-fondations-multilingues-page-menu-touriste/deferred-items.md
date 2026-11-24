@@ -23,6 +23,8 @@ Out-of-scope discoveries logged during execution. Not fixed (scope boundary: onl
 
 ## 3. Revalidating right after a Sanity write can re-cache the OLD menu for good (found in 13-03)
 
+> **RESOLVED in 15-03 / 15-04** (commit `c23653a`, live since deploy `475c880`): `useCdn: false` in `src/sanity/lib/client.ts`; live proof `FRESHNESS OK check-on-attempt=1 control-cdn-stale=true` (`scripts/i18n/probe-freshness.mjs`, 2026-11-24: the marker written on Karaage `name.it` showed on /it/menu on the first request after an immediate revalidation, `x-nextjs-cache MISS`, while the API CDN still served the old value 7 s after the write; then restored, final read identical to the backup). Publishing no longer needs the 2-minute wait: write, then `revalidate.mjs`.
+
 - **Where:** `src/sanity/lib/client.ts` (`useCdn: true`) together with `sanityFetch` (tagged fetches use `revalidate: false`), and every publish procedure that calls `scripts/menu-2026/revalidate.mjs` (Phase 14 publish, Studio edits, a future Sanity webhook).
 - **Symptom (live, 2026-11-23):** the first probe run wrote it/zh names, revalidated 34 s later (`revalidate.mjs --delay 30`), and the pages never showed the new values in 10 checks over 4.5 min. After `revalidateTag` the next request is a blocking `MISS` render that re-fetches the menu through the Sanity API CDN. That fetch still got the pre-write menu, and the tagged data cache then keeps it until the next `revalidateTag` (every 60 s page regeneration reuses it).
 - **Measured:** the site's exact menu query through `apicdn.sanity.io` reflected the write after **111 s** and the revert after **86 s** (CDN headers: `s-maxage=60, stale-while-revalidate=15`). Phase 12-03 never hit this because it revalidated more than 4 minutes after its write.
