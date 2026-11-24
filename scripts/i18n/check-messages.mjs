@@ -11,11 +11,16 @@
 //       common,consent,footer,menu,meta,nav,orderModal and meta holds only `menu`
 //       (everything else falls back to English through the merge in src/i18n/request.ts)
 //   (c) no value contains an em-dash (EK, v2.1; covers the Chinese double dash too)
-//   (d) every string value is valid ICU and formats with { count: 2 }
+//   (d) every string value is valid ICU and formats with { count: 2 } plus a sample value
+//       for each other argument it uses ({url}, {label}…: Phase 15)
 //   (e) golden values of the unit messages (pcs, scoop singular / plural) per locale
 //   (f) FR-leak guard: the listed keys differ from the French value in en, de, it, zh
 //   (g) Phase 12 verifier findings: meta.menu.description no longer advertises
 //       formules / set menus, and the dietary pill short labels are golden per locale
+//   (h) Phase 15 /menu/qr page: every fr key of the qrPage namespace plus
+//       meta.qrPage.title / meta.qrPage.description is filled in fr, en and de, en / de use
+//       the same {placeholders} as fr, and the listed keys differ from French (FR leak).
+//       it / zh get these strings in English through the merge; (b) keeps them out.
 //
 // A missing or invalid file prints `MISSING FILE <path>` and counts as a failure; the
 // checks that need it are skipped, the script never crashes.
@@ -111,6 +116,23 @@ const DIET_GOLDEN = {
   zh: { vegetarian: '素', glutenFree: '无麸质' },
 };
 
+// Phase 15: the /menu/qr page. fr/en/de only; it/zh fall back to English through the
+// merge, (b) keeps the namespace out of them.
+const FULL_SITE_ONLY_NAMESPACES = ['qrPage'];
+const FULL_SITE_ONLY_META = ['meta.qrPage.title', 'meta.qrPage.description'];
+const FULL_SITE_FR_LEAK_KEYS = [
+  'qrPage.title',
+  'qrPage.intro',
+  'qrPage.formatsHint',
+  'qrPage.printHeading',
+  'meta.qrPage.description',
+  'qrPage.tentVariantsHint',
+  'qrPage.tentVariant',
+];
+const FULL_SITE_ONLY_LOCALES = ['fr', 'en', 'de'];
+// 14 qrPage keys (the 12 of the page + the 2 of the Exaprint bleed variants) + 2 meta keys.
+const FULL_SITE_MIN_KEYS = 16;
+
 let checks = 0;
 const failures = [];
 
@@ -135,6 +157,32 @@ function flatten(obj, prefix = '', out = new Map()) {
 
 function isFilled(value) {
   return typeof value === 'string' && value.trim() !== '';
+}
+
+/**
+ * A sample value for every argument of a parsed ICU message (intl-messageformat AST), so (d)
+ * can format messages with placeholders: plain / select -> 'x', number / plural -> 2,
+ * date / time -> the epoch, rich-text tag -> identity function. `count` stays 2.
+ */
+function sampleValues(elements, values = { count: 2 }) {
+  for (const element of elements) {
+    // Element types of @formatjs/icu-messageformat-parser: 0 literal, 1 argument, 2 number,
+    // 3 date, 4 time, 5 select, 6 plural, 7 pound, 8 tag.
+    if (element.type === 1 || element.type === 5) values[element.value] ??= 'x';
+    else if (element.type === 2 || element.type === 6) values[element.value] ??= 2;
+    else if (element.type === 3 || element.type === 4) values[element.value] ??= new Date(0);
+    else if (element.type === 8) {
+      values[element.value] ??= (chunks) => chunks;
+      sampleValues(element.children, values);
+    }
+    for (const option of Object.values(element.options ?? {})) sampleValues(option.value, values);
+  }
+  return values;
+}
+
+/** Sorted, de-duplicated {placeholder} names of a message ('url', 'label', 'count'…). */
+function placeholders(value) {
+  return [...new Set([...String(value).matchAll(/\{(\w+)/g)].map((m) => m[1]))].sort().join(',');
 }
 
 // ---------------------------------------------------------------------------
@@ -196,7 +244,8 @@ for (const locale of loaded) {
     check(!value.includes('—'), `[c] ${locale} ${key}: contains an em-dash`);
     let error = null;
     try {
-      new IntlMessageFormat(value, locale).format({ count: 2 });
+      const message = new IntlMessageFormat(value, locale);
+      message.format(sampleValues(message.getAst()));
     } catch (e) {
       error = e;
     }
@@ -249,6 +298,42 @@ for (const locale of loaded) {
   for (const [name, expected] of Object.entries(DIET_GOLDEN[locale])) {
     const actual = flat[locale].get(`menu.diet.${name}`);
     check(actual === expected, `[g] ${locale} menu.diet.${name}: expected "${expected}", got ${JSON.stringify(actual)}`);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// (h) Phase 15: the /menu/qr page strings (fr / en / de only)
+// ---------------------------------------------------------------------------
+
+const fullSiteRequired = new Set(FULL_SITE_ONLY_META);
+if (flat.fr) {
+  for (const key of flat.fr.keys()) {
+    if (FULL_SITE_ONLY_NAMESPACES.includes(key.split('.')[0])) fullSiteRequired.add(key);
+  }
+}
+check(fullSiteRequired.size >= FULL_SITE_MIN_KEYS, '[h] fr: qrPage namespace missing or incomplete');
+for (const locale of FULL_SITE_ONLY_LOCALES) {
+  if (!flat[locale]) continue;
+  for (const key of fullSiteRequired) {
+    check(isFilled(flat[locale].get(key)), `[h] ${locale}: missing or empty ${key}`);
+  }
+}
+for (const locale of FULL_SITE_ONLY_LOCALES.filter((l) => l !== 'fr')) {
+  if (!flat[locale] || !flat.fr) continue;
+  for (const key of fullSiteRequired) {
+    const own = flat[locale].get(key);
+    const french = flat.fr.get(key);
+    if (!isFilled(own) || !isFilled(french)) continue; // reported above
+    check(
+      placeholders(own) === placeholders(french),
+      `[h] ${locale} ${key}: placeholders {${placeholders(own)}} differ from fr {${placeholders(french)}}`,
+    );
+  }
+  for (const key of FULL_SITE_FR_LEAK_KEYS) {
+    const own = flat[locale].get(key);
+    const french = flat.fr.get(key);
+    if (!isFilled(own) || !isFilled(french)) continue; // reported above
+    check(own !== french, `[h] ${locale} ${key}: identical to the French value (FR leak)`);
   }
 }
 

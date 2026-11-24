@@ -261,6 +261,10 @@
     "cgv": {
       "title": "Conditions générales de vente | Umaï Ramen",
       "description": "Conditions générales de vente et d'utilisation du site Umaï Ramen. Droit applicable et juridiction."
+    },
+    "qrPage": {
+      "title": "QR codes du menu | Umaï Ramen",
+      "description": "Les QR codes du menu Umaï Ramen en 5 langues, à télécharger en SVG, PNG et PDF."
     }
   },
   "orderModal": {
@@ -280,5 +284,21 @@
     "cookies": "Politique cookies",
     "terms": "CGV",
     "rights": "© 2026 UMAI Ramen. Tous droits réservés."
+  },
+  "qrPage": {
+    "title": "QR codes du menu",
+    "intro": "Un QR code par langue : chacun ouvre directement le menu dans sa langue. Téléchargez-les pour les imprimer ou les partager.",
+    "codesHeading": "Les 5 QR codes",
+    "qrAlt": "QR code vers {url}",
+    "downloadSvgLabel": "Télécharger en SVG : {label}",
+    "downloadPngLabel": "Télécharger en PNG : {label}",
+    "formatsHint": "SVG : net à toutes les tailles, pour l'imprimeur ou le graphiste. PNG : pour WhatsApp, l'e-mail ou les réseaux sociaux.",
+    "printHeading": "Supports à imprimer",
+    "a4": "Feuille A4 (PDF)",
+    "a4Hint": "Les 5 QR codes sur une page A4. Imprimez à 100 % (taille réelle), sans ajuster à la page.",
+    "tent": "Chevalet A6 recto verso (PDF)",
+    "tentHint": "Carte A6 (105 × 148 mm) avec fond perdu, prête à envoyer à Exaprint. Les deux faces portent les 5 QR codes.",
+    "tentVariantsHint": "Ce fichier a un fond perdu de {defaultMm} mm. Si la commande Exaprint demande un autre fond perdu, prenez la même carte dans la bonne version :",
+    "tentVariant": "Fond perdu {mm} mm (PDF)"
   }
 }

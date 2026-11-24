@@ -261,6 +261,10 @@
     "cgv": {
       "title": "Terms and Conditions | Umaï Ramen",
       "description": "Terms and conditions of use for the Umaï Ramen website. Applicable law and jurisdiction."
+    },
+    "qrPage": {
+      "title": "Menu QR codes | Umaï Ramen",
+      "description": "The Umaï Ramen menu QR codes in 5 languages, to download as SVG, PNG and PDF."
     }
   },
   "orderModal": {
@@ -280,5 +284,21 @@
     "cookies": "Cookie Policy",
     "terms": "Terms and Conditions",
     "rights": "© 2026 UMAI Ramen. All rights reserved."
+  },
+  "qrPage": {
+    "title": "Menu QR codes",
+    "intro": "One QR code per language: each one opens the menu directly in that language. Download them to print or share.",
+    "codesHeading": "The 5 QR codes",
+    "qrAlt": "QR code for {url}",
+    "downloadSvgLabel": "Download as SVG: {label}",
+    "downloadPngLabel": "Download as PNG: {label}",
+    "formatsHint": "SVG: sharp at any size, for the printer or a designer. PNG: for WhatsApp, email or social media.",
+    "printHeading": "Print files",
+    "a4": "A4 sheet (PDF)",
+    "a4Hint": "All 5 QR codes on one A4 page. Print at 100% (actual size), without fit to page.",
+    "tent": "A6 table card, both sides (PDF)",
+    "tentHint": "A6 card (105 × 148 mm) with bleed, ready to send to Exaprint. Both sides carry the 5 QR codes.",
+    "tentVariantsHint": "This file has a {defaultMm} mm bleed. If the Exaprint order asks for a different bleed, take the same card in the matching version:",
+    "tentVariant": "{mm} mm bleed (PDF)"
   }
 }

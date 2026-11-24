@@ -261,6 +261,10 @@
     "cgv": {
       "title": "Allgemeine Geschäftsbedingungen | Umaï Ramen",
       "description": "Allgemeine Geschäftsbedingungen und Nutzungsbedingungen der Website Umaï Ramen."
+    },
+    "qrPage": {
+      "title": "QR-Codes der Speisekarte | Umaï Ramen",
+      "description": "Die QR-Codes der Speisekarte von Umaï Ramen in 5 Sprachen, als SVG, PNG und PDF zum Herunterladen."
     }
   },
   "orderModal": {
@@ -280,5 +284,21 @@
     "cookies": "Cookie-Richtlinie",
     "terms": "AGB",
     "rights": "© 2026 UMAI Ramen. Alle Rechte vorbehalten."
+  },
+  "qrPage": {
+    "title": "QR-Codes der Speisekarte",
+    "intro": "Ein QR-Code pro Sprache: Jeder öffnet die Speisekarte direkt in dieser Sprache. Zum Drucken oder Teilen herunterladen.",
+    "codesHeading": "Die 5 QR-Codes",
+    "qrAlt": "QR-Code für {url}",
+    "downloadSvgLabel": "Als SVG herunterladen: {label}",
+    "downloadPngLabel": "Als PNG herunterladen: {label}",
+    "formatsHint": "SVG: in jeder Größe scharf, für Druckerei oder Grafiker. PNG: für WhatsApp, E-Mail oder soziale Netzwerke.",
+    "printHeading": "Druckvorlagen",
+    "a4": "A4-Blatt (PDF)",
+    "a4Hint": "Alle 5 QR-Codes auf einer A4-Seite. In Originalgröße (100 %) drucken, nicht an die Seite anpassen.",
+    "tent": "A6-Tischaufsteller, beidseitig (PDF)",
+    "tentHint": "A6-Karte (105 × 148 mm) mit Beschnittzugabe, bereit für Exaprint. Beide Seiten tragen die 5 QR-Codes.",
+    "tentVariantsHint": "Diese Datei hat {defaultMm} mm Beschnittzugabe. Verlangt die Exaprint-Bestellung eine andere Beschnittzugabe, gibt es hier dieselbe Karte in der passenden Version:",
+    "tentVariant": "{mm} mm Beschnittzugabe (PDF)"
   }
 }
