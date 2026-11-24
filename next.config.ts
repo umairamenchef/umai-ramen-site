@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
     ],
     qualities: [75, 85],
   },
+  // Phase 15 (QR-04): the QR files are tools for the restaurant, not search results.
+  async headers() {
+    return [{ source: '/qr/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }];
+  },
 };
 
 export default withBundleAnalyzer(withNextIntl(nextConfig));
