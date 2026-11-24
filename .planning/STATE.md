@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v2.2
 milestone_name: Menu multilingue & QR codes touristes
-status: Phase complete — ready for verification
+status: Milestone complete
 stopped_at: Completed 15-04-PLAN.md
-last_updated: "2026-11-24T00:38:10.004Z"
+last_updated: "2026-11-24T00:40:20.109Z"
 progress:
   total_phases: 12
   completed_phases: 7
@@ -23,8 +23,12 @@ See: .planning/PROJECT.md (updated 2026-11-22 after v2.2 milestone opening)
 
 ## Current Position
 
-Phase: 15 (QR codes & supports imprimables) — EXECUTING
-Plan: 4 of 4
+Phase: 15 of 15 (v2.2) — ALL PHASES COMPLETE (12 ✓, 13 ✓, 14 ✓, 15 ✓)
+Plan: —
+Status: v2.2 delivered & deployed on https://umai-ramen.fr (VPS 475c880, 2026-11-24). Formal milestone archive (`/gsd:complete-milestone`) intentionally skipped at EK's request to speed up — run it later if wanted.
+Last activity: 2026-11-24 — Phase 15 (QR codes & print supports) live; lean verification passed.
+
+Next action (EK, non-blocking): real-phone scan of the 5 QR codes; Exaprint order (pick the A6 bleed file matching the product); native review of 14-REVIEW-SHEET.csv (ZH first); review 12-DISCREPANCY-REPORT.md; give the Année Lumière 12/25/50cl prices.
 
 ### Deployed autonomously 2026-07-14 (commit 64378b7, verified live on umai.turfu.in)
 
@@ -257,7 +261,7 @@ requis). La 2e option est la bonne à terme : turfu.in n'est plus le domaine de 
 - v2.2 / Phase 12: APPLIED and live-verified 2026-11-23 (12-03) with the autonomy-grant defaults (see Key Decisions v2.2); EK post-hoc review of `12-DISCREPANCY-REPORT.md` + Année Lumière prices still wanted.
 - RESOLVED (13-01, wired in 13-02): language of the site chrome on `/it/menu` and `/zh/menu`: minimal IT/ZH strings where `it.json` / `zh.json` define them (nav, common, consent, order modal, footer, menu labels), English for everything else through the EN deep merge in `request.ts`; header, drawer, footer and cookie-banner links to non-menu pages go straight to `/en`.
 - RESOLVED (13-03, live): the quick-nav no longer starts on an arbitrary category at scroll 0, and the zh dietary pills are 12 px (`deferred-items.md` #1 and #2).
-- OPEN (13-03, UI-04 gap): /fr/menu Lighthouse mobile performance median 87 < 90 (88/87/86 at load 2.5 to 2.9; an interleaved diagnostic gave fr 91 / en 90). Site-wide causes: react-dom hydration long task, render-blocking font CSS, unused JS/CSS. Needs a gap-closure plan (self-hosted fonts via `next/font/local`, lighter hydration) or a quiet-host remeasure; UI-04 stays Pending until then.
+- RESOLVED (13-03, UI-04): the /fr/menu median 87 did not reproduce — 13-VERIFICATION fresh 3-run medians fr 97 / en 92 / de 93 / it 96 / zh 96 (pooled fr 91); host-load noise. Watch item: re-run Lighthouse on the 5 menus with translated content (EK/optional).
 - RESOLVED (14-03, live 2026-11-24): the Phase 14 publish waited for the Sanity API CDN to serve the site's exact queries (105 s after the write), then ran `revalidate.mjs`; every live check passed on attempt 1. The durable fix (`useCdn: false` for tagged fetches, or a Sanity webhook that waits for the CDN) is still open in `deferred-items.md` #3; until then Studio edits need « wait about 2 min, then revalidate.mjs ».
 - RESOLVED (15-03 / 15-04, live 2026-11-24): `useCdn: false` deployed in `475c880` and proven live (`FRESHNESS OK check-on-attempt=1 control-cdn-stale=true`); `deferred-items.md` #3 marked RESOLVED. Studio edits: publish, then `revalidate.mjs` at once (no 2-minute wait).
 - Watch (13-VERIFICATION human item 2): re-measure Lighthouse on the five menu locales now that translated content adds a « FR » line per French-named item (UI-04 variance).

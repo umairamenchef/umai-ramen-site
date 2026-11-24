@@ -5,7 +5,7 @@
 - ✅ **v1.0 MVP Launch** — Phases 1–3, 11 plans (shipped 2026-02-23) → [archive](.planning/milestones/v1.0-ROADMAP.md)
 - ✅ **v2.0 IG Content Studio** — Phases 4–7, de facto delivered & deployed (umai.turfu.in/ig-studio); formal archive pending
 - ✅ **v2.1 Mise en ligne production & bascule umai-ramen.fr** — Phases 8–11, delivered 2026-07-16 (umai-ramen.fr live), all 24 REQs checked; formal archive pending
-- 🚧 **v2.2 Menu multilingue & QR codes touristes** — Phases 12–15, in progress (opened 2026-11-22)
+- ✅ **v2.2 Menu multilingue & QR codes touristes** — Phases 12–15, delivered 2026-11-24 (umai-ramen.fr: menu 2026, IT/ZH menu locales, EN/DE/IT/ZH translations, QR codes); formal archive pending
 
 ## Phases
 
@@ -336,4 +336,4 @@ Plans:
 | 12. Synchronisation menu print 2026 → Sanity | v2.2 | 3/3 | Complete    | 2026-11-23 |
 | 13. Fondations multilingues & page menu touriste | v2.2 | 3/3 | Complete    | 2026-11-23 |
 | 14. Traductions EN/DE/IT/ZH | v2.2 | 3/3 | Complete    | 2026-11-23 |
-| 15. QR codes & supports imprimables | v2.2 | 4/4 | Complete   | 2026-11-24 |
+| 15. QR codes & supports imprimables | v2.2 | 4/4 | Complete    | 2026-11-24 |

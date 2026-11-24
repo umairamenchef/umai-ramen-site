@@ -51,6 +51,7 @@ The VPS (valid until 2027-02-23) is a multi-site host intended for umai-ramen.fr
 
 ### Active (v2.2 — Menu multilingue & QR codes touristes)
 
+- ✓ **QR-01..04** — 5 language QR codes (SVG/PNG), A4 sheet + A6 table card PDFs (3 mm, +1/2 mm Exaprint variants), `/menu/qr` download page (noindex); Sanity freshness fix (`useCdn: false`) — Validated in Phase 15: QR codes & supports imprimables (2026-11-24)
 - ✓ **TRANS-01..03** — full 2026 menu translated EN/DE/IT/ZH in Sanity (712 values, JP names kept + zh glosses), live on all 4 tourist menus with the FR name underneath; review sheet `14-REVIEW-SHEET.csv` (ZH à relire) — Validated in Phase 14: Traductions EN/DE/IT/ZH (2026-11-24)
 - ✓ **I18N-01..05, UI-01..04** — IT/ZH menu-only locales live (/it/menu, /zh/menu; other /it|/zh → /en 307), 5-language pill switcher, bilingual row (translated name + FR secondary), zh-Hans system fonts, hreflang/sitemap menu-only, Studio it/zh fields, Lighthouse medians 92–97 — Validated in Phase 13: Fondations multilingues & page menu touriste (2026-11-24)
 - ✓ **MENU-01..06** — 2026 printed menu (latest Exaprint print) mirrored live on umai-ramen.fr/fr/menu: 20 categories / 77 items in print order, price variants, « Prix sur demande », badges, sub-groups, JP labels, page notes; 174 legacy docs hidden (not deleted), backup + rollback script; discrepancy report handed to EK — Validated in Phase 12: Synchronisation menu print 2026 → Sanity (2026-11-23)
@@ -168,4 +169,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-11-24 after Phase 14 (translations live)*
+*Last updated: 2026-11-24 after v2.2 delivery (Phases 12–15 live)*
